@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-14 UTC",
+  "baseline": "aa822bd",
+  "typecheck": "PASS: node node_modules/typescript/bin/tsc --noEmit --incremental false",
+  "productionBuild": "PASS: node C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js run build; all five phases completed",
+  "buildHelper": "Existing Windows npm module-resolution failure recurred; installed npm entrypoint completed the build. Helper itself was not repaired.",
+  "executionProfile": "Portable; configured true and changed false in root and scratch",
+  "foreignKeyViolations": [],
+  "schemaChanges": false,
+  "packageChanges": false,
+  "testOrigin": "http://localhost:5174",
+  "testStore": ".sites-runtime/audit-checkout/.wrangler/state",
+  "reviewMutationRequests": 0,
+  "restoredOverUserEdits": false,
+  "interruptions": [
+    "First acceptance attempt interrupted after 49 checks with ECONNRESET when the scratch server exited; not counted as a pass. Subsequent workflow attempt could not connect and was not counted.",
+    "Restarted scratch in a retained PTY session, waited for readiness; complete 58-check, 72-check and 11-check suites then passed. Exit cause and sustained dev-server stability remain unverified."
+  ],
+  "sitesSavedVersion": 2,
+  "deployed": false,
+  "hostedVerification": false
+}

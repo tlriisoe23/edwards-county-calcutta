@@ -22,5 +22,7 @@ export function settlement(data: Row) {
         return { ...p, entries, paid, balance: p.due - paid, status: status(p.due, paid) };
     });
     const sum = (rows: Row[], k: string) => rows.reduce((n, r) => n + r[k], 0);
-    return { receipts, payables, purchases: sum(receipts, 'due'), received: sum(receipts, 'paid'), receivable: sum(receipts, 'balance'), entitled: sum(payables, 'due'), disbursed: sum(payables, 'paid'), payable: sum(payables, 'balance') };
+    const outstanding = (rows: Row[]) => rows.reduce((n, r) => n + Math.max(0, r.balance), 0);
+    const overpaid = (rows: Row[]) => rows.reduce((n, r) => n + Math.max(0, -r.balance), 0);
+    return { receipts, payables, purchases: sum(receipts, 'due'), received: sum(receipts, 'paid'), receivable: outstanding(receipts), receiptOverpayments: overpaid(receipts), netReceivable: sum(receipts, 'balance'), entitled: sum(payables, 'due'), disbursed: sum(payables, 'paid'), payable: outstanding(payables), payoutOverpayments: overpaid(payables), netPayable: sum(payables, 'balance') };
 }

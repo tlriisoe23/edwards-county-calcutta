@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-14T13:02:06.719Z",
+  "receivable": {
+    "actual": 7000,
+    "expected": 9000
+  },
+  "payable": {
+    "actual": 7000,
+    "expected": 9000
+  },
+  "signedCsv": "\"Amount\"\r\n\"'-12.50\""
+}

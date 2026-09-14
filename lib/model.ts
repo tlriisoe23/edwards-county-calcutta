@@ -64,7 +64,11 @@ export function compute(data: Row) {
     return { gross, deduction, net: gross - deduction, sold: active.length, remaining: data.teams.filter((t: Row) => ["UPCOMING", "ON_BLOCK", "UNSOLD"].includes(t.status)).length, average: active.length ? Math.round(gross / active.length) : 0, highest: Math.max(0, ...active.map((s: Row) => s.amount)), lowest: active.length ? Math.min(...active.map((s: Row) => s.amount)) : 0, pools, entitlements };
 }
 export function money(cents: number, currency = "USD") { return new Intl.NumberFormat("en-US", { style: "currency", currency, maximumFractionDigits: cents % 100 ? 2 : 0 }).format(cents / 100); }
-export function csv(rows: any[][]) { return rows.map(row => row.map(v => { let s = String(v ?? ""); if (/^[=+@\-\t\r]/.test(s))
+export function csv(rows: any[][]) { return rows.map(row => row.map(v => { let s = String(v ?? "");
+    // Signed decimal amounts are numeric cells, not formulas. Keep escaping
+    // formula-like text, including expressions that merely start with a number.
+    const numeric = typeof v === 'number' && Number.isFinite(v) || /^-?\d+(?:\.\d+)?$/.test(s) && Number.isFinite(Number(s));
+    if (!numeric && /^[=+@\-\t\r]/.test(s))
     s = "'" + s; return '"' + s.replaceAll('"', '""') + '"'; }).join(",")).join("\r\n"); }
 export function parsePaste(text: string) { const lines: string[][] = []; let row: string[] = [], cell = "", quoted = false; const delimiter = text.includes("\t") ? "\t" : text.includes("|") ? "|" : ","; for (let i = 0; i < text.length; i++) {
     const c = text[i];

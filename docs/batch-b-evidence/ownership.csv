@@ -1,0 +1,4 @@
+"Event","Currency","Team","Sale Status","Sale Price","Owner","Owner Type","Ownership Percentage","Agreement Status","Private Buyback Consideration"
+"Batch B Settlement Review","USD","Pine / Oak","ACTIVE","300.03","'=1+1","buyer","100","Completed",""
+"Batch B Settlement Review","USD","Lake / Field","ACTIVE","200.02","Paid Buyer","buyer","100","Completed",""
+"Batch B Settlement Review","USD","North / West","ACTIVE","50.01","Paid Buyer","buyer","100","Completed",""

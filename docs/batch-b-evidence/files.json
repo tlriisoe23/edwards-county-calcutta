@@ -1,0 +1,173 @@
+{
+  "passed": 21,
+  "failed": 0,
+  "method": "Python csv.DictReader and decimal.Decimal",
+  "checks": [
+    "auction.csv: parsed with standard csv reader",
+    "in-tab-audit.csv: parsed with standard csv reader",
+    "in-tab-sales.csv: parsed with standard csv reader",
+    "in-tab-teams.csv: parsed with standard csv reader",
+    "ownership.csv: parsed with standard csv reader",
+    "payments.csv: parsed with standard csv reader",
+    "payouts.csv: parsed with standard csv reader",
+    "settlement.csv: parsed with standard csv reader",
+    "teams.csv: parsed with standard csv reader",
+    "Positive collections reconcile independently",
+    "Buyer overpayments remain separate numeric amounts",
+    "Signed settlement net remains reconcilable",
+    "Actual receipt reversal stays numeric",
+    "Actual payout reversal stays numeric",
+    "Payment direction totals reconcile separately",
+    "Payout export retains negative due",
+    "Entitlement rows conserve awards",
+    "In-tab sales retain their distinct schema and exact total",
+    "In-tab roster keeps import columns and three teams",
+    "In-tab audit retains its existing columns",
+    "In-tab sales still neutralize formula-like buyer text"
+  ],
+  "files": {
+    "auction.csv": {
+      "rows": 3,
+      "columns": [
+        "Event",
+        "Currency",
+        "Flight",
+        "Pool",
+        "Auction Order",
+        "Team",
+        "Players",
+        "Buyer",
+        "Sale Price",
+        "Sale Status",
+        "Sold At",
+        "Sale ID"
+      ],
+      "sha256": "2318ce33c02e48596b1cb820b27c86d464725e46469e65426a41fc0b1ccd1f3f"
+    },
+    "in-tab-audit.csv": {
+      "rows": 27,
+      "columns": [
+        "Time",
+        "Operator",
+        "Action",
+        "Record",
+        "Undone"
+      ],
+      "sha256": "eada9599750ba6e55c9e9f5d8a36de0dae5b4d244291dc49343c1fab523d9f8c"
+    },
+    "in-tab-sales.csv": {
+      "rows": 3,
+      "columns": [
+        "Team",
+        "Flight",
+        "Buyer",
+        "Sale Amount",
+        "Status",
+        "Sold At",
+        "Buyback Status",
+        "Team Ownership Percent",
+        "Buyback Consideration"
+      ],
+      "sha256": "e497e25198ca9ddd877ed0708bbe7630754432de0a9cbab4c5b8fde26ffc9898"
+    },
+    "in-tab-teams.csv": {
+      "rows": 3,
+      "columns": [
+        "Team Name",
+        "Player 1",
+        "Player 2",
+        "Flight",
+        "Handicap",
+        "Player 3",
+        "Player 4"
+      ],
+      "sha256": "33f3e7602a7bea364646d0854554c3ade4b05150536824df536e253c831d0b20"
+    },
+    "ownership.csv": {
+      "rows": 3,
+      "columns": [
+        "Event",
+        "Currency",
+        "Team",
+        "Sale Status",
+        "Sale Price",
+        "Owner",
+        "Owner Type",
+        "Ownership Percentage",
+        "Agreement Status",
+        "Private Buyback Consideration"
+      ],
+      "sha256": "1696a414451f521e11cfb40f3bd83ec08afed40460ad5f306598161817bb97e7"
+    },
+    "payments.csv": {
+      "rows": 7,
+      "columns": [
+        "Event",
+        "Currency",
+        "Direction",
+        "Party",
+        "Entry ID",
+        "Amount",
+        "Date / Time",
+        "Method",
+        "Note / Reference",
+        "Recorded By",
+        "Recorded At",
+        "Reversal Of"
+      ],
+      "sha256": "52ad368164528f2b867758efb3e5cac7b6c1f8874aa7eedd5f40719251c87e65"
+    },
+    "payouts.csv": {
+      "rows": 2,
+      "columns": [
+        "Event",
+        "Currency",
+        "Flight",
+        "Team",
+        "Finishing Position",
+        "Pool",
+        "Payout Percentage",
+        "Calculated Team Payout",
+        "Ownership Percentage",
+        "Entitled Party",
+        "Party Type",
+        "Entitled Amount",
+        "Party Total Entitlement",
+        "Party Payouts Recorded",
+        "Party Remaining Due",
+        "Party Payout Status"
+      ],
+      "sha256": "17afdba2b0663e361e71e6ca86908573770634e12e395e6042c90ed5f2a59152"
+    },
+    "settlement.csv": {
+      "rows": 2,
+      "columns": [
+        "Event",
+        "Currency",
+        "Buyer",
+        "Purchased Teams",
+        "Purchase Total",
+        "Payments Received",
+        "Remaining Balance",
+        "Status"
+      ],
+      "sha256": "66fdc5209a892a9397f8bbddc0b86503634d5f586856c8483479a4cb27092be1"
+    },
+    "teams.csv": {
+      "rows": 3,
+      "columns": [
+        "Event",
+        "Flight",
+        "Pool",
+        "Auction Order",
+        "Team",
+        "Players",
+        "Handicap",
+        "Seed",
+        "Status",
+        "Finishing Position"
+      ],
+      "sha256": "c9d459e0de9a34d00a503f76b350e8ce1379a7b587d67b970bc38c061c4f341a"
+    }
+  }
+}

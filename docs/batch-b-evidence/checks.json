@@ -1,0 +1,152 @@
+{
+  "at": "2026-09-14T13:05:26.247Z",
+  "checks": [
+    {
+      "name": "Signed numeric cells round-trip without an apostrophe",
+      "status": "PASS"
+    },
+    {
+      "name": "Formula-like text remains escaped",
+      "status": "PASS"
+    },
+    {
+      "name": "Commas quotes Unicode newlines and pipes survive CSV serialization",
+      "status": "PASS"
+    },
+    {
+      "name": "Empty summary has zero debts credits and net balances",
+      "status": "PASS"
+    },
+    {
+      "name": "Credit-only parties never produce negative remaining totals",
+      "status": "PASS"
+    },
+    {
+      "name": "Partial payment retains full unpaid collection total",
+      "status": "PASS"
+    },
+    {
+      "name": "Fully paid buyer does not affect another buyer debt",
+      "status": "PASS"
+    },
+    {
+      "name": "Direct overpayment remains rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "Price correction shows debt and overpayment separately",
+      "status": "PASS"
+    },
+    {
+      "name": "Purchaser correction retains receipt with its original buyer",
+      "status": "PASS"
+    },
+    {
+      "name": "Undo purchaser correction restores debt credit split without moving payments",
+      "status": "PASS"
+    },
+    {
+      "name": "Receipt reversal reconciles positive balances and retains original",
+      "status": "PASS"
+    },
+    {
+      "name": "Undo receipt reversal restores credit with a compensating entry",
+      "status": "PASS"
+    },
+    {
+      "name": "Recorded payout remains separate from purchase receipts",
+      "status": "PASS"
+    },
+    {
+      "name": "Reduced award cannot offset another payee unpaid award",
+      "status": "PASS"
+    },
+    {
+      "name": "Payout reversal restores full outstanding awards",
+      "status": "PASS"
+    },
+    {
+      "name": "Undo payout reversal restores separate overpayment",
+      "status": "PASS"
+    },
+    {
+      "name": "auction actual download parses and excludes private contact fields",
+      "status": "PASS"
+    },
+    {
+      "name": "settlement actual download parses and excludes private contact fields",
+      "status": "PASS"
+    },
+    {
+      "name": "teams actual download parses and excludes private contact fields",
+      "status": "PASS"
+    },
+    {
+      "name": "payouts actual download parses and excludes private contact fields",
+      "status": "PASS"
+    },
+    {
+      "name": "ownership actual download parses and excludes private contact fields",
+      "status": "PASS"
+    },
+    {
+      "name": "payments actual download parses and excludes private contact fields",
+      "status": "PASS"
+    },
+    {
+      "name": "JSON backup preserves exact signed entries and summary",
+      "status": "PASS"
+    },
+    {
+      "name": "Auction CSV ACTIVE amounts reconcile to pool",
+      "status": "PASS"
+    },
+    {
+      "name": "Settlement CSV keeps signed negative balances numeric",
+      "status": "PASS"
+    },
+    {
+      "name": "CSV positive debts and credits independently reproduce collection summary",
+      "status": "PASS"
+    },
+    {
+      "name": "Payout CSV negative remaining due is numeric and awards reconcile",
+      "status": "PASS"
+    },
+    {
+      "name": "Receipt and payout reversals remain numeric in actual CSV",
+      "status": "PASS"
+    },
+    {
+      "name": "Payment CSV reconciles each direction independently",
+      "status": "PASS"
+    },
+    {
+      "name": "Actual export keeps malicious buyer and payment notes escaped",
+      "status": "PASS"
+    },
+    {
+      "name": "Anonymous private export remains denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Public projection excludes settlement and payments",
+      "status": "PASS"
+    }
+  ],
+  "eventId": "b4c943b2-d146-4bd4-b56b-109b87c723a8",
+  "summary": {
+    "purchases": 55006,
+    "received": 30003,
+    "receivable": 30003,
+    "receiptOverpayments": 5000,
+    "netReceivable": 25003,
+    "entitled": 55006,
+    "disbursed": 27503,
+    "payable": 41254,
+    "payoutOverpayments": 13751,
+    "netPayable": 27503
+  },
+  "passed": 33,
+  "failed": 0
+}

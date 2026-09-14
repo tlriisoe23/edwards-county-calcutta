@@ -1,0 +1,24 @@
+{
+  "seed": "0xec6c2026",
+  "method": "xorshift32; independent BigInt largest-remainder oracle",
+  "cases": 1000,
+  "passed": 1000,
+  "failed": 0,
+  "assertions": 50670,
+  "failures": [],
+  "observations": [
+    {
+      "name": "Quoted pipe in a comma CSV retains all columns",
+      "status": "FAIL",
+      "evidence": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n+   'Team Name,Player 1,Player 2,Flight'\n-   'North | South',\n-   'Renée, Jr.',\n-   'O\"Brien',\n-   'Flight A'\n  ]\n"
+    },
+    {
+      "name": "Negative financial CSV cells remain numeric",
+      "status": "PASS"
+    },
+    {
+      "name": "Quoted commas, quotes and unicode survive CSV",
+      "status": "PASS"
+    }
+  ]
+}

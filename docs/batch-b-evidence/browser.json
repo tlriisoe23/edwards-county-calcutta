@@ -1,0 +1,18 @@
+{
+  "date": "2026-09-14 UTC",
+  "method": "Manual CUA Chromium observation; not automated test-case equivalents",
+  "eventId": "b4c943b2-d146-4bd4-b56b-109b87c723a8",
+  "origin": "http://localhost:5174",
+  "checks": [
+    {"name":"Collection summary and party accounts agree","status":"PASS","evidence":"Remaining to collect $300.03; overpayments $50; owing buyer $300.03; paid buyer overpaid $50. Mark paid disabled for overpaid buyer."},
+    {"name":"Mark paid uses the individual debt","status":"PASS","evidence":"Opened owing buyer's Mark paid dialog: amount 300.03. Canceled without writing."},
+    {"name":"Payout summary and party accounts agree","status":"PASS","evidence":"Remaining to pay $412.54; overpayments $137.51; overpaid party retains entitlement $137.52 and recorded payout $275.03. Further payment disabled for that party."},
+    {"name":"Printable summary preserves separate totals and signed rows","status":"PASS","evidence":"Print-summary DOM has $300.03 / $50 collection split and $412.54 / $137.51 payout split, with party rows -$50 and -$137.51. Physical pagination not exercised."},
+    {"name":"Existing in-tab download buttons produce files","status":"PASS","evidence":"Clicked Teams CSV, Sales Export auction records, Activity Export recent audit. Copied actual downloads into in-tab-*.csv; independently parsed and reconciled in files.json."},
+    {"name":"Revised summary fits desktop and tablet; phone containment","status":"PASS","evidence":"Screenshots inspected at default desktop and 768x1024; both panels legible without overlap. At 390x844 summary clientWidth=scrollWidth=338, each panel clientWidth=scrollWidth=336 and full summary text present. Phone observation is DOM containment, not physical-device evidence."}
+  ],
+  "passed": 6,
+  "failed": 0,
+  "cleanup": "Temporary viewport reset and isolated tab closed. Original user review tabs retained.",
+  "limitations": ["Initial navigation timed out while compiling, then the same tab loaded successfully.","No physical printing, screen-reader speech, hosted identities or new TV acceptance claimed."]
+}

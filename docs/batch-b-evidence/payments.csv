@@ -1,0 +1,8 @@
+"Event","Currency","Direction","Party","Entry ID","Amount","Date / Time","Method","Note / Reference","Recorded By","Recorded At","Reversal Of"
+"Batch B Settlement Review","USD","Receipt","Paid Buyer","95a33083-c685-4176-9ca8-682f98c855de","100.01","2026-09-14T13:00:00Z","Check","'=SUM(1,2)","seedy@sites.test","2026-09-14T13:05:29.034Z",""
+"Batch B Settlement Review","USD","Receipt","Paid Buyer","20034ef1-ce10-4d93-b9ab-4fc22c2319eb","200.02","2026-09-14T13:00:00Z","Check","'=SUM(1,2)","seedy@sites.test","2026-09-14T13:05:29.085Z",""
+"Batch B Settlement Review","USD","Receipt","Paid Buyer","1106ad9d-0c6d-4492-869a-dd648ac6c56c","-100.01","2026-09-14T13:05:29.394Z","Check","Receipt correction","seedy@sites.test","2026-09-14T13:05:29.394Z","95a33083-c685-4176-9ca8-682f98c855de"
+"Batch B Settlement Review","USD","Receipt","Paid Buyer","272f675a-7a60-457c-8e7b-cd39e27880aa","100.01","2026-09-14T13:05:29.446Z","Check","Undo: settlement reverse","seedy@sites.test","2026-09-14T13:05:29.446Z","1106ad9d-0c6d-4492-869a-dd648ac6c56c"
+"Batch B Settlement Review","USD","Payout","Paid Buyer","6d506e8f-e062-475e-9010-759430ea6431","275.03","2026-09-14T13:10:00Z","Other","'-1+2","seedy@sites.test","2026-09-14T13:05:29.639Z",""
+"Batch B Settlement Review","USD","Payout","Paid Buyer","b4df1c83-9898-48cf-b053-e8f6e3e2fd8d","-275.03","2026-09-14T13:05:29.758Z","Other","Payout correction","seedy@sites.test","2026-09-14T13:05:29.758Z","6d506e8f-e062-475e-9010-759430ea6431"
+"Batch B Settlement Review","USD","Payout","Paid Buyer","c08aa91f-1dbd-4332-8b9d-93b214bb6c1d","275.03","2026-09-14T13:05:29.811Z","Other","Undo: settlement reverse","seedy@sites.test","2026-09-14T13:05:29.811Z","b4df1c83-9898-48cf-b053-e8f6e3e2fd8d"
