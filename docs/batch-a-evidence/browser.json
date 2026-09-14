@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-14 UTC",
+  "method": "Manual Chromium browser journeys through Codex CUA, not automated test-case equivalents",
+  "origins": ["http://localhost:5174", "http://127.0.0.1:5175"],
+  "fixtures": {
+    "alpha": "640aa18d-4529-456e-a694-c52ed3cc2ffb",
+    "beta": "c8f72c97-0437-4985-b71b-d4ddd9907b26",
+    "created": "eda8bacd-7287-4c74-84b7-c4eeb50a3a67"
+  },
+  "checks": [
+    {"id":"BA-BR-01","status":"PASS","name":"Switch A to B with an unsaved Rules draft","evidence":"Entered Unsaved Alpha draft, selected Batch A Beta; URL became beta and Tournament name became Batch A Beta. Old draft was not copied or saved."},
+    {"id":"BA-BR-02","status":"PASS","name":"Back restores A and forward restores B","evidence":"URL, Current event and Rules name agreed after each history action. Returning to Alpha showed its saved name."},
+    {"id":"BA-BR-03","status":"PASS","name":"Reload retains selected B","evidence":"Reload returned beta URL and Batch A Beta in the event selector."},
+    {"id":"BA-BR-04","status":"PASS","name":"Operator brand opens same public event","evidence":"Brand from beta admin opened /?event=beta with Batch A Beta heading."},
+    {"id":"BA-BR-05","status":"PASS","name":"Public TV link retains B","evidence":"TV mode opened /tv?event=beta with Batch A Beta heading."},
+    {"id":"BA-BR-06","status":"PASS","name":"TV return link retains B","evidence":"Auction board opened /?event=beta with Batch A Beta heading."},
+    {"id":"BA-BR-07","status":"PASS","name":"Public Operator link retains B","evidence":"Operator opened /admin?event=beta and the selector displayed Batch A Beta."},
+    {"id":"BA-BR-08","status":"PASS","name":"New event selects and names its new URL","evidence":"Created Batch A Browser Creation through the modal; URL and selector followed returned created ID."},
+    {"id":"BA-BR-09","status":"PASS","name":"Unqualified entry resolves once and pins newest event","evidence":"Navigated to / without query; loaded Batch A Browser Creation and replaced URL with its ID. Reload preserved the same ID and heading."},
+    {"id":"BA-BR-10","status":"PASS","name":"Delayed A response cannot overwrite B","evidence":"Read-only proxy held one Alpha admin response. Selected Beta and observed its URL/selector before release. Status showed pending=1 then pending=0, delivered=175 then 176. After release URL, selector and Beta Team heading still represented Beta."}
+  ],
+  "passed": 10,
+  "failed": 0,
+  "limitations": [
+    "Existing local mock identity; real hosted sign-in and distinct accounts remain unverified.",
+    "Sign-out return URL was inspected; shared localhost browser cookies were not signed out.",
+    "No new fullscreen, physical-device, responsive or display-containment acceptance is claimed.",
+    "A timed-out first tab creation and an incorrect Operator area locator were harness interruptions; fresh DOM inspection located the actual Operator link."
+  ],
+  "cleanup": "Agent test tabs closed; read-only proxy and isolated server stopped. Original localhost:5173 review tab and process retained."
+}

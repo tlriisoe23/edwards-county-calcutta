@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-14 UTC",
+  "baseline": "782eb3b",
+  "typecheck": "PASS: node node_modules/typescript/bin/tsc --noEmit --incremental false",
+  "build": "PASS: node C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js run build; all five phases complete",
+  "buildHelper": "Windows npm helper failed to resolve npm-prefix.js/npm-cli.js. Installed npm entrypoint completed the same production build without package changes.",
+  "executionProfile": "Portable, configured=true, changed=false in both root and isolated checkout",
+  "database": {
+    "target": ".sites-runtime/audit-checkout/.wrangler/state",
+    "migrationsAddedOrReplayed": false,
+    "foreignKeyViolations": [],
+    "remainingBatchATriggers": [],
+    "remainingBatchAMockOperators": [],
+    "localOwnerConfigurationRestored": true
+  },
+  "review": {
+    "port": 5173,
+    "processId": 1848,
+    "eventUrl": "http://localhost:5173/admin?event=f76b2c03-ca9d-4a99-aac0-20c6ad2e60d2",
+    "testMutationRequests": 0,
+    "stateRestoredOverUserEdits": false,
+    "leftRunning": true
+  },
+  "temporaryPortsStopped": [5174, 5175],
+  "sites": {"latestSavedVersion":2,"deployed":false,"hostedVerification":false}
+}

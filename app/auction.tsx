@@ -8,9 +8,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { money, type Row } from "@/lib/model";
+import { eventPath } from "@/lib/sharing";
 import AdminPanel from "./operator";
 export function Choice({ value, onChange, items, label }: any) { return <Select value={String(value)} onValueChange={onChange}><SelectTrigger aria-label={label} className="choice"><SelectValue placeholder={label}/></SelectTrigger><SelectContent>{items.map((x: any) => <SelectItem key={typeof x === "string" ? x : x.value} value={typeof x === "string" ? x : x.value}>{typeof x === "string" ? x : x.label}</SelectItem>)}</SelectContent></Select>; }
-export function Brand() { return <a className="brand" href="/"><Flag size={27}/><span>THE CALCUTTA<small>EDWARDS COUNTY</small></span></a>; }
+export function Brand({ eventId }: { eventId?: string | null }) { return <a className="brand" href={eventPath('/', eventId)}><Flag size={27}/><span>THE CALCUTTA<small>EDWARDS COUNTY</small></span></a>; }
 export function Block({ data, admin = false }: any) {
     const e = data.event, s = e.settings, t = admin ? data.teams.find((t: Row) => t.id === data.state.teamId) : data.state.team;
     const f = data.flights?.find((f: Row) => f.id === t?.flightId);
@@ -25,11 +26,39 @@ export function Stats({ data, admin = false }: any) { const t = data.totals, e =
 export function PoolCards({ data, admin = false }: any) { const e = data.event; if (!admin && !e.settings.showFlightPools)
     return null; return <section className="pools">{data.totals.pools.map((p: Row) => <article className="pool panel" key={p.id}><div className="section-title"><h2>{p.name}</h2><span className="pill">{p.sold} / {p.teams} sold</span></div><div className="pool-amount"><strong>{money(p.net, e.currency)}</strong><span>NET FLIGHT POOL</span></div><div className="pool-deduction"><span>Gross {money(p.gross, e.currency)}</span><span>House / charity −{money(p.deduction, e.currency)}</span></div>{(admin || e.settings.showPayouts) && <><p className="eyebrow projection-label">{e.status === "COMPLETED" ? "FINAL PURSES" : "PROJECTED PAYOUTS"}</p><div className="payouts">{p.payouts.map((r: Row) => <div key={r.place}><span>{r.place === 1 ? "1st" : r.place === 2 ? "2nd" : r.place === 3 ? "3rd" : r.place + "th"} <small>{r.percent / 100}%</small></span><strong>{money(r.amount, e.currency)}</strong></div>)}</div></>}</article>)}</section>; }
 export default function Auction({ admin = false, tv = false, user }: any) {
-    const [data, setData] = useState<Row | null>(null), [meta, setMeta] = useState<Row>({ events: [], audit: [], operators: [] }), [eventId, setEventId] = useState(""), [offline, setOffline] = useState(false), [loaded, setLoaded] = useState(false), [filter, setFilter] = useState("all"), [search, setSearch] = useState(""), [status, setStatus] = useState("all"), [soldToast, setSoldToast] = useState<Row | null>(null);
+    const [data, setData] = useState<Row | null>(null), [meta, setMeta] = useState<Row>({ events: [], audit: [], operators: [] }), [eventId, setEventId] = useState<string | null>(null), [offline, setOffline] = useState(false), [loaded, setLoaded] = useState(false), [filter, setFilter] = useState("all"), [search, setSearch] = useState(""), [status, setStatus] = useState("all"), [soldToast, setSoldToast] = useState<Row | null>(null);
     const current = useRef<Row | null>(null), lastSale = useRef<string | null>(null), inflight = useRef(false), generation = useRef(0);
-    useEffect(() => { const selected = new URLSearchParams(window.location.search).get('event'); if (selected)
-        setEventId(selected); }, []);
+    const selectedEvent = useRef<string | null>(null);
+    const showEvent = useCallback((id: string) => {
+        if (selectedEvent.current === id) return;
+        // Invalidate responses immediately, before React renders the new selection.
+        selectedEvent.current = id;
+        generation.current++;
+        current.current = null;
+        lastSale.current = null;
+        inflight.current = false;
+        setData(null);
+        setMeta({ events: [], audit: [], operators: [] });
+        setLoaded(false);
+        setSoldToast(null);
+        setFilter('all'); setSearch(''); setStatus('all');
+        setEventId(id);
+    }, []);
+    const selectEvent = useCallback((id: string, replace = false) => {
+        const url = new URL(window.location.href);
+        if (id) url.searchParams.set('event', id); else url.searchParams.delete('event');
+        if (url.href !== window.location.href)
+            window.history[replace ? 'replaceState' : 'pushState'](window.history.state, '', url.pathname + url.search + url.hash);
+        showEvent(id);
+    }, [showEvent]);
+    useEffect(() => {
+        const fromLocation = () => showEvent(new URLSearchParams(window.location.search).get('event') || '');
+        fromLocation();
+        window.addEventListener('popstate', fromLocation);
+        return () => window.removeEventListener('popstate', fromLocation);
+    }, [showEvent]);
     const refresh = useCallback(async (force = false) => {
+        if (eventId === null || eventId !== selectedEvent.current) return;
         if (inflight.current && !force)
             return;
         inflight.current = true;
@@ -45,6 +74,7 @@ export default function Auction({ admin = false, tv = false, user }: any) {
                 params.set("boardRevision", String(prev.event.boardRevision));
             }
             const r = await fetch((admin ? "/api/admin" : "/api/public") + "?" + params, { cache: "no-store" });
+            if (gen !== generation.current || eventId !== selectedEvent.current) return;
             if (!r.ok)
                 throw Error("Disconnected");
             if (r.status === 204) {
@@ -55,6 +85,8 @@ export default function Auction({ admin = false, tv = false, user }: any) {
             if (gen !== generation.current)
                 return;
             let d = admin ? result.data : result.empty ? null : result;
+            // Resolve an unqualified entry once, then keep that event through reloads.
+            if (!eventId && d?.event?.id) { selectEvent(d.event.id, true); return; }
             if (d?.light && prev)
                 d = { ...prev, event: d.event, state: d.state };
             if (d) {
@@ -78,9 +110,9 @@ export default function Auction({ admin = false, tv = false, user }: any) {
             }
         }
         finally {
-            inflight.current = false;
+            if (gen === generation.current) inflight.current = false;
         }
-    }, [admin, eventId]);
+    }, [admin, eventId, selectEvent]);
     useEffect(() => { generation.current++; current.current = null; void refresh(true); const timer = setInterval(() => void refresh(), 2000); const online = () => void refresh(true); window.addEventListener("online", online); return () => { clearInterval(timer); window.removeEventListener("online", online); generation.current++; }; }, [refresh]);
     useEffect(() => { const context = (document as any).modelContext; if (!context?.registerTool)
         return; const controller = new AbortController(); Promise.resolve(context.registerTool({ name: "read_auction_board", description: "Read the current public-safe auction board, then refresh the visible board from the authoritative server.", inputSchema: { type: "object", properties: {}, additionalProperties: false }, annotations: { readOnlyHint: true, untrustedContentHint: true }, execute: async (input: any) => { if (!input || Object.keys(input).length)
@@ -95,12 +127,13 @@ export default function Auction({ admin = false, tv = false, user }: any) {
     catch {
         toast.error("Fullscreen is unavailable in this browser. Open TV mode in a separate tab.");
     } };
+    const linkEventId = data?.event.id || eventId;
     if (admin)
-        return <><AdminPanel data={data} meta={meta} user={user} offline={offline} loaded={loaded} refresh={() => refresh(true)} selectEvent={(id: string) => setEventId(id)} fullscreen={fullscreen}/><Toaster richColors/></>;
+        return <><AdminPanel data={data} meta={meta} user={user} selectedEventId={eventId} offline={offline} loaded={loaded} refresh={() => refresh(true)} selectEvent={selectEvent} fullscreen={fullscreen}/><Toaster richColors/></>;
     if (!data)
-        return <main className="site"><header className="mast"><Brand /><a href="/admin">Operator sign in</a></header><div className="empty-state"><Flag size={45}/><h1>{!loaded ? "Joining the clubhouse…" : offline ? "Reconnecting…" : "The auction is being prepared."}</h1><p>{offline ? "Your connection will retry automatically." : "The live board will appear here when the operator creates an event."}</p></div></main>;
+        return <main className="site"><header className="mast"><Brand eventId={linkEventId}/><a href={eventPath('/admin', linkEventId)}>Operator sign in</a></header><div className="empty-state"><Flag size={45}/><h1>{!loaded ? "Joining the clubhouse…" : offline ? "Reconnecting…" : "The auction is being prepared."}</h1><p>{offline ? "Your connection will retry automatically." : "The live board will appear here when the operator creates an event."}</p></div></main>;
     const e = data.event, s = e.settings;
     const upcoming = data.teams.filter((t: Row) => t.status === "UPCOMING").slice(0, tv ? 3 : 4);
     const board = data.teams.filter((t: Row) => (filter === "all" || t.flightId === filter) && (status === "all" || t.status === status) && (t.name + " " + t.players.join(" ")).toLowerCase().includes(search.toLowerCase()));
-    return <main className={"site " + (tv ? "tv" : "")}><header className="mast"><Brand /><nav>{tv ? <><a href="/"><ArrowLeft /> Auction board</a><Button variant="outline" onClick={fullscreen}><Maximize /> Full screen</Button></> : <><a href="#board">Auction board</a><a href="/tv" title="TV mode"><Monitor /> TV mode</a><a href="/admin" title="Operator area"><ShieldCheck /> Operator</a></>}</nav></header><div className="page-head"><div><p className="eyebrow">{e.course || "THE CLUBHOUSE"} · {e.dates || "CALCUTTA AUCTION"}</p><h1>{e.calcuttaName}</h1></div><div className="head-status">{e.demo === 1 && <span className="pill">Demonstration event</span>}<span className={"connection " + (offline ? "offline" : "")} role="status">{offline ? <><WifiOff size={14}/> Reconnecting…</> : <><Radio size={14}/> {e.status === "LIVE" ? "Live updates" : "Connected"}</>}</span></div></div><div className="live-grid"><Block data={data}/>{s.showUpcoming && <aside className="next panel"><div className="section-title"><h2>Coming to the block</h2><ArrowUpRight size={21}/></div>{upcoming.length ? upcoming.map((t: Row) => <div className="queue-row" key={t.id}><span className="lot">{String(t.order + 1).padStart(2, "0")}</span><div><h3>{t.name}</h3><p>{data.flights.find((f: Row) => f.id === t.flightId)?.name}</p></div></div>) : <p className="muted">No teams waiting in the queue.</p>}<p className="fine">Auction order may change.</p></aside>}</div><Stats data={data}/>{!tv && <PoolCards data={data}/>}<section className="recent"><div className="section-title"><h2>Fresh off the block</h2><span className="eyebrow">RECENT SALES</span></div><div className="sales-strip">{data.sales.slice(0, tv ? 3 : 4).map((sale: Row) => <article key={sale.id}><span className="sold-label"><Check size={13}/> SOLD</span><h3>{data.teams.find((t: Row) => t.id === sale.teamId)?.name}</h3>{s.showBuyer && <p>{sale.buyer}</p>}{s.showSalePrice && <strong>{money(sale.amount, e.currency)}</strong>}</article>)}{!data.sales.length && <p className="muted">The first sale will appear here.</p>}</div></section>{!tv && <><section className="board" id="board"><div className="section-title"><div><p className="eyebrow muted">THE COMPLETE FIELD</p><h2>{e.status === "COMPLETED" ? "Final auction summary" : "Auction board"}</h2></div><span>{data.teams.length} teams</span></div><div className="board-tools"><Tabs value={filter} onValueChange={setFilter}><TabsList variant="line"><TabsTrigger value="all">All flights</TabsTrigger>{data.flights.map((f: Row) => <TabsTrigger value={f.id} key={f.id}>{f.name}</TabsTrigger>)}</TabsList></Tabs><div className="search"><Search size={17}/><Input aria-label="Search teams" placeholder="Find a team or player" value={search} onChange={ev => setSearch(ev.target.value)}/></div><Choice label="Team status" value={status} onChange={setStatus} items={[{ value: "all", label: "All statuses" }, ...["UPCOMING", "ON_BLOCK", "SOLD", "UNSOLD", "WITHDRAWN"].map(v => ({ value: v, label: v.replace("_", " ") }))]}/></div><div className="team-cards">{board.map((t: Row) => { const sale = data.sales.find((x: Row) => x.teamId === t.id); return <article className={"team-card panel " + (t.status === "ON_BLOCK" ? "on-block" : "")} key={t.id}><div className="team-meta"><span>{data.flights.find((f: Row) => f.id === t.flightId)?.name}</span><span className={"badge " + t.status.toLowerCase()}>{t.status.replace("_", " ")}</span></div><h3>{t.name}</h3><p>{t.players.join(" · ")}</p>{t.notes && <p className="team-note">{t.notes}</p>}{s.showHandicap && t.handicap != null && <p className="fine">Index {t.handicap}</p>}{sale && <div className="team-sale">{s.showBuyer && <span>{sale.buyer}</span>}{s.showSalePrice && <strong>{money(sale.amount, e.currency)}</strong>}</div>}{s.showBuyback && sale?.ownership && <p className="fine">{sale.ownership.filter((o: Row) => o.kind === "team").map((o: Row) => o.status === "Completed" ? "Team buyback " + o.percent / 100 + "%" : o.status).join(", ")}</p>}</article>; })}</div>{!board.length && <p className="empty-state">No teams match these filters.</p>}</section><section className="rules-footer"><h2>House rules</h2><p>{e.rules}</p>{e.description && <p>{e.description}</p>}{s.buybackMode === 'track' && <p className="fine">Buyback ownership limit: {s.buybackMax / 100}%{s.buybackDeadline ? " · Deadline " + new Date(s.buybackDeadline).toLocaleString() : ""} · Ownership changes do not add to the auction pool.</p>}</section><footer className="page-footer"><Brand /><span>Recordkeeping & calculations only. Settlement occurs outside this application.</span></footer></>}{soldToast && <div className="sold-toast" role="status"><Check /> SOLD · {data.teams.find((t: Row) => t.id === soldToast.teamId)?.name}{s.showSalePrice ? " · " + money(soldToast.amount, e.currency) : ""}</div>}<Toaster richColors/></main>;
+    return <main className={"site " + (tv ? "tv" : "")}><header className="mast"><Brand eventId={linkEventId}/><nav>{tv ? <><a href={eventPath('/', e.id)}><ArrowLeft /> Auction board</a><Button variant="outline" onClick={fullscreen}><Maximize /> Full screen</Button></> : <><a href="#board">Auction board</a><a href={eventPath('/tv', e.id)} title="TV mode"><Monitor /> TV mode</a><a href={eventPath('/admin', linkEventId)} title="Operator area"><ShieldCheck /> Operator</a></>}</nav></header><div className="page-head"><div><p className="eyebrow">{e.course || "THE CLUBHOUSE"} · {e.dates || "CALCUTTA AUCTION"}</p><h1>{e.calcuttaName}</h1></div><div className="head-status">{e.demo === 1 && <span className="pill">Demonstration event</span>}<span className={"connection " + (offline ? "offline" : "")} role="status">{offline ? <><WifiOff size={14}/> Reconnecting…</> : <><Radio size={14}/> {e.status === "LIVE" ? "Live updates" : "Connected"}</>}</span></div></div><div className="live-grid"><Block data={data}/>{s.showUpcoming && <aside className="next panel"><div className="section-title"><h2>Coming to the block</h2><ArrowUpRight size={21}/></div>{upcoming.length ? upcoming.map((t: Row) => <div className="queue-row" key={t.id}><span className="lot">{String(t.order + 1).padStart(2, "0")}</span><div><h3>{t.name}</h3><p>{data.flights.find((f: Row) => f.id === t.flightId)?.name}</p></div></div>) : <p className="muted">No teams waiting in the queue.</p>}<p className="fine">Auction order may change.</p></aside>}</div><Stats data={data}/>{!tv && <PoolCards data={data}/>}<section className="recent"><div className="section-title"><h2>Fresh off the block</h2><span className="eyebrow">RECENT SALES</span></div><div className="sales-strip">{data.sales.slice(0, tv ? 3 : 4).map((sale: Row) => <article key={sale.id}><span className="sold-label"><Check size={13}/> SOLD</span><h3>{data.teams.find((t: Row) => t.id === sale.teamId)?.name}</h3>{s.showBuyer && <p>{sale.buyer}</p>}{s.showSalePrice && <strong>{money(sale.amount, e.currency)}</strong>}</article>)}{!data.sales.length && <p className="muted">The first sale will appear here.</p>}</div></section>{!tv && <><section className="board" id="board"><div className="section-title"><div><p className="eyebrow muted">THE COMPLETE FIELD</p><h2>{e.status === "COMPLETED" ? "Final auction summary" : "Auction board"}</h2></div><span>{data.teams.length} teams</span></div><div className="board-tools"><Tabs value={filter} onValueChange={setFilter}><TabsList variant="line"><TabsTrigger value="all">All flights</TabsTrigger>{data.flights.map((f: Row) => <TabsTrigger value={f.id} key={f.id}>{f.name}</TabsTrigger>)}</TabsList></Tabs><div className="search"><Search size={17}/><Input aria-label="Search teams" placeholder="Find a team or player" value={search} onChange={ev => setSearch(ev.target.value)}/></div><Choice label="Team status" value={status} onChange={setStatus} items={[{ value: "all", label: "All statuses" }, ...["UPCOMING", "ON_BLOCK", "SOLD", "UNSOLD", "WITHDRAWN"].map(v => ({ value: v, label: v.replace("_", " ") }))]}/></div><div className="team-cards">{board.map((t: Row) => { const sale = data.sales.find((x: Row) => x.teamId === t.id); return <article className={"team-card panel " + (t.status === "ON_BLOCK" ? "on-block" : "")} key={t.id}><div className="team-meta"><span>{data.flights.find((f: Row) => f.id === t.flightId)?.name}</span><span className={"badge " + t.status.toLowerCase()}>{t.status.replace("_", " ")}</span></div><h3>{t.name}</h3><p>{t.players.join(" · ")}</p>{t.notes && <p className="team-note">{t.notes}</p>}{s.showHandicap && t.handicap != null && <p className="fine">Index {t.handicap}</p>}{sale && <div className="team-sale">{s.showBuyer && <span>{sale.buyer}</span>}{s.showSalePrice && <strong>{money(sale.amount, e.currency)}</strong>}</div>}{s.showBuyback && sale?.ownership && <p className="fine">{sale.ownership.filter((o: Row) => o.kind === "team").map((o: Row) => o.status === "Completed" ? "Team buyback " + o.percent / 100 + "%" : o.status).join(", ")}</p>}</article>; })}</div>{!board.length && <p className="empty-state">No teams match these filters.</p>}</section><section className="rules-footer"><h2>House rules</h2><p>{e.rules}</p>{e.description && <p>{e.description}</p>}{s.buybackMode === 'track' && <p className="fine">Buyback ownership limit: {s.buybackMax / 100}%{s.buybackDeadline ? " · Deadline " + new Date(s.buybackDeadline).toLocaleString() : ""} · Ownership changes do not add to the auction pool.</p>}</section><footer className="page-footer"><Brand eventId={linkEventId}/><span>Recordkeeping & calculations only. Settlement occurs outside this application.</span></footer></>}{soldToast && <div className="sold-toast" role="status"><Check /> SOLD · {data.teams.find((t: Row) => t.id === soldToast.teamId)?.name}{s.showSalePrice ? " · " + money(soldToast.amount, e.currency) : ""}</div>}<Toaster richColors/></main>;
 }

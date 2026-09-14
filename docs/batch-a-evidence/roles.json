@@ -1,0 +1,37 @@
+{
+  "at": "2026-09-14T05:51:06.890Z",
+  "identity": "Local Sites mock only",
+  "checks": [
+    {
+      "name": "Allowlisted local user can read admin without owner privileges",
+      "status": "PASS"
+    },
+    {
+      "name": "Non-owner cannot operator_add",
+      "status": "PASS"
+    },
+    {
+      "name": "Non-owner cannot operator_remove",
+      "status": "PASS"
+    },
+    {
+      "name": "Existing signed-in session loses admin reads on the next request",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked session cannot submit event writes",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked session cannot download private exports",
+      "status": "PASS"
+    },
+    {
+      "name": "Anonymous public board remains available after revocation",
+      "status": "PASS"
+    }
+  ],
+  "passed": 7,
+  "failed": 0,
+  "cleanup": "Original isolated owner configuration and mock operator row restored"
+}

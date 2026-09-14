@@ -45,12 +45,34 @@ export async function POST(request: Request) {
         if (action === "operator_add" || action === "operator_remove") {
             requireThat(who.owner, "Only the owner can manage operator access.");
             const email = z.string().trim().email().max(254).parse(p.email).toLowerCase();
-            if (action === "operator_add")
-                await statement('INSERT INTO operators (email,addedBy,createdAt) VALUES (?,?,?) ON CONFLICT(email) DO NOTHING', email, who.email, timestamp()).run();
-            else
-                await statement('DELETE FROM operators WHERE email=?', email).run();
-            if (body.eventId)
-                await insert("audit", { id: requestId, eventId: id.parse(body.eventId), actor: who.email, action: action + " " + email, createdAt: timestamp() }).run();
+            const requestedEventId = body.eventId == null ? undefined : id.parse(body.eventId);
+            const auditAction = action + " " + email;
+            const replay = async () => {
+                const prior = await statement('SELECT eventId,actor,action FROM audit WHERE id=?', requestId).first<Row>();
+                if (!prior) return false;
+                requireThat(prior.actor === who.email && prior.action === auditAction && (!requestedEventId || prior.eventId === requestedEventId), "This request ID changed its action, operator or event. Submit a new request.");
+                return true;
+            };
+            if (await replay()) return Response.json({ ok: true, duplicate: true });
+            // Access is global, but every change needs a valid, durable audit context.
+            const auditEvent = await (requestedEventId
+                ? statement('SELECT id FROM events WHERE id=?', requestedEventId)
+                : db().prepare('SELECT id FROM events ORDER BY createdAt DESC LIMIT 1')).first<Row>();
+            requireThat(auditEvent, requestedEventId ? "Event not found. Refresh before changing operator access." : "Create an event before managing operator access.");
+            const now = timestamp();
+            try {
+                await db().batch([
+                    insert("audit", { id: requestId, eventId: auditEvent!.id, actor: who.email, action: auditAction, after: JSON.stringify({ email }), createdAt: now }),
+                    action === "operator_add"
+                        ? statement('INSERT INTO operators (email,addedBy,createdAt) VALUES (?,?,?) ON CONFLICT(email) DO NOTHING', email, who.email, now)
+                        : statement('DELETE FROM operators WHERE email=?', email)
+                ]);
+            } catch (error) {
+                // Concurrent retries can reach the unique audit ID together. A matching
+                // committed entry proves both statements completed; never reapply it.
+                if (await replay()) return Response.json({ ok: true, duplicate: true });
+                throw error;
+            }
             return Response.json({ ok: true });
         }
         if (action === "create_event" || action === "load_demo") {
