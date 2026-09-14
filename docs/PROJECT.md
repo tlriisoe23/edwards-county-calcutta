@@ -19,7 +19,7 @@ The normal sequence is Setup → Teams → Buyers → Start auction → Record a
 
 | Term | Current meaning |
 |---|---|
-| Event | One tournament/auction configuration and its relational records. An explicit `?event=ID` identifies it; omitted IDs resolve to the newest event. |
+| Event | One tournament/auction configuration and its relational records. An explicit `?event=ID` identifies it; an unqualified browser entry resolves the newest event once and pins its ID in the URL. |
 | Flight | Group of teams. A flight can have its own pool or contribute to the combined/shared pool according to configuration. |
 | Team / players | Auction lot with one to four player records, flight, order, public notes and separate private notes. |
 | Buyer / syndicate | Final purchaser, optionally with a group/contact/private notes. Names identify people/groups; these are not bidder login accounts. |
@@ -37,7 +37,7 @@ The normal sequence is Setup → Teams → Buyers → Start auction → Record a
 
 Money is stored as integer cents and percentages as integer basis points. New events default to amount-only bidding, $100 minimum, $25 increment, opening choices 100/200/300/500, separate flight pools, a 10% house share, auto-advance and buyback tools Off. Legacy events retain existing bidder/ownership behavior through normalization. Defaults are configuration, not an inferred requirement to change existing events.
 
-The purchaser is mandatory at final sale; selecting one on every bid is optional, including when bidder tracking is enabled. One ACTIVE sale per team, expected revisions, request IDs and transactional writes protect routine auction actions. See audit exceptions for event creation and access changes.
+The purchaser is mandatory at final sale; selecting one on every bid is optional, including when bidder tracking is enabled. One ACTIVE sale per team, expected revisions, request IDs and transactional writes protect routine auction actions. Batch A also makes access changes and their audit atomic and replay-safe. Event/demo creation retries remain the CAL-P2-002 exception.
 
 Buyback consideration never increases the auction pool or automatically becomes a club receivable. Completed ownership affects tournament entitlement; turning the tools Off preserves existing ownership. Receivables and payout obligations are separate; the app does not net purchases against winnings. Existing per-party overpayments stay attached to their party after corrections; the aggregate collection summary has a documented defect.
 
@@ -57,4 +57,4 @@ The existing review is local at port 5173. Audit fixtures use an exact source ch
 
 Hosted ownership was configured for `tlriisoe@gmail.com` in the prior authorized pass. The owner can manage additional operator emails in Access. Actual hosted owner/non-owner sessions and revocation remain unverified. The ignored local `.env` uses the starter's mock identity; never use it as hosted owner configuration or publish local credentials/data.
 
-The current pass creates documentation and audit harnesses only. No product fix or deployment is included. The one next action is approval of exact finding IDs, beginning with the recommended batch in [TASK-TRACKER.md](TASK-TRACKER.md).
+The original audit established the baseline; approved [Batch A](BATCH-A.md) then resolved CAL-P1-001 and CAL-P1-002 locally in `4dc2900`, without migration or deployment. Seven findings remain open. The next recommended approval scope is Batch B, CAL-P1-003 and CAL-P1-005, in [TASK-TRACKER.md](TASK-TRACKER.md).

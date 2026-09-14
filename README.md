@@ -4,7 +4,7 @@ An operator-first application for an in-person golf Calcutta, with public/TV dis
 
 Start with [docs/PROJECT.md](docs/PROJECT.md) for durable product context and [docs/CURRENT-STATE.md](docs/CURRENT-STATE.md) for the current evidence snapshot. The [product audit](docs/PRODUCT-AUDIT.md), [coverage matrix](docs/COVERAGE.md), [validation ladder](docs/VALIDATION.md) and [finding tracker](docs/TASK-TRACKER.md) separate findings from approved implementation. [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) describes the actual runtime and integrity controls.
 
-[REVIEW.md](REVIEW.md) retains the earlier operating guide and refinement history. An Auction Night checklist is also available in the application's Help tab. The September 14 audit changes documentation/test harnesses only; its findings are not implemented and no production deployment is authorized.
+[REVIEW.md](REVIEW.md) retains the earlier operating guide and refinement history. An Auction Night checklist is also available in the application's Help tab. The September 14 audit is followed by approved [Batch A](docs/BATCH-A.md), implemented in `4dc2900`: event navigation retains context and access changes commit atomically with audit. Both findings are verified locally; seven findings remain open. No production deployment is authorized.
 
 ## Local development
 
@@ -57,7 +57,7 @@ Both migrations are already applied to this checkout's review database. Do not r
 - `db/schema.ts` and `drizzle/`: relational schema and generated migrations
 - `tests/acceptance.mjs` and `tests/refinement.mjs`: integration and calculation rehearsals
 
-Public links use `?event=EVENT_ID`. Without an ID the board selects the newest event. Share links derive from the actual browser origin and contain only the public route and event ID. QR generation uses `qrcode`; acceptance independently decodes it with `jsQR`.
+Public links use `?event=EVENT_ID`. Without an ID the board selects the newest event once and pins that ID in the URL. Event selection, history and related operator/public/TV links retain context. Share links derive from the actual browser origin and contain only the public route and event ID. QR generation uses `qrcode`; acceptance independently decodes it with `jsQR`.
 
 ## Review and release
 

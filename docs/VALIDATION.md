@@ -2,7 +2,25 @@
 
 2026-09-14 UTC · baseline `dfab14906c04b5a6d99ffffbfba4249883750eae`. Reports are local audit evidence, not production sign-off. PASS = observed expected result; FAIL = demonstrated mismatch; BLOCKED = a needed environment/tool is unavailable; UNVERIFIED = not exercised sufficiently. A successful build does not convert any browser or hosted gap into PASS.
 
-## Exact results
+## Batch A update — `4dc2900`
+
+Approved CAL-P1-001/002 are resolved locally. [BATCH-A.md](BATCH-A.md) records the exact scope, commands, cleanup and limitations. Fresh reports live in `batch-a-evidence/`; the original `audit-evidence/` reports below are unchanged historical evidence.
+
+| Check | Pass | Fail | Evidence |
+|---|---:|---:|---|
+| Focused API/context/atomicity/retry | 20 | 0 | [api.json](batch-a-evidence/api.json), including forced audit/grant/revoke failures and eight concurrent retries. |
+| Local operator/owner/revoked session | 7 | 0 | [roles.json](batch-a-evidence/roles.json); mock identity only. |
+| Existing acceptance + refinement | 58 + 72 | 0 | [acceptance.json](batch-a-evidence/acceptance.json), [refinement.json](batch-a-evidence/refinement.json). |
+| Seeded allocation cases | 1,000 | 0 | [math.json](batch-a-evidence/math.json); 50,669 assertions. |
+| Existing CSV probes | 1 | 2 | Same math report; CAL-P1-003 and CAL-P2-001 intentionally remain open. |
+| Browser observation groups | 10 | 0 | [browser.json](batch-a-evidence/browser.json); includes held-old-response test. |
+| TypeScript / production build / foreign keys | Passed | 0 | [environment.json](batch-a-evidence/environment.json). Windows build helper failed; installed npm entrypoint completed all build phases. |
+
+Batch A scripted total: **1,158 passed, 2 known out-of-scope failures**, excluding command checks and manual browser groups. Do not add this rerun to original audit totals as independent coverage. The two failure expectations were not weakened. This is local acceptance, not hosted sign-off.
+
+Scratch config was restored, temporary access records/triggers removed, and only the scratch server/proxy stopped. Port 5173 stayed running without test mutations or restoration over user edits. Bounded successful runs do not resolve the original long-running dev stability uncertainty.
+
+## Original audit exact results
 
 | Check | Pass | Fail | Evidence / result |
 |---|---:|---:|---|

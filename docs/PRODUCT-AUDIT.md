@@ -1,16 +1,16 @@
 # Edwards County Calcutta — product audit
 
-2026-09-14 UTC · audited product commit `dfab14906c04b5a6d99ffffbfba4249883750eae` · audit/documentation only.
+2026-09-14 UTC · original audited product `dfab14906c04b5a6d99ffffbfba4249883750eae` · updated with approved Batch A resolution `4dc2900`.
 
 ## Executive assessment
 
 The operator-first product is substantially implemented. A volunteer can configure an event, record verbal bids without selecting a buyer each time, confirm a purchaser, correct/undo sales, maintain a meaningful queue, track manual settlement and export records. Exact payout and ownership allocation performed well under independent deterministic testing. Preserve that foundation.
 
-**Nine findings are open: 0 demonstrated P0, 5 P1, 3 P2, 1 P3.** The P1 findings concern wrong event context, a misleading failed access change, numeric CSV reconciliation, clipped/overlapping auction displays and the aggregate collection summary. None of the tests demonstrated stored sale/ownership/receipt corruption, an unauthorized-user access bypass, or lost updates in routine guarded sale mutations. Those boundaries explain the P1 rather than P0 ratings; they are not a general security or financial certification.
+**The original audit identified nine findings. Batch A resolves two locally; seven remain open: 0 demonstrated P0, 3 P1, 3 P2, 1 P3.** Event context and access-change atomicity are fixed in `4dc2900`; numeric CSV reconciliation, clipped/overlapping displays and aggregate collection summary remain P1. None of the original tests demonstrated stored sale/ownership/receipt corruption, an unauthorized-user access bypass, or lost updates in routine guarded sale mutations. Those boundaries explain the P1 rather than P0 ratings; they are not a general security or financial certification.
 
 The original 58-check and 72-check suites passed. Eleven extra correction/queue checks passed. All 1,000 seeded allocation cases passed. Additional audit probes deliberately retain failing assertions for actual findings. Detailed counts, commands and gaps are in [VALIDATION.md](VALIDATION.md); the full capability reconciliation is in [CURRENT-STATE.md](CURRENT-STATE.md), and the surface/state/device/input matrix is in [COVERAGE.md](COVERAGE.md).
 
-No product source, schema, infrastructure or business rule was changed, and no deployment occurred. Five proposed batches in [TASK-TRACKER.md](TASK-TRACKER.md) await exact-ID approval.
+The original audit changed no product source, schema, infrastructure or business rule. The user subsequently approved Batch A; its bounded source changes and evidence are in [BATCH-A.md](BATCH-A.md). No schema change or deployment occurred. B–E in [TASK-TRACKER.md](TASK-TRACKER.md) await approval. Historical reproductions below and original evidence files are retained; resolution status supersedes the old behavior for fixed IDs.
 
 ## KEEP / PROTECT
 
@@ -21,12 +21,12 @@ No product source, schema, infrastructure or business rule was changed, and no d
 | Integer-cent money and basis-point percentages | Independent BigInt oracle passed 1,000 seeded allocation cases, including tiny/large pots and uneven shares. |
 | Cent-exact purse and ownership reconciliation | Separate/combined/custom, fixed/percentage deductions, 2–10 places and ownership all reconcile in tested domains. |
 | One ACTIVE sale per team | Unique constraint plus server validation; exact replay and rapid double confirm preserve one sale. |
-| Idempotent sale/payment mutations | Routine audit request IDs and mutation guard batch pass; preserve this while fixing creation/access exceptions. |
+| Idempotent sale/payment mutations | Routine audit request IDs and mutation guard batch pass; Batch A also protects access replay. Creation retry remains an exception. |
 | Expected-revision and double-SOLD protection | Concurrent bids yielded one 200 and one 409; stale sale dialogs explain changed state and disable confirmation. |
 | Auditability and undo | Sale/void/reopen/queue/reset undo and settlement compensations retain accountable history. Do not replace signed reversals with silent deletion. |
 | Public/private data separation | Explicit public projection, hidden display flags and private sentinel tests pass. Financial/history exports remain authorized. |
 | Anonymous view-only public and TV | No public write UI or WebMCP mutation tool; local anonymous admin/export denial passes. Hosted audience still needs verification. |
-| Server-side operator and owner checks | Server reads owner/allowlist; owner-only access mutation guard exists. Failed-write atomicity needs correction without weakening this check. |
+| Server-side operator and owner checks | Server reads owner/allowlist; Batch A verifies atomic access changes, local owner-only enforcement and revoked-session denial. Hosted identities remain a gate. |
 | Purchaser required at Sold, optional during bids | Amount-only default, recent-buyer chips, inline buyer creation and staged team/price improve live auction operation. |
 | Optional buyback modes | Off avoids prompts/obligations; Calculation only remains informational; Track changes ownership only. Mode changes retain agreements. |
 | Buybacks do not inflate auction pools or club receipts | $1,250 × 50% gives $625 information without changing $1,250 pool/receivable; odd-cent partial ownership also passes. |
@@ -44,6 +44,7 @@ All findings below are demonstrated in local review or source inspection, not in
 
 ### CAL-P1-001 — Event context is lost on refresh and some navigation
 
+- **Current status:** RESOLVED LOCAL in `4dc2900`. [Batch A browser evidence](batch-a-evidence/browser.json) covers selection, dirty draft isolation, history, reload, public/TV/operator links, creation, newest fallback and delayed responses. Original reproduction follows for traceability.
 - **Severity/category:** P1 · RELIABILITY / USABILITY DEFECT.
 - **Surface/route:** Operator event selector at `/admin?event=A`; public `/` and `/tv` header navigation.
 - **Preconditions:** At least two events; currently viewing an explicit event other than the newest, or selecting B while the URL names A.
@@ -59,6 +60,7 @@ All findings below are demonstrated in local review or source inspection, not in
 
 ### CAL-P1-002 — Rejected operator access change can still change access
 
+- **Current status:** RESOLVED LOCAL in `4dc2900`. [Batch A API evidence](batch-a-evidence/api.json) proves grant/revoke/audit rollback and replay under forced failures/concurrency; [role evidence](batch-a-evidence/roles.json) proves local non-owner and revoked-session denial. Hosted distinct-user acceptance remains pending. Original reproduction follows for traceability.
 - **Severity/category:** P1 · SECURITY/PRIVACY / RELIABILITY.
 - **Surface/route:** Owner access administration, `POST /api/admin`, `operator_add` / shared access branch.
 - **Preconditions:** Authorized owner submits an allowlist change with an event ID whose audit insert fails (tested with nonexistent event). The test used only disposable `audit-atomic@sites.test` in the isolated environment.
@@ -183,7 +185,7 @@ The observed fast sale path with a recent purchaser is three activations: Hammer
 
 Setup already uses structured amounts, a row-based ladder with total validation, mode selections, flight editors and public switches. Payout 120% could not save; removing an extra row yielded 70/30. “Skip for now,” “Mark unsold,” “Withdraw,” reopen, void and payment reversal have different explained outcomes. Keep the precise destructive-action confirmation and the requirement to choose final purchaser. No excessive-confirmation defect was demonstrated.
 
-Failures affecting this journey are event context after refresh/navigation, retried creation, CSV import delimiters and display containment. The suspected dirty setup leaking into another event and missing import labels were disproven. Long setup sections and tablet landscape scrolling are observations, not fabricated defects; physical touch operation remains partial coverage.
+Original failures affecting this journey were event context after refresh/navigation, retried creation, CSV import delimiters and display containment. Batch A fixes event context locally; the others remain. The suspected dirty setup leaking into another event and missing import labels were disproven. Long setup sections and tablet landscape scrolling are observations, not fabricated defects; physical touch operation remains partial coverage.
 
 ## Settlement, exports and accounting assessment
 
@@ -205,14 +207,14 @@ Public flight tabs intentionally scroll within their strip and worked with four 
 
 Local anonymous admin/write/export denial, forged identity-header stripping, exact-origin CSRF rejection, stale guards and public private-field filtering passed. A team-editor mass-assignment probe could not change event/status/finish. Inspected text rendering did not use raw HTML. CSV formula-like text is escaped, but that protection currently breaks signed numeric cells; preserve protection when correcting it.
 
-The sole demonstrated security-adjacent failure is owner access mutation atomicity, CAL-P1-002. Real ChatGPT owner, a distinct allowed operator, a revoked operator and a signed-in non-allowed user were not available on a hosted URL. Local tabs share a mock identity; do not claim hosted multi-user access passed. WebMCP exposed only the public reader and rejected extra input.
+The original security-adjacent failure was owner access mutation atomicity, CAL-P1-002, now resolved locally by Batch A. Its role probes also verify a local allowed non-owner and denial after revocation of the same session. Real ChatGPT owner, distinct allowed/revoked operators and signed-in non-allowed users remain unavailable on a hosted URL; do not claim hosted multi-user acceptance passed. WebMCP exposed only the public reader and rejected extra input.
 
 ## Simplification / debt map
 
 | Area | Evidence | Reliability/product value and current disposition |
 |---|---|---|
 | Multiple export definitions | Two in-tab builders and central report builders | CAL-P3-001: worthwhile after correctness work, preserving intentional schemas. |
-| Large mutation module and broad `Row`/`any` | Most actions and undo live in one route; `Row = Record<string, any>` | Hard to reason about transaction boundaries; split-write exceptions are concrete P1/P2 items. Do not authorize a broad rewrite. Narrow contracts may be justified during approved fixes. |
+| Large mutation module and broad `Row`/`any` | Most actions and undo live in one route; `Row = Record<string, any>` | Hard to reason about transaction boundaries; access atomicity is fixed locally, creation replay remains P2. Do not authorize a broad rewrite. Narrow contracts may be justified during approved fixes. |
 | Audit before-snapshots | Complete event snapshot per routine mutation; synthetic JSON backup 4,692,424 bytes | Backup grows with actions and event size. At 100 teams it downloaded in 242ms locally; no limit failure demonstrated. Retention/compaction is future investigation, not current defect. |
 | Existing test blind spots | Legacy unseeded 500-case loop; row-level export assertions missed final serialization; page-height check missed internal clipping | New seeded oracle/actual-file tests and geometry/visual audit now provide evidence. Keep these; do not change tests to hide current failures. |
 | Setup complexity | Long event/rules page but structured controls and explanations already present | No magic amount syntax remains; no need for a broad configuration redesign. |
@@ -227,6 +229,6 @@ Participant/mobile bidding, accounts, pre-bidding, silent/timed auctions, actual
 
 ## Handoff and release boundary
 
-Read [TASK-TRACKER.md](TASK-TRACKER.md) for exact acceptance criteria and five proposed batches. **Recommended first batch: A — event context and access guarantees (`CAL-P1-001`, `CAL-P1-002`).** This addresses the event an operator acts on and whether an access response can be trusted.
+Read [TASK-TRACKER.md](TASK-TRACKER.md) for exact acceptance criteria and batch status. **Batch A (`CAL-P1-001`, `CAL-P1-002`) is complete locally in `4dc2900`. Recommended next: Batch B (`CAL-P1-003`, `CAL-P1-005`)**, correcting signed CSV values and collection summaries.
 
-**ONE next authorized action: obtain the user's approval of exact finding IDs for an implementation pass.** The audit is complete as a local evidence pass with explicit blocked/unverified coverage; it does not authorize fixing, refactoring, migrating or deploying anything. Hosting acceptance remains a later gate even after local findings are corrected.
+The user must approve the next bounded set before B–E implementation. Batch A's approval does not authorize migration, production access changes or deployment. Hosted acceptance remains a later gate even after local findings are corrected.

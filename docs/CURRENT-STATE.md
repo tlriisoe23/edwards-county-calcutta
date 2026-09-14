@@ -1,6 +1,6 @@
 # Current state — 2026-09-14 UTC
 
-The existing product was audited at Git `dfab14906c04b5a6d99ffffbfba4249883750eae`. **Product code and schema are unchanged by this audit.** Type checking and production build passed. Nine findings are open: no demonstrated P0, five P1, three P2 and one P3 technical-debt item. These counts do not imply production readiness.
+The existing product was audited at Git `dfab14906c04b5a6d99ffffbfba4249883750eae`; documentation baseline is `782eb3b`. Approved **Batch A is implemented in `4dc2900`**, resolving CAL-P1-001 and CAL-P1-002 locally. Type checking, production build and focused/regression checks passed; schema is unchanged. Seven findings remain open: no demonstrated P0, three P1, three P2 and one P3 technical-debt item. These counts do not imply production readiness. See [BATCH-A.md](BATCH-A.md).
 
 Sites still has saved version 2 and no reported live/hosted-preview URL. No deployment was performed. The review stays at localhost:5173; isolated audit data lives in `.sites-runtime/audit-checkout/.wrangler/state` and is not part of a deployment archive.
 
@@ -14,7 +14,7 @@ The main isolated fixture has 100 teams, four flights, three buyers and 18 sales
 
 IMPLEMENTED means a representative behavior was exercised successfully in this audit, within the cited scope. PARTIAL means useful behavior exists but has a verified defect or meaningful untested branch. BROKEN means a named promised path was demonstrated failing. UNVERIFIED means code/configuration alone does not prove runtime behavior. NOT IMPLEMENTED means absent by inspection, not necessarily required. Hosted behavior is not inferred from a local pass.
 
-Evidence: A = 58-check acceptance suite; R = 72-check refinement suite; M = 1,000 seeded math cases; X = expanded API audit; W = correction/queue probes; B = browser observations. Exact reports and limitations: [VALIDATION.md](VALIDATION.md).
+Evidence: A = 58-check acceptance suite; R = 72-check refinement suite; M = 1,000 seeded math cases; X = expanded original API audit; W = correction/queue probes; B = original browser observations; BA = [Batch A](BATCH-A.md), 27 focused API/role checks and 10 browser groups. A/R/M were rerun for BA. Exact reports and limitations: [VALIDATION.md](VALIDATION.md).
 
 | Capability | Status | Evidence / practical limit |
 |---|---|---|
@@ -52,17 +52,17 @@ Evidence: A = 58-check acceptance suite; R = 72-check refinement suite; M = 1,00
 | Payments received | IMPLEMENTED | R/X/W/B partial/multiple/Mark paid, method/note persistence, reversal and audit. |
 | Payout disbursements | IMPLEMENTED | R/X partial/full/reversal/undo; separate from receipts. |
 | Exports | PARTIAL | Seven actual files opened/reparsed; signed numbers fail CAL-P1-003. Print pagination unverified. |
-| Public sharing | PARTIAL | R/B event-specific copy/QR and local warning work; some navigation loses ID, CAL-P1-001. |
+| Public sharing | IMPLEMENTED (local) | R/BA event URLs/QR; BA selector, history, reload, creation and operator/public/TV links retain ID. Hosted sharing remains a gate. |
 | QR codes | IMPLEMENTED | R independent decode matches localhost and synthetic HTTPS public URLs; B rendered/copy. Physical phone scan unverified. |
-| Public board | PARTIAL | A/R/X/B privacy, filters, live/empty/pause/reconnect; clipping/contrast/context findings. |
+| Public board | PARTIAL | A/R/X/B privacy, filters, live/empty/pause/reconnect; BA context fixed locally. Clipping/contrast findings remain. |
 | TV display | PARTIAL | Normal 1920×1080 works; long/scaled/completed layout fails CAL-P1-004; physical fullscreen blocked. |
 | Operator help | IMPLEMENTED | B reads guide at tablet size; source covers queue/corrections/settlement. |
 | Auction Night instructions | IMPLEMENTED | B setup/running/after/TV guide; keyboard journey exercises instructions. |
 | Authentication | UNVERIFIED (hosted) | Local mock and forged-header denial pass A/R. Real ChatGPT sessions not available at hosted origin. |
-| Operators/access | PARTIAL | A/X local grant/revoke record checks; failed grant atomicity BROKEN, CAL-P1-002; distinct hosted sessions unverified. |
+| Operators/access | IMPLEMENTED (local), UNVERIFIED (hosted) | BA atomic grant/revoke/audit under forced failures, concurrent replay, non-owner denial and revoked-session denial. Distinct hosted sessions remain unverified. |
 | Audit history | IMPLEMENTED | A/R/X actor/action/undo; complete history in opened JSON backup. Retention at long duration unverified. |
 | Concurrency protection | IMPLEMENTED | A 200/409 race; B four tabs stale dialog, sale, correction convergence. One local identity. |
-| Mutation guards | PARTIAL | A/R exact sale/payment replay and stale batch protection; access/creation exceptions. |
+| Mutation guards | PARTIAL | A/R exact sale/payment replay and stale batch protection; BA atomic/replay-safe access changes. Creation retry exception remains CAL-P2-002. |
 | Public/private separation | IMPLEMENTED (local) | A/R/X/B server flags, sentinels, private-export auth and public-only WebMCP. Hosted boundary remains a gate. |
 | Reconnect behavior | IMPLEMENTED (local viewers) | B stop/restart retains safe board, warns on failed save, recovers automatically. Unsaved admin dialog remounts on dev restart. |
 | WebMCP | IMPLEMENTED | B sole zero-input read-only public tool; no mutation tools. |
@@ -70,6 +70,6 @@ Evidence: A = 58-check acceptance suite; R = 72-check refinement suite; M = 1,00
 
 ## Known limits and next action
 
-The product is locally usable for representative auction journeys; it is not a completed hosted acceptance sign-off. Signed export values, collection summary, event context, access change error semantics and display containment require approved corrections. Fullscreen/projector distance, touch keyboard, screen reader, 200% zoom, print pagination and multiple browser engines remain explicitly unverified or blocked. The scratch dev process also exited unexpectedly during the longer audit; restarting preserved all saved data, but its long-running stability/root cause remain unverified. See the interruption record in VALIDATION.md.
+The product is locally usable for representative auction journeys; it is not a completed hosted acceptance sign-off. Batch A fixes event context and access-change atomicity locally. Signed export values, collection summary, display containment/contrast, delimiter parsing and creation retries still require approved corrections. Fullscreen/projector distance, touch keyboard, screen reader, 200% zoom, print pagination and multiple browser engines remain explicitly unverified or blocked. The scratch dev process exited unexpectedly during the original longer audit; restarting preserved saved data, but its long-running stability/root cause remain unverified. See the interruption record in VALIDATION.md.
 
-**Next authorized action: the user reviews and approves exact finding IDs for Batch A (`CAL-P1-001`, `CAL-P1-002`).** No batch implementation is authorized by this audit request. Approval may select a different bounded set. See [TASK-TRACKER.md](TASK-TRACKER.md) for five proposed batches, and [COVERAGE.md](COVERAGE.md) for tested versus partial surfaces.
+**Recommended next scope: Batch B (`CAL-P1-003`, `CAL-P1-005`), awaiting approval.** Batch A's approved implementation and local verification are complete. See [TASK-TRACKER.md](TASK-TRACKER.md) for status and later batches, and [COVERAGE.md](COVERAGE.md) for tested versus partial surfaces.

@@ -1,6 +1,6 @@
 # Product coverage matrix
 
-Audit date 2026-09-14 UTC, source `dfab14906c04b5a6d99ffffbfba4249883750eae`. This matrix reports actual coverage, not a claim that every Cartesian combination of screen × state × device × input was tested.
+Original audit 2026-09-14 UTC, source `dfab14906c04b5a6d99ffffbfba4249883750eae`; updated for approved Batch A `4dc2900`. **BA** means [Batch A evidence](BATCH-A.md): focused API/roles and event-navigation browser journeys. This matrix reports actual coverage, not every Cartesian combination of screen × state × device × input.
 
 **H** = tested and healthy; **F** = tested with findings; **P** = partially covered; **L** = not testable locally; **N/A** = not applicable. H applies only to the evidence named in the row. Detailed outcomes use PASS/FAIL/BLOCKED/UNVERIFIED in [VALIDATION.md](VALIDATION.md). A/R/X/M/W/B evidence keys are defined in [CURRENT-STATE.md](CURRENT-STATE.md).
 
@@ -8,7 +8,7 @@ Audit date 2026-09-14 UTC, source `dfab14906c04b5a6d99ffffbfba4249883750eae`. Th
 
 | Surface | Coverage | Exercised | Findings or remaining scope |
 |---|---|---|---|
-| Setup / event choice | F | B new event, flight, dirty draft switching, start; X retry | CAL-P1-001, CAL-P2-002. Distinct real-user settings conflicts remain hosted work. |
+| Setup / event choice | F | B new event/flight/start; BA draft isolation, URL/history/reload/newest fallback and delayed responses; X retry | CAL-P1-001 fixed locally; CAL-P2-002 creation retries remain. Distinct real-user settings conflicts remain hosted work. |
 | Teams | F | A/X/W CRUD/group/order/status; B quick-add/import/search; 100 teams | CAL-P2-001 for valid quoted delimiter CSV. Physical touch reorder not tested. |
 | Buyers | H | A/W create/edit, purchaser correction; B inline Sold creation and selection | Text-input shortcut suppression observed. Large buyer-list search performance not quantified. |
 | Rules | H | A/R/M pool/deduction/mode rules; B ladder and opening-button edits | All currency formats and all visual toggle combinations not exhaustively tested. |
@@ -18,15 +18,15 @@ Audit date 2026-09-14 UTC, source `dfab14906c04b5a6d99ffffbfba4249883750eae`. Th
 | Results | P | A/R/X unique positions, awards, duplicate rejection, ownership-adjusted entitlement | Domain path healthy; full tablet keyboard result-entry journey not completed; ties external. |
 | Settlement | F | R/X/W partial/multiple receipts, reversals, payouts, correction/undo; B Mark paid and note entry | CAL-P1-005 summary offset; every history dialog not exercised by touch. |
 | Exports | F | X actual seven downloads opened/reparsed; R authorization; print/source inspected | CAL-P1-003; actual print/PDF pagination unverified; CAL-P3-001 parallel paths. |
-| Sharing | F | R decoded QR/local URL; B copy/QR/TV instructions | Correct share links; related public navigation loses context CAL-P1-001. Internet sharing L. |
-| Access | F / L | A/X owner grant/revoke record and error probe; source authorization | CAL-P1-002; distinct hosted owner/operator/revoked sessions L. |
+| Sharing | H / L | R decoded QR/local URL; B copy/QR/TV instructions; BA related public/TV/operator navigation | CAL-P1-001 fixed locally. Internet sharing L. |
+| Access | H / L | BA forced audit/grant/revoke failures, concurrent retry, local non-owner and revoked-session checks | CAL-P1-002 fixed locally; distinct hosted owner/operator/revoked sessions L. |
 | Help / Auction Night | H | B before/running/after guide, corrections, keyboard, TV instructions at tablet | Physical projector setup not performed. |
 
 ## Public states and interactions
 
 | Surface/state | Coverage | Evidence |
 |---|---|---|
-| Live auction | F | Normal team/bid/sale/pool updates converge; context and large-money clipping findings. |
+| Live auction | F | Normal team/bid/sale/pool updates converge; BA context fixed locally. Large-money clipping remains. |
 | Pre-auction / ready | H | B setup/open-block placeholders; A readiness/start validation. |
 | Paused | H | B public and TV say AUCTION PAUSED and retain team/bid; A rejects bids. |
 | Completed auction | P | B final-summary/purse text and X final data; TV layout failed separately. Unclaimed place business policy unresolved. |
@@ -51,7 +51,7 @@ Audit date 2026-09-14 UTC, source `dfab14906c04b5a6d99ffffbfba4249883750eae`. Th
 | Many flights | P | Four flights present and pool state inspected; TV does not expose full-field flight filtering. More than four untested. |
 | Large amounts | F | Maximum permitted per-bid 1,000,000 units tested; full digits clipped with long name. |
 | Scaled/browser scenario | F | 1366×768 normal event overlaps block/queue/stats/recent; browser OS scaling not emulated. |
-| Admin launch and instructions | H | B correct event-specific Launch TV link and guide; problematic public TV link separate. |
+| Admin launch and instructions | H | B event-specific Launch TV link and guide; BA public/TV/operator round trip also preserves event. |
 | Fullscreen / physical room | L | In-app attempt did not prove fullscreenElement; no physical TV/projector, HDMI/overscan or distance test. |
 
 ## Device and input coverage
@@ -85,8 +85,8 @@ Audit date 2026-09-14 UTC, source `dfab14906c04b5a6d99ffffbfba4249883750eae`. Th
 | Duplicate stale sale API | H | A/R same request replay and changed revision sale denied; B stale confirmation disabled before submission. |
 | Server stop/restart | H | B last state retained; warning prevents false save; full stored/derived data deep-equal after restart; viewers recover automatically. |
 | Temporary API failure | H | Isolated server unavailable affects polling and attempted save; malformed body 400, stale 409 and invalid reference failure tested. |
-| Refresh on live team / after sale | H | A/R/B persisted records on fresh reads, UI reload and public updates. Event-selection refresh bug separately CAL-P1-001. |
-| Failed access request | F | X 400 with grant applied: CAL-P1-002. |
+| Refresh on live team / after sale | H | A/R/B persisted records on fresh reads, UI reload and public updates; BA event-selection reload and back/forward now retain context. |
+| Failed access request | H | BA fault-injected grant/revoke/audit failures leave access unchanged; concurrent replay applies once. Original X failure retained as historical evidence. |
 | Full recovery from backup | L | Backup read/contents verified; no implemented import/restore workflow to test. Not a required new feature in this pass. |
 | Sustained high load / 500 teams | L | 100-team local sample only; no hosted load or maximum-capacity claim. |
 

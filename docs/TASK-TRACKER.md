@@ -1,6 +1,6 @@
 # Finding tracker and proposed batches
 
-2026-09-14 UTC · audit complete · implementation **not authorized** · no production deployment authorized.
+2026-09-14 UTC · Batch A approved and verified locally in **`4dc2900`** · B–E await approval · no production deployment authorized.
 
 The canonical description, reproduction, confidence and acceptance for every ID is in [PRODUCT-AUDIT.md](PRODUCT-AUDIT.md). Do not renumber an ID when its status changes; append validation evidence and a commit reference after an approved fix. A source change is not verified until its acceptance passes, and a local pass is not hosted verification.
 
@@ -8,8 +8,8 @@ The canonical description, reproduction, confidence and acceptance for every ID 
 
 | ID | Severity/category | Title | Status | Batch |
 |---|---|---|---|---|
-| CAL-P1-001 | P1 RELIABILITY | Event context lost on refresh/navigation | OPEN — awaiting approval | A |
-| CAL-P1-002 | P1 SECURITY/PRIVACY | Rejected access change can still apply | OPEN — awaiting approval | A |
+| CAL-P1-001 | P1 RELIABILITY | Event context lost on refresh/navigation | RESOLVED LOCAL — `4dc2900`, [evidence](BATCH-A.md) | A |
+| CAL-P1-002 | P1 SECURITY/PRIVACY | Rejected access change can still apply | RESOLVED LOCAL — `4dc2900`, [evidence](BATCH-A.md); hosted roles pending | A |
 | CAL-P1-003 | P1 DEFECT | Signed financial CSV becomes text | OPEN — awaiting approval | B |
 | CAL-P1-004 | P1 USABILITY DEFECT | Public/TV content clips and overlaps | OPEN — awaiting approval | C |
 | CAL-P1-005 | P1 BUSINESS RULE | Collection summary offsets other buyers' debts | OPEN — awaiting approval | B |
@@ -18,12 +18,13 @@ The canonical description, reproduction, confidence and acceptance for every ID 
 | CAL-P2-003 | P2 ACCESSIBILITY | Recent-sales caption contrast 3.77:1 | OPEN — awaiting approval | C |
 | CAL-P3-001 | P3 TECHNICAL DEBT | Distributed export contracts | OPEN — optional, awaiting approval | E |
 
-P0: none demonstrated. This does not waive the blocked hosted gates in [VALIDATION.md](VALIDATION.md).
+Seven findings remain open: three P1, three P2 and one P3. P0: none demonstrated. Local resolution does not waive the blocked hosted gates in [VALIDATION.md](VALIDATION.md).
 
 ## Proposed implementation roadmap
 
 ### Batch A — Event context and access guarantees
 
+- **Status:** APPROVED → IMPLEMENTED → VERIFIED LOCAL, commit `4dc2900`. [Batch A report](BATCH-A.md): 27 focused API/role checks, 130 existing regression checks, 1,000 seeded allocation cases and 10 browser observation groups passed. Two pre-existing CSV probes remain failing outside this scope. No migration or deployment.
 - **Exact IDs:** `CAL-P1-001`, `CAL-P1-002`.
 - **Objective:** Keep actions/viewers tied to the event the user selected and make an access-change response accurately reflect durable access state.
 - **Why together:** Both prevent the operator/owner acting with a false understanding of current context or saved state. They are bounded reliability protections, not new features.
@@ -31,7 +32,7 @@ P0: none demonstrated. This does not waive the blocked hosted gates in [VALIDATI
 - **Risk:** Medium-high: browser history, polling event changes and authorization transactions require careful regression. A migration is not presumed authorized; propose one only if demonstrably needed and separately reviewable.
 - **Acceptance:** A/B selector + reload/back/forward + public↔TV links retain ID; dirty drafts remain event-isolated; stale responses never replace current event. Access invalid-event/audit failure changes nothing; success commits audit/access together; repeated requests remain consistent; owner-only guard stays enforced.
 - **Regression surface:** Event creation/selection, live refresh, admin/public/TV links, sharing QR, access grant/revoke, concurrent stale actions, audit visibility. Hosted distinct-user revocation remains a later gate.
-- **Order:** **1 — recommended first.**
+- **Order:** 1 — completed locally.
 
 ### Batch B — Financial summaries and exported signed values
 
@@ -77,7 +78,7 @@ P0: none demonstrated. This does not waive the blocked hosted gates in [VALIDATI
 - **Regression surface:** All existing CSV variants and importer. Perform after B/D so cleanup preserves corrected behavior.
 - **Order:** 5, optional after user-visible defects; do not treat it as a release blocker by itself.
 
-## Completed audit work
+## Completed original audit work
 
 - Reconciled all requested current capabilities against code and test evidence.
 - Created project/architecture/current-state/validation/coverage/audit/tracker foundation and durable synthetic evidence.
@@ -87,4 +88,4 @@ P0: none demonstrated. This does not waive the blocked hosted gates in [VALIDATI
 
 ## Compact handoff
 
-**ONE next authorized action: ask the user to approve the exact IDs `CAL-P1-001` and `CAL-P1-002` for Batch A, or nominate a different explicit bounded set.** Do not implement any batch merely because it is listed here. Once approved, make only those changes, preserve KEEP / PROTECT, run focused reproductions plus relevant regression suites, update this tracker with evidence and return for the next scope decision. Deployment always needs separate authorization.
+**Recommended next scope: Batch B, exact IDs `CAL-P1-003` and `CAL-P1-005`.** Batch A's approved work is complete locally. Do not implement B–E merely because they are listed here. After the user approves the next bounded set, preserve KEEP / PROTECT, run its focused reproductions and relevant regression suites, and update this tracker with evidence. Deployment needs separate authorization.

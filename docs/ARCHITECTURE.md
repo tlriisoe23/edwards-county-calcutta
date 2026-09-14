@@ -1,6 +1,6 @@
 # Current architecture
 
-Verified against source commit `dfab14906c04b5a6d99ffffbfba4249883750eae` on 2026-09-14 UTC. This is a description of the implementation, including exceptions; it is not a replacement design.
+Originally verified against `dfab14906c04b5a6d99ffffbfba4249883750eae`, updated for approved Batch A commit `4dc2900` on 2026-09-14 UTC. This describes the implementation, including exceptions; it is not a replacement design.
 
 ## Runtime and boundaries
 
@@ -61,7 +61,9 @@ The second migration adds settlement tables; it does not rewrite the original sc
 
 For routine event actions, POST verifies exact Origin, operator identity, JSON content type, body size and a UUID request ID. It checks duplicate audit ID/event and the expected revision, then builds one D1 batch containing a `mutation_guards` CHECK insert, revision increments, normalized record changes and audit. A concurrent revision mismatch cannot commit a partial routine mutation. Sale validation also confirms current team, exact staged amount, event/pause status and final purchaser. A unique active-sale constraint is an independent protection.
 
-`revision` advances for event mutations. `boardRevision` advances except for bid-only changes. Both guard and audit entries use the request ID; routine replay returns duplicate success without duplicating the sale/payment. Event creation and demo creation occur before this common path and are not request-idempotent. Access changes also occur before it and write the allowlist before a separate audit insert. These exceptions are CAL-P2-002 and CAL-P1-002; do not describe all application writes as atomic or idempotent.
+`revision` advances for event mutations. `boardRevision` advances except for bid-only changes. Both guard and audit entries use the request ID; routine replay returns duplicate success without duplicating the sale/payment. Event creation and demo creation occur before this common path and are not request-idempotent (CAL-P2-002); do not describe all application writes as idempotent.
+
+Access changes also precede the routine event path, but Batch A validates the audit event and batches audit plus allowlist change atomically. Matching audit UUID/actor/action/email/event returns duplicate success without reapplying an older grant/revoke; changed request content is rejected. A concurrent unique-ID conflict is rechecked against the committed audit record. Omitted event context resolves an existing event; no-event access changes are rejected. Access is global and does not increment an auction revision. Owner authorization runs before replay. Fault-injected local D1 tests prove rollback in both directions; see [BATCH-A.md](BATCH-A.md). This uses the documented [D1 batch transaction behavior](https://developers.cloudflare.com/d1/worker-api/d1-database/#batch).
 
 Undo restores the latest eligible event action from its before-snapshot through normalized statements in one batch. Auction undo retains current settlement history. Settlement undo/reversal appends compensating entries rather than erasing originals. Demo reset requires an exact phrase and can be undone; this is not a general backup restore/import facility.
 
@@ -79,7 +81,7 @@ Public payloads are explicit projections. Buyer contacts/private notes, private 
 
 Clients poll every two seconds. Unchanged public versions return 204; a bid-only change returns a small current-state payload through a five-query read, while board changes return a full public projection. In-flight/generation guards prevent applying obsolete event responses. Errors retain the last board and show Reconnecting; browser online events request a fresh snapshot. The isolated restart test demonstrated automatic viewer recovery.
 
-The browser initializes event selection from the query string. Admin selection currently only updates React state, and some public/TV links omit the event query. CAL-P1-001 documents the resulting switch to an earlier or newest event after refresh/navigation.
+The browser initializes selection from the query string and handles `popstate`. Selecting or creating an event updates browser history; a newest-event fallback pins the resolved ID with `replaceState`. A shared `eventPath()` retains encoded IDs in brand/public/TV/operator and authentication return links. Event changes synchronously invalidate the polling generation and clear old data/drafts before loading the next snapshot; writes wait for loading to finish. Reload/back/forward, dirty rules and a deliberately delayed old response passed browser checks, resolving CAL-P1-001 locally.
 
 `read_auction_board` is the sole WebMCP tool observed. It accepts no properties, rejects unexpected inputs and calls the public API; read-only and untrusted-content annotations are present. It may be registered while on admin, but returns only the public projection. There is no page tool for bidding, selling, access changes or settlement.
 
