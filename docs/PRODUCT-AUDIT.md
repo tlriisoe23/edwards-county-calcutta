@@ -6,11 +6,11 @@
 
 The operator-first product is substantially implemented. A volunteer can configure an event, record verbal bids without selecting a buyer each time, confirm a purchaser, correct/undo sales, maintain a meaningful queue, track manual settlement and export records. Exact payout and ownership allocation performed well under independent deterministic testing. Preserve that foundation.
 
-**The original audit identified nine findings. A/B resolve four locally; five remain open: 0 demonstrated P0, 1 P1, 3 P2, 1 P3.** Context, access atomicity, signed CSV and settlement aggregates are fixed locally; public/TV containment remains P1. The original audit did not demonstrate stored financial corruption, unauthorized-user access bypass or lost routine updates. These are bounded local results, not a hosted security or financial certification.
+**The original audit identified nine findings. A/B/C resolve six locally; three remain open: 0 demonstrated P0, 0 open P1, 2 P2, 1 P3.** Context, access atomicity, signed CSV, settlement aggregates, public/TV containment and caption contrast are fixed locally. The original audit did not demonstrate stored financial corruption, unauthorized-user access bypass or lost routine updates. These are bounded local results, not a hosted security or financial certification.
 
 The original 58-check and 72-check suites passed. Eleven extra correction/queue checks passed. All 1,000 seeded allocation cases passed. Additional audit probes deliberately retain failing assertions for actual findings. Detailed counts, commands and gaps are in [VALIDATION.md](VALIDATION.md); the full capability reconciliation is in [CURRENT-STATE.md](CURRENT-STATE.md), and the surface/state/device/input matrix is in [COVERAGE.md](COVERAGE.md).
 
-The original audit changed no product source or schema. The user subsequently approved [Batch A](BATCH-A.md) and [Batch B](BATCH-B.md); their reports contain exact source changes and evidence. No schema change or deployment occurred. C–E in [TASK-TRACKER.md](TASK-TRACKER.md) await approval. Original reproductions/evidence remain historical; current resolution status supersedes old behavior for fixed IDs.
+The original audit changed no product source or schema. The user subsequently approved [Batch A](BATCH-A.md), [Batch B](BATCH-B.md) and [Batch C](BATCH-C.md); their reports contain exact source changes and evidence. No schema change or deployment occurred. D/E in [TASK-TRACKER.md](TASK-TRACKER.md) await approval. Original reproductions/evidence remain historical; current resolution status supersedes old behavior for fixed IDs.
 
 ## KEEP / PROTECT
 
@@ -93,6 +93,8 @@ All findings below are demonstrated in local review or source inspection, not in
 
 ### CAL-P1-004 — Display containment hides bids and overlaps TV sections
 
+- **Current status:** RESOLVED LOCAL in `4da7b9b`. [Batch C](BATCH-C.md) verifies full bid/long names, all-long queue/recent, seven completed metrics and no normal TV scrolling at both required sizes; phone/tablet containment and notification checks pass. Original reproduction follows.
+
 - **Severity/category:** P1 · USABILITY DEFECT / RELIABILITY.
 - **Surface/route:** Public `/?event=ID` at narrow widths; TV `/tv?event=ID` at exact 1920×1080 and scaled 1366×768.
 - **Preconditions:** Long current team name or large permitted bid; a scaled TV viewport; completed state with seven summary metrics. Four-flight/100-team fixture and a normal 12-team demo were tested.
@@ -155,6 +157,8 @@ All findings below are demonstrated in local review or source inspection, not in
 
 ### CAL-P2-003 — Recent-sales caption has insufficient contrast
 
+- **Current status:** RESOLVED LOCAL in `4da7b9b`. [Batch C](BATCH-C.md) measures the 14px caption at 6.02:1 on TV and 6.21:1 on public backgrounds. Original reproduction follows.
+
 - **Severity/category:** P2 · ACCESSIBILITY.
 - **Surface/route:** Public and TV recent-sales section, `/` and `/tv`.
 - **Preconditions:** Default rendered theme; 12px bold `RECENT SALES` caption.
@@ -203,7 +207,7 @@ Batch B resolves CAL-P1-003/005 locally: actual CSVs reconcile with signed party
 
 Keyboard B/Enter/+/S/U worked with focus management and no shortcut leakage into buyer text/notes/dialogs. Import/editor labels and icon action names were present; status used text as well as color. The Hammer target measured 54px high at tablet portrait. Smaller row icons were observed around 32px; this alone is not a WCAG AA failure. [W3C Target Size Minimum](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html) uses 24px with exceptions; 44px is an enhanced target/recommendation.
 
-The confirmed accessibility finding is CAL-P2-003. Display clipping is CAL-P1-004. Reduced-motion CSS exists but runtime emulation was not verified. Native screen reader, 200% browser zoom and physical touch/soft keyboard need follow-up; no compliance badge is warranted.
+The original confirmed accessibility and display findings, CAL-P2-003 and CAL-P1-004, are resolved locally by Batch C. Reduced-motion CSS exists but runtime emulation was not verified. Native screen reader, 200% browser zoom and physical touch/soft keyboard need follow-up; no compliance badge is warranted.
 
 Public flight tabs intentionally scroll within their strip and worked with four flights and search. Normal 390×844 and 430×932 public views place team/bid before totals and field. The full-size normal TV is healthy; long-name, scaled and completed cases are not. The public↔TV navigation defect is separate from layout. Completed TV still lists eligible upcoming teams under its queue heading when any remain; retained queue data is an observation needing business/display intent clarification, not an additional approved finding.
 
@@ -233,6 +237,6 @@ Participant/mobile bidding, accounts, pre-bidding, silent/timed auctions, actual
 
 ## Handoff and release boundary
 
-Read [TASK-TRACKER.md](TASK-TRACKER.md) for acceptance and status. **A/B are complete locally. Recommended next: Batch C (`CAL-P1-004`, `CAL-P2-003`)**, for public/TV containment and caption contrast.
+Read [TASK-TRACKER.md](TASK-TRACKER.md) for acceptance and status. **A/B/C are complete locally. Recommended next: Batch D (`CAL-P2-001`, `CAL-P2-002`)**, for quoted roster delimiters and creation retries.
 
-The user must approve the next bounded set before C–E implementation. A/B approval does not authorize migration, production access changes or deployment. Hosted acceptance remains a later gate.
+The user must approve the next bounded set before D/E implementation. A/B/C approval does not authorize migration, production access changes or deployment. Hosted acceptance remains a later gate.

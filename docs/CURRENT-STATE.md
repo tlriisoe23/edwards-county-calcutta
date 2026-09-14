@@ -1,6 +1,6 @@
 # Current state — 2026-09-14 UTC
 
-The product was audited at `dfab14906c04b5a6d99ffffbfba4249883750eae`; documentation baseline is `782eb3b`. Approved [Batch A](BATCH-A.md) (`4dc2900`) and [Batch B](BATCH-B.md) (`3d00923`) resolve CAL-P1-001/002/003/005 locally. Type checking, build and focused/regression checks passed; schema is unchanged. Five findings remain open: no demonstrated P0, one P1, three P2 and one P3. These counts do not imply production readiness.
+The product was audited at `dfab14906c04b5a6d99ffffbfba4249883750eae`; documentation baseline is `782eb3b`. Approved [Batch A](BATCH-A.md) (`4dc2900`) and [Batch B](BATCH-B.md) (`3d00923`) resolve CAL-P1-001/002/003/005 locally. Type checking, build and focused/regression checks passed; schema is unchanged. [Batch C](BATCH-C.md) (`4da7b9b`) resolves display containment and caption contrast locally. Three findings remain open: no demonstrated P0, no open P1, two P2 and one P3. These counts do not imply production readiness.
 
 Sites still has saved version 2 and no reported live/hosted-preview URL. No deployment was performed. The review stays at localhost:5173; isolated audit data lives in `.sites-runtime/audit-checkout/.wrangler/state` and is not part of a deployment archive.
 
@@ -14,7 +14,7 @@ The main isolated fixture has 100 teams, four flights, three buyers and 18 sales
 
 IMPLEMENTED means a representative behavior was exercised successfully in this audit, within the cited scope. PARTIAL means useful behavior exists but has a verified defect or meaningful untested branch. BROKEN means a named promised path was demonstrated failing. UNVERIFIED means code/configuration alone does not prove runtime behavior. NOT IMPLEMENTED means absent by inspection, not necessarily required. Hosted behavior is not inferred from a local pass.
 
-Evidence: A = 58-check acceptance; R = 72-check refinement; M = 1,000 seeded cases; X = original API audit; W = correction/queue probes; B = original browser observations; BA = [Batch A](BATCH-A.md); BB = [Batch B](BATCH-B.md), 33 focused checks, 21 independent file checks and six browser groups. A/R/M/W were rerun for BB. Exact reports and limitations: [VALIDATION.md](VALIDATION.md).
+Evidence: A = 58-check acceptance; R = 72-check refinement; M = 1,000 seeded cases; X = original API audit; W = correction/queue probes; B = original browser observations; BA = [Batch A](BATCH-A.md); BB = [Batch B](BATCH-B.md), 33 focused checks, 21 independent file checks and six browser groups. A/R/M/W were rerun for BB. BC = [Batch C](BATCH-C.md), final TV/phone/tablet/notification geometry and caption contrast; A/R rerun for BC. Exact reports and limitations: [VALIDATION.md](VALIDATION.md).
 
 | Capability | Status | Evidence / practical limit |
 |---|---|---|
@@ -54,8 +54,8 @@ Evidence: A = 58-check acceptance; R = 72-check refinement; M = 1,000 seeded cas
 | Exports | IMPLEMENTED (CSV/JSON), UNVERIFIED (print pagination) | BB independently reopened nine CSV variants; signed values and formula-like text pass. JSON backup and print-summary content checked; physical pagination remains unverified. |
 | Public sharing | IMPLEMENTED (local) | R/BA event URLs/QR; BA selector, history, reload, creation and operator/public/TV links retain ID. Hosted sharing remains a gate. |
 | QR codes | IMPLEMENTED | R independent decode matches localhost and synthetic HTTPS public URLs; B rendered/copy. Physical phone scan unverified. |
-| Public board | PARTIAL | A/R/X/B privacy, filters, live/empty/pause/reconnect; BA context fixed locally. Clipping/contrast findings remain. |
-| TV display | PARTIAL | Normal 1920×1080 works; long/scaled/completed layout fails CAL-P1-004; physical fullscreen blocked. |
+| Public board | IMPLEMENTED (local) | A/R/X/B privacy, filters, live/empty/pause/reconnect; BA context fixed. BC full-price containment at 320/390/430, filters and readable caption pass. |
+| TV display | IMPLEMENTED (local viewports), UNVERIFIED (hardware) | BC live/paused short/long names, all-long queue/recent and completed seven metrics fit 1366×768 and 1920×1080. Physical fullscreen remains blocked. |
 | Operator help | IMPLEMENTED | B reads guide at tablet size; source covers queue/corrections/settlement. |
 | Auction Night instructions | IMPLEMENTED | B setup/running/after/TV guide; keyboard journey exercises instructions. |
 | Authentication | UNVERIFIED (hosted) | Local mock and forged-header denial pass A/R. Real ChatGPT sessions not available at hosted origin. |
@@ -70,6 +70,6 @@ Evidence: A = 58-check acceptance; R = 72-check refinement; M = 1,000 seeded cas
 
 ## Known limits and next action
 
-The product is locally usable for representative journeys; it is not a hosted acceptance sign-off. A/B fix context, access atomicity, signed CSV and debt/overpayment summaries locally. Display containment/contrast, roster delimiters and creation retries still require approved corrections. Physical devices, screen readers, zoom, print pagination and other engines remain unverified or blocked. Scratch exited during the original audit and B's first regression attempt; complete suites passed after restart, but long-running stability/root cause remain unverified.
+The product is locally usable for representative journeys; it is not a hosted acceptance sign-off. A/B/C fix context, access atomicity, signed CSV, debt/overpayment summaries and display containment/contrast locally. Roster delimiters and creation retries still require approved corrections. Physical devices, screen readers, zoom, print pagination and other engines remain unverified or blocked. Scratch exited during the original audit, B's first regression attempt and C's early browser setup; complete suites passed after restart, but long-running stability/root cause remain unverified.
 
-**Recommended next scope: Batch C (`CAL-P1-004`, `CAL-P2-003`), awaiting approval.** A/B implementation and local verification are complete. See [TASK-TRACKER.md](TASK-TRACKER.md) for status and [COVERAGE.md](COVERAGE.md) for tested versus partial surfaces.
+**Recommended next scope: Batch D (`CAL-P2-001`, `CAL-P2-002`), awaiting approval.** A/B/C implementation and local verification are complete. See [TASK-TRACKER.md](TASK-TRACKER.md) for status and [COVERAGE.md](COVERAGE.md) for tested versus partial surfaces.

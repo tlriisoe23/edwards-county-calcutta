@@ -2,6 +2,14 @@
 
 2026-09-14 UTC · baseline `dfab14906c04b5a6d99ffffbfba4249883750eae`. Reports are local audit evidence, not production sign-off. PASS = observed expected result; FAIL = demonstrated mismatch; BLOCKED = a needed environment/tool is unavailable; UNVERIFIED = not exercised sufficiently. A successful build does not convert any browser or hosted gap into PASS.
 
+## Batch C update — `4da7b9b`
+
+Approved CAL-P1-004 and CAL-P2-003 are resolved locally. [BATCH-C.md](BATCH-C.md) and [browser evidence](batch-c-evidence/browser.json) record 10 final TV configurations with all-long queue/recent names, phone widths 320/390/430, two operator tablet sizes, phone sale notifications, hidden flags and a working narrow flight/search filter. Text bounds and section intersections pass; TV remains one screen. Caption contrast is 6.02:1 TV / 6.21:1 public.
+
+Existing [acceptance](batch-c-evidence/acceptance.json) **58/58** and [refinement](batch-c-evidence/refinement.json) **72/72** pass. TypeScript and final production build pass. The separate 1,000-case oracle/workflow suite was not rerun for this CSS-only batch. Manual browser configurations are not scripted case equivalents. [Environment evidence](batch-c-evidence/environment.json) records the early scratch exit, missed transient-toast observations, intermediate long-queue failure and successful final checks. No interrupted or intermediate failure is counted as a pass.
+
+No schema/dependency, saved version or deployment change. Test writes stayed on 5174; viewport reset, test tab closed, scratch stopped, original 5173 review retained. Actual TV/fullscreen/distance, other engines, runtime reduced motion and screen readers remain unverified. Original and earlier batch reports below remain historical.
+
 ## Batch B update — `3d00923`
 
 Approved CAL-P1-003/005 are resolved locally. [BATCH-B.md](BATCH-B.md) records scope, commands and cleanup; `batch-b-evidence/` supplements unchanged original and Batch A evidence.
@@ -133,7 +141,7 @@ Fixture: 100 teams, four flights, three buyers, 18 completed sales, later live/p
 | CSV downloads | Six files, 18–20ms locally; all reopened and structurally parsed. |
 | Full JSON download | 4,692,424 bytes, 242ms; parsed complete relational state and audit. |
 | Browser filtering | Four-flight navigation returned 25 cards; combined search returned one. No measured animation/frame-rate claim. |
-| Display stress | Long name/large price/TV completed and scaled failures remain CAL-P1-004. |
+| Display stress | BC resolves CAL-P1-004 locally at both TV sizes and three phone widths, including long queue/recent names and completed metrics. Physical TV/OS scaling remains unverified. |
 
 These are mixed-stage local dev samples, not network SLOs, hosted capacity benchmarks or timing of a human volunteer. No assertion of 500-team readiness, many concurrent users or hours-long production stability is made.
 

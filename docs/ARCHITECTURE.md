@@ -87,6 +87,10 @@ The browser initializes selection from the query string and handles `popstate`. 
 
 `read_auction_board` is the sole WebMCP tool observed. It accepts no properties, rejects unexpected inputs and calls the public API; read-only and untrusted-content annotations are present. It may be registered while on admin, but returns only the public projection. There is no page tool for bidding, selling, access changes or settlement.
 
+## Display containment
+
+Batch C (`4da7b9b`) changes CSS only. Desktop TV uses a viewport-height grid with content-sized heading/statistics/recent rows and a flexible active-lot row. Width/height container units size the title and complete bid; the queue reserves enough width for long names. Summary items auto-flow into equal columns, including the seventh completed metric. Public/operator money stays inside its available column; long buyer/name text and phone sale notices wrap. The recent caption uses `#526047`, measured against both rendered backgrounds. See [BATCH-C.md](BATCH-C.md) for exact viewport coverage and physical-device limits.
+
 ## Boundaries needing later evidence
 
 Hosted real-user sign-in/allowlist revocation, anonymous internet access, deployment migrations and persistence are BLOCKED by the absence of an approved deployment. Maximum configured capacity (500 teams), long-running audit retention, regional latency and many simultaneous clients are UNVERIFIED. Observed 100-team results are in [VALIDATION.md](VALIDATION.md). Avoid replacing the architecture to address those unknowns.

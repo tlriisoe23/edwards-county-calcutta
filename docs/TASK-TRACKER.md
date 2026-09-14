@@ -1,6 +1,6 @@
 # Finding tracker and proposed batches
 
-2026-09-14 UTC · A and B approved and verified locally (`4dc2900`, `3d00923`) · C–E await approval · no production deployment authorized.
+2026-09-14 UTC · A/B/C approved and verified locally (`4dc2900`, `3d00923`, `4da7b9b`) · D/E await approval · no production deployment authorized.
 
 The canonical description, reproduction, confidence and acceptance for every ID is in [PRODUCT-AUDIT.md](PRODUCT-AUDIT.md). Do not renumber an ID when its status changes; append validation evidence and a commit reference after an approved fix. A source change is not verified until its acceptance passes, and a local pass is not hosted verification.
 
@@ -11,14 +11,14 @@ The canonical description, reproduction, confidence and acceptance for every ID 
 | CAL-P1-001 | P1 RELIABILITY | Event context lost on refresh/navigation | RESOLVED LOCAL — `4dc2900`, [evidence](BATCH-A.md) | A |
 | CAL-P1-002 | P1 SECURITY/PRIVACY | Rejected access change can still apply | RESOLVED LOCAL — `4dc2900`, [evidence](BATCH-A.md); hosted roles pending | A |
 | CAL-P1-003 | P1 DEFECT | Signed financial CSV becomes text | RESOLVED LOCAL — `3d00923`, [evidence](BATCH-B.md) | B |
-| CAL-P1-004 | P1 USABILITY DEFECT | Public/TV content clips and overlaps | OPEN — awaiting approval | C |
+| CAL-P1-004 | P1 USABILITY DEFECT | Public/TV content clips and overlaps | RESOLVED LOCAL — `4da7b9b`, [evidence](BATCH-C.md); hardware pending | C |
 | CAL-P1-005 | P1 BUSINESS RULE | Collection summary offsets other buyers' debts | RESOLVED LOCAL — `3d00923`, [evidence](BATCH-B.md), includes reproduced payout equivalent | B |
 | CAL-P2-001 | P2 DEFECT | Quoted pipe/tab breaks CSV delimiter detection | OPEN — awaiting approval | D |
 | CAL-P2-002 | P2 RELIABILITY | Repeated creation request creates two events | OPEN — awaiting approval | D |
-| CAL-P2-003 | P2 ACCESSIBILITY | Recent-sales caption contrast 3.77:1 | OPEN — awaiting approval | C |
+| CAL-P2-003 | P2 ACCESSIBILITY | Recent-sales caption contrast 3.77:1 | RESOLVED LOCAL — `4da7b9b`, [evidence](BATCH-C.md); now 6.02/6.21:1 | C |
 | CAL-P3-001 | P3 TECHNICAL DEBT | Distributed export contracts | OPEN — optional, awaiting approval | E |
 
-Five findings remain open: one P1, three P2 and one P3. P0: none demonstrated. Local resolution does not waive the blocked hosted gates in [VALIDATION.md](VALIDATION.md).
+Three findings remain open: no P1, two P2 and one P3. P0: none demonstrated. Local resolution does not waive the blocked hosted gates in [VALIDATION.md](VALIDATION.md).
 
 ## Proposed implementation roadmap
 
@@ -48,6 +48,8 @@ Five findings remain open: one P1, three P2 and one P3. P0: none demonstrated. L
 
 ### Batch C — Public/TV containment and readable captions
 
+- **Status:** APPROVED → IMPLEMENTED → VERIFIED LOCAL, commit `4da7b9b`. [Batch C report](BATCH-C.md): final TV state/long-name matrix, phone/tablet/notification containment, filters and caption contrast passed; 130 existing scripted checks, TypeScript and production build passed. CSS-only; no migration or deployment.
+
 - **Exact IDs:** `CAL-P1-004`, `CAL-P2-003`.
 - **Objective:** Keep the whole bid and essential summary content readable on normal/scaled TVs and phones while retaining the existing visual design.
 - **Why together:** Both are bounded spectator display corrections with overlapping CSS and visual regression needs.
@@ -55,7 +57,7 @@ Five findings remain open: one P1, three P2 and one P3. P0: none demonstrated. L
 - **Risk:** Medium: typography/grid changes can affect public, TV and operator shared components.
 - **Acceptance:** 1920×1080 and 1366×768 TV, live/paused/completed, four flights, short/long names and max per-bid value show no clipping/overlap or normal TV scrolling; public 320/390/430 preserves full price and usable filters; caption contrast ≥4.5:1. Use screenshots and within-container bounds, not only page size.
 - **Regression surface:** Operator shared block/tablet, public filters/pools, recent sale toast, display flags, completed metrics, reduced-motion styles. Actual fullscreen/projector remains a later hardware gate.
-- **Order:** 3; complete before a clubhouse display rehearsal.
+- **Order:** 3 — completed locally; physical clubhouse display rehearsal remains a later gate.
 
 ### Batch D — Reliable setup import and creation retries
 
@@ -89,4 +91,4 @@ Five findings remain open: one P1, three P2 and one P3. P0: none demonstrated. L
 
 ## Compact handoff
 
-**Recommended next scope: Batch C, exact IDs `CAL-P1-004` and `CAL-P2-003`.** A and B are complete locally. Do not implement C–E merely because they are listed here. After the user approves the next bounded set, preserve KEEP / PROTECT, run its focused reproductions and relevant regression suites, and update this tracker with evidence. Deployment needs separate authorization.
+**Recommended next scope: Batch D, exact IDs `CAL-P2-001` and `CAL-P2-002`.** A/B/C are complete locally. Do not implement D/E merely because they are listed here. After the user approves the next bounded set, preserve KEEP / PROTECT, run its focused reproductions and relevant regression suites, and update this tracker with evidence. Deployment needs separate authorization.

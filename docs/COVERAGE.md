@@ -1,6 +1,6 @@
 # Product coverage matrix
 
-Original audit 2026-09-14 UTC, `dfab14906c04b5a6d99ffffbfba4249883750eae`; updated for A `4dc2900` and B `3d00923`. **BA** means [Batch A](BATCH-A.md); **BB** means [Batch B](BATCH-B.md). This reports actual coverage, not every screen/state/device/input combination.
+Original audit 2026-09-14 UTC, `dfab14906c04b5a6d99ffffbfba4249883750eae`; updated for A `4dc2900`, B `3d00923` and C `4da7b9b`. **BA** means [Batch A](BATCH-A.md); **BB** means [Batch B](BATCH-B.md); **BC** means [Batch C](BATCH-C.md). This reports actual coverage, not every screen/state/device/input combination.
 
 **H** = tested and healthy; **F** = tested with findings; **P** = partially covered; **L** = not testable locally; **N/A** = not applicable. H applies only to the evidence named in the row. Detailed outcomes use PASS/FAIL/BLOCKED/UNVERIFIED in [VALIDATION.md](VALIDATION.md). A/R/X/M/W/B evidence keys are defined in [CURRENT-STATE.md](CURRENT-STATE.md).
 
@@ -26,14 +26,14 @@ Original audit 2026-09-14 UTC, `dfab14906c04b5a6d99ffffbfba4249883750eae`; updat
 
 | Surface/state | Coverage | Evidence |
 |---|---|---|
-| Live auction | F | Normal team/bid/sale/pool updates converge; BA context fixed locally. Large-money clipping remains. |
+| Live auction | H | Normal team/bid/sale/pool updates converge; BA context and BC full-price containment/contrast fixed locally. |
 | Pre-auction / ready | H | B setup/open-block placeholders; A readiness/start validation. |
 | Paused | H | B public and TV say AUCTION PAUSED and retain team/bid; A rejects bids. |
-| Completed auction | P | B final-summary/purse text and X final data; TV layout failed separately. Unclaimed place business policy unresolved. |
+| Completed auction | P | B final-summary/purse text and X final data; BC seven-metric TV layout now passes. Unclaimed place business policy unresolved. |
 | Reconnect | H | B safe last state + Reconnecting during stopped server; automatic Connected after restart. |
 | Empty/new event | H | B zero teams/pools, no queue/first-sale placeholders, no NaN. Loading joining-state also observed. |
-| Large event | F | X/B 100 teams, four flights, 18 sales, filters and payloads; long-name/bid clipping. |
-| Flight filters | H | B four-flight strip intentionally scrolls; Third Flight returns 25 of 100. |
+| Large event | P | X/B 100 teams, four flights, 18 sales, filters and payloads. BC corrects long-name/max-bid containment with a separate 12-team/four-flight fixture; no full 100-team browser rerun. |
+| Flight filters | H | B four-flight strip intentionally scrolls; Third Flight returns 25 of 100. BC at 320px retains flight/search interaction and a single matching card. |
 | Team search | H | B search Audit Team 024 returns one with flight filter. Empty matches explained. |
 | Public settings/privacy | H (local) | A/R/X server-hidden values, private sentinels, only public team notes; all cosmetic combinations P. |
 | Anonymous read-only | H / L | A/R/X local public access + denied admin/exports; hosted dispatcher/audience L. |
@@ -44,13 +44,13 @@ Original audit 2026-09-14 UTC, `dfab14906c04b5a6d99ffffbfba4249883750eae`; updat
 | Surface/state | Coverage | Evidence |
 |---|---|---|
 | Normal live 1920×1080 | H | Current team, amount, flight, pots, three upcoming/recent teams fit one viewport. |
-| Paused | H | State wording retained; existing long-name containment finding still applies. |
-| Completed | F | Seventh summary statistic wraps into recent area, CAL-P1-004. |
+| Paused | H | BC short/long current names plus all-long queue/recent fit both TV viewports; paused wording and full bid retained. |
+| Completed | H | BC all seven metrics fit in one row without overlap at both TV viewports. |
 | Reconnect | H | Safe state and reconnect status survive server interruption; automatic recovery. |
-| Long names | F | 66-character current team wraps and pushes price below block crop at 1920×1080. |
+| Long names | H | BC 66-character active, all three queue and recent names fit both TV viewports with no text-container spill. |
 | Many flights | P | Four flights present and pool state inspected; TV does not expose full-field flight filtering. More than four untested. |
-| Large amounts | F | Maximum permitted per-bid 1,000,000 units tested; full digits clipped with long name. |
-| Scaled/browser scenario | F | 1366×768 normal event overlaps block/queue/stats/recent; browser OS scaling not emulated. |
+| Large amounts | H | BC full $1,000,000 bid with long name; final stress pool $8,000,000, with all values contained. |
+| Scaled/browser scenario | H | BC 1366×768 live/paused/completed fits one screen without internal overlap; actual OS scaling not emulated. |
 | Admin launch and instructions | H | B event-specific Launch TV link and guide; BA public/TV/operator round trip also preserves event. |
 | Fullscreen / physical room | L | In-app attempt did not prove fullscreenElement; no physical TV/projector, HDMI/overscan or distance test. |
 
@@ -58,19 +58,19 @@ Original audit 2026-09-14 UTC, `dfab14906c04b5a6d99ffffbfba4249883750eae`; updat
 
 | Class | Exact CSS viewport | Coverage | Notes |
 |---|---|---|---|
-| Narrow mobile | 320×740 | F | Public long-name/large-price geometry and screenshot; number extends beyond content. |
-| Typical phone | 390×844 | F | Normal public healthy; 100-team stress clips price; flight/search work. |
-| Larger phone | 430×932 | P | Normal loaded board screenshot healthy; large filtered board geometry inspected, not every large-state region. |
-| Tablet portrait | 768×1024 | P | Console, buyer/Mark paid dialog, Help; primary Hammer 54px high; no horizontal page overflow. Full results/configuration touch journey missing. |
-| Tablet landscape | 1024×768 | P | Operator console readable, vertical scrolling; no horizontal overflow. Physical soft keyboard absent. |
+| Narrow mobile | 320×850 (BC) | H (display) | BC full long-name/price, statistics, search/filter and notification containment. Actual phone input unverified. |
+| Typical phone | 390×850 (BC) | H (display) | BC full price/statistics and sale notification fit; original normal/filter observations retained. |
+| Larger phone | 430×850 (BC) | H (display) | BC full price/statistics and sale notification containment; not every state/device journey. |
+| Tablet portrait | 768×1024 | P | BC long-name/max-bid shared block fits. Prior console/dialog/Help checks retained; full results/configuration touch journey missing. |
+| Tablet landscape | 1024×768 | P | BC shared block full price/long-name containment; operator vertical scrolling expected. Physical soft keyboard absent. |
 | Laptop | 1280×720 | H | Main operator journeys and large public field; public vertical scroll expected. |
-| Scaled laptop/TV | 1366×768 | F | TV sections overlap; fullscreen verification blocked. |
-| Desktop / TV projector size | 1920×1080 | F | Normal live healthy; long names/completed fail. Physical television is not implied by viewport emulation. |
+| Scaled laptop/TV | 1366×768 | H (viewport) | BC long/short live/paused and completed containment pass; physical fullscreen verification blocked. |
+| Desktop / TV projector size | 1920×1080 | H (viewport) | BC long/short live/paused and completed pass. Physical television is not implied by viewport emulation. |
 | Mouse / pointer | — | H | Complete setup and sale/correction, filters, sharing, settlement. No specialized drag gesture required in tested flow. |
 | Keyboard only | — | H | After start, B/Enter/+/S/U, inline purchaser, confirm, undo; no shortcuts while text/notes/dialogs consume input. |
 | Touch hardware | — | L | Tablet dimensions and target sizes observed with pointer; native tap gestures/soft keyboard not available. |
 | Screen reader | — | P | Accessible tree, labels/status and focus inspected; NVDA/VoiceOver speech not tested. |
-| 200% zoom / reduced motion | — | P | Source has reduced-motion CSS; runtime preference and verifiable browser zoom not exercised. |
+| 200% zoom / reduced motion | — | P | BC confirms original reduced-motion CSS preserved; runtime preference and verifiable browser zoom not exercised. |
 | Other engines | — | L | One in-app Chromium environment; no Safari/Firefox/device certification. |
 
 ## End-to-end journeys and failure coverage
