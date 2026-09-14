@@ -1,0 +1,54 @@
+{
+  "at": "2026-09-14",
+  "method": "Manual in-app Chromium browser observations; screenshot inspected in tool output, no durable screenshot claimed.",
+  "groups": [
+    {
+      "name": "Quoted import preview",
+      "status": "PASS",
+      "eventId": "f6f09a28-b7be-44b7-b660-93382d71109b",
+      "observed": [
+        {
+          "team": "North | South",
+          "players": [
+            "Renée, Jr.",
+            "O\"Brien"
+          ],
+          "flight": "Flight A",
+          "handicap": 8.4
+        },
+        {
+          "team": "East\tWest",
+          "players": [
+            "José",
+            "Zoë"
+          ],
+          "flight": "Flight A",
+          "handicap": 2.1
+        }
+      ],
+      "note": "Two separate rows, correct editable team/player/index fields and flights."
+    },
+    {
+      "name": "Import save",
+      "status": "PASS",
+      "observed": "Imported two rows into the 100-team fixture. Search North | South returned row 101 with Renée, Jr., O\"Brien, Flight A and 8.4."
+    },
+    {
+      "name": "New-event create, history and reload",
+      "status": "PASS",
+      "eventId": "e67ce017-2380-40c1-a81b-64c22ce26036",
+      "observed": "Create tournament selected Batch D browser creation and updated event URL/links. Back returned to Batch D import review; forward and reload retained browser-created event."
+    },
+    {
+      "name": "Demo and public/TV navigation",
+      "status": "PASS",
+      "eventId": "103838ac-d9cf-47a2-950d-4eee7364d36e",
+      "observed": "Confirmed Load demo, selected new demonstration event, followed public link into its new tab then TV mode with same event ID. Public board showed Hayes / Bennett, $1,250 and 12-team demo."
+    }
+  ],
+  "limitations": [
+    "One Chromium browser and simulated identity only.",
+    "Parser unit cases cover quoted newlines; browser preview checked pipe, tab, comma, escaped quote and Unicode.",
+    "Prior Batch A delayed-response/draft-isolation and real-role browser cases were not repeated; navigation/history/reload and its 20 API/context assertions were repeated."
+  ]
+}

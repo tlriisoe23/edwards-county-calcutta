@@ -1,0 +1,92 @@
+{
+  "at": "2026-09-14T14:01:41.607Z",
+  "checks": [
+    {
+      "name": "Invalid event grants no access or audit",
+      "status": "PASS"
+    },
+    {
+      "name": "Successful grant normalizes email and commits audit",
+      "status": "PASS"
+    },
+    {
+      "name": "Sequential replay returns duplicate and one audit without changing auction revision",
+      "status": "PASS"
+    },
+    {
+      "name": "Request ID reused for a different email is rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "Request ID reused for a different event is rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "Request ID reused for another action cannot revoke access",
+      "status": "PASS"
+    },
+    {
+      "name": "Replaying old grant after revocation does not restore access",
+      "status": "PASS"
+    },
+    {
+      "name": "Replaying old revoke after a new grant does not revoke again",
+      "status": "PASS"
+    },
+    {
+      "name": "Invalid event revokes no access",
+      "status": "PASS"
+    },
+    {
+      "name": "Eight concurrent operator_add retries commit one logical change",
+      "status": "PASS"
+    },
+    {
+      "name": "Eight concurrent operator_remove retries commit one logical change",
+      "status": "PASS"
+    },
+    {
+      "name": "Omitted event uses an existing event for durable audit",
+      "status": "PASS"
+    },
+    {
+      "name": "Omitted-event access replay is idempotent",
+      "status": "PASS"
+    },
+    {
+      "name": "Forced audit insert failure leaves access and audit unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "Forced allowlist insert failure rolls back the preceding audit",
+      "status": "PASS"
+    },
+    {
+      "name": "Forced revoke failure retains access and rolls back its audit",
+      "status": "PASS"
+    },
+    {
+      "name": "Anonymous admin sign-in retains requested event",
+      "status": "PASS"
+    },
+    {
+      "name": "All event routes encode the identifier safely",
+      "status": "PASS"
+    },
+    {
+      "name": "QR/share URLs agree with public and TV navigation",
+      "status": "PASS"
+    },
+    {
+      "name": "Public remains anonymous and private admin data remains protected",
+      "status": "PASS"
+    }
+  ],
+  "fixtures": {
+    "Batch A Alpha": "ed8d235d-f1ea-4cbd-82ab-8ba69a0f9be8",
+    "Batch A Beta": "892f81d6-dbc8-46e0-9377-1e3f21899210"
+  },
+  "cleanupError": "TypeError: fetch failed",
+  "passed": 20,
+  "failed": 0
+}

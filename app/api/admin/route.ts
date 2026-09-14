@@ -77,7 +77,15 @@ export async function POST(request: Request) {
         }
         if (action === "create_event" || action === "load_demo") {
             const input = action === "load_demo" ? { name: "Edwards County Calcutta Invitational", course: "Edwards County Golf Course", dates: "September 19–20, 2026", auctionAt: "2026-09-18T18:00" } : z.object({ name: text, course: z.string().max(150).default(""), calcuttaName: z.string().max(150).optional(), dates: z.string().max(100).optional(), auctionAt: z.string().max(40).optional(), description: note }).parse(p);
-            const created = freshEvent(input, who.email, action === "load_demo");
+            const replay = async () => {
+                const prior = await statement('SELECT eventId,actor,action,"after" FROM audit WHERE id=?', requestId).first<Row>();
+                if (!prior) return null;
+                requireThat(prior.actor === who.email && prior.action === action && prior.after === JSON.stringify(input), "This request ID changed its action, operator or creation details. Submit a new request.");
+                return prior.eventId as string;
+            };
+            const existing = await replay();
+            if (existing) return Response.json({ ok: true, duplicate: true, eventId: existing });
+            const created = freshEvent(input, who.email, action === "load_demo", requestId);
             const cmds = created.commands;
             if (action === "load_demo") {
                 const f1 = crypto.randomUUID(), f2 = crypto.randomUUID();
@@ -96,7 +104,15 @@ export async function POST(request: Request) {
                 });
                 cmds.push(update("auction_state", { teamId: teamIds[5], bid: 125000, buyerId: buyerIds[3], startedAt: timestamp() }, "eventId", created.id), update("events", { status: "LIVE" }, "id", created.id));
             }
-            await db().batch(cmds);
+            try {
+                // Event, initial records and request result commit together. A racing
+                // retry loses the unique audit ID and its entire batch rolls back.
+                await db().batch(cmds);
+            } catch (error) {
+                const committed = await replay();
+                if (committed) return Response.json({ ok: true, duplicate: true, eventId: committed });
+                throw error;
+            }
             return Response.json({ ok: true, eventId: created.id });
         }
         const eventId = id.parse(body.eventId), revision = z.number().int().nonnegative().parse(body.revision);

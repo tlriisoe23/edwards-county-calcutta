@@ -1,0 +1,11 @@
+{
+  "at": "2026-09-14T14:03:09.524Z",
+  "checks": [],
+  "fixtures": {
+    "Batch A Alpha": "b7bffd56-281b-493e-83a9-71cff259d03a",
+    "Batch A Beta": "4bd30dd8-5061-45be-85c9-4fe875bb8931"
+  },
+  "failure": "AssertionError [ERR_ASSERTION]: Invalid event grants no access or audit",
+  "passed": 0,
+  "failed": 1
+}

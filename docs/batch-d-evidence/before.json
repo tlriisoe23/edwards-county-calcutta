@@ -1,0 +1,21 @@
+{
+  "baseline": "ef894ba",
+  "input": "Team Name,Player 1,Player 2,Flight\n\"North | South\",One,Two,Flight A",
+  "actual": [
+    [
+      "Team Name,Player 1,Player 2,Flight"
+    ],
+    [
+      "North | South,One,Two,Flight A"
+    ]
+  ],
+  "expected": [
+    [
+      "North | South",
+      "One",
+      "Two",
+      "Flight A"
+    ]
+  ],
+  "creationEvidence": "../audit-evidence/api.json: duplicate create_event request produced two event IDs before Batch D"
+}

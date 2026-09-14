@@ -1,0 +1,23 @@
+{
+  "seed": "0xec6c2026",
+  "method": "xorshift32; independent BigInt largest-remainder oracle",
+  "cases": 1000,
+  "passed": 1000,
+  "failed": 0,
+  "assertions": 50671,
+  "failures": [],
+  "observations": [
+    {
+      "name": "Quoted pipe in a comma CSV retains all columns",
+      "status": "PASS"
+    },
+    {
+      "name": "Negative financial CSV cells remain numeric",
+      "status": "PASS"
+    },
+    {
+      "name": "Quoted commas, quotes and unicode survive CSV",
+      "status": "PASS"
+    }
+  ]
+}

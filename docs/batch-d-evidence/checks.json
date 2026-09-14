@@ -1,0 +1,180 @@
+{
+  "at": "2026-09-14T13:53:47.704Z",
+  "checks": [
+    {
+      "name": "Quoted mixed content in \",\" format",
+      "status": "PASS"
+    },
+    {
+      "name": "Headerless quoted \",\" format",
+      "status": "PASS"
+    },
+    {
+      "name": "Quoted mixed content in \"|\" format",
+      "status": "PASS"
+    },
+    {
+      "name": "Headerless quoted \"|\" format",
+      "status": "PASS"
+    },
+    {
+      "name": "Quoted mixed content in \"\\t\" format",
+      "status": "PASS"
+    },
+    {
+      "name": "Headerless quoted \"\\t\" format",
+      "status": "PASS"
+    },
+    {
+      "name": "Leading blank lines and BOM header",
+      "status": "PASS"
+    },
+    {
+      "name": "Header chooses comma even with unquoted pipe in later data",
+      "status": "PASS"
+    },
+    {
+      "name": "Pipe quick paste stays compatible",
+      "status": "PASS"
+    },
+    {
+      "name": "Tab spreadsheet paste stays compatible",
+      "status": "PASS"
+    },
+    {
+      "name": "Single-column signed amounts",
+      "status": "PASS"
+    },
+    {
+      "name": "Roster serializer round trip",
+      "status": "PASS"
+    },
+    {
+      "name": "Unclosed quoted field is rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "create_event sequential retry returns original event",
+      "status": "PASS"
+    },
+    {
+      "name": "create_event audit persists request ID",
+      "status": "PASS"
+    },
+    {
+      "name": "create_event retry never resets an edited event",
+      "status": "PASS"
+    },
+    {
+      "name": "create_event eight concurrent retries create one complete event",
+      "status": "PASS"
+    },
+    {
+      "name": "create_event seven concurrent responses identify replay",
+      "status": "PASS"
+    },
+    {
+      "name": "New event defaults preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "create_event rejects changed payload/action without a new event",
+      "status": "PASS"
+    },
+    {
+      "name": "create_event distinct request creates a distinct event",
+      "status": "PASS"
+    },
+    {
+      "name": "load_demo sequential retry returns original event",
+      "status": "PASS"
+    },
+    {
+      "name": "load_demo audit persists request ID",
+      "status": "PASS"
+    },
+    {
+      "name": "load_demo retry never resets an edited event",
+      "status": "PASS"
+    },
+    {
+      "name": "load_demo eight concurrent retries create one complete event",
+      "status": "PASS"
+    },
+    {
+      "name": "load_demo seven concurrent responses identify replay",
+      "status": "PASS"
+    },
+    {
+      "name": "Demo relational records remain complete",
+      "status": "PASS"
+    },
+    {
+      "name": "load_demo rejects changed payload/action without a new event",
+      "status": "PASS"
+    },
+    {
+      "name": "load_demo distinct request creates a distinct event",
+      "status": "PASS"
+    },
+    {
+      "name": "Different payload race has one success and one conflict",
+      "status": "PASS"
+    },
+    {
+      "name": "Different payload race creates only one event",
+      "status": "PASS"
+    },
+    {
+      "name": "100-team import preserves all names and player mappings",
+      "status": "PASS"
+    },
+    {
+      "name": "Malformed batch saves no rows or revision",
+      "status": "PASS"
+    },
+    {
+      "name": "Unknown flight saves no partial import",
+      "status": "PASS"
+    },
+    {
+      "name": "Invalid creation reserves no request/event",
+      "status": "PASS"
+    },
+    {
+      "name": "Corrected invalid draft can reuse uncommitted request",
+      "status": "PASS"
+    },
+    {
+      "name": "Unauthenticated replay remains denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Different recorded actor cannot reuse creation ID",
+      "status": "PASS"
+    },
+    {
+      "name": "Late demo failure rolls back event and request result",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed demo retry succeeds once after recovery",
+      "status": "PASS"
+    },
+    {
+      "name": "Newest-event fallback sees the last created event",
+      "status": "PASS"
+    },
+    {
+      "name": "Foreign keys remain valid",
+      "status": "PASS"
+    }
+  ],
+  "fixtures": {
+    "create_event": "abe6bf06-ea11-470c-876e-2ca4e1f6ba47",
+    "load_demo": "77a138a4-b222-4500-9441-ca02ac3bab68",
+    "import": "f6f09a28-b7be-44b7-b660-93382d71109b"
+  },
+  "passed": 42,
+  "failed": 0
+}

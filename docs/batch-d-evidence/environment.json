@@ -1,0 +1,63 @@
+{
+  "at": "2026-09-14",
+  "baseline": "ef894ba",
+  "sites": {
+    "projectId": "appgprj_6aa756cabf648191a8711a28256d49a7",
+    "latestVersion": 2,
+    "live": null
+  },
+  "checks": {
+    "focused": 42,
+    "batchAContext": 20,
+    "acceptance": 58,
+    "refinement": 72,
+    "allocationCases": 1000,
+    "csvProbes": 3,
+    "scriptedTotal": 1195,
+    "finalFailures": 0,
+    "manualBrowserGroups": 4
+  },
+  "typescript": {
+    "command": "node node_modules/typescript/bin/tsc --noEmit --incremental false",
+    "exit": 0
+  },
+  "build": {
+    "helperExit": 1,
+    "helperIssue": "Known Windows npm resolution under project node_modules.",
+    "fallback": "node C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js run build",
+    "exit": 0,
+    "phases": 5
+  },
+  "isolation": {
+    "testOrigin": "http://localhost:5174",
+    "database": ".sites-runtime/audit-checkout/.wrangler/state",
+    "sourceHashes": "source-hashes.json",
+    "migrations": 0,
+    "dependencyChanges": 0,
+    "productionAccessChanges": 0,
+    "deployments": 0,
+    "savedVersions": 0,
+    "testWritesTo5173": false,
+    "temporaryTabsClosed": true,
+    "viewportChanged": false,
+    "scratchServerStopped": true,
+    "reviewPid": 1848,
+    "reviewPreserved": true,
+    "testTriggersRemoved": true,
+    "testOperatorEntriesRemoved": true
+  },
+  "interruptions": [
+    "Initial cold tab navigation timed out; the same tab subsequently loaded.",
+    "One import click timed out before submission; dialog and original 100-team count were inspected, then a fresh accessible-control click saved the two rows.",
+    "One post-reload New event click did not open a dialog; a fresh state check and retry succeeded.",
+    "Two Batch A harness runs passed 20 checks but had a cleanup GET transport failure. A intervening run failed its first assertion due to a retained test access entry; its cleanup completed. Interrupted evidence retained under context/.",
+    "Explicitly removed only named Batch A fixture access entries, then ran an isolated harness copy with identical assertions and one bounded retry for failed GET transport calls. Final 20 checks and cleanup passed; no retry message occurred in the final run. Original harness remains unchanged.",
+    "Long-running dev-server stability and hosted runtime remain outside this local result."
+  ],
+  "limitations": [
+    "Creation idempotency applies to matching request UUID, authorized actor, action and normalized input. Distinct UUIDs intentionally create distinct events.",
+    "Older creation records used random audit UUIDs; this does not retroactively deduplicate pre-fix requests.",
+    "Headerless inherently ambiguous delimiter mixes still require quoting literal delimiter characters.",
+    "No hosted identity, hardware or deployment validation performed."
+  ]
+}

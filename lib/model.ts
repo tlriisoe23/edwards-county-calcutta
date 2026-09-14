@@ -70,7 +70,32 @@ export function csv(rows: any[][]) { return rows.map(row => row.map(v => { let s
     const numeric = typeof v === 'number' && Number.isFinite(v) || /^-?\d+(?:\.\d+)?$/.test(s) && Number.isFinite(Number(s));
     if (!numeric && /^[=+@\-\t\r]/.test(s))
     s = "'" + s; return '"' + s.replaceAll('"', '""') + '"'; }).join(",")).join("\r\n"); }
-export function parsePaste(text: string) { const lines: string[][] = []; let row: string[] = [], cell = "", quoted = false; const delimiter = text.includes("\t") ? "\t" : text.includes("|") ? "|" : ","; for (let i = 0; i < text.length; i++) {
+function pasteDelimiter(text: string) {
+    // Only separators outside quotes in the first nonempty logical record count.
+    // A quoted tab, pipe or newline is data, not evidence of another format.
+    const candidates = ["\t", "|", ","];
+    const counts = [0, 0, 0];
+    let quoted = false, start = 0;
+    for (let i = 0; i < text.length; i++) {
+        const c = text[i];
+        if (c === '"') {
+            if (quoted && text[i + 1] === '"') i++;
+            else quoted = !quoted;
+        } else if (!quoted) {
+            if (c === "\n" || c === "\r") {
+                if (text.slice(start, i).trim()) break;
+                counts.fill(0);
+                start = i + 1;
+            } else {
+                const index = candidates.indexOf(c);
+                if (index !== -1) counts[index]++;
+            }
+        }
+    }
+    const max = Math.max(...counts);
+    return max ? candidates[counts.indexOf(max)] : ",";
+}
+export function parsePaste(text: string) { const lines: string[][] = []; let row: string[] = [], cell = "", quoted = false; const delimiter = pasteDelimiter(text); for (let i = 0; i < text.length; i++) {
     const c = text[i];
     if (c === '"') {
         if (quoted && text[i + 1] === '"') {

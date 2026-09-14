@@ -1,0 +1,14 @@
+[
+  {
+    "file": "lib/model.ts",
+    "sha256": "574d609616501c649745f166e53cb37bf69017dbe42a9820c4764cbc353978aa"
+  },
+  {
+    "file": "lib/store.ts",
+    "sha256": "f0629fff8321b03ea879a62609934feb9158fe9d27b6f68afe9bf527cbd24604"
+  },
+  {
+    "file": "app/api/admin/route.ts",
+    "sha256": "28ebe4ef5492349ee306ea7f5d9c4d7cba5804ae435a2a212c7f70f45fdfaab4"
+  }
+]
