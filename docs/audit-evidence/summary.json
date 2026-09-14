@@ -1,0 +1,236 @@
+{
+  "at": "2026-09-14T05:27:02.355Z",
+  "sourceCommit": "dfab14906c04b5a6d99ffffbfba4249883750eae",
+  "suites": {
+    "acceptance": {
+      "checks": 58,
+      "eventIds": [
+        "01c08ceb-85f0-4201-af18-45f092b907bb",
+        "6e341703-4f5a-4c90-99ac-7bff09cbe807"
+      ],
+      "at": "2026-09-14T04:44:46.893Z",
+      "status": "passed"
+    },
+    "refinement": {
+      "checks": 72,
+      "eventId": "b8224c7d-8f69-436e-bfc9-3c99a679337a",
+      "at": "2026-09-14T04:49:03.485Z",
+      "status": "passed",
+      "payments": 6,
+      "disbursements": 3
+    },
+    "math": {
+      "cases": 1000,
+      "passed": 1000,
+      "failed": 0,
+      "seed": "0xec6c2026",
+      "assertions": 50669
+    },
+    "csv": {
+      "passed": 1,
+      "failed": 2
+    },
+    "api": {
+      "passed": 33,
+      "failed": 3
+    },
+    "balance": {
+      "name": "Remaining-to-collect summary does not offset unrelated buyer overpayments",
+      "status": "FAIL",
+      "positiveBalances": 750120,
+      "overpayments": -10000,
+      "displayedReceivable": 740120
+    },
+    "workflows": {
+      "at": "2026-09-14T05:15:20.795Z",
+      "checks": [
+        {
+          "name": "Withdraw retains team and excludes active participation",
+          "status": "PASS",
+          "evidence": {}
+        },
+        {
+          "name": "Starting skips withdrawn team",
+          "status": "PASS",
+          "evidence": {}
+        },
+        {
+          "name": "Withdrawn team cannot be placed directly on block",
+          "status": "PASS",
+          "evidence": {}
+        },
+        {
+          "name": "Ordinary lower bid rejected without state change",
+          "status": "PASS",
+          "evidence": {}
+        },
+        {
+          "name": "Explicit wrong-bid correction succeeds",
+          "status": "PASS",
+          "evidence": {}
+        },
+        {
+          "name": "1250 sale at suggested 50 percent is 625 without ownership or receivable change",
+          "status": "PASS",
+          "evidence": {}
+        },
+        {
+          "name": "Purchaser correction changes ownership and debt without moving receipt",
+          "status": "PASS",
+          "evidence": {}
+        },
+        {
+          "name": "Receipt method and note persist after correction",
+          "status": "PASS",
+          "evidence": {}
+        },
+        {
+          "name": "Undo purchaser correction restores debt and preserves receipts",
+          "status": "PASS",
+          "evidence": {}
+        },
+        {
+          "name": "Completion retains correct final purse and unsold classification",
+          "status": "PASS",
+          "evidence": {}
+        },
+        {
+          "name": "Team editor strips unrecognized status event and finish fields",
+          "status": "PASS",
+          "evidence": {}
+        }
+      ],
+      "eventId": "a1b567c8-6a72-4471-a0d8-62c73021e1b7",
+      "passed": 11,
+      "failed": 0
+    }
+  },
+  "timings": {
+    "scope": "Local dev HTTP observations, mixed setup and 100-team fixture; not hosted latency or load testing.",
+    "all": {
+      "samples": 161,
+      "minMs": 14,
+      "p50Ms": 24,
+      "p95Ms": 31,
+      "maxMs": 242,
+      "maxBytes": 4692424
+    },
+    "adminReads": {
+      "samples": 75,
+      "minMs": 19,
+      "p50Ms": 25,
+      "p95Ms": 31,
+      "maxMs": 41,
+      "maxBytes": 112118
+    },
+    "bids": {
+      "samples": 22,
+      "minMs": 20,
+      "p50Ms": 23,
+      "p95Ms": 29,
+      "maxMs": 30,
+      "maxBytes": 0
+    },
+    "sales": {
+      "samples": 18,
+      "minMs": 21,
+      "p50Ms": 25,
+      "p95Ms": 32,
+      "maxMs": 32,
+      "maxBytes": 0
+    },
+    "exports": [
+      {
+        "action": "export-auction",
+        "ms": 18,
+        "bytes": 4492
+      },
+      {
+        "action": "export-settlement",
+        "ms": 19,
+        "bytes": 789
+      },
+      {
+        "action": "export-teams",
+        "ms": 19,
+        "bytes": 15415
+      },
+      {
+        "action": "export-payouts",
+        "ms": 20,
+        "bytes": 4163
+      },
+      {
+        "action": "export-ownership",
+        "ms": 19,
+        "bytes": 2846
+      },
+      {
+        "action": "export-payments",
+        "ms": 19,
+        "bytes": 1386
+      },
+      {
+        "action": "export-backup",
+        "ms": 242,
+        "bytes": 4692424
+      }
+    ],
+    "public": [
+      {
+        "action": "large-public",
+        "ms": 21,
+        "bytes": 30692
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "path": "docs/audit-evidence/sample-auction.csv",
+      "bytes": 4492,
+      "sha256": "7d629cf3588d62541d0fe2033f71f3afc69be6167e49a32c03e3c422349913ee"
+    },
+    {
+      "path": "docs/audit-evidence/sample-ownership.csv",
+      "bytes": 2846,
+      "sha256": "9d260881c8cb7397791a256185ac5eaed77eb288c81324adb3a1163a64638b96"
+    },
+    {
+      "path": "docs/audit-evidence/sample-payments.csv",
+      "bytes": 1386,
+      "sha256": "fecbd551088af6c87eab1fb5625c859018ec440b1e271abb2497f191d3c207e1"
+    },
+    {
+      "path": "docs/audit-evidence/sample-payouts.csv",
+      "bytes": 4163,
+      "sha256": "d7761bc4d82f7c9df656bd5406f3660dbda2749cdb74d6d4891601873687d655"
+    },
+    {
+      "path": "docs/audit-evidence/sample-settlement.csv",
+      "bytes": 789,
+      "sha256": "75a9487d910214a4bb0457b206c2ed4b068cb3ab1a107d5703ce210395d89368"
+    },
+    {
+      "path": "docs/audit-evidence/sample-teams.csv",
+      "bytes": 15415,
+      "sha256": "4fffa59a6a401fc69d4b46e60f75739abf4bd7d7bd571bda2c47f044f546ad23"
+    },
+    {
+      "path": ".sites-runtime/audit-exports/sample-backup.json",
+      "bytes": 4692424,
+      "sha256": "4ec73fbfd3fa5742e68e136fcf52e353934abcbf5c582f752c39f7043351cb8e"
+    }
+  ],
+  "scriptedChecks": {
+    "passed": 1175,
+    "failed": 6
+  },
+  "reviewPreservation": {
+    "status": "CHANGED",
+    "eventId": "c8146050-5c78-4246-b189-ed9b20f04f78",
+    "beforeRevision": 0,
+    "afterRevision": 5,
+    "fullEventDataIdentical": false,
+    "note": "Read-only comparison. If the user changed their review while auditing, retain their work; never restore an older snapshot."
+  }
+}

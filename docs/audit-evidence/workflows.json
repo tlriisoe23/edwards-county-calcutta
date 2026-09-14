@@ -1,0 +1,63 @@
+{
+  "at": "2026-09-14T05:15:20.795Z",
+  "checks": [
+    {
+      "name": "Withdraw retains team and excludes active participation",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Starting skips withdrawn team",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Withdrawn team cannot be placed directly on block",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Ordinary lower bid rejected without state change",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Explicit wrong-bid correction succeeds",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "1250 sale at suggested 50 percent is 625 without ownership or receivable change",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Purchaser correction changes ownership and debt without moving receipt",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Receipt method and note persist after correction",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Undo purchaser correction restores debt and preserves receipts",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Completion retains correct final purse and unsold classification",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Team editor strips unrecognized status event and finish fields",
+      "status": "PASS",
+      "evidence": {}
+    }
+  ],
+  "eventId": "a1b567c8-6a72-4471-a0d8-62c73021e1b7",
+  "passed": 11,
+  "failed": 0
+}

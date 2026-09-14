@@ -1,0 +1,2 @@
+# Preserve exact downloaded CSV bytes for the SHA-256 artifact manifest.
+*.csv -text whitespace=cr-at-eol

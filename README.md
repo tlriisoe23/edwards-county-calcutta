@@ -2,7 +2,9 @@
 
 An operator-first application for an in-person golf Calcutta, with public/TV displays, cent-exact payouts and manual settlement records. The operator records amounts during verbal bidding and selects the purchaser at Sold. It records payments already handled outside the app; it does not collect or transfer money.
 
-See [REVIEW.md](REVIEW.md) for the operating guide, refinement details, validation evidence and publication boundary. An Auction Night checklist is also available in the application's Help tab.
+Start with [docs/PROJECT.md](docs/PROJECT.md) for durable product context and [docs/CURRENT-STATE.md](docs/CURRENT-STATE.md) for the current evidence snapshot. The [product audit](docs/PRODUCT-AUDIT.md), [coverage matrix](docs/COVERAGE.md), [validation ladder](docs/VALIDATION.md) and [finding tracker](docs/TASK-TRACKER.md) separate findings from approved implementation. [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) describes the actual runtime and integrity controls.
+
+[REVIEW.md](REVIEW.md) retains the earlier operating guide and refinement history. An Auction Night checklist is also available in the application's Help tab. The September 14 audit changes documentation/test harnesses only; its findings are not implemented and no production deployment is authorized.
 
 ## Local development
 

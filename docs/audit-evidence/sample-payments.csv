@@ -1,0 +1,6 @@
+"Event","Currency","Direction","Party","Entry ID","Amount","Date / Time","Method","Note / Reference","Recorded By","Recorded At","Reversal Of"
+"Edwards County Calcutta — Four-flight Audit","USD","Receipt","Johnson Group","3c0252ea-3248-49fe-bf2e-62fa7ad88d5b","100.01","2026-09-14T04:00:00.000Z","Check","AUDIT_PRIVATE_PAYMENT_SENTINEL","seedy@sites.test","2026-09-14T04:51:25.476Z",""
+"Edwards County Calcutta — Four-flight Audit","USD","Receipt","Johnson Group","3ec0c182-d1e2-4de5-a414-b9da36c3e054","200.02","2026-09-14T04:00:00.000Z","Cash","AUDIT_PRIVATE_PAYMENT_SENTINEL","seedy@sites.test","2026-09-14T04:51:25.520Z",""
+"Edwards County Calcutta — Four-flight Audit","USD","Receipt","Johnson Group","749a1772-0afb-4b51-89fa-338ab93e00b7","'-100.01","2026-09-14T04:51:25.574Z","Check","Audit correction","seedy@sites.test","2026-09-14T04:51:25.574Z","3c0252ea-3248-49fe-bf2e-62fa7ad88d5b"
+"Edwards County Calcutta — Four-flight Audit","USD","Payout","Renée, Jr. ""Club""","ae252df7-4ed9-4182-9b76-bf4085506fee","0.01","2026-09-14T04:51:25.981Z","Other","Audit partial payout","seedy@sites.test","2026-09-14T04:51:26.005Z",""
+"Edwards County Calcutta — Four-flight Audit","USD","Payout","Renée, Jr. ""Club""","f1b28bea-271e-47f7-af8a-1de41651bc90","3437.71","2026-09-14T04:51:25.981Z","Other","Audit partial payout","seedy@sites.test","2026-09-14T04:51:26.051Z",""

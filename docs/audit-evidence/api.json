@@ -1,0 +1,1057 @@
+{
+  "at": "2026-09-14T04:51:22.320Z",
+  "base": "http://localhost:5174",
+  "checks": [
+    {
+      "name": "Rejected access change is atomic",
+      "status": "FAIL",
+      "evidence": {
+        "response": {
+          "status": 400,
+          "body": {
+            "error": "The change could not be saved. No partial change was applied."
+          }
+        },
+        "operatorExists": true
+      }
+    },
+    {
+      "name": "Owner can revoke the disposable operator",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Repeated event creation request is idempotent",
+      "status": "FAIL",
+      "evidence": {
+        "first": "6290630b-c8ff-4e11-842d-87a02c515a8f",
+        "second": "dd934e70-440e-47e4-b3bf-05d8ba303f75"
+      }
+    },
+    {
+      "name": "100-team four-flight fixture is live with 18 sales",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Odd-cent partial buyback preserves pool and receivables",
+      "status": "PASS",
+      "evidence": {
+        "consideration": 41663
+      }
+    },
+    {
+      "name": "Multiple partial payments reconcile to cents",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Reversal retains originals and exact balance",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Stale mutation rejects without false success",
+      "status": "PASS",
+      "evidence": {
+        "error": "Another operator changed this event. Refresh and try again."
+      }
+    },
+    {
+      "name": "Malformed JSON rejected",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Invalid foreign event reference applies no partial mutation",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Public large payload excludes every private sentinel",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Public large snapshot remains under 100 KB",
+      "status": "PASS",
+      "evidence": {
+        "bytes": 30692
+      }
+    },
+    {
+      "name": "Large event bid delta omits full board",
+      "status": "PASS",
+      "evidence": {
+        "bytes": 1435
+      }
+    },
+    {
+      "name": "Unchanged large event response is 204",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Four-flight final entitlements reconcile exactly",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Partial payout leaves receipts separate",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Final payout becomes Paid",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Open and parse actual auction export",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "auction export excludes private fields",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Open and parse actual settlement export",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "settlement export excludes private fields",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Open and parse actual teams export",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "teams export excludes private fields",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Open and parse actual payouts export",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "payouts export excludes private fields",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Open and parse actual ownership export",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "ownership export excludes private fields",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Open and parse actual payments export",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Open and parse actual backup export",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Downloaded Auction CSV reconciles active sales",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Downloaded Settlement CSV reconciles receipts",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Downloaded Payout CSV reconciles entitlements",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Downloaded payment correction amounts remain numeric and reconcile",
+      "status": "FAIL",
+      "evidence": {
+        "cells": [
+          "100.01",
+          "200.02",
+          "'-100.01"
+        ],
+        "expected": 20002,
+        "actual": "NaN"
+      }
+    },
+    {
+      "name": "Backup includes complete relational state and audit",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Formula-like team text is escaped in downloaded CSV",
+      "status": "PASS",
+      "evidence": {}
+    },
+    {
+      "name": "Duplicate finishing positions rejected",
+      "status": "PASS",
+      "evidence": {}
+    }
+  ],
+  "fixtures": {
+    "Audit Draft A": {
+      "id": "27f4bc69-c716-442e-8148-83cc0afe8498",
+      "revision": 3
+    },
+    "Audit Draft B": {
+      "id": "eda7fe9a-5c18-4422-be13-c463ded05866",
+      "revision": 3
+    },
+    "duplicates": [
+      "6290630b-c8ff-4e11-842d-87a02c515a8f",
+      "dd934e70-440e-47e4-b3bf-05d8ba303f75"
+    ],
+    "large": "2dece1a8-d7b5-411a-8681-ce5d689f8b8c",
+    "completed": "2dece1a8-d7b5-411a-8681-ce5d689f8b8c",
+    "live": "afb40eba-b7a1-49fe-a585-f5267a7e53d6",
+    "empty": "58e13b69-ee1a-4add-9947-2cef91c74680"
+  },
+  "timings": [
+    {
+      "action": "operator_add",
+      "ms": 31,
+      "status": 400
+    },
+    {
+      "action": "admin-read",
+      "ms": 29,
+      "bytes": 25398
+    },
+    {
+      "action": "operator_remove",
+      "ms": 14,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 20,
+      "bytes": 25295
+    },
+    {
+      "action": "admin-read",
+      "ms": 19,
+      "bytes": 25295
+    },
+    {
+      "action": "create_event",
+      "ms": 15,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 19,
+      "bytes": 2627
+    },
+    {
+      "action": "flight_save",
+      "ms": 25,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 22,
+      "bytes": 4133
+    },
+    {
+      "action": "team_save",
+      "ms": 19,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 22,
+      "bytes": 4857
+    },
+    {
+      "action": "buyer_save",
+      "ms": 23,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 24,
+      "bytes": 5209
+    },
+    {
+      "action": "create_event",
+      "ms": 21,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 28,
+      "bytes": 2722
+    },
+    {
+      "action": "flight_save",
+      "ms": 21,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 23,
+      "bytes": 4228
+    },
+    {
+      "action": "team_save",
+      "ms": 20,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 22,
+      "bytes": 4952
+    },
+    {
+      "action": "buyer_save",
+      "ms": 20,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 23,
+      "bytes": 5304
+    },
+    {
+      "action": "create_event",
+      "ms": 18,
+      "status": 200
+    },
+    {
+      "action": "create_event",
+      "ms": 22,
+      "status": 200
+    },
+    {
+      "action": "create_event",
+      "ms": 19,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 24,
+      "bytes": 3125
+    },
+    {
+      "action": "flight_save",
+      "ms": 21,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 23,
+      "bytes": 4645
+    },
+    {
+      "action": "flight_save",
+      "ms": 24,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 41,
+      "bytes": 6154
+    },
+    {
+      "action": "flight_save",
+      "ms": 22,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 31,
+      "bytes": 7665
+    },
+    {
+      "action": "flight_save",
+      "ms": 23,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 25,
+      "bytes": 9174
+    },
+    {
+      "action": "team_import",
+      "ms": 48,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 27,
+      "bytes": 68218
+    },
+    {
+      "action": "buyer_save",
+      "ms": 22,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 24,
+      "bytes": 68630
+    },
+    {
+      "action": "buyer_save",
+      "ms": 28,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 29,
+      "bytes": 69050
+    },
+    {
+      "action": "buyer_save",
+      "ms": 24,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 30,
+      "bytes": 69464
+    },
+    {
+      "action": "event_update",
+      "ms": 29,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 28,
+      "bytes": 69620
+    },
+    {
+      "action": "status",
+      "ms": 25,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 27,
+      "bytes": 69833
+    },
+    {
+      "action": "bid",
+      "ms": 30,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 34,
+      "bytes": 70026
+    },
+    {
+      "action": "sell",
+      "ms": 27,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 30,
+      "bytes": 71176
+    },
+    {
+      "action": "bid",
+      "ms": 29,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 30,
+      "bytes": 71368
+    },
+    {
+      "action": "sell",
+      "ms": 31,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 31,
+      "bytes": 72477
+    },
+    {
+      "action": "bid",
+      "ms": 26,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 25,
+      "bytes": 72669
+    },
+    {
+      "action": "sell",
+      "ms": 22,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 23,
+      "bytes": 73793
+    },
+    {
+      "action": "bid",
+      "ms": 22,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 21,
+      "bytes": 73985
+    },
+    {
+      "action": "sell",
+      "ms": 27,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 29,
+      "bytes": 74929
+    },
+    {
+      "action": "bid",
+      "ms": 27,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 31,
+      "bytes": 75121
+    },
+    {
+      "action": "sell",
+      "ms": 23,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 25,
+      "bytes": 76047
+    },
+    {
+      "action": "bid",
+      "ms": 22,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 25,
+      "bytes": 76239
+    },
+    {
+      "action": "sell",
+      "ms": 22,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 22,
+      "bytes": 77173
+    },
+    {
+      "action": "bid",
+      "ms": 27,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 40,
+      "bytes": 77365
+    },
+    {
+      "action": "sell",
+      "ms": 32,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 30,
+      "bytes": 78290
+    },
+    {
+      "action": "bid",
+      "ms": 25,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 22,
+      "bytes": 78482
+    },
+    {
+      "action": "sell",
+      "ms": 29,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 25,
+      "bytes": 79408
+    },
+    {
+      "action": "bid",
+      "ms": 24,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 25,
+      "bytes": 79600
+    },
+    {
+      "action": "sell",
+      "ms": 25,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 23,
+      "bytes": 80531
+    },
+    {
+      "action": "bid",
+      "ms": 28,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 24,
+      "bytes": 80723
+    },
+    {
+      "action": "sell",
+      "ms": 25,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 25,
+      "bytes": 81647
+    },
+    {
+      "action": "bid",
+      "ms": 23,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 27,
+      "bytes": 81839
+    },
+    {
+      "action": "sell",
+      "ms": 26,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 28,
+      "bytes": 82763
+    },
+    {
+      "action": "bid",
+      "ms": 25,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 28,
+      "bytes": 82955
+    },
+    {
+      "action": "sell",
+      "ms": 25,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 28,
+      "bytes": 83885
+    },
+    {
+      "action": "bid",
+      "ms": 24,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 26,
+      "bytes": 84077
+    },
+    {
+      "action": "sell",
+      "ms": 27,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 24,
+      "bytes": 85000
+    },
+    {
+      "action": "bid",
+      "ms": 23,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 26,
+      "bytes": 85192
+    },
+    {
+      "action": "sell",
+      "ms": 27,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 22,
+      "bytes": 86117
+    },
+    {
+      "action": "bid",
+      "ms": 21,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 26,
+      "bytes": 86309
+    },
+    {
+      "action": "sell",
+      "ms": 28,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 24,
+      "bytes": 87244
+    },
+    {
+      "action": "bid",
+      "ms": 21,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 26,
+      "bytes": 87436
+    },
+    {
+      "action": "sell",
+      "ms": 21,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 23,
+      "bytes": 88360
+    },
+    {
+      "action": "bid",
+      "ms": 24,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 25,
+      "bytes": 88552
+    },
+    {
+      "action": "sell",
+      "ms": 24,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 22,
+      "bytes": 89477
+    },
+    {
+      "action": "bid",
+      "ms": 22,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 23,
+      "bytes": 89669
+    },
+    {
+      "action": "sell",
+      "ms": 21,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 24,
+      "bytes": 90599
+    },
+    {
+      "action": "bid",
+      "ms": 22,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 25,
+      "bytes": 90795
+    },
+    {
+      "action": "buyback",
+      "ms": 21,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 22,
+      "bytes": 91193
+    },
+    {
+      "action": "settlement_record",
+      "ms": 22,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 24,
+      "bytes": 92082
+    },
+    {
+      "action": "settlement_record",
+      "ms": 21,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 23,
+      "bytes": 92962
+    },
+    {
+      "action": "settlement_reverse",
+      "ms": 28,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 23,
+      "bytes": 93887
+    },
+    {
+      "action": "bid",
+      "ms": 20,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 23,
+      "bytes": 94074
+    },
+    {
+      "action": "bid",
+      "ms": 19,
+      "status": 409
+    },
+    {
+      "action": "team_save",
+      "ms": 19,
+      "status": 400
+    },
+    {
+      "action": "admin-read",
+      "ms": 23,
+      "bytes": 94074
+    },
+    {
+      "action": "large-public",
+      "ms": 21,
+      "bytes": 30692
+    },
+    {
+      "action": "bid",
+      "ms": 20,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 24,
+      "bytes": 94262
+    },
+    {
+      "action": "team_status",
+      "ms": 26,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 28,
+      "bytes": 94415
+    },
+    {
+      "action": "status",
+      "ms": 25,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 26,
+      "bytes": 94582
+    },
+    {
+      "action": "results",
+      "ms": 31,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 23,
+      "bytes": 110344
+    },
+    {
+      "action": "settlement_record",
+      "ms": 28,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 26,
+      "bytes": 111225
+    },
+    {
+      "action": "settlement_record",
+      "ms": 19,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 24,
+      "bytes": 112118
+    },
+    {
+      "action": "export-auction",
+      "ms": 18,
+      "bytes": 4492
+    },
+    {
+      "action": "export-settlement",
+      "ms": 19,
+      "bytes": 789
+    },
+    {
+      "action": "export-teams",
+      "ms": 19,
+      "bytes": 15415
+    },
+    {
+      "action": "export-payouts",
+      "ms": 20,
+      "bytes": 4163
+    },
+    {
+      "action": "export-ownership",
+      "ms": 19,
+      "bytes": 2846
+    },
+    {
+      "action": "export-payments",
+      "ms": 19,
+      "bytes": 1386
+    },
+    {
+      "action": "export-backup",
+      "ms": 242,
+      "bytes": 4692424
+    },
+    {
+      "action": "results",
+      "ms": 30,
+      "status": 400
+    },
+    {
+      "action": "load_demo",
+      "ms": 24,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 27,
+      "bytes": 18765
+    },
+    {
+      "action": "event_update",
+      "ms": 26,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 26,
+      "bytes": 18893
+    },
+    {
+      "action": "bid",
+      "ms": 23,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 28,
+      "bytes": 19080
+    },
+    {
+      "action": "create_event",
+      "ms": 22,
+      "status": 200
+    },
+    {
+      "action": "admin-read",
+      "ms": 22,
+      "bytes": 3268
+    }
+  ],
+  "reviewBaseline": {
+    "events": [
+      {
+        "id": "c8146050-5c78-4246-b189-ed9b20f04f78",
+        "name": "Edwards County Calcutta Invitational",
+        "status": "LIVE"
+      },
+      {
+        "id": "f76b2c03-ca9d-4a99-aac0-20c6ad2e60d2",
+        "name": "Edwards County Calcutta Invitational",
+        "status": "LIVE"
+      }
+    ],
+    "selectedEvent": "c8146050-5c78-4246-b189-ed9b20f04f78",
+    "teams": 12,
+    "revision": 0
+  },
+  "passed": 33,
+  "failed": 3
+}

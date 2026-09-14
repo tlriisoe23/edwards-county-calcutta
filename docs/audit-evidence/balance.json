@@ -1,0 +1,7 @@
+{
+  "name": "Remaining-to-collect summary does not offset unrelated buyer overpayments",
+  "status": "FAIL",
+  "positiveBalances": 750120,
+  "overpayments": -10000,
+  "displayedReceivable": 740120
+}

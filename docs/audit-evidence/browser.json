@@ -1,0 +1,46 @@
+{
+  "auditDateUTC": "2026-09-14",
+  "sourceCommit": "dfab14906c04b5a6d99ffffbfba4249883750eae",
+  "method": "Codex in-app browser; independent tabs; rendered accessibility trees, screenshots and read-only DOM geometry. All mutations on isolated localhost:5174. Screenshots were inspected in the task; no persistent screenshot files are claimed.",
+  "checks": [
+    {"id":"BR-01","status":"PASS","check":"UI setup journey","evidence":"Created Audit Browser Journey, one flight, one quick-added team and two previewed/imported tab-separated teams. Edited payout ladder to 70/30; 120% intermediate ladder could not save. Edited/reordered opening choices. Started at 150, incremented to 175."},
+    {"id":"BR-02","status":"PASS","check":"Keyboard auction journey","evidence":"After auction began: B, select/type 225, Enter, + to 250, S; added Keyboard Buyer B S U in sale dialog, confirmed by keyboard, next team advanced; U and keyboard confirmation restored prior team and 250 bid. No shortcut mutations while typing buyer name or notes; observed visible field focus and dialog focus."},
+    {"id":"BR-03","status":"PASS","check":"Stale dialog and four-client convergence","evidence":"A and B independent admin tabs plus public and TV. B held Sold at 100; A raised to 125; B received review-latest feedback and disabled Confirm. A double-clicked Confirm with final buyer: exactly one sale. Correction to 150.01 appeared on both viewers. All clients used one local mock identity, not separate hosted users."},
+    {"id":"BR-04","status":"FAIL","finding":"CAL-P1-001","check":"Event context on refresh and navigation","evidence":"Admin URL Draft A; selector switched to Draft B and discarded A's unsaved draft correctly, but URL stayed A; reload returned to A. Public explicit demo event -> TV mode (/tv without event) displayed newest Audit Browser Journey instead."},
+    {"id":"BR-05","status":"PASS","check":"Structured setup and field labels","evidence":"Opening choices, increments, mode selectors, payout rows and public toggles have structured controls. Import paste/preview row inputs expose labels. Suspected cross-event dirty-draft and unlabelled-import issues were disproven."},
+    {"id":"BR-06","status":"PASS","check":"Sharing and help","evidence":"Copied exact event-specific localhost public URL. QR rendered at 480x480; local-only warning and TV instructions visible. Admin TV link includes event ID. Help and Auction Night guide readable at tablet viewport. Independent QR decoding covered by 72-check suite."},
+    {"id":"BR-07","status":"PASS","check":"Settlement UI","evidence":"Tablet Mark paid dialog prefilled Smith Family balance 1750.01. Note containing B S U + did not trigger shortcuts; confirmed Paid and zero balance. API tests separately exercised partial receipts, reversals, entitlements and payouts."},
+    {"id":"BR-08","status":"PASS","check":"Public search and flight filters at scale","evidence":"100 teams, 4 flights. Third Flight filter returned 25 cards; search Audit Team 024 returned one. Horizontal flight tab strip scrolls intentionally; not page overflow."},
+    {"id":"BR-09","status":"FAIL","finding":"CAL-P1-004","check":"Long-name TV bid clipping","evidence":"1920x1080, Christopher Montgomery-Wellington / Alexander Richardson-Harrington, bid $1,000,000. Block bottom approximately 796px, big-bid bottom 849px; screenshot shows clipped price. Page itself remains 1080px high, so page overflow checks alone miss defect."},
+    {"id":"BR-10","status":"FAIL","finding":"CAL-P1-004","check":"Scaled and completed TV overlap","evidence":"1366x768 normal team: block/queue and aggregate/recent areas overlap. Completed state at 1920x1080: seventh Lowest sale statistic wraps into recent-sales area. Verified visually; no claim of physical fullscreen."},
+    {"id":"BR-11","status":"FAIL","finding":"CAL-P1-004","check":"Narrow public large-currency clipping","evidence":"390x844 long-name $1,000,000 event: number extends beyond block interior and clips right. 320x740 bid bounds end near x377, outside available width. Normal 390 and 430 phone events show team and current bid fully."},
+    {"id":"BR-12","status":"PASS","check":"Outage and recovery","evidence":"Stopped only isolated server. Public/TV kept last safe state and showed Reconnecting. Operator save attempt warned Wait for the auction connection to return before saving; input 200.02 remained during outage, no success. After restart both viewers automatically showed Connected. Full event raw and derived snapshot deep-equality passed. Dev server restart remounted admin onto console; unsaved correction was not persisted."},
+    {"id":"BR-13","status":"PASS","check":"Read-only WebMCP","evidence":"Only read_auction_board advertised, zero-input schema, read-only/untrusted content hints. Returned public fields event, flights, sales, state, teams, totals; no settlement/private details. Unexpected write:true input rejected. Registration on admin also reads public endpoint only."},
+    {"id":"BR-14","status":"PASS","check":"Empty and paused states","evidence":"Empty event shows setup, zero teams/pools, open block, no queue and first-sale placeholder without NaN. Paused public and TV display AUCTION PAUSED; retain bid/team."},
+    {"id":"BR-15","status":"FAIL","finding":"CAL-P2-003","check":"Recent-sales caption contrast","evidence":"Rendered 12px/700 caption rgb(116,130,105) on rgb(247,246,240); contrast 3.7737:1, below 4.5:1 normal-text criterion."}
+  ],
+  "viewports": [
+    {"width":320,"height":740,"surface":"large public","status":"FAIL","finding":"CAL-P1-004"},
+    {"width":390,"height":844,"surface":"normal and large public","status":"FAIL","note":"Normal layout healthy; stress price clipped."},
+    {"width":430,"height":932,"surface":"normal public screenshot and large filtered board geometry","status":"PASS","note":"Normal on-block/bid fully visible; large case only partially inspected at this width."},
+    {"width":768,"height":1024,"surface":"operator console, Mark paid, Help","status":"PASS","note":"No horizontal page overflow; Hammer 54px high. Pointer and keyboard, no physical touch keyboard."},
+    {"width":1024,"height":768,"surface":"operator console","status":"PASS","note":"No horizontal overflow; vertical scrolling required."},
+    {"width":1280,"height":720,"surface":"operator and large public","status":"PASS","note":"No horizontal overflow; public page may scroll vertically."},
+    {"width":1366,"height":768,"surface":"TV scaled","status":"FAIL","finding":"CAL-P1-004"},
+    {"width":1920,"height":1080,"surface":"TV normal, long-name, paused, completed","status":"FAIL","note":"Normal live healthy; stress/completed overlap and clipping."}
+  ],
+  "contrastSamples": [
+    {"selector":".page-head .connection","ratio":5.002,"status":"PASS"},
+    {"selector":".page-head .eyebrow","ratio":4.749,"status":"PASS"},
+    {"selector":".block .gold","ratio":6.826,"status":"PASS"},
+    {"selector":".block .players","ratio":8.423,"status":"PASS"},
+    {"selector":".stats p","ratio":4.793,"status":"PASS"},
+    {"selector":".recent .eyebrow","ratio":3.7737,"status":"FAIL"},
+    {"selector":".team-meta .badge","ratio":5.970,"status":"PASS"}
+  ],
+  "gaps": [
+    {"status":"BLOCKED","check":"Physical/fullscreen TV","reason":"In-app button attempt did not establish fullscreenElement; unavailable physical TV/projector, HDMI and room-distance observation."},
+    {"status":"UNVERIFIED","check":"Real screen reader, touch hardware/soft keyboard, browser zoom at 200%, reduced-motion runtime, printed/PDF pagination, multiple browser engines"},
+    {"status":"BLOCKED","check":"Hosted identity, independent internet viewers and platform persistence","reason":"No deployed URL; no production deployment authorized."}
+  ]
+}
