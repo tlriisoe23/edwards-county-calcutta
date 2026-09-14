@@ -1,6 +1,6 @@
 # Current architecture
 
-Originally verified against `dfab14906c04b5a6d99ffffbfba4249883750eae`, updated for approved Batch A commit `4dc2900` on 2026-09-14 UTC. This describes the implementation, including exceptions; it is not a replacement design.
+Originally verified against `dfab14906c04b5a6d99ffffbfba4249883750eae`, updated for approved Batch A `4dc2900` and Batch B `3d00923` on 2026-09-14 UTC. This describes the implementation, including exceptions; it is not a replacement design.
 
 ## Runtime and boundaries
 
@@ -55,7 +55,9 @@ The second migration adds settlement tables; it does not rewrite the original sc
 
 `compute()` uses ACTIVE sales, configured separate/combined/custom membership, and none/percentage/fixed house deductions. Fixed deductions distribute proportionally across gross pools. `splitCents()` uses largest remainders with stable tie order. Payout ladders and completed ownership each reconcile their available cents. Results map place awards to ownership entitlements; unpaid obligations are derived independently from disbursements.
 
-`settlement()` groups auction purchases/receipts by buyer and entitlements/disbursements by buyer or team. Reversals are signed entries. Current aggregation sums signed balances across parties: that makes net position appear as remaining collection, documented as CAL-P1-005. Exact stored cents and per-party history remain intact.
+`settlement()` groups purchases/receipts by buyer and entitlements/disbursements by buyer or team. Reversals and party balances stay signed. Batch B derives `receivable`/`payable` from positive balances, separates `receiptOverpayments`/`payoutOverpayments`, and retains signed sums as `netReceivable`/`netPayable`. An overpaid party never reduces another party's debt. Normalized entries, ownership and purse calculations remain intact.
+
+The shared CSV serializer preserves finite numeric values and decimal amount strings without formula-escape apostrophes. Formula-like text still receives an apostrophe, including arithmetic expressions beginning with a minus sign. Export column contracts and two-decimal financial strings are preserved. Nine actual CSV variants passed independent Python CSV/Decimal checks in [Batch B](BATCH-B.md); export builders were not consolidated.
 
 ## Mutation sequence and exceptions
 

@@ -1,16 +1,16 @@
 # Edwards County Calcutta — product audit
 
-2026-09-14 UTC · original audited product `dfab14906c04b5a6d99ffffbfba4249883750eae` · updated with approved Batch A resolution `4dc2900`.
+2026-09-14 UTC · original audit `dfab14906c04b5a6d99ffffbfba4249883750eae` · updated with approved A/B resolutions `4dc2900` / `3d00923`.
 
 ## Executive assessment
 
 The operator-first product is substantially implemented. A volunteer can configure an event, record verbal bids without selecting a buyer each time, confirm a purchaser, correct/undo sales, maintain a meaningful queue, track manual settlement and export records. Exact payout and ownership allocation performed well under independent deterministic testing. Preserve that foundation.
 
-**The original audit identified nine findings. Batch A resolves two locally; seven remain open: 0 demonstrated P0, 3 P1, 3 P2, 1 P3.** Event context and access-change atomicity are fixed in `4dc2900`; numeric CSV reconciliation, clipped/overlapping displays and aggregate collection summary remain P1. None of the original tests demonstrated stored sale/ownership/receipt corruption, an unauthorized-user access bypass, or lost updates in routine guarded sale mutations. Those boundaries explain the P1 rather than P0 ratings; they are not a general security or financial certification.
+**The original audit identified nine findings. A/B resolve four locally; five remain open: 0 demonstrated P0, 1 P1, 3 P2, 1 P3.** Context, access atomicity, signed CSV and settlement aggregates are fixed locally; public/TV containment remains P1. The original audit did not demonstrate stored financial corruption, unauthorized-user access bypass or lost routine updates. These are bounded local results, not a hosted security or financial certification.
 
 The original 58-check and 72-check suites passed. Eleven extra correction/queue checks passed. All 1,000 seeded allocation cases passed. Additional audit probes deliberately retain failing assertions for actual findings. Detailed counts, commands and gaps are in [VALIDATION.md](VALIDATION.md); the full capability reconciliation is in [CURRENT-STATE.md](CURRENT-STATE.md), and the surface/state/device/input matrix is in [COVERAGE.md](COVERAGE.md).
 
-The original audit changed no product source, schema, infrastructure or business rule. The user subsequently approved Batch A; its bounded source changes and evidence are in [BATCH-A.md](BATCH-A.md). No schema change or deployment occurred. B–E in [TASK-TRACKER.md](TASK-TRACKER.md) await approval. Historical reproductions below and original evidence files are retained; resolution status supersedes the old behavior for fixed IDs.
+The original audit changed no product source or schema. The user subsequently approved [Batch A](BATCH-A.md) and [Batch B](BATCH-B.md); their reports contain exact source changes and evidence. No schema change or deployment occurred. C–E in [TASK-TRACKER.md](TASK-TRACKER.md) await approval. Original reproductions/evidence remain historical; current resolution status supersedes old behavior for fixed IDs.
 
 ## KEEP / PROTECT
 
@@ -76,6 +76,8 @@ All findings below are demonstrated in local review or source inspection, not in
 
 ### CAL-P1-003 — Signed financial CSV values are exported as text
 
+- **Current status:** RESOLVED LOCAL in `3d00923`. [Batch B checks](batch-b-evidence/checks.json) and [independent file validation](batch-b-evidence/files.json) confirm signed balances/reversals stay numeric and formula-like text stays escaped across nine actual CSV variants. Desktop spreadsheet UI import remains unverified; Python CSV/Decimal import passed. Original reproduction follows.
+
 - **Severity/category:** P1 · DEFECT / financial reconciliation.
 - **Surface/route:** Payment History CSV; signed balances in related financial exports; `/api/export?event=ID&kind=payments`.
 - **Preconditions:** A receipt or payout has a reversing negative entry, or a party has a negative balance after correction.
@@ -105,6 +107,8 @@ All findings below are demonstrated in local review or source inspection, not in
 - **Confidence:** High, visible screenshots and geometry. Fullscreen hardware/browser zoom remain separate verification gaps.
 
 ### CAL-P1-005 — Collection summary offsets unrelated buyer overpayments
+
+- **Current status:** RESOLVED LOCAL in `3d00923`. [Batch B](BATCH-B.md) separates positive debts, overpayments and signed net values. The analogous payout case was reproduced before correction, then verified through award correction, reversal and undo. Party records remain unchanged. Original reproduction follows.
 
 - **Severity/category:** P1 · BUSINESS RULE / misleading financial summary.
 - **Surface/route:** Settlement → Auction payments; `/admin?event=ID`.
@@ -193,7 +197,7 @@ Purchase totals, multiple partial receipts, Mark paid, method/notes, signed reve
 
 Actual generated auction, settlement, teams, payout, ownership, payment-history and full JSON files were opened and independently parsed. ACTIVE auction sums, receipt totals and entitlement-row sums reconciled. Party totals repeat on each entitlement row by design; sum Entitled Amount for awards, not repeated Party Total Entitlement. Standard CSVs omit contacts/private notes but are still operator reports. Ownership consideration and payment-history notes are not public-board data.
 
-Correct CAL-P1-003 before treating signed financial CSV imports as dependable, and CAL-P1-005 before treating the summary as total cash still to collect. In-app individual accounts remain useful. The JSON archive contains full relational data and audit history; there is no demonstrated restore-import workflow. Real printer/PDF pagination is unverified.
+Batch B resolves CAL-P1-003/005 locally: actual CSVs reconcile with signed party balances, while summary debt and overpayments stay separate. Individual accounts and retained payment history remain intact. JSON backup is not a restore workflow. Real printer pagination and desktop spreadsheet UI import remain unverified.
 
 ## Accessibility, public and TV assessment
 
@@ -205,7 +209,7 @@ Public flight tabs intentionally scroll within their strip and worked with four 
 
 ## Security and privacy assessment
 
-Local anonymous admin/write/export denial, forged identity-header stripping, exact-origin CSRF rejection, stale guards and public private-field filtering passed. A team-editor mass-assignment probe could not change event/status/finish. Inspected text rendering did not use raw HTML. CSV formula-like text is escaped, but that protection currently breaks signed numeric cells; preserve protection when correcting it.
+Local anonymous admin/write/export denial, forged-header stripping, origin rejection, stale guards and public private-field filtering passed. A team-editor mass-assignment probe could not change event/status/finish; inspected JSX does not inject raw HTML. Batch B preserves formula-like text protection while allowing numeric signed CSV values, verified through downloaded files.
 
 The original security-adjacent failure was owner access mutation atomicity, CAL-P1-002, now resolved locally by Batch A. Its role probes also verify a local allowed non-owner and denial after revocation of the same session. Real ChatGPT owner, distinct allowed/revoked operators and signed-in non-allowed users remain unavailable on a hosted URL; do not claim hosted multi-user acceptance passed. WebMCP exposed only the public reader and rejected extra input.
 
@@ -229,6 +233,6 @@ Participant/mobile bidding, accounts, pre-bidding, silent/timed auctions, actual
 
 ## Handoff and release boundary
 
-Read [TASK-TRACKER.md](TASK-TRACKER.md) for exact acceptance criteria and batch status. **Batch A (`CAL-P1-001`, `CAL-P1-002`) is complete locally in `4dc2900`. Recommended next: Batch B (`CAL-P1-003`, `CAL-P1-005`)**, correcting signed CSV values and collection summaries.
+Read [TASK-TRACKER.md](TASK-TRACKER.md) for acceptance and status. **A/B are complete locally. Recommended next: Batch C (`CAL-P1-004`, `CAL-P2-003`)**, for public/TV containment and caption contrast.
 
-The user must approve the next bounded set before B–E implementation. Batch A's approval does not authorize migration, production access changes or deployment. Hosted acceptance remains a later gate even after local findings are corrected.
+The user must approve the next bounded set before C–E implementation. A/B approval does not authorize migration, production access changes or deployment. Hosted acceptance remains a later gate.

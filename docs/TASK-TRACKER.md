@@ -1,6 +1,6 @@
 # Finding tracker and proposed batches
 
-2026-09-14 UTC · Batch A approved and verified locally in **`4dc2900`** · B–E await approval · no production deployment authorized.
+2026-09-14 UTC · A and B approved and verified locally (`4dc2900`, `3d00923`) · C–E await approval · no production deployment authorized.
 
 The canonical description, reproduction, confidence and acceptance for every ID is in [PRODUCT-AUDIT.md](PRODUCT-AUDIT.md). Do not renumber an ID when its status changes; append validation evidence and a commit reference after an approved fix. A source change is not verified until its acceptance passes, and a local pass is not hosted verification.
 
@@ -10,15 +10,15 @@ The canonical description, reproduction, confidence and acceptance for every ID 
 |---|---|---|---|---|
 | CAL-P1-001 | P1 RELIABILITY | Event context lost on refresh/navigation | RESOLVED LOCAL — `4dc2900`, [evidence](BATCH-A.md) | A |
 | CAL-P1-002 | P1 SECURITY/PRIVACY | Rejected access change can still apply | RESOLVED LOCAL — `4dc2900`, [evidence](BATCH-A.md); hosted roles pending | A |
-| CAL-P1-003 | P1 DEFECT | Signed financial CSV becomes text | OPEN — awaiting approval | B |
+| CAL-P1-003 | P1 DEFECT | Signed financial CSV becomes text | RESOLVED LOCAL — `3d00923`, [evidence](BATCH-B.md) | B |
 | CAL-P1-004 | P1 USABILITY DEFECT | Public/TV content clips and overlaps | OPEN — awaiting approval | C |
-| CAL-P1-005 | P1 BUSINESS RULE | Collection summary offsets other buyers' debts | OPEN — awaiting approval | B |
+| CAL-P1-005 | P1 BUSINESS RULE | Collection summary offsets other buyers' debts | RESOLVED LOCAL — `3d00923`, [evidence](BATCH-B.md), includes reproduced payout equivalent | B |
 | CAL-P2-001 | P2 DEFECT | Quoted pipe/tab breaks CSV delimiter detection | OPEN — awaiting approval | D |
 | CAL-P2-002 | P2 RELIABILITY | Repeated creation request creates two events | OPEN — awaiting approval | D |
 | CAL-P2-003 | P2 ACCESSIBILITY | Recent-sales caption contrast 3.77:1 | OPEN — awaiting approval | C |
 | CAL-P3-001 | P3 TECHNICAL DEBT | Distributed export contracts | OPEN — optional, awaiting approval | E |
 
-Seven findings remain open: three P1, three P2 and one P3. P0: none demonstrated. Local resolution does not waive the blocked hosted gates in [VALIDATION.md](VALIDATION.md).
+Five findings remain open: one P1, three P2 and one P3. P0: none demonstrated. Local resolution does not waive the blocked hosted gates in [VALIDATION.md](VALIDATION.md).
 
 ## Proposed implementation roadmap
 
@@ -36,6 +36,7 @@ Seven findings remain open: three P1, three P2 and one P3. P0: none demonstrated
 
 ### Batch B — Financial summaries and exported signed values
 
+- **Status:** APPROVED → IMPLEMENTED → VERIFIED LOCAL, commit `3d00923`. [Batch B report](BATCH-B.md): 33 focused checks, 21 independent file checks, 141 existing regression/workflow checks, 1,000 seeded cases and six browser groups passed. One quoted-delimiter probe remains failing outside scope. No migration or deployment.
 - **Exact IDs:** `CAL-P1-003`, `CAL-P1-005`.
 - **Objective:** Make collector summaries and downloaded financial columns independently reconcilable without changing party history or payout formulas.
 - **Why together:** Both affect a treasurer's interpretation of already-correct signed ledger records.
@@ -43,7 +44,7 @@ Seven findings remain open: three P1, three P2 and one P3. P0: none demonstrated
 - **Risk:** High regression sensitivity around money; scope must preserve integer cents, party ownership, receipts/payables separation and formula-safe untrusted text. No automatic refund/transfer/netting feature.
 - **Acceptance:** Positive debts and credits reported separately; signed party balances unchanged. Receipt/payout reversals and negative balances export as numeric amounts and reconcile through an independent CSV reader; text injection fixtures remain escaped. Re-run 1,000 seeded oracle cases and settlement/correction/undo suites.
 - **Regression surface:** Every export/download variant, payment history, Mark paid, correction/reversal/undo, receipt/payable totals, print summary. Review analogous payable aggregation with an explicit test before broadening a correction.
-- **Order:** 2, before relying on accountant-facing signed exports.
+- **Order:** 2 — completed locally.
 
 ### Batch C — Public/TV containment and readable captions
 
@@ -88,4 +89,4 @@ Seven findings remain open: three P1, three P2 and one P3. P0: none demonstrated
 
 ## Compact handoff
 
-**Recommended next scope: Batch B, exact IDs `CAL-P1-003` and `CAL-P1-005`.** Batch A's approved work is complete locally. Do not implement B–E merely because they are listed here. After the user approves the next bounded set, preserve KEEP / PROTECT, run its focused reproductions and relevant regression suites, and update this tracker with evidence. Deployment needs separate authorization.
+**Recommended next scope: Batch C, exact IDs `CAL-P1-004` and `CAL-P2-003`.** A and B are complete locally. Do not implement C–E merely because they are listed here. After the user approves the next bounded set, preserve KEEP / PROTECT, run its focused reproductions and relevant regression suites, and update this tracker with evidence. Deployment needs separate authorization.

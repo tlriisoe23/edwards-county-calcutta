@@ -39,7 +39,7 @@ Money is stored as integer cents and percentages as integer basis points. New ev
 
 The purchaser is mandatory at final sale; selecting one on every bid is optional, including when bidder tracking is enabled. One ACTIVE sale per team, expected revisions, request IDs and transactional writes protect routine auction actions. Batch A also makes access changes and their audit atomic and replay-safe. Event/demo creation retries remain the CAL-P2-002 exception.
 
-Buyback consideration never increases the auction pool or automatically becomes a club receivable. Completed ownership affects tournament entitlement; turning the tools Off preserves existing ownership. Receivables and payout obligations are separate; the app does not net purchases against winnings. Existing per-party overpayments stay attached to their party after corrections; the aggregate collection summary has a documented defect.
+Buyback consideration never increases the pool or becomes a club receivable. Completed ownership affects entitlement; turning the tools Off preserves ownership. Receipts and payout obligations remain separate; purchases are not netted against winnings. Per-party overpayments stay attached to their party. Batch B reports positive outstanding amounts and overpayments separately on both sides, retaining signed party balances and numeric signed CSV exports.
 
 Finishing positions are entered by an operator. Ties are resolved outside the app. No policy for distributing unclaimed places or prizes to unsold/withdrawn teams is inferred by this audit; confirm such a policy before proposing any business-rule change.
 
@@ -57,4 +57,4 @@ The existing review is local at port 5173. Audit fixtures use an exact source ch
 
 Hosted ownership was configured for `tlriisoe@gmail.com` in the prior authorized pass. The owner can manage additional operator emails in Access. Actual hosted owner/non-owner sessions and revocation remain unverified. The ignored local `.env` uses the starter's mock identity; never use it as hosted owner configuration or publish local credentials/data.
 
-The original audit established the baseline; approved [Batch A](BATCH-A.md) then resolved CAL-P1-001 and CAL-P1-002 locally in `4dc2900`, without migration or deployment. Seven findings remain open. The next recommended approval scope is Batch B, CAL-P1-003 and CAL-P1-005, in [TASK-TRACKER.md](TASK-TRACKER.md).
+The original audit established the baseline; approved [Batch A](BATCH-A.md) (`4dc2900`) and [Batch B](BATCH-B.md) (`3d00923`) resolved CAL-P1-001/002/003/005 locally without migration or deployment. Five findings remain open. The next recommended approval scope is Batch C, CAL-P1-004 and CAL-P2-003, in [TASK-TRACKER.md](TASK-TRACKER.md).

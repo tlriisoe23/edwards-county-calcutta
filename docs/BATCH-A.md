@@ -1,5 +1,7 @@
 # Batch A — event context and access guarantees
 
+Subsequent update: [Batch B](BATCH-B.md) is complete locally. This report retains Batch A's historical scope; see [TASK-TRACKER.md](TASK-TRACKER.md) for the current next action.
+
 2026-09-14 UTC. Approved by the user's “Proceed with recommended next action,” following the exact-ID Batch A recommendation. Implemented in **`4dc2900`**, based on audit baseline `782eb3b`. **CAL-P1-001 and CAL-P1-002 are resolved and verified locally.** Hosted verification remains pending; no deployment or migration occurred.
 
 ## Resulting behavior

@@ -2,6 +2,24 @@
 
 2026-09-14 UTC · baseline `dfab14906c04b5a6d99ffffbfba4249883750eae`. Reports are local audit evidence, not production sign-off. PASS = observed expected result; FAIL = demonstrated mismatch; BLOCKED = a needed environment/tool is unavailable; UNVERIFIED = not exercised sufficiently. A successful build does not convert any browser or hosted gap into PASS.
 
+## Batch B update — `3d00923`
+
+Approved CAL-P1-003/005 are resolved locally. [BATCH-B.md](BATCH-B.md) records scope, commands and cleanup; `batch-b-evidence/` supplements unchanged original and Batch A evidence.
+
+| Check | Pass | Fail | Evidence |
+|---|---:|---:|---|
+| Focused serializer / settlement / API | 33 | 0 | [checks.json](batch-b-evidence/checks.json) |
+| Independent actual CSV files | 21 | 0 | [files.json](batch-b-evidence/files.json), Python CSV/Decimal, nine files |
+| Existing acceptance + refinement + workflows | 58 + 72 + 11 | 0 | [acceptance](batch-b-evidence/acceptance.json), [refinement](batch-b-evidence/refinement.json), [workflows](batch-b-evidence/workflows.json) |
+| Seeded allocation cases | 1,000 | 0 | [math.json](batch-b-evidence/math.json) |
+| CSV probes in math harness | 2 | 1 | Numeric signed export passes; CAL-P2-001 delimiter remains open. |
+| Browser observation groups | 6 | 0 | [browser.json](batch-b-evidence/browser.json) |
+| TypeScript / build / foreign keys | Passed | 0 | [environment.json](batch-b-evidence/environment.json) |
+
+Scripted total **1,197 passed, 1 known out-of-scope failure**, excluding manual browser and command checks. Do not combine reruns into independent coverage counts. First acceptance attempt interrupted after 49 checks when scratch exited; workflows then could not connect. Neither attempt is a pass. After restart and readiness, complete suites passed. Sustained dev stability remains unverified. Windows build helper resolution failed; installed npm completed the production build.
+
+No schema/dependency or production change. Test writes stayed on 5174; browser size was reset, temporary tab/server closed and original 5173 review preserved. Print-summary content was checked; physical pagination, desktop spreadsheet UI import and hosted gates remain unverified. Python CSV/Decimal import and reconciliation passed.
+
 ## Batch A update — `4dc2900`
 
 Approved CAL-P1-001/002 are resolved locally. [BATCH-A.md](BATCH-A.md) records the exact scope, commands, cleanup and limitations. Fresh reports live in `batch-a-evidence/`; the original `audit-evidence/` reports below are unchanged historical evidence.
@@ -57,7 +75,7 @@ Run from `D:/Codex (Sites)` unless a command explicitly selects scratch. Verify 
 
 1. **Static:** typecheck above; validate syntax of any changed audit `.mjs` file with `node --check FILE`. A separate ESLint run was not part of this evidence, so lint is UNVERIFIED.
 2. **Build:** run the existing Sites build script through npm. On this Windows host the direct npm JS entrypoint avoids the helper's npm.cmd resolution issue. No package updates are needed for this audit.
-3. **Business-rule tests:** `node tests/audit-math.mjs`. Expected baseline: 1,000 cases pass, two deliberate CSV findings fail.
+3. **Business-rule tests:** `node tests/audit-math.mjs`. After Batch B: 1,000 cases and two CSV probes pass; one deliberate delimiter finding fails. Run with scratch cwd when preserving historical evidence.
 4. **Domain/API acceptance:** in the isolated checkout, with the dev server already serving 5174, run the existing suites using the explicit environment variable shown below.
 5. **Expanded API/exports:** from project root, `node tests/audit-api.mjs`, then `node tests/audit-workflows.mjs`. These create new disposable fixtures and write evidence. They are not read-only.
 6. **Browser:** replay the named journeys in `browser.json` using current fixture IDs. Start with normal setup/keyboard sale, then corrections/settlement/sharing.
@@ -97,7 +115,7 @@ The seeded harness compares production results with an independent BigInt larges
 
 API suites cover invalid payout totals without partial writes, sold-team flight moves, duplicate incompatible results, sale corrections, 50/50 and partial ownership, declined/deadline behavior, and turning buyback tools Off without deleting agreements. Calculation-only $1,250 at 50% equals $625 information; an odd 33.33% consideration also remains outside the pool/club receivable.
 
-Settlement tests cover multiple purchases, unpaid/partial/paid states, multiple receipts, method/note persistence, prohibited direct overpayment, overpayments caused by later correction, signed reversals, unique reversal rejection, compensation undo, separate entitlements, partial/full disbursement and receipt/payout non-netting. Remaining-collection aggregation fails for mixed positive/negative party balances; do not confuse correct individual accounts with a correct summary.
+Settlement tests cover multiple purchases, partial/full receipts, retained notes, prohibited direct overpayment, later corrections, signed reversals, unique reversal rejection, compensation undo and separate receipt/payable obligations. The original mixed-balance aggregate failure is fixed by Batch B; receipt and payout fixtures now independently verify positive debts, separate overpayments and signed net totals without moving entries.
 
 ## Large event and exports
 

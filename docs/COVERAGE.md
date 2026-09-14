@@ -1,6 +1,6 @@
 # Product coverage matrix
 
-Original audit 2026-09-14 UTC, source `dfab14906c04b5a6d99ffffbfba4249883750eae`; updated for approved Batch A `4dc2900`. **BA** means [Batch A evidence](BATCH-A.md): focused API/roles and event-navigation browser journeys. This matrix reports actual coverage, not every Cartesian combination of screen × state × device × input.
+Original audit 2026-09-14 UTC, `dfab14906c04b5a6d99ffffbfba4249883750eae`; updated for A `4dc2900` and B `3d00923`. **BA** means [Batch A](BATCH-A.md); **BB** means [Batch B](BATCH-B.md). This reports actual coverage, not every screen/state/device/input combination.
 
 **H** = tested and healthy; **F** = tested with findings; **P** = partially covered; **L** = not testable locally; **N/A** = not applicable. H applies only to the evidence named in the row. Detailed outcomes use PASS/FAIL/BLOCKED/UNVERIFIED in [VALIDATION.md](VALIDATION.md). A/R/X/M/W/B evidence keys are defined in [CURRENT-STATE.md](CURRENT-STATE.md).
 
@@ -16,8 +16,8 @@ Original audit 2026-09-14 UTC, source `dfab14906c04b5a6d99ffffbfba4249883750eae`
 | Sales | H | A/W price/purchaser edits, void/reopen/undo; B stale Sold/double confirm/public update | All correction variants exercised through API; not every modal repeated on each device. |
 | Buybacks | H | R Off/Calculation/Track independently; A/M/X 50/50, partial, deadline, declined, odd cents; W $625 example | Calculated suggestion is information; actual private payments not processed. |
 | Results | P | A/R/X unique positions, awards, duplicate rejection, ownership-adjusted entitlement | Domain path healthy; full tablet keyboard result-entry journey not completed; ties external. |
-| Settlement | F | R/X/W partial/multiple receipts, reversals, payouts, correction/undo; B Mark paid and note entry | CAL-P1-005 summary offset; every history dialog not exercised by touch. |
-| Exports | F | X actual seven downloads opened/reparsed; R authorization; print/source inspected | CAL-P1-003; actual print/PDF pagination unverified; CAL-P3-001 parallel paths. |
+| Settlement | H (local) | R/X/W/BB partial/full receipts, signed reversals, payouts, correction/undo; BB mixed debt/credit summaries and Mark paid draft | CAL-P1-005 fixed locally for receipts and payouts. Every history dialog not exercised by touch. |
+| Exports | H (CSV/JSON) / P (print) | BB nine actual CSV files independently parsed/reconciled, backup parsed and print-summary content inspected | CAL-P1-003 fixed locally; physical print pagination and spreadsheet UI import unverified; CAL-P3-001 parallel contracts remain optional debt. |
 | Sharing | H / L | R decoded QR/local URL; B copy/QR/TV instructions; BA related public/TV/operator navigation | CAL-P1-001 fixed locally. Internet sharing L. |
 | Access | H / L | BA forced audit/grant/revoke failures, concurrent retry, local non-owner and revoked-session checks | CAL-P1-002 fixed locally; distinct hosted owner/operator/revoked sessions L. |
 | Help / Auction Night | H | B before/running/after guide, corrections, keyboard, TV instructions at tablet | Physical projector setup not performed. |
@@ -80,7 +80,7 @@ Original audit 2026-09-14 UTC, source `dfab14906c04b5a6d99ffffbfba4249883750eae`
 | Pre-auction to first bid | H | B event→flight→quick/imported teams→ladder/openings→start→one-click bid/increment; A/R additional pool/house/mode setup. |
 | Sale and purchaser creation | H | B keyboard sale with inline new purchaser, exact amount/team, next advance; recent-buyer path three activations. |
 | Mistakes and queue exceptions | H | A/R/W wrong bid/buyer/price, sold/reopen/void/undo, separate skip/unsold/withdraw. |
-| Finish through bookkeeping | F | A/R/X/W completion→results→entitlements→receipts/payouts→exports; signed CSV and aggregate summary findings. Not one uninterrupted all-browser journey. |
+| Finish through bookkeeping | H (local API) / P (devices) | A/R/W/BB completion, results, awards, receipts/payouts, corrections/undo and signed exports pass. BB summaries reconcile; not one uninterrupted all-browser or physical-print journey. |
 | Four independent tabs | H | A/B operator, public, TV; stale B shown conflict; sale double click produces one record; public/TV converge after correction. |
 | Duplicate stale sale API | H | A/R same request replay and changed revision sale denied; B stale confirmation disabled before submission. |
 | Server stop/restart | H | B last state retained; warning prevents false save; full stored/derived data deep-equal after restart; viewers recover automatically. |

@@ -4,7 +4,7 @@ An operator-first application for an in-person golf Calcutta, with public/TV dis
 
 Start with [docs/PROJECT.md](docs/PROJECT.md) for durable product context and [docs/CURRENT-STATE.md](docs/CURRENT-STATE.md) for the current evidence snapshot. The [product audit](docs/PRODUCT-AUDIT.md), [coverage matrix](docs/COVERAGE.md), [validation ladder](docs/VALIDATION.md) and [finding tracker](docs/TASK-TRACKER.md) separate findings from approved implementation. [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) describes the actual runtime and integrity controls.
 
-[REVIEW.md](REVIEW.md) retains the earlier operating guide and refinement history. An Auction Night checklist is also available in the application's Help tab. The September 14 audit is followed by approved [Batch A](docs/BATCH-A.md), implemented in `4dc2900`: event navigation retains context and access changes commit atomically with audit. Both findings are verified locally; seven findings remain open. No production deployment is authorized.
+[REVIEW.md](REVIEW.md) retains the earlier operating guide and refinement history. Help includes an Auction Night checklist. Approved [Batch A](docs/BATCH-A.md) (`4dc2900`) fixes event context and atomic access changes; [Batch B](docs/BATCH-B.md) (`3d00923`) fixes signed CSV values and separates settlement debts from overpayments. Four findings are resolved locally; five remain open. No production deployment is authorized.
 
 ## Local development
 
