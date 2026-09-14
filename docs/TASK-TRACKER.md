@@ -1,6 +1,6 @@
 # Finding tracker and proposed batches
 
-2026-09-14 UTC · A/B/C approved and verified locally (`4dc2900`, `3d00923`, `4da7b9b`) · D/E await approval · no production deployment authorized.
+2026-09-14 UTC · A/B/C/D approved and verified locally (`4dc2900`, `3d00923`, `4da7b9b`, `a76e57f`) · optional E awaits approval · no production deployment authorized.
 
 The canonical description, reproduction, confidence and acceptance for every ID is in [PRODUCT-AUDIT.md](PRODUCT-AUDIT.md). Do not renumber an ID when its status changes; append validation evidence and a commit reference after an approved fix. A source change is not verified until its acceptance passes, and a local pass is not hosted verification.
 
@@ -13,12 +13,12 @@ The canonical description, reproduction, confidence and acceptance for every ID 
 | CAL-P1-003 | P1 DEFECT | Signed financial CSV becomes text | RESOLVED LOCAL — `3d00923`, [evidence](BATCH-B.md) | B |
 | CAL-P1-004 | P1 USABILITY DEFECT | Public/TV content clips and overlaps | RESOLVED LOCAL — `4da7b9b`, [evidence](BATCH-C.md); hardware pending | C |
 | CAL-P1-005 | P1 BUSINESS RULE | Collection summary offsets other buyers' debts | RESOLVED LOCAL — `3d00923`, [evidence](BATCH-B.md), includes reproduced payout equivalent | B |
-| CAL-P2-001 | P2 DEFECT | Quoted pipe/tab breaks CSV delimiter detection | OPEN — awaiting approval | D |
-| CAL-P2-002 | P2 RELIABILITY | Repeated creation request creates two events | OPEN — awaiting approval | D |
+| CAL-P2-001 | P2 DEFECT | Quoted pipe/tab breaks CSV delimiter detection | RESOLVED LOCAL — `a76e57f`, [evidence](BATCH-D.md) | D |
+| CAL-P2-002 | P2 RELIABILITY | Repeated creation request creates two events | RESOLVED LOCAL — `a76e57f`, [evidence](BATCH-D.md), includes demo | D |
 | CAL-P2-003 | P2 ACCESSIBILITY | Recent-sales caption contrast 3.77:1 | RESOLVED LOCAL — `4da7b9b`, [evidence](BATCH-C.md); now 6.02/6.21:1 | C |
 | CAL-P3-001 | P3 TECHNICAL DEBT | Distributed export contracts | OPEN — optional, awaiting approval | E |
 
-Three findings remain open: no P1, two P2 and one P3. P0: none demonstrated. Local resolution does not waive the blocked hosted gates in [VALIDATION.md](VALIDATION.md).
+Only one optional P3 remains open; no open P1 or P2. P0: none demonstrated. Local resolution does not waive the blocked hosted gates in [VALIDATION.md](VALIDATION.md).
 
 ## Proposed implementation roadmap
 
@@ -61,6 +61,8 @@ Three findings remain open: no P1, two P2 and one P3. P0: none demonstrated. Loc
 
 ### Batch D — Reliable setup import and creation retries
 
+- **Status:** APPROVED → IMPLEMENTED → VERIFIED LOCAL, commit `a76e57f`. [Batch D report](BATCH-D.md): 42 focused checks, 20 Batch A assertions, 130 existing checks, 1,000 allocation cases and all three CSV probes passed; four browser groups, TypeScript and final build passed. No migration or deployment.
+
 - **Exact IDs:** `CAL-P2-001`, `CAL-P2-002`.
 - **Objective:** Accept valid roster text and avoid duplicate events when creation requests repeat.
 - **Why together:** Both reduce pre-auction setup rework and ambiguous duplicate records; neither changes auction rules.
@@ -68,7 +70,7 @@ Three findings remain open: no P1, two P2 and one P3. P0: none demonstrated. Loc
 - **Risk:** Medium: import formats and intentional event creation semantics must remain compatible.
 - **Acceptance:** Quoted pipe/tab/comma/quote/newline/Unicode fixtures preview correctly; 100-team atomic import works; malformed rows do not partially save. Same create UUID sequential/concurrent returns one event; distinct IDs create separate events; include load_demo replay tests. Batch A event context tests stay green.
 - **Regression surface:** Quick/team import, roster export round-trip, flights/players mapping, new event/demo/defaults, audit and newest-event fallback.
-- **Order:** 4; creation work builds on Batch A event-context behavior.
+- **Order:** 4 — completed locally, preserving Batch A event-context behavior.
 
 ### Batch E — Explicit export contracts (optional)
 
@@ -91,4 +93,4 @@ Three findings remain open: no P1, two P2 and one P3. P0: none demonstrated. Loc
 
 ## Compact handoff
 
-**Recommended next scope: Batch D, exact IDs `CAL-P2-001` and `CAL-P2-002`.** A/B/C are complete locally. Do not implement D/E merely because they are listed here. After the user approves the next bounded set, preserve KEEP / PROTECT, run its focused reproductions and relevant regression suites, and update this tracker with evidence. Deployment needs separate authorization.
+**Remaining optional scope: Batch E, exact ID `CAL-P3-001`.** A/B/C/D are complete locally. All eight audited functional/accessibility findings are resolved locally; E is not a release blocker by itself. Do not implement E merely because it is listed here. After the user approves the next bounded set, preserve KEEP / PROTECT, run its focused reproductions and relevant regression suites, and update this tracker with evidence. Deployment needs separate authorization.

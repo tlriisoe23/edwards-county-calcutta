@@ -1,6 +1,6 @@
 # Product coverage matrix
 
-Original audit 2026-09-14 UTC, `dfab14906c04b5a6d99ffffbfba4249883750eae`; updated for A `4dc2900`, B `3d00923` and C `4da7b9b`. **BA** means [Batch A](BATCH-A.md); **BB** means [Batch B](BATCH-B.md); **BC** means [Batch C](BATCH-C.md). This reports actual coverage, not every screen/state/device/input combination.
+Original audit 2026-09-14 UTC, `dfab14906c04b5a6d99ffffbfba4249883750eae`; updated for A `4dc2900`, B `3d00923`, C `4da7b9b` and D `a76e57f`. **BA** means [Batch A](BATCH-A.md); **BB** means [Batch B](BATCH-B.md); **BC** means [Batch C](BATCH-C.md); **BD** means [Batch D](BATCH-D.md). This reports actual coverage, not every screen/state/device/input combination.
 
 **H** = tested and healthy; **F** = tested with findings; **P** = partially covered; **L** = not testable locally; **N/A** = not applicable. H applies only to the evidence named in the row. Detailed outcomes use PASS/FAIL/BLOCKED/UNVERIFIED in [VALIDATION.md](VALIDATION.md). A/R/X/M/W/B evidence keys are defined in [CURRENT-STATE.md](CURRENT-STATE.md).
 
@@ -8,8 +8,8 @@ Original audit 2026-09-14 UTC, `dfab14906c04b5a6d99ffffbfba4249883750eae`; updat
 
 | Surface | Coverage | Exercised | Findings or remaining scope |
 |---|---|---|---|
-| Setup / event choice | F | B new event/flight/start; BA draft isolation, URL/history/reload/newest fallback and delayed responses; X retry | CAL-P1-001 fixed locally; CAL-P2-002 creation retries remain. Distinct real-user settings conflicts remain hosted work. |
-| Teams | F | A/X/W CRUD/group/order/status; B quick-add/import/search; 100 teams | CAL-P2-001 for valid quoted delimiter CSV. Physical touch reorder not tested. |
+| Setup / event choice | H (local) | BA context; BD creation/demo sequential/concurrent retries, rollback, browser create/history/reload and newest fallback | CAL-P1-001 and CAL-P2-002 fixed locally. Distinct real-user settings conflicts remain hosted work. |
+| Teams | H (local) | A/X/W CRUD/group/order/status; BD quoted import formats, 100-team mapping, malformed atomic rejection and preview/save | CAL-P2-001 fixed locally. Physical touch reorder not tested. |
 | Buyers | H | A/W create/edit, purchaser correction; B inline Sold creation and selection | Text-input shortcut suppression observed. Large buyer-list search performance not quantified. |
 | Rules | H | A/R/M pool/deduction/mode rules; B ladder and opening-button edits | All currency formats and all visual toggle combinations not exhaustively tested. |
 | Auction console | H | A/R/W/B start/choose/bid/increment/correction/sale/next/pause/undo | Same mock identity across tabs; keyboard and pointer paths passed. |

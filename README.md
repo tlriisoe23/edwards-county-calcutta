@@ -4,7 +4,7 @@ An operator-first application for an in-person golf Calcutta, with public/TV dis
 
 Start with [docs/PROJECT.md](docs/PROJECT.md) for durable product context and [docs/CURRENT-STATE.md](docs/CURRENT-STATE.md) for the current evidence snapshot. The [product audit](docs/PRODUCT-AUDIT.md), [coverage matrix](docs/COVERAGE.md), [validation ladder](docs/VALIDATION.md) and [finding tracker](docs/TASK-TRACKER.md) separate findings from approved implementation. [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) describes the actual runtime and integrity controls.
 
-[REVIEW.md](REVIEW.md) retains the earlier operating guide and refinement history. Help includes an Auction Night checklist. Approved [Batch A](docs/BATCH-A.md) (`4dc2900`) fixes event context and atomic access changes; [Batch B](docs/BATCH-B.md) (`3d00923`) fixes signed CSV values and separates settlement debts from overpayments. [Batch C](docs/BATCH-C.md) (`4da7b9b`) fixes public/TV containment and caption contrast. Six findings are resolved locally; three remain open. No production deployment is authorized.
+[REVIEW.md](REVIEW.md) retains the earlier operating guide and refinement history. Help includes an Auction Night checklist. Approved [Batch A](docs/BATCH-A.md) (`4dc2900`) fixes event context and atomic access changes; [Batch B](docs/BATCH-B.md) (`3d00923`) fixes signed CSV values and separates settlement debts from overpayments. [Batch C](docs/BATCH-C.md) (`4da7b9b`) fixes public/TV containment and caption contrast. [Batch D](docs/BATCH-D.md) (`a76e57f`) fixes quoted roster delimiters and event/demo creation retries. Eight findings are resolved locally; only optional export-contract cleanup remains open. No production deployment is authorized.
 
 ## Local development
 

@@ -1,6 +1,6 @@
 # Current state — 2026-09-14 UTC
 
-The product was audited at `dfab14906c04b5a6d99ffffbfba4249883750eae`; documentation baseline is `782eb3b`. Approved [Batch A](BATCH-A.md) (`4dc2900`) and [Batch B](BATCH-B.md) (`3d00923`) resolve CAL-P1-001/002/003/005 locally. Type checking, build and focused/regression checks passed; schema is unchanged. [Batch C](BATCH-C.md) (`4da7b9b`) resolves display containment and caption contrast locally. Three findings remain open: no demonstrated P0, no open P1, two P2 and one P3. These counts do not imply production readiness.
+The product was audited at `dfab14906c04b5a6d99ffffbfba4249883750eae`; documentation baseline is `782eb3b`. Approved [Batch A](BATCH-A.md) (`4dc2900`) and [Batch B](BATCH-B.md) (`3d00923`) resolve CAL-P1-001/002/003/005 locally. Type checking, build and focused/regression checks passed; schema is unchanged. [Batch C](BATCH-C.md) (`4da7b9b`) resolves display containment and caption contrast locally. [Batch D](BATCH-D.md) (`a76e57f`) resolves quoted roster imports and creation retries. Only one optional P3 remains open; no open P1/P2 or demonstrated P0. These counts do not imply production readiness.
 
 Sites still has saved version 2 and no reported live/hosted-preview URL. No deployment was performed. The review stays at localhost:5173; isolated audit data lives in `.sites-runtime/audit-checkout/.wrangler/state` and is not part of a deployment archive.
 
@@ -14,18 +14,18 @@ The main isolated fixture has 100 teams, four flights, three buyers and 18 sales
 
 IMPLEMENTED means a representative behavior was exercised successfully in this audit, within the cited scope. PARTIAL means useful behavior exists but has a verified defect or meaningful untested branch. BROKEN means a named promised path was demonstrated failing. UNVERIFIED means code/configuration alone does not prove runtime behavior. NOT IMPLEMENTED means absent by inspection, not necessarily required. Hosted behavior is not inferred from a local pass.
 
-Evidence: A = 58-check acceptance; R = 72-check refinement; M = 1,000 seeded cases; X = original API audit; W = correction/queue probes; B = original browser observations; BA = [Batch A](BATCH-A.md); BB = [Batch B](BATCH-B.md), 33 focused checks, 21 independent file checks and six browser groups. A/R/M/W were rerun for BB. BC = [Batch C](BATCH-C.md), final TV/phone/tablet/notification geometry and caption contrast; A/R rerun for BC. Exact reports and limitations: [VALIDATION.md](VALIDATION.md).
+Evidence: A = 58-check acceptance; R = 72-check refinement; M = 1,000 seeded cases; X = original API audit; W = correction/queue probes; B = original browser observations; BA = [Batch A](BATCH-A.md); BB = [Batch B](BATCH-B.md), 33 focused checks, 21 independent file checks and six browser groups. A/R/M/W were rerun for BB. BC = [Batch C](BATCH-C.md), final TV/phone/tablet/notification geometry and caption contrast; A/R rerun for BC. BD = [Batch D](BATCH-D.md), 42 focused checks, 20 BA assertions and four browser groups; A/R/M and all three CSV probes rerun successfully. Exact reports and limitations: [VALIDATION.md](VALIDATION.md).
 
 | Capability | Status | Evidence / practical limit |
 |---|---|---|
-| Event creation | PARTIAL | B creates an event; X duplicate request creates two, CAL-P2-002. |
+| Event creation | IMPLEMENTED (local) | BD event/demo sequential and eight-way concurrent retries return one event; changed input/actor/action conflicts; late failure rolls back. Browser creation/history/reload pass. |
 | Flights | IMPLEMENTED | A/X create/edit grouping; B flight editor; sold-team flight move tested. |
 | Teams | IMPLEMENTED | A/X/W create/edit/order/status; B quick entry/import. |
 | Players | IMPLEMENTED | A/X/B player rows and quoted/Unicode names. Not tournament scoring. |
 | Buyers/syndicates | IMPLEMENTED | A/W edits; B adds purchaser inside Sold; separate private contact fields. |
 | Auction order | IMPLEMENTED | A reorder; R skip and undo; B automatic advance. |
 | Quick team entry | IMPLEMENTED | B quick-adds Birch / Elm then sees field row. |
-| Bulk import | PARTIAL | Tab-separated preview/import and 100-team import pass; quoted pipe in CSV fails CAL-P2-001. |
+| Bulk import | IMPLEMENTED (local) | BD quote-aware comma/tab/pipe cases, 100-team mapping, roster round-trip, malformed atomic rejection and browser preview/save pass. |
 | Bidding | IMPLEMENTED | A/R/W/B amount, increments, explicit lowering correction, pause rejection. |
 | Opening-bid buttons | IMPLEMENTED | R/B no-buyer start; structured edit/reorder in B. |
 | Bid increments | IMPLEMENTED | A/R/B minimum and configurable choices; keyboard +. |
@@ -62,7 +62,7 @@ Evidence: A = 58-check acceptance; R = 72-check refinement; M = 1,000 seeded cas
 | Operators/access | IMPLEMENTED (local), UNVERIFIED (hosted) | BA atomic grant/revoke/audit under forced failures, concurrent replay, non-owner denial and revoked-session denial. Distinct hosted sessions remain unverified. |
 | Audit history | IMPLEMENTED | A/R/X actor/action/undo; complete history in opened JSON backup. Retention at long duration unverified. |
 | Concurrency protection | IMPLEMENTED | A 200/409 race; B four tabs stale dialog, sale, correction convergence. One local identity. |
-| Mutation guards | PARTIAL | A/R exact sale/payment replay and stale batch protection; BA atomic/replay-safe access changes. Creation retry exception remains CAL-P2-002. |
+| Mutation guards | IMPLEMENTED (tested paths) | A/R sale/payment replay and stale protection; BA atomic access replay; BD matching event/demo creation retries return the original result. Distinct UUIDs remain distinct operations. |
 | Public/private separation | IMPLEMENTED (local) | A/R/X/B server flags, sentinels, private-export auth and public-only WebMCP. Hosted boundary remains a gate. |
 | Reconnect behavior | IMPLEMENTED (local viewers) | B stop/restart retains safe board, warns on failed save, recovers automatically. Unsaved admin dialog remounts on dev restart. |
 | WebMCP | IMPLEMENTED | B sole zero-input read-only public tool; no mutation tools. |
@@ -70,6 +70,6 @@ Evidence: A = 58-check acceptance; R = 72-check refinement; M = 1,000 seeded cas
 
 ## Known limits and next action
 
-The product is locally usable for representative journeys; it is not a hosted acceptance sign-off. A/B/C fix context, access atomicity, signed CSV, debt/overpayment summaries and display containment/contrast locally. Roster delimiters and creation retries still require approved corrections. Physical devices, screen readers, zoom, print pagination and other engines remain unverified or blocked. Scratch exited during the original audit, B's first regression attempt and C's early browser setup; complete suites passed after restart, but long-running stability/root cause remain unverified.
+The product is locally usable for representative journeys; it is not a hosted acceptance sign-off. A/B/C fix context, access atomicity, signed CSV, debt/overpayment summaries and display containment/contrast locally. BD also fixes roster delimiters and creation retries. Only optional export-contract cleanup remains in the finding register. Physical devices, screen readers, zoom, print pagination and other engines remain unverified or blocked. Scratch exited during the original audit, B's first regression attempt and C's early browser setup; complete suites passed after restart, but long-running stability/root cause remain unverified.
 
-**Recommended next scope: Batch D (`CAL-P2-001`, `CAL-P2-002`), awaiting approval.** A/B/C implementation and local verification are complete. See [TASK-TRACKER.md](TASK-TRACKER.md) for status and [COVERAGE.md](COVERAGE.md) for tested versus partial surfaces.
+**Remaining optional scope: Batch E (`CAL-P3-001`), awaiting approval.** A/B/C/D implementation and local verification are complete. No open audited functional defect remains; hosted and hardware gates still apply. See [TASK-TRACKER.md](TASK-TRACKER.md) for status and [COVERAGE.md](COVERAGE.md) for tested versus partial surfaces.

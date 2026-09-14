@@ -2,6 +2,14 @@
 
 2026-09-14 UTC · baseline `dfab14906c04b5a6d99ffffbfba4249883750eae`. Reports are local audit evidence, not production sign-off. PASS = observed expected result; FAIL = demonstrated mismatch; BLOCKED = a needed environment/tool is unavailable; UNVERIFIED = not exercised sufficiently. A successful build does not convert any browser or hosted gap into PASS.
 
+## Batch D update — `a76e57f`
+
+Approved CAL-P2-001/002 are resolved locally. [BATCH-D.md](BATCH-D.md) records 42 focused import/creation checks, 20 Batch A API/context assertions, 58 acceptance and 72 refinement checks, 1,000 allocation cases and all three original CSV probes passing: **1,195 scripted cases/checks**, excluding four manual browser groups and command checks. TypeScript, final production build and foreign keys pass. Exact reports are in [batch-d-evidence](batch-d-evidence/checks.json).
+
+The final Batch A rerun passed with cleanup. Earlier attempts with cleanup transport failures and a leftover-fixture failure remain recorded; none are treated as completed passing runs. The final isolated harness copy retained all assertions and allowed one retry for failed GET transport calls. Browser cold-navigation/click interruptions were resolved by inspecting state before retry. Product source is limited to parsing and creation persistence; no schema, dependency, saved version or deployment change. Test data stayed on 5174, test triggers/access entries were removed, temporary tabs closed and scratch stopped; review 5173 remained running.
+
+Original and earlier batch reports below remain historical; current resolution status supersedes their known failures. Hosted identities, physical hardware, long-running stability and other engines remain unverified.
+
 ## Batch C update — `4da7b9b`
 
 Approved CAL-P1-004 and CAL-P2-003 are resolved locally. [BATCH-C.md](BATCH-C.md) and [browser evidence](batch-c-evidence/browser.json) record 10 final TV configurations with all-long queue/recent names, phone widths 320/390/430, two operator tablet sizes, phone sale notifications, hidden flags and a working narrow flight/search filter. Text bounds and section intersections pass; TV remains one screen. Caption contrast is 6.02:1 TV / 6.21:1 public.
@@ -83,12 +91,12 @@ Run from `D:/Codex (Sites)` unless a command explicitly selects scratch. Verify 
 
 1. **Static:** typecheck above; validate syntax of any changed audit `.mjs` file with `node --check FILE`. A separate ESLint run was not part of this evidence, so lint is UNVERIFIED.
 2. **Build:** run the existing Sites build script through npm. On this Windows host the direct npm JS entrypoint avoids the helper's npm.cmd resolution issue. No package updates are needed for this audit.
-3. **Business-rule tests:** `node tests/audit-math.mjs`. After Batch B: 1,000 cases and two CSV probes pass; one deliberate delimiter finding fails. Run with scratch cwd when preserving historical evidence.
+3. **Business-rule tests:** `node tests/audit-math.mjs`. After Batch D: 1,000 cases and all three original CSV probes pass, with no weakened expectations. Run with scratch cwd when preserving historical evidence.
 4. **Domain/API acceptance:** in the isolated checkout, with the dev server already serving 5174, run the existing suites using the explicit environment variable shown below.
 5. **Expanded API/exports:** from project root, `node tests/audit-api.mjs`, then `node tests/audit-workflows.mjs`. These create new disposable fixtures and write evidence. They are not read-only.
 6. **Browser:** replay the named journeys in `browser.json` using current fixture IDs. Start with normal setup/keyboard sale, then corrections/settlement/sharing.
 7. **Multi-client:** open two operator tabs plus public and TV for the same explicit fixture ID; hold B's staged sale, bid/sell/correct in A and verify authoritative convergence.
-8. **Responsive/visual:** inspect actual loaded content at the matrix viewports. Combine screenshot review with child containment and overlap checks; a page-level scrollWidth/scrollHeight test misses current TV failures.
+8. **Responsive/visual:** inspect actual loaded content at the matrix viewports. Combine screenshot review with child containment and overlap checks; a page-level scrollWidth/scrollHeight test alone missed the original TV failures, now corrected in Batch C.
 9. **Resilience:** `node tests/audit-control.mjs snapshot`; stop **only** the scratch server; inspect viewer state and failed operator save; restart scratch; `node tests/audit-control.mjs verify`; verify Connected automatically.
 10. **Scale and artifacts:** inspect 100-team fixture filtering, settlement and actual files; record timings as local observations. `node tests/audit-summarize.mjs` aggregates evidence, hashes artifact bytes and performs a read-only review comparison.
 11. **Hosted gates:** only after a separately approved deployment, run the checklist below. They cannot pass from local simulation.
