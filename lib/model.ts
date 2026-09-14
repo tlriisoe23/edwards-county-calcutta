@@ -1,9 +1,12 @@
 export type Row = Record<string, any>;
 export const defaultSettings = {
+    trackBidder: false, quickStarts: [10000, 20000, 30000, 50000], buybackMode: "off", buybackSuggested: 5000,
     minBid: 10000, increment: 2500, quickIncrements: [2500, 5000, 10000, 25000], poolMode: "separate",
     deductionType: "percent", deduction: 1000, buybackMax: 5000, buybackPriceMode: "proportional", buybackFixed: 0, buybackDeadline: "",
     autoAdvance: true, showBidder: true, showBid: true, showBuyer: true, showSalePrice: true, showUpcoming: true, showHandicap: true, showPayouts: true, showBuyback: false, showTotalPool: true, showFlightPools: true
 };
+// Existing events retain their prior bidder/ownership tools; newly created events use the new defaults.
+export function normalizeSettings(value: Row): Row { return { ...defaultSettings, trackBidder: true, buybackMode: "track", ...value }; }
 export const publicFlags = ["showBidder", "showBid", "showBuyer", "showSalePrice", "showUpcoming", "showHandicap", "showPayouts", "showBuyback", "showTotalPool", "showFlightPools"];
 export function splitCents(total: number, weights: number[]) { const base = weights.map(w => Math.floor(total * w / 10000)); let left = total - base.reduce((a, b) => a + b, 0); const order = weights.map((w, i) => ({ i, r: (total * w) % 10000 })).sort((a, b) => b.r - a.r || a.i - b.i); for (let j = 0; j < left; j++)
     base[order[j % order.length].i]++; return base; }
@@ -56,7 +59,7 @@ export function compute(data: Row) {
         const prize = p?.payouts.find((r: Row) => r.place === t.finish)?.amount || 0;
         const owners = data.ownership.filter((o: Row) => o.saleId === s.id && o.status === "Completed");
         const portions = splitCents(prize, owners.map((o: Row) => o.percent));
-        owners.forEach((o: Row, i: number) => entitlements.push({ team: t.name, flight: f.name, place: t.finish, party: o.party, percent: o.percent, amount: portions[i] }));
+        owners.forEach((o: Row, i: number) => entitlements.push({ teamId: t.id, saleId: s.id, poolId: p?.id, pool: p?.name, payoutPercent: p?.payouts.find((r: Row) => r.place === t.finish)?.percent || 0, prize, partyKind: o.kind, partyId: o.kind === "buyer" ? s.buyerId : t.id, team: t.name, flight: f.name, place: t.finish, party: o.party, percent: o.percent, amount: portions[i] }));
     }
     return { gross, deduction, net: gross - deduction, sold: active.length, remaining: data.teams.filter((t: Row) => ["UPCOMING", "ON_BLOCK", "UNSOLD"].includes(t.status)).length, average: active.length ? Math.round(gross / active.length) : 0, highest: Math.max(0, ...active.map((s: Row) => s.amount)), lowest: active.length ? Math.min(...active.map((s: Row) => s.amount)) : 0, pools, entitlements };
 }

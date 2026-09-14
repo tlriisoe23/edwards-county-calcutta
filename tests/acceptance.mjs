@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import {writeFileSync} from 'node:fs';
-import {splitCents,compute,parsePaste,defaultSettings} from '../lib/model.ts';
+import {splitCents,compute,parsePaste,defaultSettings as newEventDefaults} from '../lib/model.ts';
+// Preserve all original bidder and buyback assertions by explicitly enabling those optional tools.
+const defaultSettings={...newEventDefaults,trackBidder:true,buybackMode:'track'};
 const base=process.env.CALCUTTA_TEST_URL||'http://localhost:5173';
 if(!['localhost','127.0.0.1'].includes(new URL(base).hostname))throw Error('Acceptance writes are restricted to a local test server.');
 let checks=0;function check(condition,label){assert.ok(condition,label);checks++;console.log('PASS '+label);}
@@ -17,6 +19,7 @@ check((await fetch(base+'/api/admin',{method:'POST',headers:{origin:base,'conten
 check((await fetch(base+'/api/admin',{headers:{'oai-authenticated-user-id':'forged','oai-authenticated-user-email':'seedy@sites.test'}})).status===403,'Forged identity headers stripped by local dispatcher');
 check((await fetch(base+'/api/admin',{method:'POST',headers:{cookie,origin:'https://attacker.example','content-type':'application/json'},body:'{}'})).status===403,'Cross-origin mutations denied');
 await send('create_event',{name:'Acceptance rehearsal '+new Date().toISOString(),course:'Fictional test course'});
+await send('event_update',{...d.event,settings:defaultSettings});
 writeFileSync('.sites-runtime/acceptance-event.json',JSON.stringify({eventId}));check(d.event.status==='SETUP','Create persistent tournament');
 await send('flight_save',{name:'Championship Flight',color:'#b79a59',ownPool:true});
 await send('flight_save',{name:'First Flight',color:'#879771',ownPool:true});const f1=d.flights[0].id,f2=d.flights[1].id;

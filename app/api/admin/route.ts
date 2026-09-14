@@ -11,7 +11,7 @@ const buyerSchema = z.object({ id: id.optional(), name: text, group: z.string().
 const timestamp = () => new Date().toISOString();
 function requireThat(condition: any, message: string) { if (!condition)
     throw Error(message); }
-function settingsSchema() { return z.object({ minBid: cents, increment: cents.refine(v => v > 0), quickIncrements: z.array(cents.refine(v => v > 0)).min(1).max(8), poolMode: z.enum(["separate", "combined", "custom"]), deductionType: z.enum(["none", "percent", "fixed"]), deduction: cents, buybackMax: percent, buybackPriceMode: z.enum(["proportional", "fixed"]), buybackFixed: cents, buybackDeadline: z.string().max(40), autoAdvance: z.boolean(), showBidder: z.boolean(), showBid: z.boolean(), showBuyer: z.boolean(), showSalePrice: z.boolean(), showUpcoming: z.boolean(), showHandicap: z.boolean(), showPayouts: z.boolean(), showBuyback: z.boolean(), showTotalPool: z.boolean(), showFlightPools: z.boolean() }).superRefine((s, c) => { if (s.deductionType === "percent" && s.deduction > 10000)
+function settingsSchema() { return z.object({ trackBidder: z.boolean(), quickStarts: z.array(cents.refine(v => v > 0)).min(1).max(8), buybackMode: z.enum(["off", "calculate", "track"]), buybackSuggested: percent, minBid: cents, increment: cents.refine(v => v > 0), quickIncrements: z.array(cents.refine(v => v > 0)).min(1).max(8), poolMode: z.enum(["separate", "combined", "custom"]), deductionType: z.enum(["none", "percent", "fixed"]), deduction: cents, buybackMax: percent, buybackPriceMode: z.enum(["proportional", "fixed"]), buybackFixed: cents, buybackDeadline: z.string().max(40), autoAdvance: z.boolean(), showBidder: z.boolean(), showBid: z.boolean(), showBuyer: z.boolean(), showSalePrice: z.boolean(), showUpcoming: z.boolean(), showHandicap: z.boolean(), showPayouts: z.boolean(), showBuyback: z.boolean(), showTotalPool: z.boolean(), showFlightPools: z.boolean() }).superRefine((s, c) => { if (s.deductionType === "percent" && s.deduction > 10000)
     c.addIssue({ code: "custom", message: "Deduction cannot exceed 100%." }); if (s.buybackDeadline && !Number.isFinite(Date.parse(s.buybackDeadline)))
     c.addIssue({ code: "custom", message: "Enter a valid buyback deadline." }); }); }
 export async function GET(request: Request) { try {
@@ -103,6 +103,7 @@ export async function POST(request: Request) {
                 if (v.settings.poolMode !== s.poolMode)
                     requireThat(!data.teams.some((t: Row) => t.finish), "Clear finishing positions before changing the pool configuration.");
                 cmds.push(update("events", { ...v, settings: JSON.stringify(v.settings) }, "id", eventId));
+                if (!v.settings.trackBidder) cmds.push(update("auction_state", { buyerId: null }, "eventId", eventId));
                 break;
             }
             case "flight_save": {
@@ -177,6 +178,14 @@ export async function POST(request: Request) {
                 recordId = tid;
                 break;
             }
+            case "team_skip": {
+                const t = team(id.parse(p.id));
+                requireThat(["UPCOMING", "ON_BLOCK"].includes(t.status), "Only a team in the active queue can be skipped for now.");
+                const ordered = data.teams.filter((r: Row) => r.id !== t.id).map((r: Row) => r.id); ordered.push(t.id);
+                ordered.forEach((tid: string, order: number) => cmds.push(update("teams", { order }, "id", tid)));
+                if (t.status === "ON_BLOCK") setBlock(data.teams.find((r: Row) => r.status === "UPCOMING" && r.id !== t.id) || null);
+                recordId = t.id; break;
+            }
             case "team_reorder": {
                 const ids = z.array(id).parse(p.ids);
                 requireThat(ids.length === data.teams.length && new Set(ids).size === ids.length && ids.every(tid => data.teams.some((t: Row) => t.id === tid)), "The order must include every team exactly once.");
@@ -229,11 +238,11 @@ export async function POST(request: Request) {
                 requireThat(data.state.teamId === p.teamId, "The team on the block has changed.");
                 z.boolean().optional().parse(p.correction);
                 const amount = cents.parse(p.amount);
-                buyer(id.parse(p.buyerId));
-                requireThat(amount >= s.minBid, "Bid is below the starting minimum.");
+                const trackedBuyer = s.trackBidder && p.buyerId ? buyer(id.parse(p.buyerId)).id : null;
+                requireThat(amount > 0 && amount >= s.minBid, "Bid is below the starting minimum.");
                 if (!p.correction && data.state.bid > 0 && amount !== data.state.bid)
                     requireThat(amount >= data.state.bid + s.increment, "Bid must meet the minimum increment. Use Correct bid to lower it.");
-                cmds.push(update("auction_state", { bid: amount, buyerId: p.buyerId }, "eventId", eventId));
+                cmds.push(update("auction_state", { bid: amount, buyerId: trackedBuyer }, "eventId", eventId));
                 recordId = p.teamId;
                 break;
             }
@@ -242,9 +251,9 @@ export async function POST(request: Request) {
                 requireThat(data.state.teamId === p.teamId, "The team on the block has changed.");
                 const t = team(id.parse(p.teamId));
                 requireThat(t.status === "ON_BLOCK" && data.state.bid >= s.minBid && data.state.bid > 0, "Enter a valid bid before selling.");
-                requireThat(data.state.bid === p.amount && data.state.buyerId === p.buyerId, "The bid changed. Review the sale again.");
-                const b = buyer(data.state.buyerId), sid = crypto.randomUUID();
-                cmds.push(insert("sales", { id: sid, eventId, teamId: t.id, buyerId: b.id, amount: data.state.bid, status: "ACTIVE", createdAt: now, notes: "" }), insert("ownership", { id: crypto.randomUUID(), saleId: sid, party: b.name, percent: 10000, consideration: data.state.bid, status: "Completed", kind: "buyer" }), insert("ownership", { id: crypto.randomUUID(), saleId: sid, party: t.name, percent: 0, consideration: 0, status: "Pending Buyback", kind: "team" }));
+                requireThat(data.state.bid === p.amount, "The bid changed. Review the sale again.");
+                const b = buyer(id.parse(p.buyerId)), sid = crypto.randomUUID();
+                cmds.push(insert("sales", { id: sid, eventId, teamId: t.id, buyerId: b.id, amount: data.state.bid, status: "ACTIVE", createdAt: now, notes: "" }), insert("ownership", { id: crypto.randomUUID(), saleId: sid, party: b.name, percent: 10000, consideration: data.state.bid, status: "Completed", kind: "buyer" }));
                 const next = s.autoAdvance ? data.teams.find((x: Row) => x.status === "UPCOMING") : null;
                 setBlock(next || null);
                 cmds.push(update("teams", { status: "SOLD" }, "id", t.id));
@@ -267,6 +276,7 @@ export async function POST(request: Request) {
                 break;
             }
             case "buyback": {
+                requireThat(s.buybackMode === "track", "Enable Track ownership to record a private buyback.");
                 const x = sale(id.parse(p.saleId)), pct = percent.parse(p.percent), status = z.enum(["Pending Buyback", "Declined", "Completed", "Not Offered", "Not Applicable"]).parse(p.status);
                 requireThat(pct <= s.buybackMax, "Buyback exceeds the maximum in house rules.");
                 if (status === "Completed") {
@@ -276,6 +286,31 @@ export async function POST(request: Request) {
                 const actual = status === "Completed" ? pct : 0, consideration = status === "Completed" ? (s.buybackPriceMode === "fixed" ? s.buybackFixed : Math.round(x.amount * pct / 10000)) : 0;
                 cmds.push(statement('DELETE FROM ownership WHERE saleId=?', x.id), insert("ownership", { id: crypto.randomUUID(), saleId: x.id, party: buyer(x.buyerId).name, percent: 10000 - actual, consideration: x.amount, status: "Completed", kind: "buyer" }), insert("ownership", { id: crypto.randomUUID(), saleId: x.id, party: team(x.teamId).name, percent: actual, consideration, status, kind: "team" }));
                 recordId = x.id;
+                break;
+            }
+            case "settlement_record":
+            case "settlement_reverse": {
+                const kind = z.enum(["receipt", "payout"]).parse(p.kind), table = kind === "receipt" ? "settlement_payments" : "payout_disbursements";
+                const entries = kind === "receipt" ? data.payments : data.disbursements;
+                if (action === "settlement_reverse") {
+                    const original = entries.find((r: Row) => r.id === id.parse(p.id));
+                    requireThat(original && original.amount > 0, "Choose an existing positive payment to reverse.");
+                    requireThat(!entries.some((r: Row) => r.reversalOf === original.id), "This entry has already been reversed.");
+                    const reason = z.string().trim().min(1).max(1000).parse(p.note);
+                    recordId = crypto.randomUUID();
+                    cmds.push(insert(table, { ...original, id: recordId, amount: -original.amount, reversalOf: original.id, occurredAt: now, createdAt: now, actor: who.email, note: reason }));
+                } else {
+                    const partyKind = kind === "receipt" ? "buyer" : z.enum(["buyer", "team"]).parse(p.partyKind), partyId = id.parse(p.partyId);
+                    (partyKind === "buyer" ? buyer : team)(partyId);
+                    const account = (kind === "receipt" ? data.settlement.receipts : data.settlement.payables).find((r: Row) => r.id === partyId && r.kind === partyKind);
+                    requireThat(account, "No purchases or payout entitlement exists for this party.");
+                    if (kind === "payout") requireThat(e.status === "COMPLETED", "Complete the auction and enter results before recording payouts.");
+                    const amount = cents.refine(v => v > 0).parse(p.amount);
+                    requireThat(amount <= account.balance, "Amount exceeds the remaining balance. Review the account before recording.");
+                    const occurredAt = z.string().datetime().parse(p.occurredAt), method = z.enum(["Cash", "Check", "Venmo", "Other"]).parse(p.method);
+                    recordId = crypto.randomUUID();
+                    cmds.push(insert(table, { id: recordId, eventId, buyerId: partyKind === "buyer" ? partyId : null, ...(kind === "payout" ? { teamId: partyKind === "team" ? partyId : null } : {}), amount, occurredAt, method, note: z.string().max(1000).parse(p.note || ""), createdAt: now, actor: who.email }));
+                }
                 break;
             }
             case "results": {
@@ -297,7 +332,7 @@ export async function POST(request: Request) {
             }
             case "reset_demo": {
                 requireThat(e.demo && p.confirmation === "RESET DEMO DATA", "Type RESET DEMO DATA to clear this demonstration event.");
-                cmds.push(update("auction_state", { teamId: null, bid: 0, buyerId: null, startedAt: null, paused: 0 }, "eventId", eventId), statement('DELETE FROM ownership WHERE saleId IN (SELECT id FROM sales WHERE eventId=?)', eventId), statement('DELETE FROM sales WHERE eventId=?', eventId), statement('DELETE FROM teams WHERE eventId=?', eventId), statement('DELETE FROM buyers WHERE eventId=?', eventId), statement('DELETE FROM payout_rules WHERE eventId=?', eventId), statement('DELETE FROM flights WHERE eventId=?', eventId), update("events", { status: "SETUP", demo: 0 }, "id", eventId));
+                cmds.push(statement('DELETE FROM settlement_payments WHERE eventId=?', eventId), statement('DELETE FROM payout_disbursements WHERE eventId=?', eventId), update("auction_state", { teamId: null, bid: 0, buyerId: null, startedAt: null, paused: 0 }, "eventId", eventId), statement('DELETE FROM ownership WHERE saleId IN (SELECT id FROM sales WHERE eventId=?)', eventId), statement('DELETE FROM sales WHERE eventId=?', eventId), statement('DELETE FROM teams WHERE eventId=?', eventId), statement('DELETE FROM buyers WHERE eventId=?', eventId), statement('DELETE FROM payout_rules WHERE eventId=?', eventId), statement('DELETE FROM flights WHERE eventId=?', eventId), update("events", { status: "SETUP", demo: 0 }, "id", eventId));
                 break;
             }
             case "undo": {
@@ -305,6 +340,14 @@ export async function POST(request: Request) {
                 requireThat(last, "There is no action to undo.");
                 const snapshot = JSON.parse(last!.before);
                 before = JSON.stringify(data);
+                // Preserve the transaction trail through ordinary auction undo. Settlement undo appends a compensation.
+                const payments = last!.action === "reset_demo" ? (snapshot.payments || []) : data.payments;
+                const disbursements = last!.action === "reset_demo" ? (snapshot.disbursements || []) : data.disbursements;
+                for (const r of [...payments, ...disbursements]) {
+                    requireThat(!r.buyerId || snapshot.buyers.some((b: Row) => b.id === r.buyerId), "This buyer has settlement history. Reverse payments and use an explicit correction instead of removing the buyer.");
+                    requireThat(!r.teamId || snapshot.teams.some((t: Row) => t.id === r.teamId), "This team has payout history and cannot be removed by undo.");
+                }
+                cmds.push(statement('DELETE FROM settlement_payments WHERE eventId=?', eventId), statement('DELETE FROM payout_disbursements WHERE eventId=?', eventId));
                 cmds.push(update("auction_state", { teamId: null, bid: 0, buyerId: null }, "eventId", eventId), statement('DELETE FROM ownership WHERE saleId IN (SELECT id FROM sales WHERE eventId=?)', eventId), statement('DELETE FROM sales WHERE eventId=?', eventId), statement('DELETE FROM players WHERE teamId IN (SELECT id FROM teams WHERE eventId=?)', eventId), statement('DELETE FROM teams WHERE eventId=?', eventId), statement('DELETE FROM buyers WHERE eventId=?', eventId), statement('DELETE FROM payout_rules WHERE eventId=?', eventId), statement('DELETE FROM flights WHERE eventId=?', eventId));
                 for (const f of snapshot.flights)
                     cmds.push(insert("flights", f));
@@ -322,6 +365,14 @@ export async function POST(request: Request) {
                     cmds.push(insert("ownership", o));
                 for (const r of snapshot.payoutRules)
                     cmds.push(insert("payout_rules", r));
+                for (const r of payments) cmds.push(insert("settlement_payments", r));
+                for (const r of disbursements) cmds.push(insert("payout_disbursements", r));
+                if (last!.action.startsWith("settlement_")) {
+                    const payload = JSON.parse(last!.after), isReceipt = payload.kind === "receipt", entries = isReceipt ? payments : disbursements;
+                    const original = entries.find((r: Row) => r.id === last!.recordId);
+                    requireThat(original && !entries.some((r: Row) => r.reversalOf === original.id), "That payment was already corrected. Use Settlement to review its history.");
+                    cmds.push(insert(isReceipt ? "settlement_payments" : "payout_disbursements", { ...original, id: crypto.randomUUID(), amount: -original.amount, reversalOf: original.id, occurredAt: now, createdAt: now, actor: who.email, note: "Undo: " + last!.action.replaceAll("_", " ") }));
+                }
                 const { id: _, revision: rv, boardRevision: br, ...eventFields } = snapshot.event;
                 cmds.push(update("events", { ...eventFields, settings: JSON.stringify(snapshot.event.settings), updatedAt: now }, "id", eventId), update("auction_state", snapshot.state, "eventId", eventId), update("audit", { undone: 1 }, "id", last!.id));
                 recordId = last!.id;

@@ -8,6 +8,13 @@
       "when": 1789352435148,
       "tag": "0000_tough_anita_blake",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1789356819940,
+      "tag": "0001_normal_magdalene",
+      "breakpoints": true
     }
   ]
 }
