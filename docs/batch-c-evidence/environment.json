@@ -1,0 +1,57 @@
+{
+  "at": "2026-09-14",
+  "baseline": "a8045a4",
+  "sourceChange": "app/globals.css only",
+  "cssSha256": "AA3A009E01C88D2CE6AE3005116B9005C4B3B133F79663ACDD41224AF312925E",
+  "scratchCssMatches": true,
+  "typescript": {
+    "command": "node node_modules/typescript/bin/tsc --noEmit",
+    "exit": 0
+  },
+  "build": {
+    "helperExit": 1,
+    "helperIssue": "Windows resolves npm under project node_modules; npm-cli.js/npm-prefix.js unavailable there.",
+    "fallback": "node C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js run build",
+    "exit": 0,
+    "phases": 5,
+    "afterFinalCss": true
+  },
+  "regression": {
+    "acceptance": 58,
+    "refinement": 72,
+    "failures": 0,
+    "note": "Passed before final TV-only queue ratio/padding adjustment. Final affected TV matrix repeated afterward; business logic untouched. Separate 1000-case oracle and workflow suites not rerun for this CSS-only batch."
+  },
+  "reducedMotion": {
+    "sourcePreserved": true,
+    "rule": "@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}",
+    "runtimeEmulation": false
+  },
+  "isolation": {
+    "base": "http://localhost:5174",
+    "database": ".sites-runtime/audit-checkout/.wrangler/state",
+    "testWritesTo5173": false,
+    "migrations": 0,
+    "dependencyChanges": 0,
+    "productionChanges": 0,
+    "savedSiteVersions": 0,
+    "viewportReset": true,
+    "temporaryTabClosed": true,
+    "scratchServerStopped": true,
+    "reviewPid": 1848,
+    "reviewPreserved": true
+  },
+  "interruptions": [
+    "Initial cold browser navigation timed out; same tab loaded on subsequent observation.",
+    "First scratch process exited unexpectedly before final CSS measurements; restarted in retained PTY. No stability/root-cause resolution claimed.",
+    "First completed-fixture transition correctly rejected while a team remained active; helper now marks that disposable team Unsold before completion.",
+    "Several short-lived toast observations missed the notice and are not passes; synchronized disposable sale subsequently captured all three widths.",
+    "All-long queue stress initially overflowed after first layout change. Final wider queue and reduced spacing passed all final TV states."
+  ],
+  "sites": {
+    "projectId": "appgprj_6aa756cabf648191a8711a28256d49a7",
+    "latestVersion": 2,
+    "live": null,
+    "observedBeforeEdits": true
+  }
+}

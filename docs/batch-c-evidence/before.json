@@ -1,0 +1,22 @@
+{
+  "baseline": "a8045a4",
+  "observed": "Before Batch C styling",
+  "tv1366": {
+    "height": 768,
+    "blockTop": 154,
+    "blockBottom": 636,
+    "priceTop": 626.421875,
+    "priceBottom": 746.625,
+    "statsTop": 484,
+    "statsBottom": 584,
+    "recentTop": 598,
+    "recentBottom": 754,
+    "recentScrollHeight": 358
+  },
+  "caption": {
+    "foreground": "rgb(116,130,105)",
+    "priorPublicContrast": 3.7737,
+    "priorEvidence": "../audit-evidence/browser.json"
+  },
+  "note": "Block price and statistics overlap; recent content exceeds its allocation. Original audit also records the 1920 and narrow-phone reproductions. Full historical evidence retained."
+}

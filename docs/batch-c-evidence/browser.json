@@ -1,0 +1,304 @@
+{
+  "at": "2026-09-14",
+  "method": "Manual in-app Chromium observations and read-only DOM Range glyph bounds, not automated browser test cases. Screenshots inspected in tool output; no durable screenshot files claimed.",
+  "fixture": "a60c1760-7986-4f1f-b7b8-1499c0f47305",
+  "tvFixture": "12 teams, four flights, eight $1,000,000 sales ($8,000,000 gross); all three queue and recent names use the 66-character long-name fixture. Completed has no active bid by design.",
+  "tv": [
+    {
+      "scenario": "paused long",
+      "width": 1366,
+      "height": 768,
+      "documentHeight": 768,
+      "documentWidth": 1366,
+      "price": "$1,000,000",
+      "priceFont": "75.2297px",
+      "statsCount": 6,
+      "blockTextOverflow": [],
+      "statsSpills": [],
+      "sectionsOverlap": false,
+      "otherOverflow": [],
+      "contrast": 6.022542259590141
+    },
+    {
+      "scenario": "paused long",
+      "width": 1920,
+      "height": 1080,
+      "documentHeight": 1080,
+      "documentWidth": 1920,
+      "price": "$1,000,000",
+      "priceFont": "117.103px",
+      "statsCount": 6,
+      "blockTextOverflow": [],
+      "statsSpills": [],
+      "sectionsOverlap": false,
+      "otherOverflow": [],
+      "contrast": 6.022542259590141
+    },
+    {
+      "scenario": "paused short",
+      "width": 1366,
+      "height": 768,
+      "documentHeight": 768,
+      "documentWidth": 1366,
+      "price": "$1,000,000",
+      "priceFont": "75.2297px",
+      "statsCount": 6,
+      "blockTextOverflow": [],
+      "statsSpills": [],
+      "sectionsOverlap": false,
+      "otherOverflow": [],
+      "contrast": 6.022542259590141
+    },
+    {
+      "scenario": "paused short",
+      "width": 1920,
+      "height": 1080,
+      "documentHeight": 1080,
+      "documentWidth": 1920,
+      "price": "$1,000,000",
+      "priceFont": "117.103px",
+      "statsCount": 6,
+      "blockTextOverflow": [],
+      "statsSpills": [],
+      "sectionsOverlap": false,
+      "otherOverflow": [],
+      "contrast": 6.022542259590141
+    },
+    {
+      "scenario": "live short",
+      "width": 1366,
+      "height": 768,
+      "documentHeight": 768,
+      "documentWidth": 1366,
+      "price": "$1,000,000",
+      "priceFont": "75.2297px",
+      "statsCount": 6,
+      "blockTextOverflow": [],
+      "statsSpills": [],
+      "sectionsOverlap": false,
+      "otherOverflow": [],
+      "contrast": 6.022542259590141
+    },
+    {
+      "scenario": "live short",
+      "width": 1920,
+      "height": 1080,
+      "documentHeight": 1080,
+      "documentWidth": 1920,
+      "price": "$1,000,000",
+      "priceFont": "117.103px",
+      "statsCount": 6,
+      "blockTextOverflow": [],
+      "statsSpills": [],
+      "sectionsOverlap": false,
+      "otherOverflow": [],
+      "contrast": 6.022542259590141
+    },
+    {
+      "scenario": "live long",
+      "width": 1366,
+      "height": 768,
+      "documentHeight": 768,
+      "documentWidth": 1366,
+      "price": "$1,000,000",
+      "priceFont": "75.2297px",
+      "statsCount": 6,
+      "blockTextOverflow": [],
+      "statsSpills": [],
+      "sectionsOverlap": false,
+      "otherOverflow": [],
+      "contrast": 6.022542259590141
+    },
+    {
+      "scenario": "live long",
+      "width": 1920,
+      "height": 1080,
+      "documentHeight": 1080,
+      "documentWidth": 1920,
+      "price": "$1,000,000",
+      "priceFont": "117.103px",
+      "statsCount": 6,
+      "blockTextOverflow": [],
+      "statsSpills": [],
+      "sectionsOverlap": false,
+      "otherOverflow": [],
+      "contrast": 6.022542259590141
+    },
+    {
+      "scenario": "completed",
+      "width": 1366,
+      "height": 768,
+      "documentHeight": 768,
+      "documentWidth": 1366,
+      "price": null,
+      "priceFont": null,
+      "statsCount": 7,
+      "blockTextOverflow": [],
+      "statsSpills": [],
+      "sectionsOverlap": false,
+      "otherOverflow": [],
+      "contrast": 6.022542259590141
+    },
+    {
+      "scenario": "completed",
+      "width": 1920,
+      "height": 1080,
+      "documentHeight": 1080,
+      "documentWidth": 1920,
+      "price": null,
+      "priceFont": null,
+      "statsCount": 7,
+      "blockTextOverflow": [],
+      "statsSpills": [],
+      "sectionsOverlap": false,
+      "otherOverflow": [],
+      "contrast": 6.022542259590141
+    }
+  ],
+  "hiddenFlags": {
+    "sizes": [
+      [
+        1366,
+        768
+      ],
+      [
+        1920,
+        1080
+      ]
+    ],
+    "statsCount": 2,
+    "bid": false,
+    "bidder": false,
+    "queue": false,
+    "salePrices": false,
+    "overflow": [],
+    "note": "Checked before final queue-width adjustment, which does not apply when queue is absent."
+  },
+  "public": [
+    {
+      "width": 320,
+      "documentHeight": 7813,
+      "documentWidth": 305,
+      "priceFont": "38.165px",
+      "height": 850,
+      "price": "$1,000,000",
+      "statsCount": 6,
+      "blockTextOverflow": [],
+      "statsSpills": [],
+      "sectionsOverlap": false,
+      "otherOverflow": [],
+      "contrast": 6.210694077166797
+    },
+    {
+      "width": 390,
+      "documentHeight": 7173,
+      "documentWidth": 375,
+      "priceFont": "48.875px",
+      "height": 850,
+      "price": "$1,000,000",
+      "statsCount": 6,
+      "blockTextOverflow": [],
+      "statsSpills": [],
+      "sectionsOverlap": false,
+      "otherOverflow": [],
+      "contrast": 6.210694077166797
+    },
+    {
+      "width": 430,
+      "documentHeight": 6708,
+      "documentWidth": 415,
+      "priceFont": "54.995px",
+      "height": 850,
+      "price": "$1,000,000",
+      "statsCount": 6,
+      "blockTextOverflow": [],
+      "statsSpills": [],
+      "sectionsOverlap": false,
+      "otherOverflow": [],
+      "contrast": 6.210694077166797
+    }
+  ],
+  "operator": [
+    {
+      "width": 768,
+      "height": 1024,
+      "documentWidth": 753,
+      "font": "68px",
+      "bid": "$1,000,000",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "documentWidth": 1009,
+      "font": "56.1px",
+      "bid": "$1,000,000",
+      "issues": []
+    }
+  ],
+  "toast": [
+    {
+      "width": 320,
+      "left": 16,
+      "right": 289,
+      "top": 713.9906005859375,
+      "bottom": 829.9906005859375,
+      "clientWidth": 273,
+      "scrollWidth": 273,
+      "height": 850,
+      "text": " SOLD · Christopher Montgomery-Wellington / Alexander Richardson-Harrington · $1,000,000"
+    },
+    {
+      "width": 390,
+      "left": 16,
+      "right": 359,
+      "top": 733.9830932617188,
+      "bottom": 828.9830932617188,
+      "clientWidth": 343,
+      "scrollWidth": 343,
+      "height": 850,
+      "text": " SOLD · Christopher Montgomery-Wellington / Alexander Richardson-Harrington · $1,000,000"
+    },
+    {
+      "width": 430,
+      "left": 16,
+      "right": 399,
+      "top": 753.5681762695312,
+      "bottom": 827.5681762695312,
+      "clientWidth": 383,
+      "scrollWidth": 383,
+      "height": 850,
+      "text": " SOLD · Christopher Montgomery-Wellington / Alexander Richardson-Harrington · $1,000,000"
+    }
+  ],
+  "filters": {
+    "width": 320,
+    "selectedFlight": "Third Flight",
+    "search": "Display Team 08",
+    "visibleCards": [
+      "Display Team 08"
+    ],
+    "searchBounds": [
+      15.25,
+      289.75
+    ],
+    "statusBounds": [
+      15.25,
+      165.25
+    ],
+    "restored": "All flights and empty search",
+    "poolObservation": "Four named flight pools visible in accessibility tree, each first three at $900,000 net before further sales."
+  },
+  "contrast": {
+    "foreground": "rgb(82, 96, 71)",
+    "tvBackground": "rgb(243, 243, 233)",
+    "publicBackground": "rgb(247, 246, 240)",
+    "fontSize": 14
+  },
+  "limitations": [
+    "Physical TV/fullscreen/HDMI/overscan and viewing distance not verified.",
+    "One Chromium browser only; actual phones, Safari/Firefox and OS zoom unverified.",
+    "Reduced-motion source rule unchanged; runtime preference emulation not performed.",
+    "Fixture is bounded, not proof for every possible name/currency/settings combination."
+  ]
+}
