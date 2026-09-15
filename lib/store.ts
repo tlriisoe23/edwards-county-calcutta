@@ -4,8 +4,10 @@ import { compute, defaultSettings, normalizeSettings, type Row } from "./model";
 import { settlement } from './settlement';
 export function db(): D1Database { if (!env.DB)
     throw Error("Auction storage is unavailable."); return env.DB; }
+// Owners come only from the ADMIN_EMAILS allowlist; the operators table never holds an owner (D-CAL-4).
+export function ownerEmails(): string[] { return (env.ADMIN_EMAILS || "").split(",").map(s => s.trim().toLowerCase()).filter(Boolean); }
 export async function identity() { const user = await getChatGPTUser(); if (!user)
-    return null; const owners = (env.ADMIN_EMAILS || "").split(",").map(s => s.trim().toLowerCase()).filter(Boolean); const email = user.email.toLowerCase(); const owner = owners.includes(email); const operator = owner || !!await db().prepare('SELECT email FROM operators WHERE email=?').bind(email).first(); return { ...user, email, owner, operator }; }
+    return null; const owners = ownerEmails(); const email = user.email.toLowerCase(); const owner = owners.includes(email); const operator = owner || !!await db().prepare('SELECT email FROM operators WHERE email=?').bind(email).first(); return { ...user, email, owner, operator }; }
 export const tableNames = ["flights", "teams", "players", "buyers", "auction_state", "sales", "ownership", "payout_rules"] as const;
 export function statement(sql: string, ...args: any[]) { return db().prepare(sql).bind(...args.map(x => x === undefined ? null : x)); }
 export function insert(table: string, row: Row) { const keys = Object.keys(row); return statement('INSERT INTO "' + table + '" (' + keys.map(k => '"' + k + '"').join(",") + ') VALUES (' + keys.map(() => "?").join(",") + ')', ...keys.map(k => row[k])); }

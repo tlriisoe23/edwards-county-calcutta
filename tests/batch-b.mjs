@@ -33,7 +33,7 @@ try{
  await send('team_import',{teams:['North / West','Lake / Field','Pine / Oak'].map(name=>({name,players:name.split(' / '),flightId}))});const [a,b,c]=d.teams.map(t=>t.id);
  await send('buyer_save',{name:'Paid Buyer',contact:'BATCH_B_PRIVATE_CONTACT',privateNotes:'BATCH_B_PRIVATE_NOTE'});const buyerA=d.buyers[0].id;
  await send('buyer_save',{name:'=1+1'});const buyerB=d.buyers.find(b=>b.id!==buyerA).id;
- await send('event_update',{...d.event,settings:{...d.event.settings,minBid:1,increment:1,deductionType:'none',deduction:0}});
+ await send('event_update',{...d.event,settings:{...d.event.settings,minBid:100,increment:1,deductionType:'none',deduction:0}}); // minBid $1.00: D-CAL-2 rejects a lower minimum (was 1 cent before Batch I)
  await send('payout_save',{poolId:flightId,percent:[5000,5000]});
  await send('status',{status:'LIVE'});
  for(const [teamId,amount,buyerId] of [[a,10001,buyerA],[b,20002,buyerA],[c,30003,buyerB]]){await send('bid',{teamId,amount});await send('sell',{teamId,amount,buyerId});}

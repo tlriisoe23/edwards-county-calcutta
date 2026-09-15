@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { db, statement, insert, update, read, freshEvent, identity } from "@/lib/store";
+import { db, statement, insert, update, read, freshEvent, identity, ownerEmails } from "@/lib/store";
 import { defaultSettings, type Row } from "@/lib/model";
 export const dynamic = "force-dynamic";
 const text = z.string().trim().min(1).max(150), note = z.string().max(4000).default(""), id = text;
@@ -12,7 +12,11 @@ const timestamp = () => new Date().toISOString();
 function requireThat(condition: any, message: string) { if (!condition)
     throw Error(message); }
 function settingsSchema() { return z.object({ trackBidder: z.boolean(), quickStarts: z.array(cents.refine(v => v > 0)).min(1).max(8), buybackMode: z.enum(["off", "calculate", "track"]), buybackSuggested: percent, minBid: cents, increment: cents.refine(v => v > 0), quickIncrements: z.array(cents.refine(v => v > 0)).min(1).max(8), poolMode: z.enum(["separate", "combined", "custom"]), deductionType: z.enum(["none", "percent", "fixed"]), deduction: cents, buybackMax: percent, buybackPriceMode: z.enum(["proportional", "fixed"]), buybackFixed: cents, buybackDeadline: z.string().max(40), autoAdvance: z.boolean(), showBidder: z.boolean(), showBid: z.boolean(), showBuyer: z.boolean(), showSalePrice: z.boolean(), showUpcoming: z.boolean(), showHandicap: z.boolean(), showPayouts: z.boolean(), showBuyback: z.boolean(), showTotalPool: z.boolean(), showFlightPools: z.boolean() }).superRefine((s, c) => { if (s.deductionType === "percent" && s.deduction > 10000)
-    c.addIssue({ code: "custom", message: "Deduction cannot exceed 100%." }); if (s.buybackDeadline && !Number.isFinite(Date.parse(s.buybackDeadline)))
+    c.addIssue({ code: "custom", message: "Deduction cannot exceed 100%." });
+    // D-CAL-2: a positive opening bid is required, and "no house cut" is only ever the None type — never a blank or zero amount.
+    if (s.minBid < 100) c.addIssue({ code: "custom", message: "Enter a minimum starting bid of at least $1.00" });
+    if (s.deductionType !== "none" && s.deduction <= 0) c.addIssue({ code: "custom", message: "Enter a house deduction greater than 0, or choose None." });
+    if (s.buybackDeadline && !Number.isFinite(Date.parse(s.buybackDeadline)))
     c.addIssue({ code: "custom", message: "Enter a valid buyback deadline." }); }); }
 export async function GET(request: Request) { try {
     const who = await identity();
@@ -23,7 +27,8 @@ export async function GET(request: Request) { try {
     const data = await read(q.get("event") || undefined);
     const audit = data ? (await statement('SELECT id,actor,action,recordId,createdAt,undone FROM audit WHERE eventId=? ORDER BY createdAt DESC LIMIT 100', data.event.id).all()).results : [];
     const operators = who.owner ? (await db().prepare('SELECT email,addedBy,createdAt FROM operators ORDER BY email').all()).results : [];
-    return Response.json({ data, events, audit, operators, user: { email: who.email, owner: who.owner } }, { headers: { "Cache-Control": "private, no-store" } });
+    const owners = who.owner ? ownerEmails() : [];
+    return Response.json({ data, events, audit, operators, owners, user: { email: who.email, owner: who.owner } }, { headers: { "Cache-Control": "private, no-store" } });
 }
 catch (e) {
     console.error(e);
@@ -54,6 +59,15 @@ export async function POST(request: Request) {
                 return true;
             };
             if (await replay()) return Response.json({ ok: true, duplicate: true });
+            if (action === "operator_add") {
+                // D-CAL-4: owners are never stored as operators, and a repeated grant changes nothing — so neither writes an audit entry.
+                requireThat(!ownerEmails().includes(email), email + " is already an owner. Owners are managed in the site settings, not here.");
+                if (await statement('SELECT email FROM operators WHERE email=?', email).first()) {
+                    // A concurrent retry of the same request may have committed the row between the replay check and here.
+                    if (await replay()) return Response.json({ ok: true, duplicate: true });
+                    throw Error(email + " already has access.");
+                }
+            }
             // Access is global, but every change needs a valid, durable audit context.
             const auditEvent = await (requestedEventId
                 ? statement('SELECT id FROM events WHERE id=?', requestedEventId)
