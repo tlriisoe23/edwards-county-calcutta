@@ -1,0 +1,1292 @@
+[
+  {
+    "at": "2026-09-15T14:03:53.325Z",
+    "note": "environment",
+    "detail": {
+      "playwright": "151.0.7922.34",
+      "fixtures": {
+        "live": "bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+        "completed": "62c3f604-c97b-44b2-937f-06b943b5c636"
+      },
+      "readOnly": true
+    }
+  },
+  {
+    "at": "2026-09-15T14:03:55.356Z",
+    "check": "contrast public 1280x720: .queue-row .lot, .sales-strip p, .payouts small, .board-tools [role=tab][aria-selected=false], .page-head .eyebrow",
+    "result": "FAIL",
+    "detail": {
+      "missing": [],
+      "rows": [
+        {
+          "selector": ".queue-row .lot",
+          "nodes": 4,
+          "min": 3.27,
+          "ok": false,
+          "distinct": [
+            "#899180 on #ffffff 22px/400 = 3.27"
+          ]
+        },
+        {
+          "selector": ".sales-strip p",
+          "nodes": 4,
+          "min": 4.01,
+          "ok": false,
+          "distinct": [
+            "#6d7766 on #edeee4 14px/400 = 4.01"
+          ]
+        },
+        {
+          "selector": ".payouts small",
+          "nodes": 12,
+          "min": 4.01,
+          "ok": false,
+          "distinct": [
+            "#7d816e on #ffffff 11.2px/400 = 4.01"
+          ]
+        },
+        {
+          "selector": ".board-tools [role=tab][aria-selected=false]",
+          "nodes": 4,
+          "min": 3.71,
+          "ok": false,
+          "distinct": [
+            "#71837a on #f7f6f0 16px/400 = 3.71"
+          ]
+        },
+        {
+          "selector": ".page-head .eyebrow",
+          "nodes": 1,
+          "min": 4.75,
+          "ok": true,
+          "distinct": [
+            "#637166 on #f7f6f0 12px/700 = 4.75"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T14:03:55.359Z",
+    "check": "public flight filter: the selected tab controls an existing tabpanel labelled by it",
+    "result": "FAIL",
+    "detail": [
+      {
+        "name": "All flights",
+        "selected": "true",
+        "controls": "radix-_r_0_-content-all",
+        "panelExists": false,
+        "panelRole": null,
+        "labelledByTab": false,
+        "panelTabIndex": null
+      },
+      {
+        "name": "Championship",
+        "selected": "false",
+        "controls": "radix-_r_0_-content-1a6f8ecd-1a74-48a5-810b-65bbaf664f6f",
+        "panelExists": false,
+        "panelRole": null,
+        "labelledByTab": false,
+        "panelTabIndex": null
+      },
+      {
+        "name": "First Flight",
+        "selected": "false",
+        "controls": "radix-_r_0_-content-68c4f9e2-2985-49f7-8f3d-50ad34bb7bdd",
+        "panelExists": false,
+        "panelRole": null,
+        "labelledByTab": false,
+        "panelTabIndex": null
+      },
+      {
+        "name": "Second Flight",
+        "selected": "false",
+        "controls": "radix-_r_0_-content-f249696c-efa8-455b-a068-bfb8394bbf6d",
+        "panelExists": false,
+        "panelRole": null,
+        "labelledByTab": false,
+        "panelTabIndex": null
+      },
+      {
+        "name": "Third Flight",
+        "selected": "false",
+        "controls": "radix-_r_0_-content-43c272b5-a7d9-45cc-a4e7-fbbcf9f7f1a6",
+        "panelExists": false,
+        "panelRole": null,
+        "labelledByTab": false,
+        "panelTabIndex": null
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T14:03:55.829Z",
+    "check": "axe public 1280x720",
+    "result": "FAIL",
+    "detail": {
+      "colorContrastNodes": 35,
+      "ariaControlsViolations": 1,
+      "all": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "count": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "count": 35
+        }
+      ],
+      "contrastNodes": [
+        {
+          "target": ".queue-row:nth-child(2) > .lot",
+          "html": "<span class=\"lot\">08</span>"
+        },
+        {
+          "target": ".queue-row:nth-child(3) > .lot",
+          "html": "<span class=\"lot\">09</span>"
+        },
+        {
+          "target": ".queue-row:nth-child(4) > .lot",
+          "html": "<span class=\"lot\">10</span>"
+        },
+        {
+          "target": ".queue-row:nth-child(5) > .lot",
+          "html": "<span class=\"lot\">11</span>"
+        }
+      ],
+      "ariaNodes": [
+        {
+          "target": "#radix-_r_0_-trigger-all",
+          "html": "<button type=\"button\" role=\"tab\" aria-selected=\"true\" aria-controls=\"radix-_r_0_-content-...\" data-state=\"active\" id=\"radix-_r_0_-trigger-.."
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T14:03:56.357Z",
+    "check": "public: ArrowRight selects the next flight tab and filters the board",
+    "result": "PASS",
+    "detail": {
+      "before": {
+        "cards": 17,
+        "flights": [
+          "Championship",
+          "First Flight",
+          "Second Flight",
+          "Third Flight"
+        ]
+      },
+      "afterArrow": {
+        "cards": 5,
+        "flights": [
+          "Championship"
+        ],
+        "focus": {
+          "role": "tab",
+          "name": "Championship",
+          "selected": "true"
+        }
+      }
+    }
+  },
+  {
+    "at": "2026-09-15T14:03:56.358Z",
+    "check": "public: after the arrow key the newly selected tab controls the visible panel",
+    "result": "FAIL",
+    "detail": {
+      "name": "Championship",
+      "selected": "true",
+      "controls": "radix-_r_0_-content-1a6f8ecd-1a74-48a5-810b-65bbaf664f6f",
+      "panelExists": false,
+      "panelRole": null,
+      "labelledByTab": false,
+      "panelTabIndex": null
+    }
+  },
+  {
+    "at": "2026-09-15T14:03:56.366Z",
+    "check": "public: Tab from the flight tabs reaches the team search (unchanged order)",
+    "result": "PASS",
+    "detail": {
+      "tag": "INPUT",
+      "role": null,
+      "name": "Search teams",
+      "selected": null
+    }
+  },
+  {
+    "at": "2026-09-15T14:03:56.373Z",
+    "note": "public: focus after the status select (recorded for before/after comparison; the new tabpanel must not add a stop)",
+    "detail": {
+      "afterSearch": {
+        "tag": "BUTTON",
+        "role": "combobox",
+        "name": "Team status",
+        "selected": null
+      },
+      "afterStatus": {
+        "tag": "A",
+        "role": null,
+        "name": "THE CALCUTTAEDWARDS COUNTY",
+        "selected": null
+      }
+    }
+  },
+  {
+    "at": "2026-09-15T14:03:56.791Z",
+    "check": "public: Home returns to All flights",
+    "result": "PASS",
+    "detail": {
+      "tag": "BUTTON",
+      "role": "tab",
+      "name": "All flights",
+      "selected": "true"
+    }
+  },
+  {
+    "at": "2026-09-15T14:03:56.851Z",
+    "note": "screenshot",
+    "detail": "public-board-tools-1280.png"
+  },
+  {
+    "at": "2026-09-15T14:03:58.724Z",
+    "check": "contrast public 390x844: .queue-row .lot, .sales-strip p, .payouts small, .board-tools [role=tab][aria-selected=false], .page-head .eyebrow",
+    "result": "FAIL",
+    "detail": {
+      "missing": [
+        ".queue-row .lot"
+      ],
+      "rows": [
+        {
+          "selector": ".queue-row .lot",
+          "nodes": 0,
+          "min": null,
+          "ok": false,
+          "distinct": []
+        },
+        {
+          "selector": ".sales-strip p",
+          "nodes": 4,
+          "min": 4.01,
+          "ok": false,
+          "distinct": [
+            "#6d7766 on #edeee4 14px/400 = 4.01"
+          ]
+        },
+        {
+          "selector": ".payouts small",
+          "nodes": 12,
+          "min": 4.01,
+          "ok": false,
+          "distinct": [
+            "#7d816e on #ffffff 11.2px/400 = 4.01"
+          ]
+        },
+        {
+          "selector": ".board-tools [role=tab][aria-selected=false]",
+          "nodes": 4,
+          "min": 3.71,
+          "ok": false,
+          "distinct": [
+            "#71837a on #f7f6f0 16px/400 = 3.71"
+          ]
+        },
+        {
+          "selector": ".page-head .eyebrow",
+          "nodes": 1,
+          "min": 4.75,
+          "ok": true,
+          "distinct": [
+            "#637166 on #f7f6f0 12px/700 = 4.75"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T14:03:58.726Z",
+    "check": "public flight filter 390: the selected tab controls an existing tabpanel labelled by it",
+    "result": "FAIL",
+    "detail": [
+      {
+        "name": "All flights",
+        "selected": "true",
+        "controls": "radix-_r_0_-content-all",
+        "panelExists": false,
+        "panelRole": null,
+        "labelledByTab": false,
+        "panelTabIndex": null
+      },
+      {
+        "name": "Championship",
+        "selected": "false",
+        "controls": "radix-_r_0_-content-1a6f8ecd-1a74-48a5-810b-65bbaf664f6f",
+        "panelExists": false,
+        "panelRole": null,
+        "labelledByTab": false,
+        "panelTabIndex": null
+      },
+      {
+        "name": "First Flight",
+        "selected": "false",
+        "controls": "radix-_r_0_-content-68c4f9e2-2985-49f7-8f3d-50ad34bb7bdd",
+        "panelExists": false,
+        "panelRole": null,
+        "labelledByTab": false,
+        "panelTabIndex": null
+      },
+      {
+        "name": "Second Flight",
+        "selected": "false",
+        "controls": "radix-_r_0_-content-f249696c-efa8-455b-a068-bfb8394bbf6d",
+        "panelExists": false,
+        "panelRole": null,
+        "labelledByTab": false,
+        "panelTabIndex": null
+      },
+      {
+        "name": "Third Flight",
+        "selected": "false",
+        "controls": "radix-_r_0_-content-43c272b5-a7d9-45cc-a4e7-fbbcf9f7f1a6",
+        "panelExists": false,
+        "panelRole": null,
+        "labelledByTab": false,
+        "panelTabIndex": null
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T14:03:59.166Z",
+    "check": "axe public 390x844",
+    "result": "FAIL",
+    "detail": {
+      "colorContrastNodes": 29,
+      "ariaControlsViolations": 1,
+      "all": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "count": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "count": 29
+        }
+      ],
+      "contrastNodes": [
+        {
+          "target": ".pool.panel:nth-child(1) > .payouts > div:nth-child(1) > span > small",
+          "html": "<small>50%</small>"
+        },
+        {
+          "target": ".pool.panel:nth-child(1) > .payouts > div:nth-child(2) > span > small",
+          "html": "<small>30%</small>"
+        },
+        {
+          "target": ".pool.panel:nth-child(1) > .payouts > div:nth-child(3) > span > small",
+          "html": "<small>20%</small>"
+        },
+        {
+          "target": ".pool.panel:nth-child(2) > .payouts > div:nth-child(1) > span > small",
+          "html": "<small>50%</small>"
+        }
+      ],
+      "ariaNodes": [
+        {
+          "target": "#radix-_r_0_-trigger-all",
+          "html": "<button type=\"button\" role=\"tab\" aria-selected=\"true\" aria-controls=\"radix-_r_0_-content-...\" data-state=\"active\" id=\"radix-_r_0_-trigger-.."
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T14:03:59.184Z",
+    "check": "public 390: header controls named, >= 24 px and focus-visible (Batch F regression)",
+    "result": "PASS",
+    "detail": [
+      {
+        "name": "Auction board",
+        "w": 24,
+        "h": 24,
+        "focusVisible": true,
+        "outline": "auto 1px"
+      },
+      {
+        "name": "TV mode",
+        "w": 24,
+        "h": 24,
+        "focusVisible": true,
+        "outline": "auto 1px"
+      },
+      {
+        "name": "Operator area",
+        "w": 24,
+        "h": 24,
+        "focusVisible": true,
+        "outline": "auto 1px"
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T14:03:59.185Z",
+    "check": "public 390: no horizontal overflow",
+    "result": "PASS"
+  },
+  {
+    "at": "2026-09-15T14:04:01.064Z",
+    "check": "contrast tv live 1920x1080: .queue-row .lot, .sales-strip p, .page-head .eyebrow",
+    "result": "FAIL",
+    "detail": {
+      "missing": [],
+      "rows": [
+        {
+          "selector": ".queue-row .lot",
+          "nodes": 3,
+          "min": 3.27,
+          "ok": false,
+          "distinct": [
+            "#899180 on #ffffff 22px/400 = 3.27"
+          ]
+        },
+        {
+          "selector": ".sales-strip p",
+          "nodes": 3,
+          "min": 4.01,
+          "ok": false,
+          "distinct": [
+            "#6d7766 on #edeee4 14px/400 = 4.01"
+          ]
+        },
+        {
+          "selector": ".page-head .eyebrow",
+          "nodes": 1,
+          "min": 4.6,
+          "ok": true,
+          "distinct": [
+            "#637166 on #f3f3e9 14px/700 = 4.6"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T14:04:01.325Z",
+    "check": "axe tv live 1920x1080",
+    "result": "FAIL",
+    "detail": {
+      "colorContrastNodes": 6,
+      "ariaControlsViolations": 0,
+      "all": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "count": 6
+        }
+      ],
+      "contrastNodes": [
+        {
+          "target": ".queue-row:nth-child(2) > .lot",
+          "html": "<span class=\"lot\">08</span>"
+        },
+        {
+          "target": ".queue-row:nth-child(3) > .lot",
+          "html": "<span class=\"lot\">09</span>"
+        },
+        {
+          "target": ".queue-row:nth-child(4) > .lot",
+          "html": "<span class=\"lot\">10</span>"
+        },
+        {
+          "target": "article:nth-child(1) > p",
+          "html": "<p>Taylor Syndicate</p>"
+        }
+      ],
+      "ariaNodes": []
+    }
+  },
+  {
+    "at": "2026-09-15T14:04:03.250Z",
+    "check": "contrast tv live 1093x614: .queue-row .lot, .sales-strip p, .page-head .eyebrow",
+    "result": "FAIL",
+    "detail": {
+      "missing": [],
+      "rows": [
+        {
+          "selector": ".queue-row .lot",
+          "nodes": 3,
+          "min": 3.27,
+          "ok": false,
+          "distinct": [
+            "#899180 on #ffffff 18px/400 = 3.27"
+          ]
+        },
+        {
+          "selector": ".sales-strip p",
+          "nodes": 3,
+          "min": 4.01,
+          "ok": false,
+          "distinct": [
+            "#6d7766 on #edeee4 12px/400 = 4.01"
+          ]
+        },
+        {
+          "selector": ".page-head .eyebrow",
+          "nodes": 1,
+          "min": 4.6,
+          "ok": true,
+          "distinct": [
+            "#637166 on #f3f3e9 12px/700 = 4.6"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T14:04:03.503Z",
+    "check": "axe tv live 1093x614",
+    "result": "FAIL",
+    "detail": {
+      "colorContrastNodes": 6,
+      "ariaControlsViolations": 0,
+      "all": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "count": 6
+        }
+      ],
+      "contrastNodes": [
+        {
+          "target": ".queue-row:nth-child(2) > .lot",
+          "html": "<span class=\"lot\">08</span>"
+        },
+        {
+          "target": ".queue-row:nth-child(3) > .lot",
+          "html": "<span class=\"lot\">09</span>"
+        },
+        {
+          "target": ".queue-row:nth-child(4) > .lot",
+          "html": "<span class=\"lot\">10</span>"
+        },
+        {
+          "target": "article:nth-child(1) > p",
+          "html": "<p>Taylor Syndicate</p>"
+        }
+      ],
+      "ariaNodes": []
+    }
+  },
+  {
+    "at": "2026-09-15T14:04:03.509Z",
+    "check": "tv live 1093x614: one screen, contained statistics, no section overlap (Batch F regression)",
+    "result": "PASS",
+    "detail": {
+      "scrollHeight": 614,
+      "innerHeight": 614,
+      "singleScreen": true,
+      "bad": [],
+      "overlaps": [],
+      "sectionOverlaps": []
+    }
+  },
+  {
+    "at": "2026-09-15T14:04:03.549Z",
+    "note": "screenshot",
+    "detail": "tv-live-1093x614.png"
+  },
+  {
+    "at": "2026-09-15T14:04:05.436Z",
+    "check": "contrast tv completed 1093x614: .sales-strip p, .page-head .eyebrow",
+    "result": "FAIL",
+    "detail": {
+      "missing": [],
+      "rows": [
+        {
+          "selector": ".sales-strip p",
+          "nodes": 3,
+          "min": 4.01,
+          "ok": false,
+          "distinct": [
+            "#6d7766 on #edeee4 12px/400 = 4.01"
+          ]
+        },
+        {
+          "selector": ".page-head .eyebrow",
+          "nodes": 1,
+          "min": 4.6,
+          "ok": true,
+          "distinct": [
+            "#637166 on #f3f3e9 12px/700 = 4.6"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T14:04:05.677Z",
+    "check": "axe tv completed 1093x614",
+    "result": "FAIL",
+    "detail": {
+      "colorContrastNodes": 3,
+      "ariaControlsViolations": 0,
+      "all": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "count": 3
+        }
+      ],
+      "contrastNodes": [
+        {
+          "target": "article:nth-child(1) > p",
+          "html": "<p>Owes Everything</p>"
+        },
+        {
+          "target": "article:nth-child(2) > p",
+          "html": "<p>Overpaid Buyer</p>"
+        },
+        {
+          "target": "article:nth-child(3) > p",
+          "html": "<p>Partial Payer</p>"
+        }
+      ],
+      "ariaNodes": []
+    }
+  },
+  {
+    "at": "2026-09-15T14:04:05.683Z",
+    "check": "tv completed 1093x614: one screen, contained statistics, no section overlap (Batch F regression)",
+    "result": "PASS",
+    "detail": {
+      "scrollHeight": 614,
+      "innerHeight": 614,
+      "singleScreen": true,
+      "bad": [],
+      "overlaps": [],
+      "sectionOverlaps": []
+    }
+  },
+  {
+    "at": "2026-09-15T14:04:07.552Z",
+    "check": "contrast tv live 1366x768: .queue-row .lot, .sales-strip p, .page-head .eyebrow",
+    "result": "FAIL",
+    "detail": {
+      "missing": [],
+      "rows": [
+        {
+          "selector": ".queue-row .lot",
+          "nodes": 3,
+          "min": 3.27,
+          "ok": false,
+          "distinct": [
+            "#899180 on #ffffff 22px/400 = 3.27"
+          ]
+        },
+        {
+          "selector": ".sales-strip p",
+          "nodes": 3,
+          "min": 4.01,
+          "ok": false,
+          "distinct": [
+            "#6d7766 on #edeee4 14px/400 = 4.01"
+          ]
+        },
+        {
+          "selector": ".page-head .eyebrow",
+          "nodes": 1,
+          "min": 4.6,
+          "ok": true,
+          "distinct": [
+            "#637166 on #f3f3e9 14px/700 = 4.6"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T14:04:07.810Z",
+    "check": "axe tv live 1366x768",
+    "result": "FAIL",
+    "detail": {
+      "colorContrastNodes": 6,
+      "ariaControlsViolations": 0,
+      "all": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "count": 6
+        }
+      ],
+      "contrastNodes": [
+        {
+          "target": ".queue-row:nth-child(2) > .lot",
+          "html": "<span class=\"lot\">08</span>"
+        },
+        {
+          "target": ".queue-row:nth-child(3) > .lot",
+          "html": "<span class=\"lot\">09</span>"
+        },
+        {
+          "target": ".queue-row:nth-child(4) > .lot",
+          "html": "<span class=\"lot\">10</span>"
+        },
+        {
+          "target": "article:nth-child(1) > p",
+          "html": "<p>Taylor Syndicate</p>"
+        }
+      ],
+      "ariaNodes": []
+    }
+  },
+  {
+    "at": "2026-09-15T14:04:10.010Z",
+    "check": "contrast operator console 1280x720: .admin-tabs [role=tab][aria-selected=false], .admin-heading .eyebrow, .console-queue .lot, .payouts small",
+    "result": "FAIL",
+    "detail": {
+      "missing": [],
+      "rows": [
+        {
+          "selector": ".admin-tabs [role=tab][aria-selected=false]",
+          "nodes": 11,
+          "min": 3.71,
+          "ok": false,
+          "distinct": [
+            "#71837a on #f7f6f0 13px/400 = 3.71"
+          ]
+        },
+        {
+          "selector": ".admin-heading .eyebrow",
+          "nodes": 1,
+          "min": 4.27,
+          "ok": false,
+          "distinct": [
+            "#6c795f on #f7f6f0 12px/700 = 4.27"
+          ]
+        },
+        {
+          "selector": ".console-queue .lot",
+          "nodes": 8,
+          "min": 3.27,
+          "ok": false,
+          "distinct": [
+            "#899180 on #ffffff 22px/400 = 3.27"
+          ]
+        },
+        {
+          "selector": ".payouts small",
+          "nodes": 12,
+          "min": 4.01,
+          "ok": false,
+          "distinct": [
+            "#7d816e on #ffffff 11.2px/400 = 4.01"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T14:04:10.012Z",
+    "note": "operator: inactive tab count",
+    "detail": 11
+  },
+  {
+    "at": "2026-09-15T14:04:10.469Z",
+    "check": "axe operator console",
+    "result": "FAIL",
+    "detail": {
+      "colorContrastNodes": 33,
+      "ariaControlsViolations": 0,
+      "all": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "count": 33
+        }
+      ],
+      "contrastNodes": [
+        {
+          "target": ".admin-heading > div:nth-child(1) > .eyebrow",
+          "html": "<p class=\"eyebrow\">AUCTION OPERATIONS</p>"
+        },
+        {
+          "target": "#radix-_r_1_-trigger-teams",
+          "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger"
+        },
+        {
+          "target": "#radix-_r_1_-trigger-buyers",
+          "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger"
+        },
+        {
+          "target": "#radix-_r_1_-trigger-sales",
+          "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger"
+        }
+      ],
+      "ariaNodes": []
+    }
+  },
+  {
+    "at": "2026-09-15T14:04:10.471Z",
+    "check": "operator navigation tabs: the selected tab controls an existing tabpanel labelled by it",
+    "result": "PASS",
+    "detail": [
+      {
+        "name": "Auction console",
+        "selected": "true",
+        "controls": "radix-_r_1_-content-console",
+        "panelExists": true,
+        "panelRole": "tabpanel",
+        "labelledByTab": true,
+        "panelTabIndex": "0"
+      },
+      {
+        "name": "Teams",
+        "selected": "false",
+        "controls": "radix-_r_1_-content-teams",
+        "panelExists": true,
+        "panelRole": "tabpanel",
+        "labelledByTab": true,
+        "panelTabIndex": "0"
+      },
+      {
+        "name": "Buyers",
+        "selected": "false",
+        "controls": "radix-_r_1_-content-buyers",
+        "panelExists": true,
+        "panelRole": "tabpanel",
+        "labelledByTab": true,
+        "panelTabIndex": "0"
+      },
+      {
+        "name": "Sales",
+        "selected": "false",
+        "controls": "radix-_r_1_-content-sales",
+        "panelExists": true,
+        "panelRole": "tabpanel",
+        "labelledByTab": true,
+        "panelTabIndex": "0"
+      },
+      {
+        "name": "Settlement",
+        "selected": "false",
+        "controls": "radix-_r_1_-content-settlement",
+        "panelExists": true,
+        "panelRole": "tabpanel",
+        "labelledByTab": true,
+        "panelTabIndex": "0"
+      },
+      {
+        "name": "Setup & rules",
+        "selected": "false",
+        "controls": "radix-_r_1_-content-rules",
+        "panelExists": true,
+        "panelRole": "tabpanel",
+        "labelledByTab": true,
+        "panelTabIndex": "0"
+      },
+      {
+        "name": "Results",
+        "selected": "false",
+        "controls": "radix-_r_1_-content-results",
+        "panelExists": true,
+        "panelRole": "tabpanel",
+        "labelledByTab": true,
+        "panelTabIndex": "0"
+      },
+      {
+        "name": "Exports",
+        "selected": "false",
+        "controls": "radix-_r_1_-content-exports",
+        "panelExists": true,
+        "panelRole": "tabpanel",
+        "labelledByTab": true,
+        "panelTabIndex": "0"
+      },
+      {
+        "name": "Display & sharing",
+        "selected": "false",
+        "controls": "radix-_r_1_-content-sharing",
+        "panelExists": true,
+        "panelRole": "tabpanel",
+        "labelledByTab": true,
+        "panelTabIndex": "0"
+      },
+      {
+        "name": "Help",
+        "selected": "false",
+        "controls": "radix-_r_1_-content-help",
+        "panelExists": true,
+        "panelRole": "tabpanel",
+        "labelledByTab": true,
+        "panelTabIndex": "0"
+      },
+      {
+        "name": "Activity",
+        "selected": "false",
+        "controls": "radix-_r_1_-content-activity",
+        "panelExists": true,
+        "panelRole": "tabpanel",
+        "labelledByTab": true,
+        "panelTabIndex": "0"
+      },
+      {
+        "name": "Access",
+        "selected": "false",
+        "controls": "radix-_r_1_-content-access",
+        "panelExists": true,
+        "panelRole": "tabpanel",
+        "labelledByTab": true,
+        "panelTabIndex": "0"
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T14:04:12.938Z",
+    "check": "contrast operator settlement: .admin-tabs [role=tab][aria-selected=false], .settlement-tools [role=tab][aria-selected=false], .admin-heading .eyebrow",
+    "result": "FAIL",
+    "detail": {
+      "missing": [],
+      "rows": [
+        {
+          "selector": ".admin-tabs [role=tab][aria-selected=false]",
+          "nodes": 11,
+          "min": 3.71,
+          "ok": false,
+          "distinct": [
+            "#71837a on #f7f6f0 13px/400 = 3.71"
+          ]
+        },
+        {
+          "selector": ".settlement-tools [role=tab][aria-selected=false]",
+          "nodes": 1,
+          "min": 3.6,
+          "ok": false,
+          "distinct": [
+            "#6d8076 on #eeeee6 16px/400 = 3.6"
+          ]
+        },
+        {
+          "selector": ".admin-heading .eyebrow",
+          "nodes": 1,
+          "min": 4.27,
+          "ok": false,
+          "distinct": [
+            "#6c795f on #f7f6f0 12px/700 = 4.27"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T14:04:12.940Z",
+    "check": "settlement filter: the selected tab controls an existing tabpanel labelled by it",
+    "result": "FAIL",
+    "detail": [
+      {
+        "name": "Auction payments",
+        "selected": "true",
+        "controls": "radix-_r_v_-content-receipt",
+        "panelExists": false,
+        "panelRole": null,
+        "labelledByTab": false,
+        "panelTabIndex": null
+      },
+      {
+        "name": "Tournament payouts",
+        "selected": "false",
+        "controls": "radix-_r_v_-content-payout",
+        "panelExists": false,
+        "panelRole": null,
+        "labelledByTab": false,
+        "panelTabIndex": null
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T14:04:13.258Z",
+    "check": "axe operator settlement",
+    "result": "FAIL",
+    "detail": {
+      "colorContrastNodes": 16,
+      "ariaControlsViolations": 1,
+      "all": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "count": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "count": 16
+        }
+      ],
+      "contrastNodes": [
+        {
+          "target": ".admin-heading > div:nth-child(1) > .eyebrow",
+          "html": "<p class=\"eyebrow\">AUCTION OPERATIONS</p>"
+        },
+        {
+          "target": "#radix-_r_1_-trigger-console",
+          "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger"
+        },
+        {
+          "target": "#radix-_r_1_-trigger-teams",
+          "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger"
+        },
+        {
+          "target": "#radix-_r_1_-trigger-buyers",
+          "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger"
+        }
+      ],
+      "ariaNodes": [
+        {
+          "target": "#radix-_r_v_-trigger-receipt",
+          "html": "<button type=\"button\" role=\"tab\" aria-selected=\"true\" aria-controls=\"radix-_r_v_-content-...\" data-state=\"active\" id=\"radix-_r_v_-trigger-.."
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T14:04:13.793Z",
+    "check": "settlement: ArrowRight selects Tournament payouts and switches the accounts view",
+    "result": "PASS",
+    "detail": {
+      "receipts": {
+        "cards": 4,
+        "firstButton": "Mark paid"
+      },
+      "payouts": {
+        "cards": 4,
+        "firstButton": "Mark payout paid",
+        "fine": true,
+        "focus": {
+          "role": "tab",
+          "name": "Tournament payouts",
+          "selected": "true"
+        }
+      }
+    }
+  },
+  {
+    "at": "2026-09-15T14:04:13.794Z",
+    "check": "settlement: the Tournament payouts tab controls the visible panel",
+    "result": "FAIL",
+    "detail": {
+      "name": "Tournament payouts",
+      "selected": "true",
+      "controls": "radix-_r_v_-content-payout",
+      "panelExists": false,
+      "panelRole": null,
+      "labelledByTab": false,
+      "panelTabIndex": null
+    }
+  },
+  {
+    "at": "2026-09-15T14:04:13.799Z",
+    "check": "settlement: Tab from the filter tabs reaches the account search (unchanged order)",
+    "result": "PASS",
+    "detail": {
+      "tag": "INPUT",
+      "role": null,
+      "name": "Search settlement accounts",
+      "selected": null
+    }
+  },
+  {
+    "at": "2026-09-15T14:04:13.806Z",
+    "note": "settlement: focus two stops after the search (recorded for before/after comparison)",
+    "detail": {
+      "tag": "BUTTON",
+      "role": null,
+      "name": "Mark payout paid",
+      "selected": null
+    }
+  },
+  {
+    "at": "2026-09-15T14:04:14.227Z",
+    "check": "settlement: ArrowLeft returns to Auction payments",
+    "result": "PASS",
+    "detail": {
+      "tag": "BUTTON",
+      "role": "tab",
+      "name": "Auction payments",
+      "selected": "true"
+    }
+  },
+  {
+    "at": "2026-09-15T14:04:14.277Z",
+    "note": "screenshot",
+    "detail": "operator-settlement-tabs-1280.png"
+  },
+  {
+    "at": "2026-09-15T14:04:15.096Z",
+    "check": "contrast operator exports: .admin-tabs [role=tab][aria-selected=false], .admin-heading .eyebrow",
+    "result": "FAIL",
+    "detail": {
+      "missing": [],
+      "rows": [
+        {
+          "selector": ".admin-tabs [role=tab][aria-selected=false]",
+          "nodes": 11,
+          "min": 3.71,
+          "ok": false,
+          "distinct": [
+            "#71837a on #f7f6f0 13px/400 = 3.71"
+          ]
+        },
+        {
+          "selector": ".admin-heading .eyebrow",
+          "nodes": 1,
+          "min": 4.27,
+          "ok": false,
+          "distinct": [
+            "#6c795f on #f7f6f0 12px/700 = 4.27"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T14:04:15.283Z",
+    "check": "axe operator exports",
+    "result": "FAIL",
+    "detail": {
+      "colorContrastNodes": 14,
+      "ariaControlsViolations": 0,
+      "all": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "count": 14
+        }
+      ],
+      "contrastNodes": [
+        {
+          "target": ".admin-heading > div:nth-child(1) > .eyebrow",
+          "html": "<p class=\"eyebrow\">AUCTION OPERATIONS</p>"
+        },
+        {
+          "target": "#radix-_r_1_-trigger-console",
+          "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger"
+        },
+        {
+          "target": "#radix-_r_1_-trigger-teams",
+          "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger"
+        },
+        {
+          "target": "#radix-_r_1_-trigger-buyers",
+          "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger"
+        }
+      ],
+      "ariaNodes": []
+    }
+  },
+  {
+    "at": "2026-09-15T14:04:17.439Z",
+    "check": "contrast operator console 390x844: .admin-tabs [role=tab][aria-selected=false], .admin-heading .eyebrow",
+    "result": "FAIL",
+    "detail": {
+      "missing": [],
+      "rows": [
+        {
+          "selector": ".admin-tabs [role=tab][aria-selected=false]",
+          "nodes": 11,
+          "min": 3.71,
+          "ok": false,
+          "distinct": [
+            "#71837a on #f7f6f0 13px/400 = 3.71"
+          ]
+        },
+        {
+          "selector": ".admin-heading .eyebrow",
+          "nodes": 1,
+          "min": 4.27,
+          "ok": false,
+          "distinct": [
+            "#6c795f on #f7f6f0 12px/700 = 4.27"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T14:04:17.457Z",
+    "check": "operator 390: header controls named, >= 24 px and focus-visible (Batch F regression)",
+    "result": "PASS",
+    "detail": [
+      {
+        "name": "Public board",
+        "w": 24,
+        "h": 24,
+        "focusVisible": true,
+        "outline": "auto 1px"
+      },
+      {
+        "name": "Launch TV Display",
+        "w": 24,
+        "h": 24,
+        "focusVisible": true,
+        "outline": "auto 1px"
+      },
+      {
+        "name": "Help",
+        "w": 29,
+        "h": 24,
+        "focusVisible": true,
+        "outline": "auto 1px"
+      },
+      {
+        "name": "Sign out",
+        "w": 24,
+        "h": 24,
+        "focusVisible": true,
+        "outline": "auto 1px"
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T14:04:17.941Z",
+    "check": "axe operator console 390x844",
+    "result": "FAIL",
+    "detail": {
+      "colorContrastNodes": 33,
+      "ariaControlsViolations": 0,
+      "all": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "count": 33
+        }
+      ],
+      "contrastNodes": [
+        {
+          "target": ".admin-heading > div:nth-child(1) > .eyebrow",
+          "html": "<p class=\"eyebrow\">AUCTION OPERATIONS</p>"
+        },
+        {
+          "target": "#radix-_r_1_-trigger-teams",
+          "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger"
+        },
+        {
+          "target": "#radix-_r_1_-trigger-buyers",
+          "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger"
+        },
+        {
+          "target": "#radix-_r_1_-trigger-sales",
+          "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger"
+        }
+      ],
+      "ariaNodes": []
+    }
+  },
+  {
+    "at": "2026-09-15T14:04:17.976Z",
+    "note": "tally",
+    "detail": {
+      "FAIL": 25,
+      "PASS": 12
+    }
+  }
+]

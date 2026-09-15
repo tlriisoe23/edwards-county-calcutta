@@ -1,0 +1,64 @@
+# Batch H — AA contrast and honest filter tabs
+
+2026-09-15 UTC. The owner approved Batch H exactly as proposed in [TASK-TRACKER.md](TASK-TRACKER.md): **CAL-P2-007 and CAL-P3-002 are implemented and verified locally** on branch `claude/cal-h-contrast-tabs` (one commit stacked on the Batch G tip `1f2b453`, which is itself stacked on Batch F; the hash is in the branch and the handoff). No deployment, container, route, migration, dependency or production access change occurred; the live container at `calcutta.edcogolf.org` still runs the previous build and Batches F and G are also still unmerged. Lifecycle state: **implemented → validated (local)**, not merged, not deployed.
+
+## What changed
+
+**CAL-P2-007 — five supporting texts below 4.5 : 1.** The supporting colours were a dozen hand-typed near-duplicates of one grey-green (`#637166`, `#6c795f`, `#6d7766`, `#7d816e`, `#899180`, …), several of them below AA on their actual backgrounds. The correction is at the token level in `app/globals.css`, not per element: the existing `--muted-foreground` token darkens from `#637166` to **`#5c6a5f`** (white 5.70 : 1, page `#f7f6f0` 5.27, muted tab list `#eeeee6` 4.89, sales strip `#edeee4` 4.88, TV `#f3f3e9` 5.11), and a new **`--lot-foreground: #636e60`** (white 5.34, page 4.94) keeps the Georgia lot numerals a shade lighter than body captions so the queue still reads as a numbered list rather than a block of text. The five approved texts now use those tokens: `.lot` → lot token; `.sales-strip p`, `.payouts small` and `.admin-heading .eyebrow` → muted token; and the shared `components/ui/tabs.tsx` inactive trigger colour changes from `text-foreground/60` (a 60 % alpha over whatever sits behind it, 3.71 : 1 on the operator page and 3.60 : 1 on Settlement's muted list) to `text-muted-foreground`, which fixes every inactive tab in the app — the eleven operator navigation tabs on all twelve screens, the public flight filter and the Settlement view switch. Hierarchy is unchanged: `--foreground #18372b` remains the primary text and every muted text is still visibly secondary (see the screenshots).
+
+The finding's acceptance also requires that axe report **no serious `color-contrast` node** on public laptop/phone, TV, operator console, Settlement and Exports. With the five texts fixed, axe still flagged six more hard-coded near-duplicates of the same token on those surfaces that were already among the baseline node counts but were not itemised in the E2 table: `.page-head .eyebrow` (`#637166`, already 4.75 on the public page; retargeted to the token so the two eyebrows stay in sync), `.queue-row p,.fine` (`#6e796d`, 4.33 on the page background — the Exports footnote), `.team-meta` (`#6c775f`, inherited by the UPCOMING badge over `#f6f7f0`, eleven public nodes), `.operator-footer` (`#7f8973`), `.page-footer>span` (`#748069`) and `.settlement-overview p` (`#65725e` in `app/refinements.css`). Each now uses `var(--muted-foreground)`; no new colour was introduced for them. They are reported here as within the approved acceptance, not as a widening of scope: every one is a supporting caption on a surface the finding names, corrected with the token the finding's "smallest correction" prescribes.
+
+**CAL-P3-002 — filter "tabs" pointed `aria-controls` at panels that did not exist.** Two options were open: give the tabs real `TabsContent` panels, or drop tab semantics for a labelled group of `aria-pressed` toggle buttons. The **first** was chosen as the smaller honest change: the flight filter and the Auction payments / Tournament payouts switch genuinely swap the content beneath them, Radix's arrow-key / Home / End roving focus (which the acceptance says must not change) is kept as is, the shared `tabs.tsx` primitive and the visual style are untouched, and the toggle-button alternative would have needed new styling plus a change in keyboard behaviour. In `app/auction.tsx` the `Tabs` root now wraps both the `.board-tools` row (with `TabsList` as a direct child, labelled *Filter by flight*) and a `TabsContent value={filter}` panel holding the team cards and the empty state; `app/settlement.tsx` does the same for `.settlement-tools` (list labelled *Settlement view*) with a `TabsContent value={kind}` panel holding the payout footnote, the account cards and the empty state. The panel's id therefore always equals the selected tab's `aria-controls`, it carries `role="tabpanel"` and `aria-labelledby` the tab, and axe's `aria-valid-attr-value` is clean. Unselected tabs still name their lazily-mounted panel ids, the standard Radix pattern that the operator's own navigation tabs already use and that axe deliberately exempts for `aria-selected="false"`. The panels are rendered with `tabIndex={-1}` so they add **no new Tab stop**: the recorded focus sequence after the status select (public → brand link) and after the search (Settlement → *Mark payout paid*) is identical before and after. Two CSS selectors that targeted the old root moved to the list (`.board-tools>[data-slot=tabs-list]` at ≤ 700 px in `globals.css`, `.settlement-tools>[data-slot=tabs-list]` at ≤ 650 px in `refinements.css`). The root uses a project class `.filter-tabs{display:block}` rather than Tailwind's `block` utility because the app already owns a `.block` class (the dark live-auction block); the first attempt used the utility and painted the tools row dark green, which the harness caught before commit.
+
+## Commands
+
+Local dev server `npm run dev` on 5173 against the existing `.wrangler/state` store. Browser evidence: Playwright (Chromium 151) with axe-core 4.13, driven by [batch-h-evidence/scripts/batch-h.mjs](batch-h-evidence/scripts/batch-h.mjs) (localhost only; the same scratch symlink arrangement as Batches F and G). The script is **read-only**: it signs in with the starter's mock identity and reads the AUDIT-E2 `live` and `completed` fixtures; it creates and changes nothing. Contrast is computed in-page by painting each element's computed colour over its resolved ancestor background on a canvas (so alpha colours such as `text-foreground/60` are blended exactly) and applying the WCAG formula. Then `node node_modules/typescript/bin/tsc --noEmit --incremental false`, `npm run lint`, `npm run build`, `node tests/acceptance.mjs`, `node tests/refinement.mjs`.
+
+## Results
+
+Before → after, minimum ratio over every matching node (node counts in brackets); all "after" values are ≥ 4.5 : 1.
+
+| Text | Before | After |
+|---|---|---|
+| Lot numbers `.lot` — public queue (4), TV 1920×1080 / 1366×768 / 1093×614 (3), operator *Next up* (8) | **3.27** (`#899180` on white) | **5.34** (`#636e60` on white) |
+| Sale buyer line `.sales-strip p` — public 1280 / 390 (4), TV live and completed (3) | **4.01** (`#6d7766` on `#edeee4`) | **4.88** (`#5c6a5f` on `#edeee4`) |
+| Payout % `.payouts small` — public pool cards (12), operator console (12) | **4.01** (`#7d816e` on white, 11.2 px) | **5.70** |
+| Inactive tabs — operator navigation (11 on console / Settlement / Exports / 390 px), public flight filter (4), Settlement view switch (1) | **3.71** (`#71837a` on `#f7f6f0`); Settlement switch **3.60** on `#eeeee6` | **5.27**; Settlement switch **4.89** |
+| Eyebrow — operator `.admin-heading .eyebrow` (12 px bold); public / TV `.page-head .eyebrow` | **4.27** (`#6c795f` on `#f7f6f0`); public 4.75 / TV 4.60 (passing) | **5.27**; public 5.27 / TV 5.11 |
+
+| Check | Result | Evidence |
+|---|---|---|
+| Baseline reproduction before the change | FAIL as registered: the five ratios above, axe `color-contrast` 35 / 29 nodes on public 1280 / 390, 6 / 6 / 3 / 6 on TV 1920 / 1093 live / 1093 completed / 1366, 33 / 16 / 14 / 33 on console / Settlement / Exports / console 390; axe `aria-valid-attr-value` critical on `/` and Settlement; no tabpanel behind any filter tab | [before.json](batch-h-evidence/before.json) — 12 PASS / 25 FAIL |
+| Computed contrast, five texts, public 1280×720 and 390×844 (the queue is hidden at phone width by design), TV 1920×1080 / 1366×768 / 1093×614 live and completed, operator console 1280 and 390, Settlement, Exports | PASS, every node ≥ 4.5 : 1 | [batch-h.json](batch-h-evidence/batch-h.json) |
+| axe on `/` 1280 and 390, `/tv` ×4, operator console (1280 and 390), Settlement, Exports | PASS — **0** serious `color-contrast` nodes and **0** `aria-valid-attr-value` / `aria-controls` violations on all ten runs; no other violations reported | batch-h.json |
+| Public flight filter: selected tab controls an existing `tabpanel` labelled by it (1280 and 390); Settlement view switch likewise; operator navigation tabs unchanged | PASS | batch-h.json |
+| Keyboard, public: ArrowRight from *All flights* selects *Championship* and narrows the board to that flight; the new selection controls the visible panel; Tab then lands on *Search teams*; Home returns to *All flights*; focus after the status select unchanged (brand link) | PASS | batch-h.json, [public-board-tools-1280.png](batch-h-evidence/public-board-tools-1280.png) |
+| Keyboard, Settlement: ArrowRight selects *Tournament payouts* (first action becomes *Mark payout paid*), the tab controls the visible panel, Tab lands on *Search settlement accounts*, ArrowLeft returns to *Auction payments*; focus two stops after the search unchanged | PASS | batch-h.json, [operator-settlement-tabs-1280.png](batch-h-evidence/operator-settlement-tabs-1280.png) |
+| Batch F regression: header controls on `/` and `/admin` at 390 px named, 24 × 24 px (*Help* 29 × 24) and focus-visible; no horizontal overflow at 390 | PASS | batch-h.json |
+| Batch F regression: TV 1093×614 live and completed — one screen (614 / 614), contained statistics, no section overlap | PASS | batch-h.json, [tv-live-1093x614.png](batch-h-evidence/tv-live-1093x614.png) |
+| Harness total | **37 PASS, 0 FAIL** (12 PASS / 25 FAIL before) | batch-h.json |
+| TypeScript | PASS | command output |
+| `npm run lint` | FAIL — pre-existing: 48 errors / 43 warnings, message-for-message identical to `1f2b453` (only line numbers move) | command output |
+| `npm run build` | PASS | command output |
+| Existing acceptance | **58 / 58 PASS** (events `02fc469b…`, `9a5f0a0b…`) | command output |
+| Existing refinements | **72 / 72 PASS** (event `181cd1f3…`) | command output |
+
+Rendered screenshots were inspected directly: on the TV at 1093×614 the lot numerals `08 / 09 / 10` and the *Taylor Syndicate* buyer lines are now legible at a glance while still lighter than the team names; on Settlement the inactive *Tournament payouts* label is clearly readable inside the muted list; on the public board the inactive flight tabs sit visibly below *All flights* with the underline marking the active one. Both TV screenshots keep the Batch F one-screen layout.
+
+## Isolation and cleanup
+
+The harness made **no writes**; the AUDIT-E2 fixtures were read and not modified, and no fixture was deleted. The acceptance and refinement suites created their own rehearsal events as always (`02fc469b-f3c0-4505-b7ce-1c29402274a5`, `9a5f0a0b-d85a-4c26-8959-754d07e6cb34`, `181cd1f3-68bb-4eaf-ac58-ff7c0b0beca6`), left in place like every earlier run. The production container, its volume, `/data/calcutta.sqlite`, `portable/` and `.env.portable` were not touched or read.
+
+The dev server exited on its own ("Tunnel closed") once, immediately after the baseline run had finished logging; it was restarted and stayed up through the final harness, build, acceptance and refinement runs, and was stopped at the end. Only the script, two JSON reports and three cited screenshots (about 230 KB) are committed.
+
+## Reproduction
+
+Start `npm run dev` on 5173 with the local `.wrangler/state` store. From a scratch directory with Playwright and axe-core resolvable, run `OUT=/abs/out node docs/batch-h-evidence/scripts/batch-h.mjs --shots`. The script refuses non-localhost origins, reads only the fixture IDs in `docs/audit-e2-evidence/fixtures.json`, and writes `batch-h.json` and the screenshots to `OUT`.
+
+## Limitations
+
+Contrast was computed for the surfaces and states the finding names (public live board, TV live and completed, operator console / Settlement / Exports); other operator screens share the same tokens but were not each measured. The app has a single light theme, so no dark or alternate TV theme exists to check. Firefox/Safari, screen readers, real phones and hosted operation remain unverified; lint failures are pre-existing repository debt. These local results do not certify the live container, which has not been updated.
+
+## Next scope
+
+Open after Batch H: CAL-P3-003/004/005/007 (Batch I), policy-gated CAL-P3-006 (Batch J) and optional CAL-P3-001 (Batch E). Batches F, G and H are stacked on one another and all await merge; applying them to the live container needs the separate release authorization described in `AGENTS.md`.
