@@ -5,7 +5,7 @@ and [validation record](PORTABLE-VALIDATION.md). Remaining: configure real Googl
 credentials and owner recovery password; verify owner-data import/cutover; configure
 HTTPS/DNS and off-host backup retention. This does not approve optional Batch E.
 
-2026-09-14 UTC · A/B/C/D approved and verified locally (`4dc2900`, `3d00923`, `4da7b9b`, `a76e57f`) · optional E awaits approval · no production deployment authorized.
+2026-09-15 UTC · A/B/C/D approved and verified locally (`4dc2900`, `3d00923`, `4da7b9b`, `a76e57f`) · **F approved and implemented locally on `claude/cal-f-phone-header-tv`** (not merged, not deployed) · optional E awaits approval · no production deployment authorized.
 
 The canonical description, reproduction, confidence and acceptance for every ID is in [PRODUCT-AUDIT.md](PRODUCT-AUDIT.md). Do not renumber an ID when its status changes; append validation evidence and a commit reference after an approved fix. A source change is not verified until its acceptance passes, and a local pass is not hosted verification.
 
@@ -22,8 +22,8 @@ The canonical description, reproduction, confidence and acceptance for every ID 
 | CAL-P2-002 | P2 RELIABILITY | Repeated creation request creates two events | RESOLVED LOCAL — `a76e57f`, [evidence](BATCH-D.md), includes demo | D |
 | CAL-P2-003 | P2 ACCESSIBILITY | Recent-sales caption contrast 3.77:1 | RESOLVED LOCAL — `4da7b9b`, [evidence](BATCH-C.md); now 6.02/6.21:1 | C |
 | CAL-P3-001 | P3 TECHNICAL DEBT | Distributed export contracts | OPEN — optional, awaiting approval | E |
-| CAL-P2-004 | P2 USABILITY / ACCESSIBILITY | Icon-less header links (operator Sign out, public Auction board) vanish at ≤ 700 px but stay focusable | OPEN — audit E2 2026-09-15, [evidence](audit-e2-evidence/header-links.json) | F |
-| CAL-P2-005 | P2 USABILITY DEFECT | TV stats overlap and page scrolls at 951–1099 px wide or < 700 px tall (1024×768, 1093×614) | OPEN — audit E2, [evidence](audit-e2-evidence/followup.json) | F |
+| CAL-P2-004 | P2 USABILITY / ACCESSIBILITY | Icon-less header links (operator Sign out, public Auction board) vanish at ≤ 700 px but stay focusable | IMPLEMENTED (local) — Batch F commit on `claude/cal-f-phone-header-tv`, [evidence](BATCH-F.md): all header controls 24 × 24 px, named and focus-visible at 320–700 px; not deployed | F |
+| CAL-P2-005 | P2 USABILITY DEFECT | TV stats overlap and page scrolls at 951–1099 px wide or < 700 px tall (1024×768, 1093×614) | IMPLEMENTED (local) — Batch F commit on `claude/cal-f-phone-header-tv`, [evidence](BATCH-F.md): one screen and contained statistics at 960×540 … 1920×1080, live/paused/completed; hardware pending; not deployed | F |
 | CAL-P2-006 | P2 USABILITY | Escape with buyer suggestions open discards the whole Sold dialog | OPEN — audit E2, [evidence](audit-e2-evidence/new-event-journey-3.json) | G |
 | CAL-P2-007 | P2 ACCESSIBILITY | Lot numbers 3.27:1, sale buyer line 4.01:1, payout % 4.01:1, inactive operator tabs 3.70:1, eyebrow 4.27:1 | OPEN — audit E2, [evidence](audit-e2-evidence/followup.json) | H |
 | CAL-P3-002 | P3 ACCESSIBILITY | Flight and settlement filter tabs reference non-existent panels | OPEN — audit E2 | H |
@@ -33,7 +33,7 @@ The canonical description, reproduction, confidence and acceptance for every ID 
 | CAL-P3-006 | P3 BUSINESS RULE | Unsold team can take a finishing place; empty states then contradict | OPEN — policy recorded 2026-09-15 (house receives unclaimed share; house returns to pot or keeps) | J (proposed) |
 | CAL-P3-007 | P3 USABILITY | Hammer / bid entry below the fold on first paint at 1280×720 / 1024×768 | OPEN — optional observation | I (optional) |
 
-After audit E2 (2026-09-15, `d992d1c`): **four open P2 and seven open P3 (one optional debt, one policy-gated); no open P1; P0: none demonstrated.** Canonical descriptions for the new IDs are in [PRODUCT-AUDIT.md § Incremental audit E2](PRODUCT-AUDIT.md#incremental-audit-e2--2026-09-15). Local resolution does not waive the blocked hosted gates in [VALIDATION.md](VALIDATION.md).
+After audit E2 (2026-09-15, `d992d1c`) and Batch F: **two open P2 (CAL-P2-006, CAL-P2-007) and seven open P3 (one optional debt, one policy-gated); no open P1; P0: none demonstrated.** CAL-P2-004/005 are implemented and validated locally on the Batch F branch and remain unmerged and undeployed. Canonical descriptions for the new IDs are in [PRODUCT-AUDIT.md § Incremental audit E2](PRODUCT-AUDIT.md#incremental-audit-e2--2026-09-15). Local resolution does not waive the blocked hosted gates in [VALIDATION.md](VALIDATION.md).
 
 ## Proposed implementation roadmap
 
@@ -98,9 +98,9 @@ After audit E2 (2026-09-15, `d992d1c`): **four open P2 and seven open P3 (one op
 - **Regression surface:** All existing CSV variants and importer. Perform after B/D so cleanup preserves corrected behavior.
 - **Order:** 5, optional after user-visible defects; do not treat it as a release blocker by itself.
 
-### Batch F — Phone header controls and TV intermediate widths (proposed)
+### Batch F — Phone header controls and TV intermediate widths (implemented locally)
 
-- **Status:** PROPOSED, awaiting approval.
+- **Status:** APPROVED 2026-09-15 · IMPLEMENTED (local) and validated on `claude/cal-f-phone-header-tv`, see [BATCH-F.md](BATCH-F.md); not merged, not deployed. Decision recorded: one-screen TV **is** required below 700 px height (1366×768 at 125 % scaling = 1093×614); implemented down to 951 × 500 px.
 - **Exact IDs:** `CAL-P2-004`, `CAL-P2-005`.
 - **Objective:** Every header control remains usable at phone width (operator can sign out); the TV view stays readable at 960–1099 px wide and under 700 px tall.
 - **Why together:** Both are bounded responsive CSS corrections to shared header/TV rules introduced or left by earlier layout work; neither touches data or rules.
@@ -159,4 +159,4 @@ After audit E2 (2026-09-15, `d992d1c`): **four open P2 and seven open P3 (one op
 
 ## Compact handoff
 
-**Remaining optional scope: Batch E, exact ID `CAL-P3-001`.** A/B/C/D are complete locally. All eight original findings are resolved locally; E is not a release blocker by itself. **Audit E2 (2026-09-15) adds proposed Batches F–I (CAL-P2-004…007, CAL-P3-002…005/007) and one policy-gated item (CAL-P3-006); nothing from E2 is approved.** Do not implement E–I merely because they are listed here. After the user approves the next bounded set, preserve KEEP / PROTECT, run its focused reproductions and relevant regression suites, and update this tracker with evidence. Deployment needs separate authorization; the live container was not changed by the audit.
+**Remaining optional scope: Batch E, exact ID `CAL-P3-001`.** A/B/C/D are complete locally. All eight original findings are resolved locally; E is not a release blocker by itself. **Audit E2 (2026-09-15) adds proposed Batches F–I (CAL-P2-004…007, CAL-P3-002…005/007) and one policy-gated item (CAL-P3-006). Batch F (CAL-P2-004/005) was approved and is implemented and validated locally on `claude/cal-f-phone-header-tv` — unmerged, undeployed ([BATCH-F.md](BATCH-F.md)). G–J now have owner decisions recorded in [DECISIONS.md](DECISIONS.md) (D-CAL-2…6) but were not part of the Batch F approval.** Do not implement E or G–J merely because they are listed here; each needs its own explicit go-ahead. After the user approves the next bounded set, preserve KEEP / PROTECT, run its focused reproductions and relevant regression suites, and update this tracker with evidence. Deployment needs separate authorization; the live container was not changed by the audit.

@@ -1,0 +1,7671 @@
+[
+  {
+    "at": "2026-09-15T06:00:09.681Z",
+    "check": "public header 320px controls >= 24px, named, focus-visible",
+    "result": "FAIL",
+    "detail": {
+      "controls": [
+        {
+          "tag": "A",
+          "name": "Auction board",
+          "href": "#board",
+          "hasIcon": false,
+          "w": 0,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "TV mode",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Operator",
+          "href": "/admin?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "focusOrder": [
+        {
+          "name": "Auction board",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 0,
+          "h": 22
+        },
+        {
+          "name": "TV mode",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 22,
+          "h": 22
+        },
+        {
+          "name": "Operator",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 22,
+          "h": 22
+        }
+      ],
+      "missing": [],
+      "zero": [
+        {
+          "tag": "A",
+          "name": "Auction board",
+          "href": "#board",
+          "hasIcon": false,
+          "w": 0,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "TV mode",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Operator",
+          "href": "/admin?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "unnamed": [],
+      "notFocusVisible": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:00:11.771Z",
+    "check": "operator header 320px controls >= 24px, named, focus-visible",
+    "result": "FAIL",
+    "detail": {
+      "controls": [
+        {
+          "tag": "A",
+          "name": "Public board",
+          "href": "/?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Launch TV Display",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Help",
+          "href": null,
+          "hasIcon": false,
+          "w": 29,
+          "h": 22,
+          "fontSize": "14px",
+          "visibleText": true
+        },
+        {
+          "tag": "A",
+          "name": "Sign out",
+          "href": "/signout-with-chatgpt?return_to=%2F%3Fevent%3Dbf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": false,
+          "w": 0,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "focusOrder": [
+        {
+          "name": "Public board",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 22,
+          "h": 22
+        },
+        {
+          "name": "Launch TV Display",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 22,
+          "h": 22
+        },
+        {
+          "name": "Help",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 29,
+          "h": 22
+        },
+        {
+          "name": "Sign out",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 0,
+          "h": 22
+        }
+      ],
+      "missing": [],
+      "zero": [
+        {
+          "tag": "A",
+          "name": "Public board",
+          "href": "/?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Launch TV Display",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Help",
+          "href": null,
+          "hasIcon": false,
+          "w": 29,
+          "h": 22,
+          "fontSize": "14px",
+          "visibleText": true
+        },
+        {
+          "tag": "A",
+          "name": "Sign out",
+          "href": "/signout-with-chatgpt?return_to=%2F%3Fevent%3Dbf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": false,
+          "w": 0,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "unnamed": [],
+      "notFocusVisible": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:00:13.654Z",
+    "check": "public header 390px controls >= 24px, named, focus-visible",
+    "result": "FAIL",
+    "detail": {
+      "controls": [
+        {
+          "tag": "A",
+          "name": "Auction board",
+          "href": "#board",
+          "hasIcon": false,
+          "w": 0,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "TV mode",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Operator",
+          "href": "/admin?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "focusOrder": [
+        {
+          "name": "Auction board",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 0,
+          "h": 22
+        },
+        {
+          "name": "TV mode",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 22,
+          "h": 22
+        },
+        {
+          "name": "Operator",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 22,
+          "h": 22
+        }
+      ],
+      "missing": [],
+      "zero": [
+        {
+          "tag": "A",
+          "name": "Auction board",
+          "href": "#board",
+          "hasIcon": false,
+          "w": 0,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "TV mode",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Operator",
+          "href": "/admin?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "unnamed": [],
+      "notFocusVisible": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:00:13.690Z",
+    "note": "screenshot",
+    "detail": "public-header-390.png"
+  },
+  {
+    "at": "2026-09-15T06:00:13.904Z",
+    "check": "public header 390px axe (header region)",
+    "result": "PASS",
+    "detail": []
+  },
+  {
+    "at": "2026-09-15T06:00:15.915Z",
+    "check": "operator header 390px controls >= 24px, named, focus-visible",
+    "result": "FAIL",
+    "detail": {
+      "controls": [
+        {
+          "tag": "A",
+          "name": "Public board",
+          "href": "/?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Launch TV Display",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Help",
+          "href": null,
+          "hasIcon": false,
+          "w": 29,
+          "h": 22,
+          "fontSize": "14px",
+          "visibleText": true
+        },
+        {
+          "tag": "A",
+          "name": "Sign out",
+          "href": "/signout-with-chatgpt?return_to=%2F%3Fevent%3Dbf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": false,
+          "w": 0,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "focusOrder": [
+        {
+          "name": "Public board",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 22,
+          "h": 22
+        },
+        {
+          "name": "Launch TV Display",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 22,
+          "h": 22
+        },
+        {
+          "name": "Help",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 29,
+          "h": 22
+        },
+        {
+          "name": "Sign out",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 0,
+          "h": 22
+        }
+      ],
+      "missing": [],
+      "zero": [
+        {
+          "tag": "A",
+          "name": "Public board",
+          "href": "/?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Launch TV Display",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Help",
+          "href": null,
+          "hasIcon": false,
+          "w": 29,
+          "h": 22,
+          "fontSize": "14px",
+          "visibleText": true
+        },
+        {
+          "tag": "A",
+          "name": "Sign out",
+          "href": "/signout-with-chatgpt?return_to=%2F%3Fevent%3Dbf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": false,
+          "w": 0,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "unnamed": [],
+      "notFocusVisible": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:00:15.936Z",
+    "note": "screenshot",
+    "detail": "operator-header-390.png"
+  },
+  {
+    "at": "2026-09-15T06:00:16.123Z",
+    "check": "operator header 390px axe (header region)",
+    "result": "PASS",
+    "detail": []
+  },
+  {
+    "at": "2026-09-15T06:00:17.974Z",
+    "check": "public header 430px controls >= 24px, named, focus-visible",
+    "result": "FAIL",
+    "detail": {
+      "controls": [
+        {
+          "tag": "A",
+          "name": "Auction board",
+          "href": "#board",
+          "hasIcon": false,
+          "w": 0,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "TV mode",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Operator",
+          "href": "/admin?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "focusOrder": [
+        {
+          "name": "Auction board",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 0,
+          "h": 22
+        },
+        {
+          "name": "TV mode",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 22,
+          "h": 22
+        },
+        {
+          "name": "Operator",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 22,
+          "h": 22
+        }
+      ],
+      "missing": [],
+      "zero": [
+        {
+          "tag": "A",
+          "name": "Auction board",
+          "href": "#board",
+          "hasIcon": false,
+          "w": 0,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "TV mode",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Operator",
+          "href": "/admin?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "unnamed": [],
+      "notFocusVisible": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:00:19.902Z",
+    "check": "operator header 430px controls >= 24px, named, focus-visible",
+    "result": "FAIL",
+    "detail": {
+      "controls": [
+        {
+          "tag": "A",
+          "name": "Public board",
+          "href": "/?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Launch TV Display",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Help",
+          "href": null,
+          "hasIcon": false,
+          "w": 29,
+          "h": 22,
+          "fontSize": "14px",
+          "visibleText": true
+        },
+        {
+          "tag": "A",
+          "name": "Sign out",
+          "href": "/signout-with-chatgpt?return_to=%2F%3Fevent%3Dbf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": false,
+          "w": 0,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "focusOrder": [
+        {
+          "name": "Public board",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 22,
+          "h": 22
+        },
+        {
+          "name": "Launch TV Display",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 22,
+          "h": 22
+        },
+        {
+          "name": "Help",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 29,
+          "h": 22
+        },
+        {
+          "name": "Sign out",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 0,
+          "h": 22
+        }
+      ],
+      "missing": [],
+      "zero": [
+        {
+          "tag": "A",
+          "name": "Public board",
+          "href": "/?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Launch TV Display",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Help",
+          "href": null,
+          "hasIcon": false,
+          "w": 29,
+          "h": 22,
+          "fontSize": "14px",
+          "visibleText": true
+        },
+        {
+          "tag": "A",
+          "name": "Sign out",
+          "href": "/signout-with-chatgpt?return_to=%2F%3Fevent%3Dbf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": false,
+          "w": 0,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "unnamed": [],
+      "notFocusVisible": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:00:21.744Z",
+    "check": "public header 700px controls >= 24px, named, focus-visible",
+    "result": "FAIL",
+    "detail": {
+      "controls": [
+        {
+          "tag": "A",
+          "name": "Auction board",
+          "href": "#board",
+          "hasIcon": false,
+          "w": 0,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "TV mode",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Operator",
+          "href": "/admin?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "focusOrder": [
+        {
+          "name": "Auction board",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 0,
+          "h": 22
+        },
+        {
+          "name": "TV mode",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 22,
+          "h": 22
+        },
+        {
+          "name": "Operator",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 22,
+          "h": 22
+        }
+      ],
+      "missing": [],
+      "zero": [
+        {
+          "tag": "A",
+          "name": "Auction board",
+          "href": "#board",
+          "hasIcon": false,
+          "w": 0,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "TV mode",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Operator",
+          "href": "/admin?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "unnamed": [],
+      "notFocusVisible": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:00:23.729Z",
+    "check": "operator header 700px controls >= 24px, named, focus-visible",
+    "result": "FAIL",
+    "detail": {
+      "controls": [
+        {
+          "tag": "A",
+          "name": "Public board",
+          "href": "/?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Launch TV Display",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Help",
+          "href": null,
+          "hasIcon": false,
+          "w": 29,
+          "h": 22,
+          "fontSize": "14px",
+          "visibleText": true
+        },
+        {
+          "tag": "A",
+          "name": "Sign out",
+          "href": "/signout-with-chatgpt?return_to=%2F%3Fevent%3Dbf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": false,
+          "w": 0,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "focusOrder": [
+        {
+          "name": "Public board",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 22,
+          "h": 22
+        },
+        {
+          "name": "Launch TV Display",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 22,
+          "h": 22
+        },
+        {
+          "name": "Help",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 29,
+          "h": 22
+        },
+        {
+          "name": "Sign out",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 0,
+          "h": 22
+        }
+      ],
+      "missing": [],
+      "zero": [
+        {
+          "tag": "A",
+          "name": "Public board",
+          "href": "/?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Launch TV Display",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 22,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Help",
+          "href": null,
+          "hasIcon": false,
+          "w": 29,
+          "h": 22,
+          "fontSize": "14px",
+          "visibleText": true
+        },
+        {
+          "tag": "A",
+          "name": "Sign out",
+          "href": "/signout-with-chatgpt?return_to=%2F%3Fevent%3Dbf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": false,
+          "w": 0,
+          "h": 22,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "unnamed": [],
+      "notFocusVisible": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:00:25.717Z",
+    "check": "public header 701px controls >= 24px, named, focus-visible",
+    "result": "PASS",
+    "detail": {
+      "controls": [
+        {
+          "tag": "A",
+          "name": "Auction board",
+          "href": "#board",
+          "hasIcon": false,
+          "w": 86,
+          "h": 24,
+          "fontSize": "14px",
+          "visibleText": true
+        },
+        {
+          "tag": "A",
+          "name": "TV mode",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 82,
+          "h": 24,
+          "fontSize": "14px",
+          "visibleText": true
+        },
+        {
+          "tag": "A",
+          "name": "Operator",
+          "href": "/admin?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 80,
+          "h": 24,
+          "fontSize": "14px",
+          "visibleText": true
+        }
+      ],
+      "focusOrder": [
+        {
+          "name": "Auction board",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 86,
+          "h": 24
+        },
+        {
+          "name": "TV mode",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 82,
+          "h": 24
+        },
+        {
+          "name": "Operator",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 80,
+          "h": 24
+        }
+      ],
+      "missing": [],
+      "zero": [],
+      "unnamed": [],
+      "notFocusVisible": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:00:27.732Z",
+    "check": "operator header 701px controls >= 24px, named, focus-visible",
+    "result": "PASS",
+    "detail": {
+      "controls": [
+        {
+          "tag": "A",
+          "name": "Public board",
+          "href": "/?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 101,
+          "h": 42,
+          "fontSize": "14px",
+          "visibleText": true
+        },
+        {
+          "tag": "A",
+          "name": "Launch TV Display",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 140,
+          "h": 42,
+          "fontSize": "14px",
+          "visibleText": true
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Help",
+          "href": null,
+          "hasIcon": false,
+          "w": 29,
+          "h": 42,
+          "fontSize": "14px",
+          "visibleText": true
+        },
+        {
+          "tag": "A",
+          "name": "Sign out",
+          "href": "/signout-with-chatgpt?return_to=%2F%3Fevent%3Dbf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": false,
+          "w": 51,
+          "h": 42,
+          "fontSize": "14px",
+          "visibleText": true
+        }
+      ],
+      "focusOrder": [
+        {
+          "name": "Public board",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 101,
+          "h": 42
+        },
+        {
+          "name": "Launch TV Display",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 140,
+          "h": 42
+        },
+        {
+          "name": "Help",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 29,
+          "h": 42
+        },
+        {
+          "name": "Sign out",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 51,
+          "h": 42
+        }
+      ],
+      "missing": [],
+      "zero": [],
+      "unnamed": [],
+      "notFocusVisible": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:00:30.888Z",
+    "check": "public 390 keyboard Enter on Auction board reaches #board",
+    "result": "PASS",
+    "detail": {
+      "hash": "#board",
+      "boardTop": 0,
+      "scrollY": 3070,
+      "inView": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:00:40.891Z",
+    "check": "operator 390 tap Sign out lands on same-event public board",
+    "result": "FAIL",
+    "detail": "TimeoutError: locator.click: Timeout 8000ms exceeded."
+  },
+  {
+    "at": "2026-09-15T06:00:42.777Z",
+    "check": "tv live 960x540 — AUDIT-E2 Large (100 teams, bid on block)",
+    "result": "FAIL",
+    "detail": {
+      "scrollWidth": 960,
+      "scrollHeight": 1112,
+      "innerWidth": 960,
+      "innerHeight": 540,
+      "singleScreen": false,
+      "metrics": 6,
+      "statFontSize": "38px",
+      "bigBid": "84.0225px",
+      "bad": [
+        {
+          "s": ".stats strong",
+          "text": "$16,875",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            40,
+            741,
+            127,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$15,187.50",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            212,
+            741,
+            175,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "30 / 100",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            358,
+            717,
+            59,
+            99
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "70",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            505,
+            741,
+            39,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$562.50",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            652,
+            717,
+            127,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$925",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            798,
+            717,
+            78,
+            42
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Gross auction pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            40,
+            679,
+            121,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Net Calcutta pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            212,
+            679,
+            96,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams sold",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            358,
+            679,
+            96,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams remaining",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            505,
+            679,
+            96,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Average sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            652,
+            679,
+            96,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Highest sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            798,
+            679,
+            97,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$925",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            257,
+            968,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$900",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            549,
+            968,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$875",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            843,
+            968,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Audit Team 030",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            57,
+            974,
+            199,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Audit Team 029",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            350,
+            974,
+            199,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Audit Team 028",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            642,
+            974,
+            200,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Large Buyer 6",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            57,
+            1006,
+            199,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Large Buyer 5",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            350,
+            1006,
+            199,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Large Buyer 4",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            642,
+            1006,
+            200,
+            24
+          ]
+        },
+        {
+          "s": ".queue-row h3",
+          "text": "Audit Team 034",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            706,
+            523,
+            146,
+            30
+          ]
+        },
+        {
+          "s": ".queue-row p",
+          "text": "Third Flight",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            706,
+            557,
+            146,
+            24
+          ]
+        }
+      ],
+      "statOverlaps": [
+        {
+          "value": "Net Calcutta pool",
+          "spill": 53
+        },
+        {
+          "a": "Net Calcutta pool",
+          "b": "Teams sold",
+          "overlap": [
+            28,
+            42
+          ]
+        },
+        {
+          "value": "Average sale",
+          "spill": 5
+        }
+      ],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": false
+    }
+  },
+  {
+    "at": "2026-09-15T06:00:42.798Z",
+    "note": "screenshot",
+    "detail": "tv-live-960x540.png"
+  },
+  {
+    "at": "2026-09-15T06:00:44.638Z",
+    "check": "tv live 1024x768 — AUDIT-E2 Large (100 teams, bid on block)",
+    "result": "FAIL",
+    "detail": {
+      "scrollWidth": 1024,
+      "scrollHeight": 1112,
+      "innerWidth": 1024,
+      "innerHeight": 768,
+      "singleScreen": false,
+      "metrics": 6,
+      "statFontSize": "38px",
+      "bigBid": "90.6658px",
+      "bad": [
+        {
+          "s": ".stats strong",
+          "text": "$16,875",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            43,
+            741,
+            127,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$15,187.50",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            224,
+            741,
+            175,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "30 / 100",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            381,
+            717,
+            59,
+            99
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "70",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            537,
+            741,
+            39,
+            42
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$925",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            279,
+            968,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$900",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            591,
+            968,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$875",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            904,
+            968,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Audit Team 030",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            60,
+            974,
+            219,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Audit Team 029",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            372,
+            974,
+            219,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Audit Team 028",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            684,
+            974,
+            220,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Large Buyer 6",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            60,
+            1006,
+            219,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Large Buyer 5",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            372,
+            1006,
+            219,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Large Buyer 4",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            684,
+            1006,
+            220,
+            24
+          ]
+        }
+      ],
+      "statOverlaps": [
+        {
+          "value": "Net Calcutta pool",
+          "spill": 44
+        },
+        {
+          "a": "Net Calcutta pool",
+          "b": "Teams sold",
+          "overlap": [
+            19,
+            42
+          ]
+        }
+      ],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": false
+    }
+  },
+  {
+    "at": "2026-09-15T06:00:44.667Z",
+    "note": "screenshot",
+    "detail": "tv-live-1024x768.png"
+  },
+  {
+    "at": "2026-09-15T06:00:46.488Z",
+    "check": "tv live 1093x614 — AUDIT-E2 Large (100 teams, bid on block)",
+    "result": "FAIL",
+    "detail": {
+      "scrollWidth": 1093,
+      "scrollHeight": 1098,
+      "innerWidth": 1093,
+      "innerHeight": 614,
+      "singleScreen": false,
+      "metrics": 6,
+      "statFontSize": "38px",
+      "bigBid": "97.8297px",
+      "bad": [
+        {
+          "s": ".stats strong",
+          "text": "$16,875",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            46,
+            703,
+            127,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$15,187.50",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            238,
+            727,
+            175,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "30 / 100",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            405,
+            703,
+            59,
+            99
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "70",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            572,
+            727,
+            39,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$562.50",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            738,
+            703,
+            127,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$925",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            905,
+            703,
+            78,
+            42
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Gross auction pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            46,
+            665,
+            141,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Net Calcutta pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            238,
+            665,
+            116,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams sold",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            405,
+            665,
+            116,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams remaining",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            572,
+            665,
+            116,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Average sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            738,
+            665,
+            116,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Highest sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            905,
+            665,
+            117,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$925",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            303,
+            954,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$900",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            636,
+            954,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$875",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            970,
+            954,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Audit Team 030",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            960,
+            240,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Audit Team 029",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            396,
+            960,
+            240,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Audit Team 028",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            729,
+            960,
+            241,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Large Buyer 6",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            992,
+            240,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Large Buyer 5",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            396,
+            992,
+            240,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Large Buyer 4",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            729,
+            992,
+            241,
+            24
+          ]
+        }
+      ],
+      "statOverlaps": [
+        {
+          "value": "Net Calcutta pool",
+          "spill": 33
+        },
+        {
+          "a": "Net Calcutta pool",
+          "b": "Teams sold",
+          "overlap": [
+            8,
+            42
+          ]
+        }
+      ],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": false
+    }
+  },
+  {
+    "at": "2026-09-15T06:00:46.513Z",
+    "note": "screenshot",
+    "detail": "tv-live-1093x614.png"
+  },
+  {
+    "at": "2026-09-15T06:00:48.322Z",
+    "check": "tv live 1099x618 — AUDIT-E2 Large (100 teams, bid on block)",
+    "result": "FAIL",
+    "detail": {
+      "scrollWidth": 1099,
+      "scrollHeight": 1099,
+      "innerWidth": 1099,
+      "innerHeight": 618,
+      "singleScreen": false,
+      "metrics": 6,
+      "statFontSize": "38px",
+      "bigBid": "98.4512px",
+      "bad": [
+        {
+          "s": ".stats strong",
+          "text": "$16,875",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            46,
+            704,
+            127,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$15,187.50",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            239,
+            728,
+            175,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "30 / 100",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            407,
+            704,
+            59,
+            99
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "70",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            575,
+            728,
+            39,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$562.50",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            742,
+            704,
+            127,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$925",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            910,
+            704,
+            78,
+            42
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Gross auction pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            46,
+            666,
+            142,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Net Calcutta pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            239,
+            666,
+            117,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams sold",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            407,
+            666,
+            117,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams remaining",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            575,
+            666,
+            117,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Average sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            742,
+            666,
+            117,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Highest sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            910,
+            666,
+            118,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$925",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            305,
+            955,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$900",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            640,
+            955,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$875",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            976,
+            955,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Audit Team 030",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            961,
+            242,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Audit Team 029",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            398,
+            961,
+            242,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Audit Team 028",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            733,
+            961,
+            243,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Large Buyer 6",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            993,
+            242,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Large Buyer 5",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            398,
+            993,
+            242,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Large Buyer 4",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            733,
+            993,
+            243,
+            24
+          ]
+        }
+      ],
+      "statOverlaps": [
+        {
+          "value": "Net Calcutta pool",
+          "spill": 32
+        },
+        {
+          "a": "Net Calcutta pool",
+          "b": "Teams sold",
+          "overlap": [
+            7,
+            42
+          ]
+        }
+      ],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": false
+    }
+  },
+  {
+    "at": "2026-09-15T06:00:48.346Z",
+    "note": "screenshot",
+    "detail": "tv-live-1099x618.png"
+  },
+  {
+    "at": "2026-09-15T06:00:50.356Z",
+    "check": "tv live 1100x619 — AUDIT-E2 Large (100 teams, bid on block)",
+    "result": "FAIL",
+    "detail": {
+      "scrollWidth": 1100,
+      "scrollHeight": 1099,
+      "innerWidth": 1100,
+      "innerHeight": 619,
+      "singleScreen": false,
+      "metrics": 6,
+      "statFontSize": "38px",
+      "bigBid": "98.5575px",
+      "bad": [
+        {
+          "s": ".stats strong",
+          "text": "$16,875",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            46,
+            705,
+            127,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$15,187.50",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            239,
+            729,
+            175,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "30 / 100",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            407,
+            705,
+            59,
+            99
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "70",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            575,
+            729,
+            39,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$562.50",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            743,
+            705,
+            127,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$925",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            911,
+            705,
+            78,
+            42
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Gross auction pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            46,
+            667,
+            142,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Net Calcutta pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            239,
+            667,
+            117,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams sold",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            407,
+            667,
+            117,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams remaining",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            575,
+            667,
+            117,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Average sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            743,
+            667,
+            117,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Highest sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            911,
+            667,
+            118,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$925",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            305,
+            955,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$900",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            641,
+            955,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$875",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            977,
+            955,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Audit Team 030",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            962,
+            242,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Audit Team 029",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            398,
+            962,
+            242,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Audit Team 028",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            734,
+            962,
+            243,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Large Buyer 6",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            993,
+            242,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Large Buyer 5",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            398,
+            993,
+            242,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Large Buyer 4",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            734,
+            993,
+            243,
+            24
+          ]
+        }
+      ],
+      "statOverlaps": [
+        {
+          "value": "Net Calcutta pool",
+          "spill": 32
+        },
+        {
+          "a": "Net Calcutta pool",
+          "b": "Teams sold",
+          "overlap": [
+            7,
+            42
+          ]
+        }
+      ],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": false
+    }
+  },
+  {
+    "at": "2026-09-15T06:00:50.381Z",
+    "note": "screenshot",
+    "detail": "tv-live-1100x619.png"
+  },
+  {
+    "at": "2026-09-15T06:00:52.188Z",
+    "check": "tv live 1280x720 — AUDIT-E2 Large (100 teams, bid on block)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1280,
+      "scrollHeight": 720,
+      "innerWidth": 1280,
+      "innerHeight": 720,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "32.1131px",
+      "bigBid": "67.8328px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:00:54.029Z",
+    "check": "tv live 1366x768 — AUDIT-E2 Large (100 teams, bid on block)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1366,
+      "scrollHeight": 768,
+      "innerWidth": 1366,
+      "innerHeight": 768,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "34.4784px",
+      "bigBid": "81.0938px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:00:56.410Z",
+    "check": "tv live 1920x1080 — AUDIT-E2 Large (100 teams, bid on block)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1920,
+      "scrollHeight": 1080,
+      "innerWidth": 1920,
+      "innerHeight": 1080,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "36px",
+      "bigBid": "155px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:00:58.856Z",
+    "check": "tv live-e2 960x540 — AUDIT-E2 Live (six metrics)",
+    "result": "FAIL",
+    "detail": {
+      "scrollWidth": 960,
+      "scrollHeight": 1263,
+      "innerWidth": 960,
+      "innerHeight": 540,
+      "singleScreen": false,
+      "metrics": 6,
+      "statFontSize": "38px",
+      "bigBid": "84.0225px",
+      "bad": [
+        {
+          "s": ".big-bid",
+          "text": "$0",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            78,
+            670,
+            494,
+            92
+          ]
+        },
+        {
+          "s": ".block h2",
+          "text": "Bartholomew Featherstonehaugh / Maximilian Oppenhe",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            78,
+            295,
+            494,
+            247
+          ]
+        },
+        {
+          "s": ".players",
+          "text": "Bartholomew Featherstonehaugh & Maximilian Oppenhe",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            78,
+            548,
+            494,
+            72
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$5,949.99",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            40,
+            925,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$5,354.99",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            212,
+            925,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "6 / 17",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            358,
+            901,
+            86,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "11",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            505,
+            925,
+            36,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$991.67",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            652,
+            901,
+            127,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$1,600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            798,
+            901,
+            107,
+            42
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Gross auction pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            40,
+            863,
+            121,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Net Calcutta pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            212,
+            863,
+            96,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams sold",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            358,
+            863,
+            96,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams remaining",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            505,
+            863,
+            96,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Average sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            652,
+            863,
+            96,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Highest sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            798,
+            863,
+            97,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$999.99",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            219,
+            1119,
+            98,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$1,600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            527,
+            1119,
+            83,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$950",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            843,
+            1119,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Porter / Garner",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            57,
+            1125,
+            162,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Mercer / Baker",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            350,
+            1125,
+            177,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Jensen / Quincy",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            642,
+            1125,
+            200,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Taylor Syndicate",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            57,
+            1157,
+            162,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "The Johnson Group",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            350,
+            1157,
+            177,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Table Six Syndicate",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            642,
+            1157,
+            200,
+            24
+          ]
+        },
+        {
+          "s": ".queue-row h3",
+          "text": "Keller / Lowry",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            706,
+            523,
+            131,
+            30
+          ]
+        },
+        {
+          "s": ".queue-row p",
+          "text": "Second Flight",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            706,
+            557,
+            131,
+            24
+          ]
+        }
+      ],
+      "statOverlaps": [
+        {
+          "value": "Gross auction pool",
+          "spill": 9
+        },
+        {
+          "value": "Net Calcutta pool",
+          "spill": 34
+        },
+        {
+          "a": "Net Calcutta pool",
+          "b": "Teams sold",
+          "overlap": [
+            9,
+            18
+          ]
+        },
+        {
+          "value": "Average sale",
+          "spill": 5
+        }
+      ],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": false
+    }
+  },
+  {
+    "at": "2026-09-15T06:00:58.880Z",
+    "note": "screenshot",
+    "detail": "tv-live-e2-960x540.png"
+  },
+  {
+    "at": "2026-09-15T06:01:00.801Z",
+    "check": "tv live-e2 1024x768 — AUDIT-E2 Live (six metrics)",
+    "result": "FAIL",
+    "detail": {
+      "scrollWidth": 1024,
+      "scrollHeight": 1286,
+      "innerWidth": 1024,
+      "innerHeight": 768,
+      "singleScreen": false,
+      "metrics": 6,
+      "statFontSize": "38px",
+      "bigBid": "90.6658px",
+      "bad": [
+        {
+          "s": ".big-bid",
+          "text": "$0",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            81,
+            686,
+            533,
+            100
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$5,949.99",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            43,
+            949,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$5,354.99",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            224,
+            949,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "6 / 17",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            381,
+            925,
+            86,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "11",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            537,
+            949,
+            36,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$991.67",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            693,
+            925,
+            127,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$1,600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            850,
+            925,
+            107,
+            42
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Gross auction pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            43,
+            887,
+            130,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Net Calcutta pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            224,
+            887,
+            105,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams sold",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            381,
+            887,
+            105,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams remaining",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            537,
+            887,
+            105,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Average sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            693,
+            887,
+            105,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Highest sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            850,
+            887,
+            106,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$999.99",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            241,
+            1142,
+            98,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$1,600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            568,
+            1142,
+            83,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$950",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            904,
+            1142,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Porter / Garner",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            60,
+            1149,
+            181,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Mercer / Baker",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            372,
+            1149,
+            196,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Jensen / Quincy",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            684,
+            1149,
+            220,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Taylor Syndicate",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            60,
+            1180,
+            181,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "The Johnson Group",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            372,
+            1180,
+            196,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Table Six Syndicate",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            684,
+            1180,
+            220,
+            24
+          ]
+        }
+      ],
+      "statOverlaps": [
+        {
+          "value": "Net Calcutta pool",
+          "spill": 24
+        }
+      ],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": false
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:00.830Z",
+    "note": "screenshot",
+    "detail": "tv-live-e2-1024x768.png"
+  },
+  {
+    "at": "2026-09-15T06:01:02.662Z",
+    "check": "tv live-e2 1093x614 — AUDIT-E2 Live (six metrics)",
+    "result": "FAIL",
+    "detail": {
+      "scrollWidth": 1093,
+      "scrollHeight": 1312,
+      "innerWidth": 1093,
+      "innerHeight": 614,
+      "singleScreen": false,
+      "metrics": 6,
+      "statFontSize": "38px",
+      "bigBid": "97.8297px",
+      "bad": [
+        {
+          "s": ".big-bid",
+          "text": "$0",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            84,
+            704,
+            575,
+            108
+          ]
+        },
+        {
+          "s": ".players",
+          "text": "Bartholomew Featherstonehaugh & Maximilian Oppenhe",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            84,
+            582,
+            575,
+            72
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$5,949.99",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            46,
+            951,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$5,354.99",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            238,
+            975,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "6 / 17",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            405,
+            951,
+            86,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "11",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            572,
+            975,
+            36,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$991.67",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            738,
+            951,
+            127,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$1,600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            905,
+            951,
+            107,
+            42
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Gross auction pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            46,
+            913,
+            141,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Net Calcutta pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            238,
+            913,
+            116,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams sold",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            405,
+            913,
+            116,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams remaining",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            572,
+            913,
+            116,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Average sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            738,
+            913,
+            116,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Highest sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            905,
+            913,
+            117,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$999.99",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            265,
+            1168,
+            98,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$1,600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            613,
+            1168,
+            83,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$950",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            970,
+            1168,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Porter / Garner",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            1175,
+            202,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Mercer / Baker",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            396,
+            1175,
+            217,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Jensen / Quincy",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            729,
+            1175,
+            241,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Taylor Syndicate",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            1206,
+            202,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "The Johnson Group",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            396,
+            1206,
+            217,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Table Six Syndicate",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            729,
+            1206,
+            241,
+            24
+          ]
+        }
+      ],
+      "statOverlaps": [
+        {
+          "value": "Net Calcutta pool",
+          "spill": 14
+        }
+      ],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": false
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:02.694Z",
+    "note": "screenshot",
+    "detail": "tv-live-e2-1093x614.png"
+  },
+  {
+    "at": "2026-09-15T06:01:04.514Z",
+    "check": "tv live-e2 1099x618 — AUDIT-E2 Live (six metrics)",
+    "result": "FAIL",
+    "detail": {
+      "scrollWidth": 1099,
+      "scrollHeight": 1314,
+      "innerWidth": 1099,
+      "innerHeight": 618,
+      "singleScreen": false,
+      "metrics": 6,
+      "statFontSize": "38px",
+      "bigBid": "98.4512px",
+      "bad": [
+        {
+          "s": ".big-bid",
+          "text": "$0",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            84,
+            705,
+            579,
+            108
+          ]
+        },
+        {
+          "s": ".players",
+          "text": "Bartholomew Featherstonehaugh & Maximilian Oppenhe",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            84,
+            583,
+            579,
+            72
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$5,949.99",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            46,
+            953,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$5,354.99",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            239,
+            977,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "6 / 17",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            407,
+            953,
+            86,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "11",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            575,
+            977,
+            36,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$991.67",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            742,
+            953,
+            127,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$1,600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            910,
+            953,
+            107,
+            42
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Gross auction pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            46,
+            915,
+            142,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Net Calcutta pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            239,
+            915,
+            117,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams sold",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            407,
+            915,
+            117,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams remaining",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            575,
+            915,
+            117,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Average sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            742,
+            915,
+            117,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Highest sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            910,
+            915,
+            118,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$999.99",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            267,
+            1170,
+            98,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$1,600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            617,
+            1170,
+            83,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$950",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            976,
+            1170,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Porter / Garner",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            1177,
+            204,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Mercer / Baker",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            398,
+            1177,
+            219,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Jensen / Quincy",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            733,
+            1177,
+            243,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Taylor Syndicate",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            1208,
+            204,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "The Johnson Group",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            398,
+            1208,
+            219,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Table Six Syndicate",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            733,
+            1208,
+            243,
+            24
+          ]
+        }
+      ],
+      "statOverlaps": [
+        {
+          "value": "Net Calcutta pool",
+          "spill": 13
+        }
+      ],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": false
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:04.541Z",
+    "note": "screenshot",
+    "detail": "tv-live-e2-1099x618.png"
+  },
+  {
+    "at": "2026-09-15T06:01:06.344Z",
+    "check": "tv live-e2 1100x619 — AUDIT-E2 Live (six metrics)",
+    "result": "FAIL",
+    "detail": {
+      "scrollWidth": 1100,
+      "scrollHeight": 1315,
+      "innerWidth": 1100,
+      "innerHeight": 619,
+      "singleScreen": false,
+      "metrics": 6,
+      "statFontSize": "38px",
+      "bigBid": "98.5575px",
+      "bad": [
+        {
+          "s": ".big-bid",
+          "text": "$0",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            84,
+            706,
+            580,
+            108
+          ]
+        },
+        {
+          "s": ".players",
+          "text": "Bartholomew Featherstonehaugh & Maximilian Oppenhe",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            84,
+            584,
+            580,
+            72
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$5,949.99",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            46,
+            953,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$5,354.99",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            239,
+            977,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "6 / 17",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            407,
+            953,
+            86,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "11",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            575,
+            977,
+            36,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$991.67",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            743,
+            953,
+            127,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$1,600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            911,
+            953,
+            107,
+            42
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Gross auction pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            46,
+            915,
+            142,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Net Calcutta pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            239,
+            915,
+            117,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams sold",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            407,
+            915,
+            117,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams remaining",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            575,
+            915,
+            117,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Average sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            743,
+            915,
+            117,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Highest sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            911,
+            915,
+            118,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$999.99",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            268,
+            1171,
+            98,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$1,600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            618,
+            1171,
+            83,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$950",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            977,
+            1171,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Porter / Garner",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            1177,
+            205,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Mercer / Baker",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            398,
+            1177,
+            220,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Jensen / Quincy",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            734,
+            1177,
+            243,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Taylor Syndicate",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            1209,
+            205,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "The Johnson Group",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            398,
+            1209,
+            220,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Table Six Syndicate",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            734,
+            1209,
+            243,
+            24
+          ]
+        }
+      ],
+      "statOverlaps": [
+        {
+          "value": "Net Calcutta pool",
+          "spill": 12
+        }
+      ],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": false
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:06.374Z",
+    "note": "screenshot",
+    "detail": "tv-live-e2-1100x619.png"
+  },
+  {
+    "at": "2026-09-15T06:01:08.201Z",
+    "check": "tv live-e2 1280x720 — AUDIT-E2 Live (six metrics)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1280,
+      "scrollHeight": 720,
+      "innerWidth": 1280,
+      "innerHeight": 720,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "32.1131px",
+      "bigBid": "67.8328px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:10.077Z",
+    "check": "tv live-e2 1366x768 — AUDIT-E2 Live (six metrics)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1366,
+      "scrollHeight": 768,
+      "innerWidth": 1366,
+      "innerHeight": 768,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "34.4784px",
+      "bigBid": "81.0938px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:11.888Z",
+    "check": "tv live-e2 1920x1080 — AUDIT-E2 Live (six metrics)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1920,
+      "scrollHeight": 1080,
+      "innerWidth": 1920,
+      "innerHeight": 1080,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "36px",
+      "bigBid": "155px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:13.747Z",
+    "check": "tv completed 960x540 — AUDIT-E2 Completed (seven metrics)",
+    "result": "FAIL",
+    "detail": {
+      "scrollWidth": 960,
+      "scrollHeight": 1049,
+      "innerWidth": 960,
+      "innerHeight": 540,
+      "singleScreen": false,
+      "metrics": 7,
+      "statFontSize": "38px",
+      "bigBid": "16px",
+      "bad": [
+        {
+          "s": ".stats strong",
+          "text": "$8,700",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            40,
+            623,
+            107,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$7,830",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            212,
+            623,
+            107,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "8 / 8",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            358,
+            599,
+            66,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "0",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            505,
+            623,
+            20,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$1,087.50",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            652,
+            599,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$2,500",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            798,
+            599,
+            107,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$300",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            65,
+            711,
+            78,
+            42
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Gross auction pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            40,
+            561,
+            121,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Net Calcutta pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            212,
+            561,
+            96,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams sold",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            358,
+            561,
+            96,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams remaining",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            505,
+            561,
+            96,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Average sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            652,
+            561,
+            96,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Highest sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            798,
+            561,
+            96,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Lowest sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            65,
+            673,
+            97,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            257,
+            905,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$400",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            549,
+            905,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$400",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            843,
+            905,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Baker / Quincy",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            57,
+            911,
+            199,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Sutton / Lowry",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            350,
+            911,
+            199,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Porter / Garner",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            642,
+            911,
+            200,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Owes Everything",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            57,
+            943,
+            199,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Overpaid Buyer",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            350,
+            943,
+            199,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Partial Payer",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            642,
+            943,
+            200,
+            24
+          ]
+        }
+      ],
+      "statOverlaps": [
+        {
+          "value": "Average sale",
+          "spill": 34
+        },
+        {
+          "a": "Average sale",
+          "b": "Highest sale",
+          "overlap": [
+            9,
+            42
+          ]
+        }
+      ],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": false
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:13.770Z",
+    "note": "screenshot",
+    "detail": "tv-completed-960x540.png"
+  },
+  {
+    "at": "2026-09-15T06:01:15.598Z",
+    "check": "tv completed 1024x768 — AUDIT-E2 Completed (seven metrics)",
+    "result": "FAIL",
+    "detail": {
+      "scrollWidth": 1024,
+      "scrollHeight": 1057,
+      "innerWidth": 1024,
+      "innerHeight": 768,
+      "singleScreen": false,
+      "metrics": 7,
+      "statFontSize": "38px",
+      "bigBid": "16px",
+      "bad": [
+        {
+          "s": ".stats strong",
+          "text": "$1,087.50",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": false,
+          "rect": [
+            693,
+            607,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            279,
+            913,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$400",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            591,
+            913,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$400",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            904,
+            913,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Baker / Quincy",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            60,
+            919,
+            219,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Sutton / Lowry",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            372,
+            919,
+            219,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Porter / Garner",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            684,
+            919,
+            220,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Owes Everything",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            60,
+            951,
+            219,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Overpaid Buyer",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            372,
+            951,
+            219,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Partial Payer",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            684,
+            951,
+            220,
+            24
+          ]
+        }
+      ],
+      "statOverlaps": [
+        {
+          "value": "Average sale",
+          "spill": 24
+        }
+      ],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": false
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:15.626Z",
+    "note": "screenshot",
+    "detail": "tv-completed-1024x768.png"
+  },
+  {
+    "at": "2026-09-15T06:01:17.517Z",
+    "check": "tv completed 1093x614 — AUDIT-E2 Completed (seven metrics)",
+    "result": "FAIL",
+    "detail": {
+      "scrollWidth": 1093,
+      "scrollHeight": 1066,
+      "innerWidth": 1093,
+      "innerHeight": 614,
+      "singleScreen": false,
+      "metrics": 7,
+      "statFontSize": "38px",
+      "bigBid": "16px",
+      "bad": [
+        {
+          "s": ".stats strong",
+          "text": "$8,700",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            46,
+            616,
+            107,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$7,830",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            238,
+            640,
+            107,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "8 / 8",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            405,
+            616,
+            66,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "0",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            572,
+            640,
+            20,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$1,087.50",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            738,
+            616,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$2,500",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            905,
+            616,
+            107,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$300",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            71,
+            728,
+            78,
+            42
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Net Calcutta pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            238,
+            578,
+            116,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams remaining",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            572,
+            578,
+            116,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Lowest sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            71,
+            690,
+            117,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            303,
+            922,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$400",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            636,
+            922,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$400",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            970,
+            922,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Baker / Quincy",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            928,
+            240,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Sutton / Lowry",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            396,
+            928,
+            240,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Porter / Garner",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            729,
+            928,
+            241,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Owes Everything",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            960,
+            240,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Overpaid Buyer",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            396,
+            960,
+            240,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Partial Payer",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            729,
+            960,
+            241,
+            24
+          ]
+        }
+      ],
+      "statOverlaps": [
+        {
+          "value": "Average sale",
+          "spill": 14
+        }
+      ],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": false
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:17.544Z",
+    "note": "screenshot",
+    "detail": "tv-completed-1093x614.png"
+  },
+  {
+    "at": "2026-09-15T06:01:19.390Z",
+    "check": "tv completed 1099x618 — AUDIT-E2 Completed (seven metrics)",
+    "result": "FAIL",
+    "detail": {
+      "scrollWidth": 1099,
+      "scrollHeight": 1066,
+      "innerWidth": 1099,
+      "innerHeight": 618,
+      "singleScreen": false,
+      "metrics": 7,
+      "statFontSize": "38px",
+      "bigBid": "16px",
+      "bad": [
+        {
+          "s": ".stats strong",
+          "text": "$8,700",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            46,
+            617,
+            107,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$7,830",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            239,
+            641,
+            107,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "8 / 8",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            407,
+            617,
+            66,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "0",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            575,
+            641,
+            20,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$1,087.50",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            742,
+            617,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$2,500",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            910,
+            617,
+            107,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$300",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            71,
+            729,
+            78,
+            42
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Net Calcutta pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            239,
+            579,
+            117,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams remaining",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            575,
+            579,
+            117,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Lowest sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            71,
+            691,
+            118,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            305,
+            922,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$400",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            640,
+            922,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$400",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            976,
+            922,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Baker / Quincy",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            929,
+            242,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Sutton / Lowry",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            398,
+            929,
+            242,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Porter / Garner",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            733,
+            929,
+            243,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Owes Everything",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            960,
+            242,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Overpaid Buyer",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            398,
+            960,
+            242,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Partial Payer",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            733,
+            960,
+            243,
+            24
+          ]
+        }
+      ],
+      "statOverlaps": [
+        {
+          "value": "Average sale",
+          "spill": 13
+        }
+      ],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": false
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:19.413Z",
+    "note": "screenshot",
+    "detail": "tv-completed-1099x618.png"
+  },
+  {
+    "at": "2026-09-15T06:01:21.234Z",
+    "check": "tv completed 1100x619 — AUDIT-E2 Completed (seven metrics)",
+    "result": "FAIL",
+    "detail": {
+      "scrollWidth": 1100,
+      "scrollHeight": 1067,
+      "innerWidth": 1100,
+      "innerHeight": 619,
+      "singleScreen": false,
+      "metrics": 7,
+      "statFontSize": "38px",
+      "bigBid": "16px",
+      "bad": [
+        {
+          "s": ".stats strong",
+          "text": "$8,700",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            46,
+            617,
+            107,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$7,830",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            239,
+            641,
+            107,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "8 / 8",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            407,
+            617,
+            66,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "0",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            575,
+            641,
+            20,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$1,087.50",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            743,
+            617,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$2,500",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            911,
+            617,
+            107,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$300",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            71,
+            729,
+            78,
+            42
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Net Calcutta pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            239,
+            579,
+            117,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams remaining",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            575,
+            579,
+            117,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Lowest sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            71,
+            691,
+            118,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            305,
+            923,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$400",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            641,
+            923,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$400",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            977,
+            923,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Baker / Quincy",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            929,
+            242,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Sutton / Lowry",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            398,
+            929,
+            242,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Porter / Garner",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            734,
+            929,
+            243,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Owes Everything",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            961,
+            242,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Overpaid Buyer",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            398,
+            961,
+            242,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Partial Payer",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            734,
+            961,
+            243,
+            24
+          ]
+        }
+      ],
+      "statOverlaps": [
+        {
+          "value": "Average sale",
+          "spill": 12
+        }
+      ],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": false
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:21.257Z",
+    "note": "screenshot",
+    "detail": "tv-completed-1100x619.png"
+  },
+  {
+    "at": "2026-09-15T06:01:23.102Z",
+    "check": "tv completed 1280x720 — AUDIT-E2 Completed (seven metrics)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1280,
+      "scrollHeight": 720,
+      "innerWidth": 1280,
+      "innerHeight": 720,
+      "singleScreen": true,
+      "metrics": 7,
+      "statFontSize": "27.09px",
+      "bigBid": "16px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:24.912Z",
+    "check": "tv completed 1366x768 — AUDIT-E2 Completed (seven metrics)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1366,
+      "scrollHeight": 768,
+      "innerWidth": 1366,
+      "innerHeight": 768,
+      "singleScreen": true,
+      "metrics": 7,
+      "statFontSize": "29.115px",
+      "bigBid": "16px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:26.748Z",
+    "check": "tv completed 1920x1080 — AUDIT-E2 Completed (seven metrics)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1920,
+      "scrollHeight": 1080,
+      "innerWidth": 1920,
+      "innerHeight": 1080,
+      "singleScreen": true,
+      "metrics": 7,
+      "statFontSize": "36px",
+      "bigBid": "16px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:26.791Z",
+    "note": "fixture status before pause",
+    "detail": {
+      "id": "bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+      "status": "LIVE",
+      "revision": 38
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:28.717Z",
+    "check": "tv paused 960x540 — AUDIT-E2 Live paused (paused styling present)",
+    "result": "FAIL",
+    "detail": {
+      "scrollWidth": 960,
+      "scrollHeight": 1263,
+      "innerWidth": 960,
+      "innerHeight": 540,
+      "singleScreen": false,
+      "metrics": 6,
+      "statFontSize": "38px",
+      "bigBid": "84.0225px",
+      "bad": [
+        {
+          "s": ".big-bid",
+          "text": "$0",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            78,
+            670,
+            494,
+            92
+          ]
+        },
+        {
+          "s": ".block h2",
+          "text": "Bartholomew Featherstonehaugh / Maximilian Oppenhe",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            78,
+            295,
+            494,
+            247
+          ]
+        },
+        {
+          "s": ".players",
+          "text": "Bartholomew Featherstonehaugh & Maximilian Oppenhe",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            78,
+            548,
+            494,
+            72
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$5,949.99",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            40,
+            925,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$5,354.99",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            212,
+            925,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "6 / 17",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            358,
+            901,
+            86,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "11",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            505,
+            925,
+            36,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$991.67",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            652,
+            901,
+            127,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$1,600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            798,
+            901,
+            107,
+            42
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Gross auction pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            40,
+            863,
+            121,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Net Calcutta pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            212,
+            863,
+            96,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams sold",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            358,
+            863,
+            96,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams remaining",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            505,
+            863,
+            96,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Average sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            652,
+            863,
+            96,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Highest sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            798,
+            863,
+            97,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$999.99",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            219,
+            1119,
+            98,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$1,600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            527,
+            1119,
+            83,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$950",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            843,
+            1119,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Porter / Garner",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            57,
+            1125,
+            162,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Mercer / Baker",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            350,
+            1125,
+            177,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Jensen / Quincy",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            642,
+            1125,
+            200,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Taylor Syndicate",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            57,
+            1157,
+            162,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "The Johnson Group",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            350,
+            1157,
+            177,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Table Six Syndicate",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            642,
+            1157,
+            200,
+            24
+          ]
+        },
+        {
+          "s": ".queue-row h3",
+          "text": "Keller / Lowry",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            706,
+            523,
+            131,
+            30
+          ]
+        },
+        {
+          "s": ".queue-row p",
+          "text": "Second Flight",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            706,
+            557,
+            131,
+            24
+          ]
+        }
+      ],
+      "statOverlaps": [
+        {
+          "value": "Gross auction pool",
+          "spill": 9
+        },
+        {
+          "value": "Net Calcutta pool",
+          "spill": 34
+        },
+        {
+          "a": "Net Calcutta pool",
+          "b": "Teams sold",
+          "overlap": [
+            9,
+            18
+          ]
+        },
+        {
+          "value": "Average sale",
+          "spill": 5
+        }
+      ],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": false
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:28.741Z",
+    "note": "screenshot",
+    "detail": "tv-paused-960x540.png"
+  },
+  {
+    "at": "2026-09-15T06:01:30.572Z",
+    "check": "tv paused 1024x768 — AUDIT-E2 Live paused (paused styling present)",
+    "result": "FAIL",
+    "detail": {
+      "scrollWidth": 1024,
+      "scrollHeight": 1286,
+      "innerWidth": 1024,
+      "innerHeight": 768,
+      "singleScreen": false,
+      "metrics": 6,
+      "statFontSize": "38px",
+      "bigBid": "90.6658px",
+      "bad": [
+        {
+          "s": ".big-bid",
+          "text": "$0",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            81,
+            686,
+            533,
+            100
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$5,949.99",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            43,
+            949,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$5,354.99",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            224,
+            949,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "6 / 17",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            381,
+            925,
+            86,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "11",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            537,
+            949,
+            36,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$991.67",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            693,
+            925,
+            127,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$1,600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            850,
+            925,
+            107,
+            42
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Gross auction pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            43,
+            887,
+            130,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Net Calcutta pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            224,
+            887,
+            105,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams sold",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            381,
+            887,
+            105,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams remaining",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            537,
+            887,
+            105,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Average sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            693,
+            887,
+            105,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Highest sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            850,
+            887,
+            106,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$999.99",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            241,
+            1142,
+            98,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$1,600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            568,
+            1142,
+            83,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$950",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            904,
+            1142,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Porter / Garner",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            60,
+            1149,
+            181,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Mercer / Baker",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            372,
+            1149,
+            196,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Jensen / Quincy",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            684,
+            1149,
+            220,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Taylor Syndicate",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            60,
+            1180,
+            181,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "The Johnson Group",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            372,
+            1180,
+            196,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Table Six Syndicate",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            684,
+            1180,
+            220,
+            24
+          ]
+        }
+      ],
+      "statOverlaps": [
+        {
+          "value": "Net Calcutta pool",
+          "spill": 24
+        }
+      ],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": false
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:30.603Z",
+    "note": "screenshot",
+    "detail": "tv-paused-1024x768.png"
+  },
+  {
+    "at": "2026-09-15T06:01:32.431Z",
+    "check": "tv paused 1093x614 — AUDIT-E2 Live paused (paused styling present)",
+    "result": "FAIL",
+    "detail": {
+      "scrollWidth": 1093,
+      "scrollHeight": 1312,
+      "innerWidth": 1093,
+      "innerHeight": 614,
+      "singleScreen": false,
+      "metrics": 6,
+      "statFontSize": "38px",
+      "bigBid": "97.8297px",
+      "bad": [
+        {
+          "s": ".big-bid",
+          "text": "$0",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            84,
+            704,
+            575,
+            108
+          ]
+        },
+        {
+          "s": ".players",
+          "text": "Bartholomew Featherstonehaugh & Maximilian Oppenhe",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            84,
+            582,
+            575,
+            72
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$5,949.99",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            46,
+            951,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$5,354.99",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            238,
+            975,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "6 / 17",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            405,
+            951,
+            86,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "11",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            572,
+            975,
+            36,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$991.67",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            738,
+            951,
+            127,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$1,600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            905,
+            951,
+            107,
+            42
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Gross auction pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            46,
+            913,
+            141,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Net Calcutta pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            238,
+            913,
+            116,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams sold",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            405,
+            913,
+            116,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams remaining",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            572,
+            913,
+            116,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Average sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            738,
+            913,
+            116,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Highest sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            905,
+            913,
+            117,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$999.99",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            265,
+            1168,
+            98,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$1,600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            613,
+            1168,
+            83,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$950",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            970,
+            1168,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Porter / Garner",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            1175,
+            202,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Mercer / Baker",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            396,
+            1175,
+            217,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Jensen / Quincy",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            729,
+            1175,
+            241,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Taylor Syndicate",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            1206,
+            202,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "The Johnson Group",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            396,
+            1206,
+            217,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Table Six Syndicate",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            729,
+            1206,
+            241,
+            24
+          ]
+        }
+      ],
+      "statOverlaps": [
+        {
+          "value": "Net Calcutta pool",
+          "spill": 14
+        }
+      ],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": false
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:32.462Z",
+    "note": "screenshot",
+    "detail": "tv-paused-1093x614.png"
+  },
+  {
+    "at": "2026-09-15T06:01:34.288Z",
+    "check": "tv paused 1099x618 — AUDIT-E2 Live paused (paused styling present)",
+    "result": "FAIL",
+    "detail": {
+      "scrollWidth": 1099,
+      "scrollHeight": 1314,
+      "innerWidth": 1099,
+      "innerHeight": 618,
+      "singleScreen": false,
+      "metrics": 6,
+      "statFontSize": "38px",
+      "bigBid": "98.4512px",
+      "bad": [
+        {
+          "s": ".big-bid",
+          "text": "$0",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            84,
+            705,
+            579,
+            108
+          ]
+        },
+        {
+          "s": ".players",
+          "text": "Bartholomew Featherstonehaugh & Maximilian Oppenhe",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            84,
+            583,
+            579,
+            72
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$5,949.99",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            46,
+            953,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$5,354.99",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            239,
+            977,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "6 / 17",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            407,
+            953,
+            86,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "11",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            575,
+            977,
+            36,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$991.67",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            742,
+            953,
+            127,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$1,600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            910,
+            953,
+            107,
+            42
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Gross auction pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            46,
+            915,
+            142,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Net Calcutta pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            239,
+            915,
+            117,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams sold",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            407,
+            915,
+            117,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams remaining",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            575,
+            915,
+            117,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Average sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            742,
+            915,
+            117,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Highest sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            910,
+            915,
+            118,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$999.99",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            267,
+            1170,
+            98,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$1,600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            617,
+            1170,
+            83,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$950",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            976,
+            1170,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Porter / Garner",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            1177,
+            204,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Mercer / Baker",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            398,
+            1177,
+            219,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Jensen / Quincy",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            733,
+            1177,
+            243,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Taylor Syndicate",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            1208,
+            204,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "The Johnson Group",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            398,
+            1208,
+            219,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Table Six Syndicate",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            733,
+            1208,
+            243,
+            24
+          ]
+        }
+      ],
+      "statOverlaps": [
+        {
+          "value": "Net Calcutta pool",
+          "spill": 13
+        }
+      ],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": false
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:34.315Z",
+    "note": "screenshot",
+    "detail": "tv-paused-1099x618.png"
+  },
+  {
+    "at": "2026-09-15T06:01:36.146Z",
+    "check": "tv paused 1100x619 — AUDIT-E2 Live paused (paused styling present)",
+    "result": "FAIL",
+    "detail": {
+      "scrollWidth": 1100,
+      "scrollHeight": 1315,
+      "innerWidth": 1100,
+      "innerHeight": 619,
+      "singleScreen": false,
+      "metrics": 6,
+      "statFontSize": "38px",
+      "bigBid": "98.5575px",
+      "bad": [
+        {
+          "s": ".big-bid",
+          "text": "$0",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            84,
+            706,
+            580,
+            108
+          ]
+        },
+        {
+          "s": ".players",
+          "text": "Bartholomew Featherstonehaugh & Maximilian Oppenhe",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            84,
+            584,
+            580,
+            72
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$5,949.99",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            46,
+            953,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$5,354.99",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": true,
+          "rect": [
+            239,
+            977,
+            155,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "6 / 17",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            407,
+            953,
+            86,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "11",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            575,
+            977,
+            36,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$991.67",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            743,
+            953,
+            127,
+            42
+          ]
+        },
+        {
+          "s": ".stats strong",
+          "text": "$1,600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            911,
+            953,
+            107,
+            42
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Gross auction pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            46,
+            915,
+            142,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Net Calcutta pool",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            239,
+            915,
+            117,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams sold",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            407,
+            915,
+            117,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Teams remaining",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            575,
+            915,
+            117,
+            48
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Average sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            743,
+            915,
+            117,
+            24
+          ]
+        },
+        {
+          "s": ".stats p",
+          "text": "Highest sale",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            911,
+            915,
+            118,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$999.99",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            268,
+            1171,
+            98,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$1,600",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            618,
+            1171,
+            83,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip strong",
+          "text": "$950",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            977,
+            1171,
+            60,
+            41
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Porter / Garner",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            1177,
+            205,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Mercer / Baker",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            398,
+            1177,
+            220,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip h3",
+          "text": "Jensen / Quincy",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            734,
+            1177,
+            243,
+            29
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Taylor Syndicate",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            63,
+            1209,
+            205,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "The Johnson Group",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            398,
+            1209,
+            220,
+            24
+          ]
+        },
+        {
+          "s": ".sales-strip p",
+          "text": "Table Six Syndicate",
+          "clipped": false,
+          "outsideParent": false,
+          "outsideViewport": true,
+          "rect": [
+            734,
+            1209,
+            243,
+            24
+          ]
+        }
+      ],
+      "statOverlaps": [
+        {
+          "value": "Net Calcutta pool",
+          "spill": 12
+        }
+      ],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": false
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:36.174Z",
+    "note": "screenshot",
+    "detail": "tv-paused-1100x619.png"
+  },
+  {
+    "at": "2026-09-15T06:01:38.052Z",
+    "check": "tv paused 1280x720 — AUDIT-E2 Live paused (paused styling present)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1280,
+      "scrollHeight": 720,
+      "innerWidth": 1280,
+      "innerHeight": 720,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "32.1131px",
+      "bigBid": "67.8328px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:39.856Z",
+    "check": "tv paused 1366x768 — AUDIT-E2 Live paused (paused styling present)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1366,
+      "scrollHeight": 768,
+      "innerWidth": 1366,
+      "innerHeight": 768,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "34.4784px",
+      "bigBid": "81.0938px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:41.671Z",
+    "check": "tv paused 1920x1080 — AUDIT-E2 Live paused (paused styling present)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1920,
+      "scrollHeight": 1080,
+      "innerWidth": 1920,
+      "innerHeight": 1080,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "36px",
+      "bigBid": "155px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:43.494Z",
+    "check": "tv large 1366x768",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1366,
+      "scrollHeight": 768,
+      "innerWidth": 1366,
+      "innerHeight": 768,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "34.4784px",
+      "bigBid": "81.0938px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:45.308Z",
+    "check": "tv large 1920x1080",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1920,
+      "scrollHeight": 1080,
+      "innerWidth": 1920,
+      "innerHeight": 1080,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "36px",
+      "bigBid": "155px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:47.113Z",
+    "check": "tv demo 1366x768",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1366,
+      "scrollHeight": 768,
+      "innerWidth": 1366,
+      "innerHeight": 768,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "34.4784px",
+      "bigBid": "80.6039px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:48.929Z",
+    "check": "tv demo 1920x1080",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1920,
+      "scrollHeight": 1080,
+      "innerWidth": 1920,
+      "innerHeight": 1080,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "36px",
+      "bigBid": "117.103px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:49.977Z",
+    "check": "tv empty 1366x768 renders empty state on one screen",
+    "result": "FAIL",
+    "detail": {
+      "scrollHeight": 768,
+      "innerHeight": 768,
+      "empty": false
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:51.063Z",
+    "check": "tv empty 1920x1080 renders empty state on one screen",
+    "result": "FAIL",
+    "detail": {
+      "scrollHeight": 1080,
+      "innerHeight": 1080,
+      "empty": false
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:51.142Z",
+    "note": "fixture status restored",
+    "detail": {
+      "id": "bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+      "status": "LIVE",
+      "revision": 40
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:52.947Z",
+    "check": "public live 320x850 containment (regression)",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:54.741Z",
+    "check": "public live 390x850 containment (regression)",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:56.553Z",
+    "check": "public live 430x850 containment (regression)",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:01:56.582Z",
+    "note": "summary",
+    "detail": {
+      "PASS": 24,
+      "FAIL": 31,
+      "WARN": 0
+    }
+  }
+]

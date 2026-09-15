@@ -1,0 +1,1663 @@
+[
+  {
+    "at": "2026-09-15T06:04:20.858Z",
+    "check": "public header 320px controls >= 24px, named, focus-visible",
+    "result": "PASS",
+    "detail": {
+      "controls": [
+        {
+          "tag": "A",
+          "name": "Auction board",
+          "href": "#board",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "TV mode",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Operator",
+          "href": "/admin?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "focusOrder": [
+        {
+          "name": "Auction board",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "name": "TV mode",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "name": "Operator",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        }
+      ],
+      "missing": [],
+      "zero": [],
+      "unnamed": [],
+      "notFocusVisible": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:04:22.817Z",
+    "check": "operator header 320px controls >= 24px, named, focus-visible",
+    "result": "PASS",
+    "detail": {
+      "controls": [
+        {
+          "tag": "A",
+          "name": "Public board",
+          "href": "/?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Launch TV Display",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Help",
+          "href": null,
+          "hasIcon": false,
+          "w": 29,
+          "h": 24,
+          "fontSize": "14px",
+          "visibleText": true
+        },
+        {
+          "tag": "A",
+          "name": "Sign out",
+          "href": "/signout-with-chatgpt?return_to=%2F%3Fevent%3Dbf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "focusOrder": [
+        {
+          "name": "Public board",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "name": "Launch TV Display",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "name": "Help",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 29,
+          "h": 24
+        },
+        {
+          "name": "Sign out",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        }
+      ],
+      "missing": [],
+      "zero": [],
+      "unnamed": [],
+      "notFocusVisible": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:04:24.674Z",
+    "check": "public header 390px controls >= 24px, named, focus-visible",
+    "result": "PASS",
+    "detail": {
+      "controls": [
+        {
+          "tag": "A",
+          "name": "Auction board",
+          "href": "#board",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "TV mode",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Operator",
+          "href": "/admin?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "focusOrder": [
+        {
+          "name": "Auction board",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "name": "TV mode",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "name": "Operator",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        }
+      ],
+      "missing": [],
+      "zero": [],
+      "unnamed": [],
+      "notFocusVisible": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:04:24.712Z",
+    "note": "screenshot",
+    "detail": "public-header-390.png"
+  },
+  {
+    "at": "2026-09-15T06:04:24.906Z",
+    "check": "public header 390px axe (header region)",
+    "result": "PASS",
+    "detail": []
+  },
+  {
+    "at": "2026-09-15T06:04:26.844Z",
+    "check": "operator header 390px controls >= 24px, named, focus-visible",
+    "result": "PASS",
+    "detail": {
+      "controls": [
+        {
+          "tag": "A",
+          "name": "Public board",
+          "href": "/?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Launch TV Display",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Help",
+          "href": null,
+          "hasIcon": false,
+          "w": 29,
+          "h": 24,
+          "fontSize": "14px",
+          "visibleText": true
+        },
+        {
+          "tag": "A",
+          "name": "Sign out",
+          "href": "/signout-with-chatgpt?return_to=%2F%3Fevent%3Dbf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "focusOrder": [
+        {
+          "name": "Public board",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "name": "Launch TV Display",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "name": "Help",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 29,
+          "h": 24
+        },
+        {
+          "name": "Sign out",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        }
+      ],
+      "missing": [],
+      "zero": [],
+      "unnamed": [],
+      "notFocusVisible": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:04:26.877Z",
+    "note": "screenshot",
+    "detail": "operator-header-390.png"
+  },
+  {
+    "at": "2026-09-15T06:04:27.064Z",
+    "check": "operator header 390px axe (header region)",
+    "result": "PASS",
+    "detail": []
+  },
+  {
+    "at": "2026-09-15T06:04:28.902Z",
+    "check": "public header 430px controls >= 24px, named, focus-visible",
+    "result": "PASS",
+    "detail": {
+      "controls": [
+        {
+          "tag": "A",
+          "name": "Auction board",
+          "href": "#board",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "TV mode",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Operator",
+          "href": "/admin?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "focusOrder": [
+        {
+          "name": "Auction board",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "name": "TV mode",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "name": "Operator",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        }
+      ],
+      "missing": [],
+      "zero": [],
+      "unnamed": [],
+      "notFocusVisible": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:04:30.837Z",
+    "check": "operator header 430px controls >= 24px, named, focus-visible",
+    "result": "PASS",
+    "detail": {
+      "controls": [
+        {
+          "tag": "A",
+          "name": "Public board",
+          "href": "/?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Launch TV Display",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Help",
+          "href": null,
+          "hasIcon": false,
+          "w": 29,
+          "h": 24,
+          "fontSize": "14px",
+          "visibleText": true
+        },
+        {
+          "tag": "A",
+          "name": "Sign out",
+          "href": "/signout-with-chatgpt?return_to=%2F%3Fevent%3Dbf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "focusOrder": [
+        {
+          "name": "Public board",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "name": "Launch TV Display",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "name": "Help",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 29,
+          "h": 24
+        },
+        {
+          "name": "Sign out",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        }
+      ],
+      "missing": [],
+      "zero": [],
+      "unnamed": [],
+      "notFocusVisible": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:04:32.679Z",
+    "check": "public header 700px controls >= 24px, named, focus-visible",
+    "result": "PASS",
+    "detail": {
+      "controls": [
+        {
+          "tag": "A",
+          "name": "Auction board",
+          "href": "#board",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "TV mode",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Operator",
+          "href": "/admin?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "focusOrder": [
+        {
+          "name": "Auction board",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "name": "TV mode",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "name": "Operator",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        }
+      ],
+      "missing": [],
+      "zero": [],
+      "unnamed": [],
+      "notFocusVisible": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:04:34.693Z",
+    "check": "operator header 700px controls >= 24px, named, focus-visible",
+    "result": "PASS",
+    "detail": {
+      "controls": [
+        {
+          "tag": "A",
+          "name": "Public board",
+          "href": "/?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "A",
+          "name": "Launch TV Display",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Help",
+          "href": null,
+          "hasIcon": false,
+          "w": 29,
+          "h": 24,
+          "fontSize": "14px",
+          "visibleText": true
+        },
+        {
+          "tag": "A",
+          "name": "Sign out",
+          "href": "/signout-with-chatgpt?return_to=%2F%3Fevent%3Dbf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 24,
+          "h": 24,
+          "fontSize": "0px",
+          "visibleText": false
+        }
+      ],
+      "focusOrder": [
+        {
+          "name": "Public board",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "name": "Launch TV Display",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "name": "Help",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 29,
+          "h": 24
+        },
+        {
+          "name": "Sign out",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 24,
+          "h": 24
+        }
+      ],
+      "missing": [],
+      "zero": [],
+      "unnamed": [],
+      "notFocusVisible": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:04:36.535Z",
+    "check": "public header 701px controls >= 24px, named, focus-visible",
+    "result": "PASS",
+    "detail": {
+      "controls": [
+        {
+          "tag": "A",
+          "name": "Auction board",
+          "href": "#board",
+          "hasIcon": true,
+          "w": 111,
+          "h": 24,
+          "fontSize": "14px",
+          "visibleText": true
+        },
+        {
+          "tag": "A",
+          "name": "TV mode",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 82,
+          "h": 24,
+          "fontSize": "14px",
+          "visibleText": true
+        },
+        {
+          "tag": "A",
+          "name": "Operator",
+          "href": "/admin?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 80,
+          "h": 24,
+          "fontSize": "14px",
+          "visibleText": true
+        }
+      ],
+      "focusOrder": [
+        {
+          "name": "Auction board",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 111,
+          "h": 24
+        },
+        {
+          "name": "TV mode",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 82,
+          "h": 24
+        },
+        {
+          "name": "Operator",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 80,
+          "h": 24
+        }
+      ],
+      "missing": [],
+      "zero": [],
+      "unnamed": [],
+      "notFocusVisible": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:04:38.463Z",
+    "check": "operator header 701px controls >= 24px, named, focus-visible",
+    "result": "PASS",
+    "detail": {
+      "controls": [
+        {
+          "tag": "A",
+          "name": "Public board",
+          "href": "/?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 96,
+          "h": 42,
+          "fontSize": "14px",
+          "visibleText": true
+        },
+        {
+          "tag": "A",
+          "name": "Launch TV Display",
+          "href": "/tv?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 133,
+          "h": 42,
+          "fontSize": "14px",
+          "visibleText": true
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Help",
+          "href": null,
+          "hasIcon": false,
+          "w": 29,
+          "h": 42,
+          "fontSize": "14px",
+          "visibleText": true
+        },
+        {
+          "tag": "A",
+          "name": "Sign out",
+          "href": "/signout-with-chatgpt?return_to=%2F%3Fevent%3Dbf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+          "hasIcon": true,
+          "w": 71,
+          "h": 42,
+          "fontSize": "14px",
+          "visibleText": true
+        }
+      ],
+      "focusOrder": [
+        {
+          "name": "Public board",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 96,
+          "h": 42
+        },
+        {
+          "name": "Launch TV Display",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 133,
+          "h": 42
+        },
+        {
+          "name": "Help",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 29,
+          "h": 42
+        },
+        {
+          "name": "Sign out",
+          "focusVisible": true,
+          "outline": "auto 1px",
+          "w": 71,
+          "h": 42
+        }
+      ],
+      "missing": [],
+      "zero": [],
+      "unnamed": [],
+      "notFocusVisible": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:04:41.504Z",
+    "check": "public 390 keyboard Enter on Auction board reaches #board",
+    "result": "PASS",
+    "detail": {
+      "hash": "#board",
+      "boardTop": 0,
+      "scrollY": 3070,
+      "inView": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:04:44.472Z",
+    "check": "operator 390 tap Sign out lands on same-event public board",
+    "result": "PASS",
+    "detail": {
+      "url": "http://localhost:5173/?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+      "signedOut": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:04:46.284Z",
+    "check": "tv live 960x540 — AUDIT-E2 Large (100 teams, bid on block)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 960,
+      "scrollHeight": 540,
+      "innerWidth": 960,
+      "innerHeight": 540,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "23.3213px",
+      "bigBid": "62.5594px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:04:46.316Z",
+    "note": "screenshot",
+    "detail": "tv-live-960x540.png"
+  },
+  {
+    "at": "2026-09-15T06:04:48.140Z",
+    "check": "tv live 1024x768 — AUDIT-E2 Large (100 teams, bid on block)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1024,
+      "scrollHeight": 768,
+      "innerWidth": 1024,
+      "innerHeight": 768,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "25.0791px",
+      "bigBid": "84.2672px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:04:48.168Z",
+    "note": "screenshot",
+    "detail": "tv-live-1024x768.png"
+  },
+  {
+    "at": "2026-09-15T06:04:49.980Z",
+    "check": "tv live 1093x614 — AUDIT-E2 Large (100 teams, bid on block)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1093,
+      "scrollHeight": 614,
+      "innerWidth": 1093,
+      "innerHeight": 614,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "26.9747px",
+      "bigBid": "83.0203px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:04:50.014Z",
+    "note": "screenshot",
+    "detail": "tv-live-1093x614.png"
+  },
+  {
+    "at": "2026-09-15T06:04:51.815Z",
+    "check": "tv live 1099x618 — AUDIT-E2 Large (100 teams, bid on block)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1099,
+      "scrollHeight": 618,
+      "innerWidth": 1099,
+      "innerHeight": 618,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "27.1406px",
+      "bigBid": "84.1219px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:04:53.618Z",
+    "check": "tv live 1100x619 — AUDIT-E2 Large (100 teams, bid on block)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1100,
+      "scrollHeight": 619,
+      "innerWidth": 1100,
+      "innerHeight": 619,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "27.1688px",
+      "bigBid": "84.4031px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:04:55.445Z",
+    "check": "tv live 1280x720 — AUDIT-E2 Large (100 teams, bid on block)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1280,
+      "scrollHeight": 720,
+      "innerWidth": 1280,
+      "innerHeight": 720,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "32.1131px",
+      "bigBid": "67.8328px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:04:57.265Z",
+    "check": "tv live 1366x768 — AUDIT-E2 Large (100 teams, bid on block)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1366,
+      "scrollHeight": 768,
+      "innerWidth": 1366,
+      "innerHeight": 768,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "34.4784px",
+      "bigBid": "81.0938px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:04:59.087Z",
+    "check": "tv live 1920x1080 — AUDIT-E2 Large (100 teams, bid on block)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1920,
+      "scrollHeight": 1080,
+      "innerWidth": 1920,
+      "innerHeight": 1080,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "36px",
+      "bigBid": "155px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:00.902Z",
+    "check": "tv live-e2 960x540 — AUDIT-E2 Live (six metrics)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 960,
+      "scrollHeight": 540,
+      "innerWidth": 960,
+      "innerHeight": 540,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "23.3213px",
+      "bigBid": "62.5594px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:00.929Z",
+    "note": "screenshot",
+    "detail": "tv-live-e2-960x540.png"
+  },
+  {
+    "at": "2026-09-15T06:05:02.733Z",
+    "check": "tv live-e2 1024x768 — AUDIT-E2 Live (six metrics)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1024,
+      "scrollHeight": 768,
+      "innerWidth": 1024,
+      "innerHeight": 768,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "25.0791px",
+      "bigBid": "84.2672px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:02.763Z",
+    "note": "screenshot",
+    "detail": "tv-live-e2-1024x768.png"
+  },
+  {
+    "at": "2026-09-15T06:05:04.577Z",
+    "check": "tv live-e2 1093x614 — AUDIT-E2 Live (six metrics)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1093,
+      "scrollHeight": 614,
+      "innerWidth": 1093,
+      "innerHeight": 614,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "26.9747px",
+      "bigBid": "83.0203px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:04.605Z",
+    "note": "screenshot",
+    "detail": "tv-live-e2-1093x614.png"
+  },
+  {
+    "at": "2026-09-15T06:05:06.421Z",
+    "check": "tv live-e2 1099x618 — AUDIT-E2 Live (six metrics)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1099,
+      "scrollHeight": 618,
+      "innerWidth": 1099,
+      "innerHeight": 618,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "27.1406px",
+      "bigBid": "84.1219px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:08.240Z",
+    "check": "tv live-e2 1100x619 — AUDIT-E2 Live (six metrics)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1100,
+      "scrollHeight": 619,
+      "innerWidth": 1100,
+      "innerHeight": 619,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "27.1688px",
+      "bigBid": "84.4031px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:10.043Z",
+    "check": "tv live-e2 1280x720 — AUDIT-E2 Live (six metrics)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1280,
+      "scrollHeight": 720,
+      "innerWidth": 1280,
+      "innerHeight": 720,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "32.1131px",
+      "bigBid": "67.8328px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:11.839Z",
+    "check": "tv live-e2 1366x768 — AUDIT-E2 Live (six metrics)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1366,
+      "scrollHeight": 768,
+      "innerWidth": 1366,
+      "innerHeight": 768,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "34.4784px",
+      "bigBid": "81.0938px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:13.654Z",
+    "check": "tv live-e2 1920x1080 — AUDIT-E2 Live (six metrics)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1920,
+      "scrollHeight": 1080,
+      "innerWidth": 1920,
+      "innerHeight": 1080,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "36px",
+      "bigBid": "155px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:15.467Z",
+    "check": "tv completed 960x540 — AUDIT-E2 Completed (seven metrics)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 960,
+      "scrollHeight": 540,
+      "innerWidth": 960,
+      "innerHeight": 540,
+      "singleScreen": true,
+      "metrics": 7,
+      "statFontSize": "19.5525px",
+      "bigBid": "16px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:15.494Z",
+    "note": "screenshot",
+    "detail": "tv-completed-960x540.png"
+  },
+  {
+    "at": "2026-09-15T06:05:17.311Z",
+    "check": "tv completed 1024x768 — AUDIT-E2 Completed (seven metrics)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1024,
+      "scrollHeight": 768,
+      "innerWidth": 1024,
+      "innerHeight": 768,
+      "singleScreen": true,
+      "metrics": 7,
+      "statFontSize": "21.06px",
+      "bigBid": "16px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:17.336Z",
+    "note": "screenshot",
+    "detail": "tv-completed-1024x768.png"
+  },
+  {
+    "at": "2026-09-15T06:05:19.149Z",
+    "check": "tv completed 1093x614 — AUDIT-E2 Completed (seven metrics)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1093,
+      "scrollHeight": 614,
+      "innerWidth": 1093,
+      "innerHeight": 614,
+      "singleScreen": true,
+      "metrics": 7,
+      "statFontSize": "22.6856px",
+      "bigBid": "16px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:19.175Z",
+    "note": "screenshot",
+    "detail": "tv-completed-1093x614.png"
+  },
+  {
+    "at": "2026-09-15T06:05:21.009Z",
+    "check": "tv completed 1099x618 — AUDIT-E2 Completed (seven metrics)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1099,
+      "scrollHeight": 618,
+      "innerWidth": 1099,
+      "innerHeight": 618,
+      "singleScreen": true,
+      "metrics": 7,
+      "statFontSize": "22.8263px",
+      "bigBid": "16px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:22.820Z",
+    "check": "tv completed 1100x619 — AUDIT-E2 Completed (seven metrics)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1100,
+      "scrollHeight": 619,
+      "innerWidth": 1100,
+      "innerHeight": 619,
+      "singleScreen": true,
+      "metrics": 7,
+      "statFontSize": "22.8487px",
+      "bigBid": "16px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:24.659Z",
+    "check": "tv completed 1280x720 — AUDIT-E2 Completed (seven metrics)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1280,
+      "scrollHeight": 720,
+      "innerWidth": 1280,
+      "innerHeight": 720,
+      "singleScreen": true,
+      "metrics": 7,
+      "statFontSize": "27.09px",
+      "bigBid": "16px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:26.522Z",
+    "check": "tv completed 1366x768 — AUDIT-E2 Completed (seven metrics)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1366,
+      "scrollHeight": 768,
+      "innerWidth": 1366,
+      "innerHeight": 768,
+      "singleScreen": true,
+      "metrics": 7,
+      "statFontSize": "29.115px",
+      "bigBid": "16px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:28.423Z",
+    "check": "tv completed 1920x1080 — AUDIT-E2 Completed (seven metrics)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1920,
+      "scrollHeight": 1080,
+      "innerWidth": 1920,
+      "innerHeight": 1080,
+      "singleScreen": true,
+      "metrics": 7,
+      "statFontSize": "36px",
+      "bigBid": "16px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:28.454Z",
+    "note": "fixture status before pause",
+    "detail": {
+      "id": "bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+      "status": "LIVE",
+      "revision": 40
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:30.353Z",
+    "check": "tv paused 960x540 — AUDIT-E2 Live paused (paused styling present)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 960,
+      "scrollHeight": 540,
+      "innerWidth": 960,
+      "innerHeight": 540,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "23.3213px",
+      "bigBid": "62.5594px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:30.379Z",
+    "note": "screenshot",
+    "detail": "tv-paused-960x540.png"
+  },
+  {
+    "at": "2026-09-15T06:05:32.247Z",
+    "check": "tv paused 1024x768 — AUDIT-E2 Live paused (paused styling present)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1024,
+      "scrollHeight": 768,
+      "innerWidth": 1024,
+      "innerHeight": 768,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "25.0791px",
+      "bigBid": "84.2672px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:32.277Z",
+    "note": "screenshot",
+    "detail": "tv-paused-1024x768.png"
+  },
+  {
+    "at": "2026-09-15T06:05:34.112Z",
+    "check": "tv paused 1093x614 — AUDIT-E2 Live paused (paused styling present)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1093,
+      "scrollHeight": 614,
+      "innerWidth": 1093,
+      "innerHeight": 614,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "26.9747px",
+      "bigBid": "83.0203px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:34.142Z",
+    "note": "screenshot",
+    "detail": "tv-paused-1093x614.png"
+  },
+  {
+    "at": "2026-09-15T06:05:35.971Z",
+    "check": "tv paused 1099x618 — AUDIT-E2 Live paused (paused styling present)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1099,
+      "scrollHeight": 618,
+      "innerWidth": 1099,
+      "innerHeight": 618,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "27.1406px",
+      "bigBid": "84.1219px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:37.802Z",
+    "check": "tv paused 1100x619 — AUDIT-E2 Live paused (paused styling present)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1100,
+      "scrollHeight": 619,
+      "innerWidth": 1100,
+      "innerHeight": 619,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "27.1688px",
+      "bigBid": "84.4031px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:39.625Z",
+    "check": "tv paused 1280x720 — AUDIT-E2 Live paused (paused styling present)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1280,
+      "scrollHeight": 720,
+      "innerWidth": 1280,
+      "innerHeight": 720,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "32.1131px",
+      "bigBid": "67.8328px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:41.542Z",
+    "check": "tv paused 1366x768 — AUDIT-E2 Live paused (paused styling present)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1366,
+      "scrollHeight": 768,
+      "innerWidth": 1366,
+      "innerHeight": 768,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "34.4784px",
+      "bigBid": "81.0938px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:43.364Z",
+    "check": "tv paused 1920x1080 — AUDIT-E2 Live paused (paused styling present)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1920,
+      "scrollHeight": 1080,
+      "innerWidth": 1920,
+      "innerHeight": 1080,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "36px",
+      "bigBid": "155px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:45.171Z",
+    "check": "tv large 1366x768",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1366,
+      "scrollHeight": 768,
+      "innerWidth": 1366,
+      "innerHeight": 768,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "34.4784px",
+      "bigBid": "81.0938px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:46.982Z",
+    "check": "tv large 1920x1080",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1920,
+      "scrollHeight": 1080,
+      "innerWidth": 1920,
+      "innerHeight": 1080,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "36px",
+      "bigBid": "155px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:48.795Z",
+    "check": "tv demo 1366x768",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1366,
+      "scrollHeight": 768,
+      "innerWidth": 1366,
+      "innerHeight": 768,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "34.4784px",
+      "bigBid": "80.6039px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:50.619Z",
+    "check": "tv demo 1920x1080",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1920,
+      "scrollHeight": 1080,
+      "innerWidth": 1920,
+      "innerHeight": 1080,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "36px",
+      "bigBid": "117.103px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:51.647Z",
+    "check": "tv empty 1366x768 (event with no teams: open block, no queue)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1366,
+      "scrollHeight": 768,
+      "innerWidth": 1366,
+      "innerHeight": 768,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "34.4784px",
+      "bigBid": "16px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:52.701Z",
+    "check": "tv empty 1920x1080 (event with no teams: open block, no queue)",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 1920,
+      "scrollHeight": 1080,
+      "innerWidth": 1920,
+      "innerHeight": 1080,
+      "singleScreen": true,
+      "metrics": 6,
+      "statFontSize": "36px",
+      "bigBid": "16px",
+      "bad": [],
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "vertical": [],
+      "gridEngaged": true
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:52.779Z",
+    "note": "fixture status restored",
+    "detail": {
+      "id": "bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+      "status": "LIVE",
+      "revision": 42
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:54.618Z",
+    "check": "public live 320x850 containment (regression)",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:56.438Z",
+    "check": "public live 390x850 containment (regression)",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:58.264Z",
+    "check": "public live 430x850 containment (regression)",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T06:05:58.291Z",
+    "note": "summary",
+    "detail": {
+      "PASS": 55,
+      "FAIL": 0,
+      "WARN": 0
+    }
+  }
+]
