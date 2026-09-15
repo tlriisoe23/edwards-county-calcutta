@@ -1,0 +1,196 @@
+{
+  "at": "2026-09-15T15:05:48.537Z",
+  "base": "http://localhost:5173",
+  "checks": [
+    {
+      "name": "Blank (omitted) minimum bid is rejected and nothing is saved",
+      "status": "PASS"
+    },
+    {
+      "name": "Null minimum bid is rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "$0.00 minimum bid is rejected with the decision message",
+      "status": "PASS"
+    },
+    {
+      "name": "$0.99 minimum bid is rejected with the decision message",
+      "status": "PASS"
+    },
+    {
+      "name": "$1.00 minimum bid is accepted",
+      "status": "PASS"
+    },
+    {
+      "name": "$100.00 minimum bid is accepted (restored)",
+      "status": "PASS"
+    },
+    {
+      "name": "Percent deduction of 0 is rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "Blank (omitted) percent deduction is rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "Fixed deduction of 0 is rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "Percent deduction above 100% is still rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "Percent deduction of 0.01% is accepted",
+      "status": "PASS"
+    },
+    {
+      "name": "Fixed deduction of one cent is accepted (acceptance suite case)",
+      "status": "PASS"
+    },
+    {
+      "name": "Deduction type None with amount 0 is accepted (the only \"no house cut\")",
+      "status": "PASS"
+    },
+    {
+      "name": "Deduction type None ignores the stored amount",
+      "status": "PASS"
+    },
+    {
+      "name": "New-event defaults still save (minBid $100, 10% deduction)",
+      "status": "PASS"
+    },
+    {
+      "name": "Granting an owner email says \"already an owner\" and writes no operator row",
+      "status": "PASS"
+    },
+    {
+      "name": "Owner grant writes no audit entry",
+      "status": "PASS"
+    },
+    {
+      "name": "Owner email is matched case-insensitively",
+      "status": "PASS"
+    },
+    {
+      "name": "GET lists the owner allowlist read-only for the owner",
+      "status": "PASS"
+    },
+    {
+      "name": "Successful grant normalizes email and commits audit (Batch A)",
+      "status": "PASS"
+    },
+    {
+      "name": "Sequential replay returns duplicate and one audit without changing auction revision (Batch A)",
+      "status": "PASS"
+    },
+    {
+      "name": "Granting an existing operator (case-insensitive) says \"already has access\"",
+      "status": "PASS"
+    },
+    {
+      "name": "Duplicate grant writes no audit entry and keeps one row",
+      "status": "PASS"
+    },
+    {
+      "name": "Owner is never listed among operators",
+      "status": "PASS"
+    },
+    {
+      "name": "Request ID reused for a different email is rejected (Batch A)",
+      "status": "PASS"
+    },
+    {
+      "name": "Replaying old grant after revocation does not restore access (Batch A)",
+      "status": "PASS"
+    },
+    {
+      "name": "Replaying old revoke after a new grant does not revoke again (Batch A)",
+      "status": "PASS"
+    },
+    {
+      "name": "Eight concurrent operator_add retries commit one logical change (Batch A)",
+      "status": "PASS"
+    },
+    {
+      "name": "Eight concurrent operator_remove retries commit one logical change (Batch A)",
+      "status": "PASS"
+    },
+    {
+      "name": "Test operator revoked",
+      "status": "PASS"
+    },
+    {
+      "name": "Quoted mixed content in \",\" format (Batch D)",
+      "status": "PASS"
+    },
+    {
+      "name": "Headerless quoted \",\" format (Batch D)",
+      "status": "PASS"
+    },
+    {
+      "name": "Quoted mixed content in \"|\" format (Batch D)",
+      "status": "PASS"
+    },
+    {
+      "name": "Headerless quoted \"|\" format (Batch D)",
+      "status": "PASS"
+    },
+    {
+      "name": "Quoted mixed content in \"\\t\" format (Batch D)",
+      "status": "PASS"
+    },
+    {
+      "name": "Headerless quoted \"\\t\" format (Batch D)",
+      "status": "PASS"
+    },
+    {
+      "name": "Leading blank lines and BOM header (Batch D)",
+      "status": "PASS"
+    },
+    {
+      "name": "Pipe quick paste stays compatible (Batch D)",
+      "status": "PASS"
+    },
+    {
+      "name": "Roster serializer round trip (Batch D)",
+      "status": "PASS"
+    },
+    {
+      "name": "Unclosed quoted field is rejected (Batch D)",
+      "status": "PASS"
+    },
+    {
+      "name": "100-team import preserves all names and player mappings (Batch D)",
+      "status": "PASS"
+    },
+    {
+      "name": "Malformed batch saves no rows or revision (Batch D)",
+      "status": "PASS"
+    },
+    {
+      "name": "Unknown flight saves no partial import (Batch D)",
+      "status": "PASS"
+    }
+  ],
+  "fixtures": {
+    "event": "3bc3cf3f-2142-4b73-9c4f-2bbe19cd2171"
+  },
+  "state": {
+    "settingsBefore": {
+      "minBid": 10000,
+      "deductionType": "percent",
+      "deduction": 1000
+    },
+    "settingsAfter": {
+      "minBid": 10000,
+      "deductionType": "percent",
+      "deduction": 1000
+    }
+  },
+  "operatorsLeft": [],
+  "passed": 43,
+  "failed": 0
+}

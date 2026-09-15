@@ -1,0 +1,176 @@
+[
+  {
+    "viewport": "1280x720",
+    "variant": "sticky only",
+    "vh": 720,
+    "panel": {
+      "top": 418,
+      "bottom": 720
+    },
+    "panelHeight": 302,
+    "team": {
+      "top": 447,
+      "bottom": 539
+    },
+    "bid": {
+      "top": 607,
+      "bottom": 682
+    },
+    "hammer": {
+      "top": 617,
+      "bottom": 671
+    },
+    "hammerVisible": true,
+    "teamUncovered": false,
+    "bidUncovered": false,
+    "coveredBy": {
+      "team": 121,
+      "bid": 264
+    }
+  },
+  {
+    "viewport": "1280x720",
+    "variant": "sticky + compact panel (hint hidden, tighter margins, 48px hammer)",
+    "vh": 720,
+    "panel": {
+      "top": 516,
+      "bottom": 720
+    },
+    "panelHeight": 204,
+    "team": {
+      "top": 447,
+      "bottom": 539
+    },
+    "bid": {
+      "top": 607,
+      "bottom": 682
+    },
+    "hammer": {
+      "top": 661,
+      "bottom": 707
+    },
+    "hammerVisible": true,
+    "teamUncovered": false,
+    "bidUncovered": false,
+    "coveredBy": {
+      "team": 23,
+      "bid": 166
+    }
+  },
+  {
+    "viewport": "1280x720",
+    "variant": "sticky + compact panel + compact block",
+    "vh": 720,
+    "panel": {
+      "top": 516,
+      "bottom": 720
+    },
+    "panelHeight": 204,
+    "team": {
+      "top": 420,
+      "bottom": 489
+    },
+    "bid": {
+      "top": 540,
+      "bottom": 592
+    },
+    "hammer": {
+      "top": 661,
+      "bottom": 707
+    },
+    "hammerVisible": true,
+    "teamUncovered": true,
+    "bidUncovered": false,
+    "coveredBy": {
+      "team": 0,
+      "bid": 76
+    }
+  },
+  {
+    "viewport": "1024x768",
+    "variant": "sticky only",
+    "vh": 768,
+    "panel": {
+      "top": 466,
+      "bottom": 768
+    },
+    "panelHeight": 302,
+    "team": {
+      "top": 484,
+      "bottom": 576
+    },
+    "bid": {
+      "top": 644,
+      "bottom": 719
+    },
+    "hammer": {
+      "top": 665,
+      "bottom": 719
+    },
+    "hammerVisible": true,
+    "teamUncovered": false,
+    "bidUncovered": false,
+    "coveredBy": {
+      "team": 110,
+      "bid": 253
+    }
+  },
+  {
+    "viewport": "1024x768",
+    "variant": "sticky + compact panel (hint hidden, tighter margins, 48px hammer)",
+    "vh": 768,
+    "panel": {
+      "top": 564,
+      "bottom": 768
+    },
+    "panelHeight": 204,
+    "team": {
+      "top": 484,
+      "bottom": 576
+    },
+    "bid": {
+      "top": 644,
+      "bottom": 719
+    },
+    "hammer": {
+      "top": 709,
+      "bottom": 755
+    },
+    "hammerVisible": true,
+    "teamUncovered": false,
+    "bidUncovered": false,
+    "coveredBy": {
+      "team": 12,
+      "bid": 155
+    }
+  },
+  {
+    "viewport": "1024x768",
+    "variant": "sticky + compact panel + compact block",
+    "vh": 768,
+    "panel": {
+      "top": 564,
+      "bottom": 768
+    },
+    "panelHeight": 204,
+    "team": {
+      "top": 457,
+      "bottom": 526
+    },
+    "bid": {
+      "top": 577,
+      "bottom": 629
+    },
+    "hammer": {
+      "top": 709,
+      "bottom": 755
+    },
+    "hammerVisible": true,
+    "teamUncovered": true,
+    "bidUncovered": false,
+    "coveredBy": {
+      "team": 0,
+      "bid": 65
+    }
+  }
+]

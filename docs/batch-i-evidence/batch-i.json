@@ -1,0 +1,471 @@
+[
+  {
+    "at": "2026-09-15T14:32:01.462Z",
+    "note": "disposable event",
+    "detail": {
+      "eventId": "18560cd0-b9af-48bf-93a9-577558608ba4",
+      "minBid": 10000,
+      "deductionType": "percent",
+      "deduction": 1000
+    }
+  },
+  {
+    "at": "2026-09-15T14:32:10.769Z",
+    "check": "rules: cleared minimum bid blocks save with the exact message",
+    "result": "PASS",
+    "detail": {
+      "toasts": [],
+      "inline": [
+        "Enter a minimum starting bid of at least $1.00"
+      ],
+      "validationMessage": "Enter a minimum starting bid of at least $1.00",
+      "minBidBefore": 10000,
+      "minBidAfter": 10000
+    }
+  },
+  {
+    "at": "2026-09-15T14:32:10.824Z",
+    "note": "screenshot",
+    "detail": "rules-minbid-blank-1280.png"
+  },
+  {
+    "at": "2026-09-15T14:32:16.512Z",
+    "check": "rules: $0.99 minimum bid is rejected with the exact message",
+    "result": "PASS",
+    "detail": {
+      "toasts": [],
+      "inline": [
+        "Enter a minimum starting bid of at least $1.00"
+      ],
+      "validationMessage": "Enter a minimum starting bid of at least $1.00",
+      "minBidAfter": 10000
+    }
+  },
+  {
+    "at": "2026-09-15T14:32:22.488Z",
+    "check": "rules: $1.00 minimum bid saves",
+    "result": "PASS",
+    "detail": {
+      "toasts": [
+        "Saved"
+      ],
+      "inline": [],
+      "validationMessage": "",
+      "minBidAfter": 100
+    }
+  },
+  {
+    "at": "2026-09-15T14:32:29.133Z",
+    "check": "rules: cleared percent deduction blocks save with a message",
+    "result": "PASS",
+    "detail": {
+      "toasts": [],
+      "inline": [
+        "Enter a house deduction greater than 0, or choose None."
+      ],
+      "validationMessage": "Enter a house deduction greater than 0, or choose None.",
+      "deductionBefore": 1000,
+      "deductionAfter": 1000,
+      "type": "percent"
+    }
+  },
+  {
+    "at": "2026-09-15T14:32:29.182Z",
+    "note": "screenshot",
+    "detail": "rules-deduction-blank-1280.png"
+  },
+  {
+    "at": "2026-09-15T14:32:35.606Z",
+    "check": "rules: deduction type None saves deliberately",
+    "result": "PASS",
+    "detail": {
+      "toasts": [
+        "Saved"
+      ],
+      "inline": [],
+      "validationMessage": null,
+      "type": "none",
+      "deduction": 1000
+    }
+  },
+  {
+    "at": "2026-09-15T14:32:40.081Z",
+    "check": "import preview: each blocking row is marked inline and the button counts them",
+    "result": "PASS",
+    "detail": {
+      "marks": [
+        {
+          "team": "Quoted, Team",
+          "issues": [],
+          "invalidInputs": 0
+        },
+        {
+          "team": "No Flight Team",
+          "issues": [
+            "Row 2: flight not found (Unknown Flight) · index must be a number"
+          ],
+          "invalidInputs": 1
+        },
+        {
+          "team": "",
+          "issues": [
+            "Row 3: name required"
+          ],
+          "invalidInputs": 1
+        }
+      ],
+      "label": "Import 3 teams · 2 rows need attention",
+      "disabled": true
+    }
+  },
+  {
+    "at": "2026-09-15T14:32:40.157Z",
+    "note": "screenshot",
+    "detail": "import-preview-marked-1280.png"
+  },
+  {
+    "at": "2026-09-15T14:32:41.074Z",
+    "check": "import preview: fixing the rows clears the marks and enables \"Import 3 teams\"",
+    "result": "PASS",
+    "detail": {
+      "label2": "Import 3 teams",
+      "disabled2": false,
+      "marks2": 0
+    }
+  },
+  {
+    "at": "2026-09-15T14:32:42.719Z",
+    "check": "import: the corrected paste imports all three teams (atomic import unchanged)",
+    "result": "PASS",
+    "detail": {
+      "teams": [
+        [
+          "Quoted, Team",
+          [
+            "Ann Quote",
+            "Bob Quote"
+          ],
+          7.5
+        ],
+        [
+          "No Flight Team",
+          [
+            "Carl",
+            "Dee"
+          ],
+          9.1
+        ],
+        [
+          "Named Team",
+          [
+            "Missing Name",
+            "Eve"
+          ],
+          null
+        ]
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T14:32:47.207Z",
+    "check": "access: granting the owner email says \"already an owner\", adds no row and no audit entry",
+    "result": "PASS",
+    "detail": {
+      "toasts": [
+        "seedy@sites.test is already an owner. Owners are managed in the site settings, not here."
+      ],
+      "ownerRow": false,
+      "ownerAuditBefore": 0,
+      "ownerAuditAfter": 0
+    }
+  },
+  {
+    "at": "2026-09-15T14:32:52.950Z",
+    "check": "access: a new operator is granted and listed",
+    "result": "PASS",
+    "detail": {
+      "toasts": [
+        "Saved"
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T14:32:58.785Z",
+    "check": "access: a case-different duplicate says \"already has access\" and writes no audit entry",
+    "result": "PASS",
+    "detail": {
+      "toasts": [
+        "batch-i-browser@sites.test already has access."
+      ],
+      "auditBefore": 1,
+      "auditAfter": 1
+    }
+  },
+  {
+    "at": "2026-09-15T14:32:58.787Z",
+    "check": "access: owners are listed read-only above the operators",
+    "result": "PASS",
+    "detail": {
+      "owners": [
+        {
+          "text": "seedy@sites.testYou · Owner access comes from the site settings and cannot be granted or revoked here.Owner",
+          "buttons": 0,
+          "top": 743
+        }
+      ],
+      "ops": [
+        {
+          "text": "batch-i-browser@sites.testAdded by seedy@sites.testRevoke",
+          "buttons": 1,
+          "top": 919.5
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T14:32:58.875Z",
+    "note": "screenshot",
+    "detail": "access-owners-operators-1280.png"
+  },
+  {
+    "at": "2026-09-15T14:33:04.809Z",
+    "check": "access: revoke removes the test operator",
+    "result": "PASS"
+  },
+  {
+    "at": "2026-09-15T14:33:06.794Z",
+    "check": "console 1280x720: bid entry, increments and Hammer visible without scrolling while the block still shows team and current bid",
+    "result": "FAIL",
+    "detail": {
+      "innerWidth": 1280,
+      "innerHeight": 720,
+      "scrollY": 0,
+      "horizontalOverflow": false,
+      "position": "static",
+      "hammer": {
+        "top": 913,
+        "bottom": 967,
+        "left": 73,
+        "right": 580,
+        "text": "Hammer / sold"
+      },
+      "team": {
+        "top": 447,
+        "bottom": 539,
+        "left": 81,
+        "right": 837,
+        "text": "Bartholomew Featherstonehaugh / Maximili"
+      },
+      "bid": {
+        "top": 607,
+        "bottom": 682,
+        "left": 81,
+        "right": 837,
+        "text": "$0"
+      },
+      "panel": {
+        "top": 714,
+        "bottom": 1016,
+        "left": 54,
+        "right": 864,
+        "text": "Bid amount$Record bidStart bidOne click "
+      },
+      "bidInput": {
+        "top": 761,
+        "bottom": 803,
+        "left": 73,
+        "right": 724,
+        "text": ""
+      },
+      "inc": {
+        "top": 855,
+        "bottom": 901,
+        "left": 73,
+        "right": 845,
+        "text": "$100$200$300$500Correct bid"
+      },
+      "block": {
+        "top": 350,
+        "bottom": 702,
+        "left": 54,
+        "right": 864,
+        "text": "LIVE · ON THE BLOCKLOT 07 / 17Third Flig"
+      },
+      "hammerVisible": false,
+      "bidInputVisible": false,
+      "incrementsVisible": false,
+      "teamVisible": true,
+      "bidVisible": true
+    }
+  },
+  {
+    "at": "2026-09-15T14:33:06.842Z",
+    "note": "screenshot",
+    "detail": "console-1280x720.png"
+  },
+  {
+    "at": "2026-09-15T14:33:07.528Z",
+    "note": "console 1280x720 after scrolling 400 px",
+    "detail": {
+      "hammerVisible": true,
+      "panelTop": 314,
+      "position": "static"
+    }
+  },
+  {
+    "at": "2026-09-15T14:33:09.547Z",
+    "check": "console 1024x768: bid entry, increments and Hammer visible without scrolling while the block still shows team and current bid",
+    "result": "FAIL",
+    "detail": {
+      "innerWidth": 1024,
+      "innerHeight": 768,
+      "scrollY": 0,
+      "horizontalOverflow": false,
+      "position": "static",
+      "hammer": {
+        "top": 950,
+        "bottom": 1004,
+        "left": 62,
+        "right": 383,
+        "text": "Hammer / sold"
+      },
+      "team": {
+        "top": 484,
+        "bottom": 576,
+        "left": 70,
+        "right": 640,
+        "text": "Bartholomew Featherstonehaugh / Maximili"
+      },
+      "bid": {
+        "top": 644,
+        "bottom": 719,
+        "left": 70,
+        "right": 640,
+        "text": "$0"
+      },
+      "panel": {
+        "top": 751,
+        "bottom": 1053,
+        "left": 43,
+        "right": 667,
+        "text": "Bid amount$Record bidStart bidOne click "
+      },
+      "bidInput": {
+        "top": 798,
+        "bottom": 840,
+        "left": 62,
+        "right": 527,
+        "text": ""
+      },
+      "inc": {
+        "top": 892,
+        "bottom": 938,
+        "left": 62,
+        "right": 648,
+        "text": "$100$200$300$500Correct bid"
+      },
+      "block": {
+        "top": 387,
+        "bottom": 739,
+        "left": 43,
+        "right": 667,
+        "text": "LIVE · ON THE BLOCKLOT 07 / 17Third Flig"
+      },
+      "hammerVisible": false,
+      "bidInputVisible": false,
+      "incrementsVisible": false,
+      "teamVisible": true,
+      "bidVisible": true
+    }
+  },
+  {
+    "at": "2026-09-15T14:33:09.591Z",
+    "note": "screenshot",
+    "detail": "console-1024x768.png"
+  },
+  {
+    "at": "2026-09-15T14:33:10.278Z",
+    "note": "console 1024x768 after scrolling 400 px",
+    "detail": {
+      "hammerVisible": true,
+      "panelTop": 351,
+      "position": "static"
+    }
+  },
+  {
+    "at": "2026-09-15T14:33:12.365Z",
+    "check": "console 1280x800: layout unchanged (panel not sticky) and no horizontal overflow",
+    "result": "PASS",
+    "detail": {
+      "position": "static",
+      "hammer": {
+        "top": 913,
+        "bottom": 967,
+        "left": 73,
+        "right": 580,
+        "text": "Hammer / sold"
+      },
+      "horizontalOverflow": false,
+      "hammerVisible": false
+    }
+  },
+  {
+    "at": "2026-09-15T14:33:14.384Z",
+    "check": "console 1366x900: layout unchanged (panel not sticky) and no horizontal overflow",
+    "result": "PASS",
+    "detail": {
+      "position": "static",
+      "hammer": {
+        "top": 913,
+        "bottom": 967,
+        "left": 76,
+        "right": 639,
+        "text": "Hammer / sold"
+      },
+      "horizontalOverflow": false,
+      "hammerVisible": false
+    }
+  },
+  {
+    "at": "2026-09-15T14:33:16.399Z",
+    "check": "console 768x1024: layout unchanged (panel not sticky) and no horizontal overflow",
+    "result": "PASS",
+    "detail": {
+      "position": "static",
+      "hammer": {
+        "top": 950,
+        "bottom": 1004,
+        "left": 51,
+        "right": 452,
+        "text": "Hammer / sold"
+      },
+      "horizontalOverflow": false,
+      "hammerVisible": true
+    }
+  },
+  {
+    "at": "2026-09-15T14:33:18.400Z",
+    "check": "console 390x844: layout unchanged (panel not sticky) and no horizontal overflow",
+    "result": "PASS",
+    "detail": {
+      "position": "static",
+      "hammer": {
+        "top": 1495,
+        "bottom": 1549,
+        "left": 39,
+        "right": 352,
+        "text": "Hammer / sold"
+      },
+      "horizontalOverflow": false,
+      "hammerVisible": false
+    }
+  },
+  {
+    "at": "2026-09-15T14:33:18.486Z",
+    "note": "summary",
+    "detail": {
+      "pass": 17,
+      "fail": 2
+    }
+  }
+]
