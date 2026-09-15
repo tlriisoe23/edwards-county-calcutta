@@ -1,5 +1,12 @@
 # Current state — 2026-09-14 UTC
 
+Portability implementation: a separate Node/SQLite container target now exists,
+with Google authentication integration, local owner recovery and tested synthetic
+restore/import workflows. See [hosting](PORTABLE-HOSTING.md) and
+[validation](PORTABLE-VALIDATION.md). The planned origin is
+`https://calcutta.edcogolf.org`; real Google credentials, owner-data migration and
+public routing are still pending. Existing Sites behavior is preserved.
+
 The product was audited at `dfab14906c04b5a6d99ffffbfba4249883750eae`; documentation baseline is `782eb3b`. Approved [Batch A](BATCH-A.md) (`4dc2900`) and [Batch B](BATCH-B.md) (`3d00923`) resolve CAL-P1-001/002/003/005 locally. Type checking, build and focused/regression checks passed; schema is unchanged. [Batch C](BATCH-C.md) (`4da7b9b`) resolves display containment and caption contrast locally. [Batch D](BATCH-D.md) (`a76e57f`) resolves quoted roster imports and creation retries. Only one optional P3 remains open; no open P1/P2 or demonstrated P0. These counts do not imply production readiness.
 
 Sites still has saved version 2 and no reported live/hosted-preview URL. No deployment was performed. The review stays at localhost:5173; isolated audit data lives in `.sites-runtime/audit-checkout/.wrangler/state` and is not part of a deployment archive.

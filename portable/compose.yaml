@@ -1,0 +1,31 @@
+name: ecgc-calcutta
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: portable/Dockerfile
+    image: ecgc-calcutta:portable
+    init: true
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5181:3000"
+    environment:
+      DATABASE_PATH: /data/calcutta.sqlite
+      PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:?Set PUBLIC_ORIGIN}
+      ADMIN_EMAILS: ${ADMIN_EMAILS:?Set ADMIN_EMAILS}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+    volumes:
+      - data:/data
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/public').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      start_period: 30s
+      retries: 3
+volumes:
+  data:

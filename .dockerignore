@@ -1,0 +1,16 @@
+**
+!package.json
+!package-lock.json
+!tsconfig.json
+!postcss.config.mjs
+!app/**
+!lib/**
+!components/**
+!hooks/**
+!public/**
+!drizzle/**
+!portable/**
+!vendor/**
+!types/**
+!scripts/
+!scripts/stage-portable.mjs

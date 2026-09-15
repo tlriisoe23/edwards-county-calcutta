@@ -9,7 +9,7 @@ import {defaultSettings,normalizeSettings} from '../lib/model.ts';
 const base=process.env.CALCUTTA_TEST_URL||'http://localhost:5173';
 if(!['localhost','127.0.0.1'].includes(new URL(base).hostname))throw Error('Test writes require localhost.');
 let checks=0;function check(ok,label){assert.ok(ok,label);checks++;console.log('PASS '+label);}
-const login=await fetch(base+'/signin-with-chatgpt?return_to=%2Fadmin',{redirect:'manual'}),cookie=login.headers.get('set-cookie').split(';')[0];
+const {testSession}=await import('./test-session.mjs'),cookie=await testSession(base);
 let eventId,d;
 async function read(){const r=await fetch(base+'/api/admin?event='+eventId,{headers:{cookie}});assert.equal(r.status,200);const body=await r.json();d=body.data;return body;}
 async function send(action,payload={},opts={}){const body={action,payload,eventId,revision:d?.event.revision,requestId:crypto.randomUUID(),...opts};const r=await fetch(base+'/api/admin',{method:'POST',headers:{cookie,origin:base,'content-type':'application/json'},body:JSON.stringify(body)});const result=await r.json();assert.equal(r.status,opts.expected||200,action+': '+JSON.stringify(result));if(result.eventId){eventId=result.eventId;fs.writeFileSync('.sites-runtime/refinement-event.json',JSON.stringify({eventId}));}await read();return {result,body};}

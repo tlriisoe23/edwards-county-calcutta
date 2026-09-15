@@ -6,8 +6,8 @@ const defaultSettings={...newEventDefaults,trackBidder:true,buybackMode:'track'}
 const base=process.env.CALCUTTA_TEST_URL||'http://localhost:5173';
 if(!['localhost','127.0.0.1'].includes(new URL(base).hostname))throw Error('Acceptance writes are restricted to a local test server.');
 let checks=0;function check(condition,label){assert.ok(condition,label);checks++;console.log('PASS '+label);}
-const login=await fetch(base+'/signin-with-chatgpt?return_to=%2Fadmin',{redirect:'manual'}),cookie=login.headers.get('set-cookie')?.split(';')[0];
-check(!!cookie,'Local simulated sign-in provides a session');
+const {testSession}=await import('./test-session.mjs'),cookie=await testSession(base);
+check(!!cookie,'Test sign-in provides a session');
 let eventId,d;
 async function read(){const r=await fetch(base+'/api/admin'+(eventId?'?event='+eventId:''),{headers:{cookie}});assert.equal(r.status,200);const b=await r.json();d=b.data;return b;}
 async function pub(extra=''){const r=await fetch(base+'/api/public?event='+eventId+extra);return {r,b:r.status===204?null:await r.json()};}

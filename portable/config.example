@@ -1,0 +1,5 @@
+# Copy to the ignored project-root .env.portable file. Never commit real secrets.
+PUBLIC_ORIGIN=https://calcutta.edcogolf.org
+ADMIN_EMAILS=tlriisoe@gmail.com
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=

@@ -1,5 +1,10 @@
 # Finding tracker and proposed batches
 
+Separate approved portability work now has a [hosting implementation](PORTABLE-HOSTING.md)
+and [validation record](PORTABLE-VALIDATION.md). Remaining: configure real Google
+credentials and owner recovery password; verify owner-data import/cutover; configure
+HTTPS/DNS and off-host backup retention. This does not approve optional Batch E.
+
 2026-09-14 UTC · A/B/C/D approved and verified locally (`4dc2900`, `3d00923`, `4da7b9b`, `a76e57f`) · optional E awaits approval · no production deployment authorized.
 
 The canonical description, reproduction, confidence and acceptance for every ID is in [PRODUCT-AUDIT.md](PRODUCT-AUDIT.md). Do not renumber an ID when its status changes; append validation evidence and a commit reference after an approved fix. A source change is not verified until its acceptance passes, and a local pass is not hosted verification.

@@ -1,5 +1,10 @@
 # Current architecture
 
+The separate [portable deployment target](PORTABLE-HOSTING.md) now implements
+Node/SQLite, Google sign-in configuration and owner recovery login. The Sites
+architecture below remains supported. Live Google credentials, owner-data cutover
+and public routing remain pending; see [validation](PORTABLE-VALIDATION.md).
+
 Originally verified against `dfab14906c04b5a6d99ffffbfba4249883750eae`, updated for approved Batch A `4dc2900` and Batch B `3d00923` on 2026-09-14 UTC. This describes the implementation, including exceptions; it is not a replacement design.
 
 ## Runtime and boundaries
