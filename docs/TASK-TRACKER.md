@@ -24,7 +24,7 @@ The canonical description, reproduction, confidence and acceptance for every ID 
 | CAL-P3-001 | P3 TECHNICAL DEBT | Distributed export contracts | OPEN — optional, awaiting approval | E |
 | CAL-P2-004 | P2 USABILITY / ACCESSIBILITY | Icon-less header links (operator Sign out, public Auction board) vanish at ≤ 700 px but stay focusable | IMPLEMENTED (local) — Batch F commit on `claude/cal-f-phone-header-tv`, [evidence](BATCH-F.md): all header controls 24 × 24 px, named and focus-visible at 320–700 px; not deployed | F |
 | CAL-P2-005 | P2 USABILITY DEFECT | TV stats overlap and page scrolls at 951–1099 px wide or < 700 px tall (1024×768, 1093×614) | IMPLEMENTED (local) — Batch F commit on `claude/cal-f-phone-header-tv`, [evidence](BATCH-F.md): one screen and contained statistics at 960×540 … 1920×1080, live/paused/completed; hardware pending; not deployed | F |
-| CAL-P2-006 | P2 USABILITY | Escape with buyer suggestions open discards the whole Sold dialog | OPEN — audit E2, [evidence](audit-e2-evidence/new-event-journey-3.json) | G |
+| CAL-P2-006 | P2 USABILITY | Escape with buyer suggestions open discards the whole Sold dialog | IMPLEMENTED (local) — Batch G on `claude/cal-g-sold-dialog-escape`, [BATCH-G.md](BATCH-G.md), [evidence](batch-g-evidence/batch-g.json); not merged, not deployed | G |
 | CAL-P2-007 | P2 ACCESSIBILITY | Lot numbers 3.27:1, sale buyer line 4.01:1, payout % 4.01:1, inactive operator tabs 3.70:1, eyebrow 4.27:1 | OPEN — audit E2, [evidence](audit-e2-evidence/followup.json) | H |
 | CAL-P3-002 | P3 ACCESSIBILITY | Flight and settlement filter tabs reference non-existent panels | OPEN — audit E2 | H |
 | CAL-P3-003 | P3 USABILITY | Cleared minimum bid / deduction saves 0 with “Saved” | OPEN — audit E2, [evidence](audit-e2-evidence/rules-validation.json) | I |
@@ -33,7 +33,7 @@ The canonical description, reproduction, confidence and acceptance for every ID 
 | CAL-P3-006 | P3 BUSINESS RULE | Unsold team can take a finishing place; empty states then contradict | OPEN — policy recorded 2026-09-15 (house receives unclaimed share; house returns to pot or keeps) | J (proposed) |
 | CAL-P3-007 | P3 USABILITY | Hammer / bid entry below the fold on first paint at 1280×720 / 1024×768 | OPEN — optional observation | I (optional) |
 
-After audit E2 (2026-09-15, `d992d1c`) and Batch F: **two open P2 (CAL-P2-006, CAL-P2-007) and seven open P3 (one optional debt, one policy-gated); no open P1; P0: none demonstrated.** CAL-P2-004/005 are implemented and validated locally on the Batch F branch and remain unmerged and undeployed. Canonical descriptions for the new IDs are in [PRODUCT-AUDIT.md § Incremental audit E2](PRODUCT-AUDIT.md#incremental-audit-e2--2026-09-15). Local resolution does not waive the blocked hosted gates in [VALIDATION.md](VALIDATION.md).
+After audit E2 (2026-09-15, `d992d1c`), Batch F and Batch G: **one open P2 (CAL-P2-007) and seven open P3 (one optional debt, one policy-gated); no open P1; P0: none demonstrated.** CAL-P2-004/005 (Batch F) and CAL-P2-006 (Batch G, stacked on F) are implemented and validated locally on their branches and remain unmerged and undeployed. Canonical descriptions for the new IDs are in [PRODUCT-AUDIT.md § Incremental audit E2](PRODUCT-AUDIT.md#incremental-audit-e2--2026-09-15). Local resolution does not waive the blocked hosted gates in [VALIDATION.md](VALIDATION.md).
 
 ## Proposed implementation roadmap
 
@@ -109,9 +109,9 @@ After audit E2 (2026-09-15, `d992d1c`) and Batch F: **two open P2 (CAL-P2-006, C
 - **Acceptance:** Header controls non-zero, named and focus-visible at 320/390/430/700/701 px on `/` and `/admin`; TV live/paused/completed contain all statistics at 960×540, 1024×768, 1093×614, 1099×618, 1100×619, 1280×720 plus the existing 1366×768 / 1920×1080 checks. Decision needed: whether one-screen TV is required below 700 px height.
 - **Order:** 6 — recommended first of the E2 batches (spectator display and phone operator).
 
-### Batch G — Sold dialog Escape (proposed)
+### Batch G — Sold dialog Escape (implemented locally)
 
-- **Status:** PROPOSED, awaiting approval.
+- **Status:** APPROVED 2026-09-15 · IMPLEMENTED (local) and validated on `claude/cal-g-sold-dialog-escape` (stacked on the Batch F branch), see [BATCH-G.md](BATCH-G.md); not merged, not deployed. Implemented as an `onEscapeKeyDown` guard on the Sold `DialogContent`; shared dialog/combobox primitives unchanged.
 - **Exact IDs:** `CAL-P2-006`.
 - **Objective:** Escape dismisses buyer suggestions before it dismisses the sale.
 - **Expected areas:** `app/auction-controls.tsx` `SoldDialog`; `components/ui/combobox.tsx` or `components/ui/dialog.tsx` escape handling.

@@ -1,0 +1,438 @@
+[
+  {
+    "at": "2026-09-15T13:52:12.969Z",
+    "note": "created disposable synthetic event",
+    "detail": {
+      "eventId": "31e9fdc4-3abe-4262-a097-89eb52eb9c17",
+      "name": "BATCH-G Escape · 2026-09-15",
+      "teams": 4,
+      "buyers": 4,
+      "status": "LIVE",
+      "revision": 7
+    }
+  },
+  {
+    "at": "2026-09-15T13:52:18.599Z",
+    "check": "S opens the Sold dialog with focus in the buyer combobox",
+    "result": "PASS",
+    "detail": {
+      "dialog": true,
+      "dialogCount": 1,
+      "listbox": false,
+      "comboExpanded": "false",
+      "value": "",
+      "focus": "Final purchaser",
+      "focusIsCombobox": true,
+      "inlineForm": false,
+      "stale": false,
+      "confirmDisabled": true,
+      "alertDialog": false,
+      "bigBid": "$100",
+      "block": "Alpha / Bravo"
+    }
+  },
+  {
+    "at": "2026-09-15T13:52:19.155Z",
+    "check": "typing opens the suggestion list",
+    "result": "PASS",
+    "detail": {
+      "dialog": true,
+      "dialogCount": 1,
+      "listbox": true,
+      "comboExpanded": "true",
+      "value": "Ta",
+      "focus": "Final purchaser",
+      "focusIsCombobox": true,
+      "inlineForm": false,
+      "stale": false,
+      "confirmDisabled": true,
+      "alertDialog": false,
+      "bigBid": "$100",
+      "block": "Alpha / Bravo"
+    }
+  },
+  {
+    "at": "2026-09-15T13:52:19.201Z",
+    "note": "screenshot",
+    "detail": "sold-dialog-list-open.png"
+  },
+  {
+    "at": "2026-09-15T13:52:19.740Z",
+    "check": "first Escape closes only the list: dialog retained, list closed, focus still in the combobox",
+    "result": "PASS",
+    "detail": {
+      "beforeEscape": {
+        "dialog": true,
+        "dialogCount": 1,
+        "listbox": true,
+        "comboExpanded": "true",
+        "value": "Ta",
+        "focus": "Final purchaser",
+        "focusIsCombobox": true,
+        "inlineForm": false,
+        "stale": false,
+        "confirmDisabled": true,
+        "alertDialog": false,
+        "bigBid": "$100",
+        "block": "Alpha / Bravo"
+      },
+      "afterEscape": {
+        "dialog": true,
+        "dialogCount": 1,
+        "listbox": false,
+        "comboExpanded": "false",
+        "value": "",
+        "focus": "Final purchaser",
+        "focusIsCombobox": true,
+        "inlineForm": false,
+        "stale": false,
+        "confirmDisabled": true,
+        "alertDialog": false,
+        "bigBid": "$100",
+        "block": "Alpha / Bravo"
+      }
+    }
+  },
+  {
+    "at": "2026-09-15T13:52:19.781Z",
+    "note": "screenshot",
+    "detail": "sold-dialog-after-first-escape.png"
+  },
+  {
+    "at": "2026-09-15T13:52:20.335Z",
+    "check": "second Escape closes the dialog",
+    "result": "PASS",
+    "detail": {
+      "dialog": false,
+      "dialogCount": 0,
+      "listbox": false,
+      "comboExpanded": null,
+      "value": null,
+      "focus": "BODY",
+      "focusIsCombobox": false,
+      "inlineForm": false,
+      "stale": false,
+      "confirmDisabled": null,
+      "alertDialog": false,
+      "bigBid": "$100",
+      "block": "Alpha / Bravo"
+    }
+  },
+  {
+    "at": "2026-09-15T13:52:21.368Z",
+    "check": "Escape with the list closed closes the dialog (unchanged)",
+    "result": "PASS",
+    "detail": {
+      "before": {
+        "dialog": true,
+        "dialogCount": 1,
+        "listbox": false,
+        "comboExpanded": "false",
+        "value": "",
+        "focus": "Final purchaser",
+        "focusIsCombobox": true,
+        "inlineForm": false,
+        "stale": false,
+        "confirmDisabled": true,
+        "alertDialog": false,
+        "bigBid": "$100",
+        "block": "Alpha / Bravo"
+      },
+      "after": {
+        "dialog": false,
+        "dialogCount": 0,
+        "listbox": false,
+        "comboExpanded": null,
+        "value": null,
+        "focus": "BODY",
+        "focusIsCombobox": false,
+        "inlineForm": false,
+        "stale": false,
+        "confirmDisabled": null,
+        "alertDialog": false,
+        "bigBid": "$100",
+        "block": "Alpha / Bravo"
+      }
+    }
+  },
+  {
+    "at": "2026-09-15T13:52:22.415Z",
+    "check": "Cancel closes the dialog (unchanged)",
+    "result": "PASS",
+    "detail": {
+      "dialog": false,
+      "dialogCount": 0,
+      "listbox": false,
+      "comboExpanded": null,
+      "value": null,
+      "focus": "BODY",
+      "focusIsCombobox": false,
+      "inlineForm": false,
+      "stale": false,
+      "confirmDisabled": null,
+      "alertDialog": false,
+      "bigBid": "$100",
+      "block": "Alpha / Bravo"
+    }
+  },
+  {
+    "at": "2026-09-15T13:52:24.576Z",
+    "check": "U / S / + do nothing while the Sold dialog is open",
+    "result": "PASS",
+    "detail": {
+      "focusBefore": "BUTTON",
+      "afterU": {
+        "dialog": true,
+        "dialogCount": 1,
+        "listbox": false,
+        "comboExpanded": "false",
+        "value": "",
+        "focus": "BUTTON",
+        "focusIsCombobox": false,
+        "inlineForm": false,
+        "stale": false,
+        "confirmDisabled": true,
+        "alertDialog": false,
+        "bigBid": "$100",
+        "block": "Alpha / Bravo"
+      },
+      "afterS": {
+        "dialog": true,
+        "dialogCount": 1,
+        "listbox": false,
+        "comboExpanded": "false",
+        "value": "",
+        "focus": "BUTTON",
+        "focusIsCombobox": false,
+        "inlineForm": false,
+        "stale": false,
+        "confirmDisabled": true,
+        "alertDialog": false,
+        "bigBid": "$100",
+        "block": "Alpha / Bravo"
+      },
+      "afterPlus": {
+        "dialog": true,
+        "dialogCount": 1,
+        "listbox": false,
+        "comboExpanded": "false",
+        "value": "",
+        "focus": "BUTTON",
+        "focusIsCombobox": false,
+        "inlineForm": false,
+        "stale": false,
+        "confirmDisabled": true,
+        "alertDialog": false,
+        "bigBid": "$100",
+        "block": "Alpha / Bravo"
+      },
+      "revisionBefore": 8,
+      "revisionAfter": 8,
+      "bidBefore": 10000,
+      "bidAfter": 10000
+    }
+  },
+  {
+    "at": "2026-09-15T13:52:26.786Z",
+    "check": "clicking \"Add buyer here\" while the list is open opens the inline form in one click",
+    "result": "PASS",
+    "detail": {
+      "listOpenBefore": true,
+      "after": {
+        "dialog": true,
+        "dialogCount": 1,
+        "listbox": false,
+        "comboExpanded": "false",
+        "value": "",
+        "focus": "INPUT",
+        "focusIsCombobox": false,
+        "inlineForm": true,
+        "stale": false,
+        "confirmDisabled": true,
+        "alertDialog": false,
+        "bigBid": "$100",
+        "block": "Alpha / Bravo"
+      }
+    }
+  },
+  {
+    "at": "2026-09-15T13:52:28.092Z",
+    "check": "inline buyer created and selected; Confirm enabled",
+    "result": "PASS",
+    "detail": {
+      "dialog": true,
+      "dialogCount": 1,
+      "listbox": false,
+      "comboExpanded": "false",
+      "value": "Batch G Buyer",
+      "focus": "DIV",
+      "focusIsCombobox": false,
+      "inlineForm": false,
+      "stale": false,
+      "confirmDisabled": false,
+      "alertDialog": false,
+      "bigBid": "$100",
+      "block": "Alpha / Bravo"
+    }
+  },
+  {
+    "at": "2026-09-15T13:52:29.738Z",
+    "check": "Confirm (keyboard Enter) records exactly one sale and closes the dialog",
+    "result": "PASS",
+    "detail": {
+      "salesBefore": 0,
+      "salesAfter": 1,
+      "dialog": false,
+      "toasts": [
+        "Sold — purchaser recorded",
+        "Saved"
+      ],
+      "nextTeam": "Charlie / Delta"
+    }
+  },
+  {
+    "at": "2026-09-15T13:52:34.052Z",
+    "check": "keyboard-selected buyer then double-clicked Confirm records exactly one sale",
+    "result": "PASS",
+    "detail": {
+      "selected": "Weekend Club",
+      "salesBefore": 1,
+      "salesAfter": 2,
+      "dialog": false
+    }
+  },
+  {
+    "at": "2026-09-15T13:52:38.054Z",
+    "check": "stale dialog: notice shown and Confirm disabled after the auction changed",
+    "result": "PASS",
+    "detail": {
+      "revisionAtOpen": 13,
+      "revisionNow": 14,
+      "dialog": true,
+      "dialogCount": 1,
+      "listbox": false,
+      "comboExpanded": "false",
+      "value": "",
+      "focus": "Final purchaser",
+      "focusIsCombobox": true,
+      "inlineForm": false,
+      "stale": true,
+      "confirmDisabled": true,
+      "alertDialog": false,
+      "bigBid": "$150",
+      "block": "Echo / Foxtrot"
+    }
+  },
+  {
+    "at": "2026-09-15T13:52:39.354Z",
+    "check": "stale dialog: Escape closes the list first, second Escape closes the dialog",
+    "result": "PASS",
+    "detail": {
+      "listOpen": true,
+      "afterFirst": {
+        "dialog": true,
+        "dialogCount": 1,
+        "listbox": false,
+        "comboExpanded": "false",
+        "value": "",
+        "focus": "Final purchaser",
+        "focusIsCombobox": true,
+        "inlineForm": false,
+        "stale": true,
+        "confirmDisabled": true,
+        "alertDialog": false,
+        "bigBid": "$150",
+        "block": "Echo / Foxtrot"
+      },
+      "afterSecond": {
+        "dialog": false,
+        "dialogCount": 0,
+        "listbox": false,
+        "comboExpanded": null,
+        "value": null,
+        "focus": "BODY",
+        "focusIsCombobox": false,
+        "inlineForm": false,
+        "stale": false,
+        "confirmDisabled": null,
+        "alertDialog": false,
+        "bigBid": "$150",
+        "block": "Echo / Foxtrot"
+      }
+    }
+  },
+  {
+    "at": "2026-09-15T13:52:40.501Z",
+    "check": "axe on the Sold dialog and open suggestion list",
+    "result": "PASS",
+    "detail": []
+  },
+  {
+    "at": "2026-09-15T13:52:43.110Z",
+    "check": "phone 390: first Escape closes only the list",
+    "result": "PASS",
+    "detail": {
+      "before": {
+        "dialog": true,
+        "dialogCount": 1,
+        "listbox": true,
+        "comboExpanded": "true",
+        "value": "Ta",
+        "focus": "Final purchaser",
+        "focusIsCombobox": true,
+        "inlineForm": false,
+        "stale": false,
+        "confirmDisabled": true,
+        "alertDialog": false,
+        "bigBid": "$150",
+        "block": "Echo / Foxtrot"
+      },
+      "after": {
+        "dialog": true,
+        "dialogCount": 1,
+        "listbox": false,
+        "comboExpanded": "false",
+        "value": "",
+        "focus": "Final purchaser",
+        "focusIsCombobox": true,
+        "inlineForm": false,
+        "stale": false,
+        "confirmDisabled": true,
+        "alertDialog": false,
+        "bigBid": "$150",
+        "block": "Echo / Foxtrot"
+      }
+    }
+  },
+  {
+    "at": "2026-09-15T13:52:43.136Z",
+    "note": "screenshot",
+    "detail": "sold-dialog-390-after-first-escape.png"
+  },
+  {
+    "at": "2026-09-15T13:52:43.613Z",
+    "note": "final synthetic event state",
+    "detail": {
+      "eventId": "31e9fdc4-3abe-4262-a097-89eb52eb9c17",
+      "name": "BATCH-G Escape · 2026-09-15",
+      "status": "LIVE",
+      "revision": 14,
+      "sales": 2,
+      "buyers": [
+        "Batch G Buyer",
+        "Table One Syndicate",
+        "Tanner Group",
+        "Taylor Syndicate",
+        "Weekend Club"
+      ],
+      "bid": 15000
+    }
+  },
+  {
+    "at": "2026-09-15T13:52:43.613Z",
+    "note": "totals",
+    "detail": {
+      "PASS": 15
+    }
+  }
+]
