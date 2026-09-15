@@ -1,0 +1,470 @@
+[
+  {
+    "at": "2026-09-15T04:50:30.343Z",
+    "check": "operator console laptop containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:50:30.353Z",
+    "note": "operator laptop hammer position on first paint",
+    "detail": {
+      "top": 867,
+      "bottom": 921,
+      "innerHeight": 720,
+      "visibleWithoutScroll": false
+    }
+  },
+  {
+    "at": "2026-09-15T04:50:30.361Z",
+    "check": "operator laptop console targets >= 24px",
+    "result": "PASS",
+    "detail": []
+  },
+  {
+    "at": "2026-09-15T04:50:30.578Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/operator-console-laptop.png"
+  },
+  {
+    "at": "2026-09-15T04:50:31.245Z",
+    "check": "axe operator console laptop",
+    "result": "FAIL",
+    "detail": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "nodes": [
+          {
+            "target": ".admin-heading > div:nth-child(1) > .eyebrow",
+            "html": "<p class=\"eyebrow\">AUCTION OPERATIONS</p>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.27 (foreground color: #6c795f, background color: #f7f6f0, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio "
+          },
+          {
+            "target": "#radix-_r_1_-trigger-teams",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger-...\" data-slot=\"tab",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #71837a, background color: #f7f6f0, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio"
+          },
+          {
+            "target": "#radix-_r_1_-trigger-buyers",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger-...\" data-slot=\"tab",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #71837a, background color: #f7f6f0, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio"
+          },
+          {
+            "target": "#radix-_r_1_-trigger-sales",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger-...\" data-slot=\"tab",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #71837a, background color: #f7f6f0, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio"
+          },
+          {
+            "target": "#radix-_r_1_-trigger-settlement",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger-...\" data-slot=\"tab",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #71837a, background color: #f7f6f0, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio"
+          }
+        ],
+        "count": 33
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:50:35.139Z",
+    "check": "operator console tabletLandscape containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:50:35.144Z",
+    "note": "operator tabletLandscape hammer position on first paint",
+    "detail": {
+      "top": 904,
+      "bottom": 958,
+      "innerHeight": 768,
+      "visibleWithoutScroll": false
+    }
+  },
+  {
+    "at": "2026-09-15T04:50:35.147Z",
+    "check": "operator tabletLandscape console targets >= 24px",
+    "result": "PASS",
+    "detail": []
+  },
+  {
+    "at": "2026-09-15T04:50:35.341Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/operator-console-tabletLandscape.png"
+  },
+  {
+    "at": "2026-09-15T04:50:37.443Z",
+    "check": "operator console tabletPortrait containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:50:37.445Z",
+    "note": "operator tabletPortrait hammer position on first paint",
+    "detail": {
+      "top": 904,
+      "bottom": 958,
+      "innerHeight": 1024,
+      "visibleWithoutScroll": true
+    }
+  },
+  {
+    "at": "2026-09-15T04:50:37.447Z",
+    "check": "operator tabletPortrait console targets >= 24px",
+    "result": "PASS",
+    "detail": []
+  },
+  {
+    "at": "2026-09-15T04:50:37.595Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/operator-console-tabletPortrait.png"
+  },
+  {
+    "at": "2026-09-15T04:50:39.926Z",
+    "check": "operator console phone390 containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:50:39.930Z",
+    "note": "operator phone390 hammer position on first paint",
+    "detail": {
+      "top": 1284,
+      "bottom": 1338,
+      "innerHeight": 844,
+      "visibleWithoutScroll": false
+    }
+  },
+  {
+    "at": "2026-09-15T04:50:39.935Z",
+    "check": "operator phone390 console targets >= 24px",
+    "result": "PASS",
+    "detail": []
+  },
+  {
+    "at": "2026-09-15T04:50:40.058Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/operator-console-phone390.png"
+  },
+  {
+    "at": "2026-09-15T04:50:42.270Z",
+    "note": "start bid",
+    "detail": "$1,250"
+  },
+  {
+    "at": "2026-09-15T04:50:42.286Z",
+    "check": "B focuses bid input",
+    "result": "PASS",
+    "detail": "Bid amount"
+  },
+  {
+    "at": "2026-09-15T04:50:43.919Z",
+    "check": "Enter records typed bid 1300",
+    "result": "PASS",
+    "detail": "$1,300"
+  },
+  {
+    "at": "2026-09-15T04:50:44.762Z",
+    "check": "lower bid rejected with explanation",
+    "result": "PASS",
+    "detail": [
+      "Bid must meet the minimum increment. Use Correct bid to lower it."
+    ]
+  },
+  {
+    "at": "2026-09-15T04:50:49.675Z",
+    "check": "empty bid submission message",
+    "result": "INFO",
+    "detail": [
+      "Bid is below the starting minimum."
+    ]
+  },
+  {
+    "at": "2026-09-15T04:50:55.511Z",
+    "check": "+ adds minimum increment ($25)",
+    "result": "PASS",
+    "detail": "$1,325"
+  },
+  {
+    "at": "2026-09-15T04:50:56.053Z",
+    "note": "S opens Sold dialog; initial focus",
+    "detail": {
+      "tag": "INPUT",
+      "label": "Final purchaser",
+      "role": "combobox"
+    }
+  },
+  {
+    "at": "2026-09-15T04:50:56.114Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/operator-sold-dialog-laptop.png"
+  },
+  {
+    "at": "2026-09-15T04:50:57.107Z",
+    "check": "buyer selected by keyboard",
+    "result": "PASS",
+    "detail": "Taylor Syndicate"
+  },
+  {
+    "at": "2026-09-15T04:50:57.128Z",
+    "check": "Confirm enabled after buyer",
+    "result": "PASS"
+  },
+  {
+    "at": "2026-09-15T04:50:59.276Z",
+    "check": "keyboard sale recorded and next team advanced",
+    "result": "PASS",
+    "detail": {
+      "toast": [
+        "Sold — purchaser recorded"
+      ],
+      "sales": 7,
+      "sale": {
+        "id": "b26b4026-1e90-44f3-a0b9-975307ad673d",
+        "eventId": "bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+        "teamId": "f672f07f-da0e-41d0-a87b-3e4a110b69d5",
+        "buyerId": "3de13df7-d517-4c80-b4b8-263c851b7d0e",
+        "amount": 132500,
+        "status": "ACTIVE",
+        "createdAt": "2026-09-15T04:50:57.438Z",
+        "notes": ""
+      },
+      "current": {
+        "eventId": "bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+        "teamId": "c915d7eb-93b5-46fb-b9e2-5564a14a766c",
+        "bid": 0,
+        "buyerId": null,
+        "startedAt": "2026-09-15T04:44:25.231Z",
+        "paused": 0
+      }
+    }
+  },
+  {
+    "at": "2026-09-15T04:51:04.206Z",
+    "note": "undo dialog text",
+    "detail": "Undo last action?Restore the previous auction state. The correction remains in the audit trail.CancelConfirm"
+  },
+  {
+    "at": "2026-09-15T04:51:06.064Z",
+    "check": "U undo restores sale state",
+    "result": "PASS",
+    "detail": {
+      "sales": 6,
+      "bid": 132500,
+      "audit": [
+        "undo",
+        "sell (undone)"
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T04:51:10.698Z",
+    "note": "skip dialog text",
+    "detail": "Skip this team for now?Sutton / Lowry will remain eligible for auction and move to the end of the current queue. No sale or financial record will be created. Its current bid will be cleared and the next team brought onto the block.CancelSkip for now"
+  },
+  {
+    "at": "2026-09-15T04:51:12.935Z",
+    "check": "Hammer without bid explains",
+    "result": "PASS",
+    "detail": [
+      "Record an opening bid first.",
+      "Saved"
+    ]
+  },
+  {
+    "at": "2026-09-15T04:51:17.482Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/operator-console-after-skip.png"
+  },
+  {
+    "at": "2026-09-15T04:51:20.535Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/operator-sales-tabletLandscape.png"
+  },
+  {
+    "at": "2026-09-15T04:51:22.631Z",
+    "check": "sale price correction saves and shows",
+    "result": "PASS",
+    "detail": {
+      "toast": [
+        "Saved"
+      ],
+      "corrected": "$999.99"
+    }
+  },
+  {
+    "at": "2026-09-15T04:51:27.625Z",
+    "note": "reopen dialog",
+    "detail": "Reopen this sale?Remove $999.99 from the pool and return Porter / Garner to the queue. Old ownership will no longer count.CancelConfirm"
+  },
+  {
+    "at": "2026-09-15T04:51:29.331Z",
+    "check": "reopen sale marks record REOPENED and keeps history",
+    "result": "PASS",
+    "detail": "REOPENED"
+  },
+  {
+    "at": "2026-09-15T04:51:35.567Z",
+    "check": "undo restores active sale",
+    "result": "PASS"
+  },
+  {
+    "at": "2026-09-15T04:51:42.141Z",
+    "check": "void sale",
+    "result": "PASS"
+  },
+  {
+    "at": "2026-09-15T04:51:51.558Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/operator-rules-laptop.png"
+  },
+  {
+    "at": "2026-09-15T04:51:52.555Z",
+    "check": "cleared minimum bid produces a plain-language error",
+    "result": "INFO",
+    "detail": [
+      "Saved"
+    ]
+  },
+  {
+    "at": "2026-09-15T04:52:02.478Z",
+    "check": "deduction 250% rejected with message",
+    "result": "INFO",
+    "detail": []
+  },
+  {
+    "at": "2026-09-15T04:52:07.276Z",
+    "note": "ladder total status after invalid edit",
+    "detail": "Total130.00% · must equal 100%"
+  },
+  {
+    "at": "2026-09-15T04:52:07.279Z",
+    "check": "invalid ladder disables save",
+    "result": "PASS"
+  },
+  {
+    "at": "2026-09-15T04:52:07.330Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/operator-rules-ladder.png"
+  },
+  {
+    "at": "2026-09-15T04:52:11.248Z",
+    "check": "import preview: malformed rows block import; is the invalid row identified?",
+    "result": "WARN",
+    "detail": {
+      "rows": 3,
+      "importDisabled": true,
+      "hints": [
+        {
+          "team": "Quoted, Team",
+          "flight": "First Flight",
+          "index": "7.5",
+          "invalidMarked": false
+        },
+        {
+          "team": "No Flight Team",
+          "flight": "Import flight 2",
+          "index": "",
+          "invalidMarked": false
+        },
+        {
+          "team": "",
+          "flight": "Championship",
+          "index": "",
+          "invalidMarked": false
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T04:52:11.298Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/operator-import-preview.png"
+  },
+  {
+    "at": "2026-09-15T04:52:13.556Z",
+    "check": "quick add saves and refocuses team name",
+    "result": "PASS",
+    "detail": "quick-team"
+  },
+  {
+    "at": "2026-09-15T04:52:16.488Z",
+    "check": "teams tab phone390 containment",
+    "result": "PASS",
+    "detail": {
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "roster": {
+        "scrollWidth": 349,
+        "clientWidth": 349,
+        "overflowX": "hidden"
+      }
+    }
+  },
+  {
+    "at": "2026-09-15T04:52:16.581Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/operator-teams-phone390.png"
+  },
+  {
+    "at": "2026-09-15T04:52:19.230Z",
+    "note": "access copy",
+    "detail": "The owner allowlist is protected in Sites settings. Grant or revoke additional operator access here. Operators can run auctions and edit records; only owners can manage access."
+  },
+  {
+    "at": "2026-09-15T04:52:20.749Z",
+    "check": "grant shows in list",
+    "result": "PASS",
+    "detail": {
+      "toast": [
+        "Saved"
+      ],
+      "rows": [
+        "audit-e2-operator@example.testAdded by seedy@sites.testRevoke"
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T04:52:26.792Z",
+    "check": "duplicate grant (case-different) feedback",
+    "result": "WARN",
+    "detail": {
+      "toast": [
+        "Saved"
+      ],
+      "rows": 1
+    }
+  },
+  {
+    "at": "2026-09-15T04:52:32.849Z",
+    "check": "granting the owner email feedback",
+    "result": "INFO",
+    "detail": {
+      "toast": [
+        "Saved"
+      ],
+      "rows": [
+        "audit-e2-operator@example.testAdded by seedy@sites.testRevoke",
+        "seedy@sites.testAdded by seedy@sites.testRevoke"
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T04:52:32.920Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/operator-access-laptop.png"
+  }
+]

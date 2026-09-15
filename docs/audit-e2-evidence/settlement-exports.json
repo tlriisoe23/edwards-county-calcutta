@@ -1,0 +1,520 @@
+[
+  {
+    "at": "2026-09-15T04:50:29.513Z",
+    "check": "settlement laptop containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:50:29.643Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/settlement-laptop.png"
+  },
+  {
+    "at": "2026-09-15T04:50:29.646Z",
+    "note": "overview text",
+    "detail": "AUCTION RECEIVABLES$4,500Remaining to collect$100 overpayments to review$4,300 recorded / $8,700 purchasesTOURNAMENT PAYABLES$6,255Remaining to pay$0 overpayments to review$1,575 recorded / $7,830 calculated entitlement"
+  },
+  {
+    "at": "2026-09-15T04:50:30.119Z",
+    "check": "axe settlement laptop",
+    "result": "FAIL",
+    "detail": [
+      {
+        "id": "aria-valid-attr-value",
+        "impact": "critical",
+        "help": "ARIA attributes must conform to valid values",
+        "nodes": [
+          {
+            "target": "#radix-_r_j_-trigger-receipt",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"true\" aria-controls=\"radix-_r_j_-content-...\" data-state=\"active\" id=\"radix-_r_j_-trigger-...\" data-slot=\"tabs-t",
+            "summary": "Fix all of the following:\n  Invalid ARIA attribute value: aria-controls=\"radix-_r_j_-content-receipt\""
+          }
+        ],
+        "count": 1
+      },
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "nodes": [
+          {
+            "target": ".admin-heading > div:nth-child(1) > .eyebrow",
+            "html": "<p class=\"eyebrow\">AUCTION OPERATIONS</p>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.27 (foreground color: #6c795f, background color: #f7f6f0, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio "
+          },
+          {
+            "target": "#radix-_r_1_-trigger-console",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger-...\" data-slot=\"tab",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #71837a, background color: #f7f6f0, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio"
+          },
+          {
+            "target": "#radix-_r_1_-trigger-teams",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger-...\" data-slot=\"tab",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #71837a, background color: #f7f6f0, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio"
+          },
+          {
+            "target": "#radix-_r_1_-trigger-buyers",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger-...\" data-slot=\"tab",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #71837a, background color: #f7f6f0, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio"
+          },
+          {
+            "target": "#radix-_r_1_-trigger-sales",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger-...\" data-slot=\"tab",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #71837a, background color: #f7f6f0, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio"
+          }
+        ],
+        "count": 16
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:50:30.131Z",
+    "note": "overpaid card",
+    "detail": [
+      "Overpaid",
+      "Purchases owed$2,400Payments recorded$2,500Overpayment to review$100",
+      "The recorded amount exceeds the current total. Review sale/results corrections and reconcile externally; nothing is automatically refunded or netted."
+    ]
+  },
+  {
+    "at": "2026-09-15T04:50:31.158Z",
+    "check": "partial payment above balance blocked with a message",
+    "result": "PASS",
+    "detail": {
+      "validity": "Value must be less than or equal to 3100.",
+      "max": "3100"
+    }
+  },
+  {
+    "at": "2026-09-15T04:50:34.184Z",
+    "check": "partial payment recorded",
+    "result": "PASS",
+    "detail": {
+      "toast": [
+        "Saved"
+      ],
+      "badge": "Partial"
+    }
+  },
+  {
+    "at": "2026-09-15T04:50:40.914Z",
+    "check": "Mark paid prefilled balance and settles account",
+    "result": "PASS",
+    "detail": {
+      "prefill": "3075",
+      "toast": [
+        "Saved"
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T04:50:46.690Z",
+    "check": "reversal requires a reason",
+    "result": "PASS",
+    "detail": "Please fill out this field."
+  },
+  {
+    "at": "2026-09-15T04:50:48.443Z",
+    "check": "reversal recorded, original retained",
+    "result": "PASS",
+    "detail": {
+      "toast": [
+        "Saved"
+      ],
+      "entries": [
+        "$25 · Cash9/14/2026, 11:50:00 PMAudit E2 partialRecorded by seedy@sites.testReverse entry",
+        "$3,075 · Cash9/14/2026, 11:50:00 PM · ReversedRecorded by seedy@sites.test",
+        "-$3,075 · Cash9/14/2026, 11:50:46 PM · Reversal / correctionAudit E2 reversalRecorded by seedy@sites.test"
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T04:50:48.645Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/settlement-history-open.png"
+  },
+  {
+    "at": "2026-09-15T04:50:49.252Z",
+    "note": "payouts view",
+    "detail": "Partial PayerPartialCalculated payout$3,150Payouts recorded$1,575Payout due$1,575Mark payout paidRecord partial payoutPurchases / entitlement & payment historyPaid In Full LLCUnpaidCalculated payout$2,331Payouts recorded$0Payout due$2,331Mark payout paidRecord partial payoutPurchases / entitlement & payment historyOwes EverythingUnpaidCalculated payout$1,350Payouts recorded$0Payout due$1,350Mark payout paidRecord partial payoutPurchases / entitlement & payment historyJensen / Quincy · Place 2 · 100%$1,350DisbursementsNo entries yet.Overpaid BuyerUnpaidCalculated payout$999Payouts recorded$0Payout due$999Mark payout paidRecord partial payoutPurchases / entitlement & payment history"
+  },
+  {
+    "at": "2026-09-15T04:50:49.473Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/settlement-payouts-laptop.png"
+  },
+  {
+    "at": "2026-09-15T04:50:52.733Z",
+    "check": "settlement tabletPortrait containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:50:52.907Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/settlement-tabletPortrait.png"
+  },
+  {
+    "at": "2026-09-15T04:50:55.999Z",
+    "check": "settlement phone390 containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:50:56.166Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/settlement-phone390.png"
+  },
+  {
+    "at": "2026-09-15T04:50:59.658Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/results-tabletPortrait.png"
+  },
+  {
+    "at": "2026-09-15T04:51:00.004Z",
+    "check": "duplicate place explained",
+    "result": "PASS",
+    "detail": [
+      "Each payout pool needs unique finishing positions. Resolve ties before entering results."
+    ]
+  },
+  {
+    "at": "2026-09-15T04:51:06.018Z",
+    "check": "keyboard results entry saves",
+    "result": "PASS",
+    "detail": {
+      "toast": [
+        "Saved"
+      ],
+      "inputs": 8,
+      "entitlements": 6
+    }
+  },
+  {
+    "at": "2026-09-15T04:51:06.123Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/results-tabletPortrait-saved.png"
+  },
+  {
+    "at": "2026-09-15T04:51:09.275Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/exports-laptop.png"
+  },
+  {
+    "at": "2026-09-15T04:51:09.412Z",
+    "check": "download Auction Results CSV",
+    "result": "PASS",
+    "detail": "calcutta-auction.csv"
+  },
+  {
+    "at": "2026-09-15T04:51:09.783Z",
+    "check": "download Buyer Settlement CSV",
+    "result": "PASS",
+    "detail": "calcutta-settlement.csv"
+  },
+  {
+    "at": "2026-09-15T04:51:11.053Z",
+    "check": "download Teams & Flights CSV",
+    "result": "PASS",
+    "detail": "calcutta-teams.csv"
+  },
+  {
+    "at": "2026-09-15T04:51:11.441Z",
+    "check": "download Final Results / Payouts CSV",
+    "result": "PASS",
+    "detail": "calcutta-payouts.csv"
+  },
+  {
+    "at": "2026-09-15T04:51:11.805Z",
+    "check": "download Payment History CSV",
+    "result": "PASS",
+    "detail": "calcutta-payments.csv"
+  },
+  {
+    "at": "2026-09-15T04:51:12.518Z",
+    "check": "download Full Event JSON Backup",
+    "result": "PASS",
+    "detail": "calcutta-backup.json"
+  },
+  {
+    "at": "2026-09-15T04:51:13.263Z",
+    "check": "axe exports",
+    "result": "FAIL",
+    "detail": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "nodes": [
+          {
+            "target": ".admin-heading > div:nth-child(1) > .eyebrow",
+            "html": "<p class=\"eyebrow\">AUCTION OPERATIONS</p>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.27 (foreground color: #6c795f, background color: #f7f6f0, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio "
+          },
+          {
+            "target": "#radix-_r_1_-trigger-console",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger-...\" data-slot=\"tab",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #71837a, background color: #f7f6f0, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio"
+          },
+          {
+            "target": "#radix-_r_1_-trigger-teams",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger-...\" data-slot=\"tab",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #71837a, background color: #f7f6f0, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio"
+          },
+          {
+            "target": "#radix-_r_1_-trigger-buyers",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger-...\" data-slot=\"tab",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #71837a, background color: #f7f6f0, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio"
+          },
+          {
+            "target": "#radix-_r_1_-trigger-sales",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger-...\" data-slot=\"tab",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #71837a, background color: #f7f6f0, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio"
+          }
+        ],
+        "count": 17
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:51:13.572Z",
+    "check": "print media shows only the summary (completed)",
+    "result": "PASS",
+    "detail": {
+      "printSummary": "block",
+      "tabs": "none",
+      "header": "none",
+      "exportGrid": "none",
+      "rows": 16
+    }
+  },
+  {
+    "at": "2026-09-15T04:51:13.667Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/print-summary-completed.png"
+  },
+  {
+    "at": "2026-09-15T04:51:13.726Z",
+    "note": "print summary PDF (completed)",
+    "detail": {
+      "file": "audit-e2-evidence/print-summary-completed.pdf",
+      "bytes": 83136,
+      "pages": 2,
+      "rows": 16
+    }
+  },
+  {
+    "at": "2026-09-15T04:51:17.569Z",
+    "check": "print media shows only the summary (large)",
+    "result": "PASS",
+    "detail": {
+      "printSummary": "block",
+      "tabs": "none",
+      "header": "none",
+      "exportGrid": "none",
+      "rows": 36
+    }
+  },
+  {
+    "at": "2026-09-15T04:51:17.718Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/print-summary-large.png"
+  },
+  {
+    "at": "2026-09-15T04:51:17.750Z",
+    "note": "print summary PDF (large)",
+    "detail": {
+      "file": "audit-e2-evidence/print-summary-large.pdf",
+      "bytes": 36768,
+      "pages": 3,
+      "rows": 36
+    }
+  },
+  {
+    "at": "2026-09-15T04:51:21.205Z",
+    "check": "rendered QR decodes to the public link",
+    "result": "PASS",
+    "detail": {
+      "decoded": "http://localhost:5173/?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0",
+      "boardLink": "http://localhost:5173/?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0"
+    }
+  },
+  {
+    "at": "2026-09-15T04:51:21.220Z",
+    "note": "local warning present",
+    "detail": "Local preview links are only development links and are not automatically accessible to spectators on other devices."
+  },
+  {
+    "at": "2026-09-15T04:51:21.490Z",
+    "check": "copy public link",
+    "result": "PASS",
+    "detail": {
+      "toast": [
+        "Link copied"
+      ],
+      "clip": "http://localhost:5173/?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0"
+    }
+  },
+  {
+    "at": "2026-09-15T04:51:21.595Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/sharing-laptop.png"
+  },
+  {
+    "at": "2026-09-15T04:51:21.899Z",
+    "check": "print QR handout shows only the handout",
+    "result": "PASS",
+    "detail": {
+      "share": "flex",
+      "tvSection": "none",
+      "header": "none",
+      "tabs": "none"
+    }
+  },
+  {
+    "at": "2026-09-15T04:51:21.920Z",
+    "note": "QR handout PDF",
+    "detail": {
+      "file": "audit-e2-evidence/print-qr-handout.pdf",
+      "bytes": 49009,
+      "pages": 1
+    }
+  },
+  {
+    "at": "2026-09-15T04:51:21.959Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/print-qr-handout.png"
+  },
+  {
+    "at": "2026-09-15T04:51:24.728Z",
+    "check": "sharing phone390 containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:51:24.796Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/sharing-phone390.png"
+  },
+  {
+    "at": "2026-09-15T04:51:27.809Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/help-tabletPortrait.png"
+  },
+  {
+    "at": "2026-09-15T04:51:28.166Z",
+    "check": "axe help",
+    "result": "FAIL",
+    "detail": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "nodes": [
+          {
+            "target": "div:nth-child(1) > .eyebrow",
+            "html": "<p class=\"eyebrow\">AUCTION OPERATIONS</p>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.27 (foreground color: #6c795f, background color: #f7f6f0, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio "
+          },
+          {
+            "target": "#radix-_r_1_-trigger-console",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger-...\" data-slot=\"tab",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #71837a, background color: #f7f6f0, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio"
+          },
+          {
+            "target": "#radix-_r_1_-trigger-teams",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger-...\" data-slot=\"tab",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #71837a, background color: #f7f6f0, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio"
+          },
+          {
+            "target": "#radix-_r_1_-trigger-buyers",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger-...\" data-slot=\"tab",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #71837a, background color: #f7f6f0, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio"
+          },
+          {
+            "target": "#radix-_r_1_-trigger-sales",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger-...\" data-slot=\"tab",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #71837a, background color: #f7f6f0, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio"
+          }
+        ],
+        "count": 13
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:51:28.796Z",
+    "note": "activity rows",
+    "detail": {
+      "rows": 30,
+      "first": "9/14/2026, 11:51:21 PMseedy@sites.testsale edit"
+    }
+  },
+  {
+    "at": "2026-09-15T04:51:28.827Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/activity-tabletPortrait.png"
+  },
+  {
+    "at": "2026-09-15T04:51:29.523Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/buyers-tabletPortrait.png"
+  },
+  {
+    "at": "2026-09-15T04:51:31.504Z",
+    "note": "empty event console text",
+    "detail": null
+  },
+  {
+    "at": "2026-09-15T04:51:31.506Z",
+    "note": "empty event: console text",
+    "detail": "AUCTION SETUPTHE CALCUTTAThe block is open.The next team will appear here.Live from the clubhouseBid amount$Record bidStart bidOne click records the opening amount$100$200$300$500Correct bid Hammer / soldMark unsoldSkip for nowKeyboard: B focus bid · + minimum increment · S hammer · U undo · Enter records a bidNext up0 in viewThe upcoming queue is empty. Return unsold teams from the Teams tab."
+  },
+  {
+    "at": "2026-09-15T04:51:31.778Z",
+    "check": "start auction with no teams explains",
+    "result": "PASS",
+    "detail": [
+      "Add flights and teams first."
+    ]
+  },
+  {
+    "at": "2026-09-15T04:51:31.894Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/operator-empty-event.png"
+  },
+  {
+    "at": "2026-09-15T04:51:32.514Z",
+    "note": "empty event teams tab notice",
+    "detail": [
+      "Add a flight in Setup & rules before adding teams."
+    ]
+  },
+  {
+    "at": "2026-09-15T04:51:32.519Z",
+    "check": "quick add disabled without flights",
+    "result": "PASS"
+  },
+  {
+    "at": "2026-09-15T04:51:34.598Z",
+    "check": "demo reset requires typed phrase",
+    "result": "PASS"
+  },
+  {
+    "at": "2026-09-15T04:51:34.657Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/demo-reset-dialog.png"
+  }
+]

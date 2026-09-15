@@ -1,0 +1,33 @@
+// Continue the AUDIT-E2 Journey event from the Hammer step (first run stopped at the buyer popup).
+import { launch, base, fixtures as F, signIn, settle, shot, log, axe } from './lib.mjs';
+const L = log('new-event-journey-2.json'); const b = await launch();
+const toasts = async p => await p.evaluate(() => [...document.querySelectorAll('[data-sonner-toast]')].map(t => t.textContent.trim()));
+const ctx = await b.newContext({ viewport: { width: 1024, height: 768 } }); await signIn(ctx); const p = await ctx.newPage(); await p.goto(base + '/admin?event=' + F.journey); await p.waitForSelector('.admin-tabs'); await settle(p, 900);
+const bid = (await p.locator('.console-grid .big-bid').textContent()).trim(); L.add({ note: 'resume state', detail: { bid, team: await p.locator('.console-grid .block h2').textContent() } });
+if (bid === '$0') { await p.locator('.increments button').first().click(); await settle(p, 1200); }
+await p.locator('.hammer').click(); await p.waitForSelector('.sale-dialog'); await settle(p, 300);
+await p.locator('.sale-dialog [role=combobox]').fill('Nobody'); await settle(p, 300);
+const hiddenWhileOpen = await p.evaluate(() => { const btn = [...document.querySelectorAll('.sale-dialog button')].find(b => b.textContent.includes('Add buyer here')); return btn ? { ariaHiddenAncestor: !!btn.closest('[aria-hidden="true"]'), inert: !!btn.closest('[inert]') } : { missing: true }; });
+L.add({ note: 'while buyer dropdown is open, is "Add buyer here" reachable?', detail: hiddenWhileOpen });
+await p.keyboard.press('Escape'); await settle(p, 300);
+L.add({ check: 'Escape closes dropdown but keeps the Sold dialog', result: (await p.locator('.sale-dialog').count()) === 1 ? 'PASS' : 'FAIL' });
+await p.getByRole('button', { name: 'Add buyer here' }).click(); await p.getByLabel('New buyer name').fill('Journey Buyer'); await p.getByRole('button', { name: 'Add & select' }).click(); await settle(p, 1200);
+L.add({ check: 'inline buyer created and selected; confirm enabled', result: await p.getByRole('button', { name: 'Confirm sale' }).isEnabled() ? 'PASS' : 'FAIL', detail: await p.evaluate(() => document.querySelector('.sale-dialog [role=combobox]')?.value) });
+L.add({ note: 'screenshot', detail: await shot(p, 'journey-sold-dialog-inline-buyer') });
+await p.getByRole('button', { name: 'Confirm sale' }).click(); await settle(p, 1500);
+L.add({ check: 'sale confirmed; next team advanced', result: (await p.locator('.console-grid .block h2').textContent()).includes('Charlie / Delta') ? 'PASS' : 'FAIL', detail: await toasts(p) });
+const pub = await ctx.newPage(); await pub.goto(base + '/?event=' + F.journey); await pub.waitForSelector('.live-grid'); await settle(pub, 800);
+L.add({ check: 'public board shows the sale', result: (await pub.locator('.sales-strip').textContent()).includes('Alpha / Bravo') ? 'PASS' : 'FAIL' });
+await pub.close();
+await p.getByRole('button', { name: 'Mark unsold' }).click(); await p.getByRole('button', { name: 'Confirm' }).click(); await settle(p, 1500);
+await p.getByRole('button', { name: 'Complete' }).click(); await p.getByRole('button', { name: 'Confirm' }).click(); await settle(p, 1500);
+L.add({ check: 'complete after clearing block', result: (await p.locator('.console-toolbar .badge').textContent()).trim() === 'COMPLETED' ? 'PASS' : 'FAIL', detail: await toasts(p) });
+await p.getByRole('tab', { name: 'Results' }).click(); await settle(p, 500);
+L.add({ note: 'results tab: unsold team place input', detail: await p.evaluate(() => [...document.querySelectorAll('.result-row')].map(r => ({ label: r.querySelector('label').textContent.trim(), disabled: r.querySelector('input').disabled }))) });
+await p.locator('.result-row input').nth(1).fill('1'); await p.getByRole('button', { name: 'Save final positions' }).click(); await settle(p, 1200);
+L.add({ check: 'unsold team given a place: server response', result: 'INFO', detail: { toast: await toasts(p), entitlements: await p.locator('.entitlement').count() } });
+await p.getByRole('tab', { name: 'Settlement' }).click(); await settle(p, 500);
+await p.getByRole('tab', { name: 'Tournament payouts' }).click(); await settle(p, 400);
+L.add({ note: 'payouts view after results', detail: await p.locator('.settlement-accounts, .settlement-page .empty-state').allTextContents() });
+await axe(p, 'settlement payouts (journey event)', L);
+await ctx.close(); await b.close();

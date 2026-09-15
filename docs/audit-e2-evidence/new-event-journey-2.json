@@ -1,0 +1,23 @@
+[
+  {
+    "at": "2026-09-15T05:00:08.012Z",
+    "note": "resume state",
+    "detail": {
+      "bid": "$100",
+      "team": "Alpha / Bravo"
+    }
+  },
+  {
+    "at": "2026-09-15T05:00:08.765Z",
+    "note": "while buyer dropdown is open, is \"Add buyer here\" reachable?",
+    "detail": {
+      "ariaHiddenAncestor": true,
+      "inert": false
+    }
+  },
+  {
+    "at": "2026-09-15T05:00:09.100Z",
+    "check": "Escape closes dropdown but keeps the Sold dialog",
+    "result": "FAIL"
+  }
+]

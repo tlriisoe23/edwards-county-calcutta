@@ -2,6 +2,42 @@
 
 2026-09-14 UTC · baseline `dfab14906c04b5a6d99ffffbfba4249883750eae`. Reports are local audit evidence, not production sign-off. PASS = observed expected result; FAIL = demonstrated mismatch; BLOCKED = a needed environment/tool is unavailable; UNVERIFIED = not exercised sufficiently. A successful build does not convert any browser or hosted gap into PASS.
 
+## Incremental audit E2 — 2026-09-15 (`d992d1c`, audit-only)
+
+Environment: Linux VM, Node 24.19, `npm run install:ci`, fresh `.wrangler/state` with `drizzle/0000` and `0001` applied through a scratch wrangler config carrying the plugin's placeholder D1 id (`audit-e2-evidence/scripts/wrangler-audit.json`), `.env` `ADMIN_EMAILS=seedy@sites.test`, `npm run dev` on 5173. Browser: Playwright 1.62.1 headless Chromium 151 installed in a scratch directory (not a repo dependency), axe-core 4.13. The production container on 127.0.0.1:5181 and `portable/` were not used. No application source, schema or dependency changed; only `docs/` gained files.
+
+| Check | Result | Evidence |
+|---|---|---|
+| Existing acceptance rehearsal at HEAD on the fresh store | 58 / 58 PASS | events `b8adcb21-ddaf-46f4-8934-bc8b3c49f05d`, `db33befa-c690-4876-bc25-26b8cea2efd4` |
+| Existing refinement rehearsal at HEAD | 72 / 72 PASS | event `07798bc1-aa0d-4aa5-80ec-b819565aef5b` |
+| Public board viewports 320/390/430/768/1024/1280 + 640/960 (200 % zoom equivalents), live/completed/empty/large | PASS containment; FAIL header links ≤ 700 px | [public-tv.json](audit-e2-evidence/public-tv.json), [header-links.json](audit-e2-evidence/header-links.json) → CAL-P2-004 |
+| TV 1366×768 and 1920×1080, live/completed/large/empty/demo/paused | PASS containment and one screen | same |
+| TV 1024×768, 1093×614, 1099×618, 1100×619, 960×540 | FAIL statistic spill / scrolling | [followup.json](audit-e2-evidence/followup.json) → CAL-P2-005 |
+| TV 1280×720, 1440×900, 1536×864, 1280×1024 | PASS | same |
+| Contrast (computed) and axe on public, TV, operator console, settlement, exports, help, access | FAIL five text tokens; FAIL invalid `aria-controls` | → CAL-P2-007, CAL-P3-002 |
+| Operator keyboard journey B/Enter/+/S/buyer/Confirm/U; lower-bid, empty-bid, no-bid-hammer messages | PASS | [operator.json](audit-e2-evidence/operator.json) |
+| Sales corrections: price edit, reopen, undo, void, undo | PASS | same |
+| Setup: cleared minimum bid | FAIL saves 0 with “Saved” | [rules-validation.json](audit-e2-evidence/rules-validation.json) → CAL-P3-003 |
+| Setup: cleared increment, 250 % deduction, 130 % ladder | PASS (native validation / disabled save) | same, operator.json |
+| Import preview with malformed rows | WARN import disabled, rows unmarked | → CAL-P3-004 |
+| Access grant/duplicate/owner-email/revoke | WARN feedback | → CAL-P3-005 |
+| Emulated-touch tablet sale and undo | PASS | operator.json |
+| Sold dialog Escape with suggestions open | FAIL dialog closes | [new-event-journey-3.json](audit-e2-evidence/new-event-journey-3.json) → CAL-P2-006 |
+| New event → flight → teams → start → bid → inline buyer → sale → public propagation → complete | PASS | new-event-journey*.json |
+| Results: unsold team placed | FAIL contradictory empty states | → CAL-P3-006 |
+| Settlement partial / above-balance / Mark paid / reversal with reason at 1280, 768, 390 | PASS | [settlement-exports.json](audit-e2-evidence/settlement-exports.json) |
+| Results tablet keyboard entry with duplicate place | PASS | same |
+| Seven UI downloads; print-media isolation; Letter PDFs 2 / 3 / 1 pages | PASS (Chromium PDF only) | same, `print-*.pdf` |
+| Sharing: QR decode, copy, local warning, phone containment | PASS | same |
+| Roles by `ADMIN_EMAILS` swap: non-operator screen + 403s; non-owner operator desk, access change denied, exports allowed | PASS (local identities only) | [roles-A.json](audit-e2-evidence/roles-A.json), [roles-B.json](audit-e2-evidence/roles-B.json) |
+| Reduced-motion runtime; newest-event fallback; unknown event ID; demo reset gate; empty-event guards | PASS / INFO | public-tv.json, settlement-exports.json |
+
+Across the evidence JSON files: **132 PASS, 32 FAIL, 5 WARN** rows. The 32 FAIL rows are repeated observations of the eleven registered findings across viewports/routes (plus one FAIL row caused by the audit script's own stale locator, recorded and not counted as a product defect). Screenshots and PDFs: 70 PNG and 3 PDF files in `audit-e2-evidence/`, alongside 12 JSON reports and the `scripts/` folder. These are manual-observation equivalents, not automated test cases; do not add them to suite counts.
+
+Reproduce: start a local dev server with a fresh store as above, `cd` into a scratch directory with `npm i playwright axe-core pngjs jsqr`, copy `audit-e2-evidence/scripts/`, run `node fixtures.mjs` (creates new disposable events and rewrites `fixtures.json`), then `public-tv.mjs`, `operator.mjs`, `settlement-exports.mjs`, `followup.mjs`, `new-event.mjs` / `new-event-3.mjs`, and `role.mjs A|B` around an `ADMIN_EMAILS` swap. Scripts refuse non-localhost origins.
+
+Cleanup state after E2: `.env` restored to the mock owner; `operators` table empty; fixture `minBid` restored to $100; synthetic events retained locally under the IDs above for reproduction; dev server stopped at the end of the audit.
+
 ## Batch D update — `a76e57f`
 
 Approved CAL-P2-001/002 are resolved locally. [BATCH-D.md](BATCH-D.md) records 42 focused import/creation checks, 20 Batch A API/context assertions, 58 acceptance and 72 refinement checks, 1,000 allocation cases and all three original CSV probes passing: **1,195 scripted cases/checks**, excluding four manual browser groups and command checks. TypeScript, final production build and foreign keys pass. Exact reports are in [batch-d-evidence](batch-d-evidence/checks.json).
@@ -160,16 +196,16 @@ Six small synthetic CSV examples are in `audit-evidence/`. The full JSON backup 
 | Status | Gate | Reason / acceptance evidence needed |
 |---|---|---|
 | BLOCKED | Real hosted ChatGPT owner login | No deployed origin; verify configured owner lands in admin. |
-| BLOCKED | Distinct allowed/non-allowed/revoked users | Local tabs share one mock identity; use actual accounts on approved hosted origin. |
+| BLOCKED (hosted) / PASS (local emulation) | Distinct allowed/non-allowed/revoked users | E2 emulated a signed-in non-operator and a granted non-owner operator by changing `ADMIN_EMAILS` locally (roles-A/B evidence); real Google accounts on the hosted origin remain untested. |
 | BLOCKED | Hosted header trust, CSRF and authorization | Confirm dispatcher strips spoofed headers, rejects unauthorized writes/private exports and enforces revocation per request. |
 | BLOCKED | Anonymous internet board and QR | Sites access mode alone does not prove route audience; test a signed-out external device and exact QR URL. |
 | BLOCKED | Hosted migration/persistence/restart | No deployment authorized; verify actual D1 state and application restart after future approved release. |
 | BLOCKED | Physical TV/fullscreen/HDMI | Fullscreen button attempted in IAB without a demonstrated fullscreenElement; real TV not available. |
 | UNVERIFIED | Screen reader speech and focus announcements | Accessible trees/focus inspected; actual NVDA/VoiceOver session absent. |
 | UNVERIFIED | Physical touch and soft-keyboard overlap | Viewport emulation is not device keyboard/touch evidence. |
-| UNVERIFIED | Browser 200% zoom and reduced-motion runtime | No verified emulation; reduced-motion styles exist by source inspection. |
-| UNVERIFIED | Print summary / QR handout pagination | Print button/CSS/data exist; actual printer/PDF rendering not completed. |
+| PASS (emulated) / FAIL (TV) | Browser 200% zoom and reduced-motion runtime | E2: 640×360 and 960×540 CSS viewports stand in for 200 % zoom — public and operator pass, `/tv` at 960×540 fails (CAL-P2-005); runtime reduced-motion disables the sold-toast animation. Real browser zoom not exercised. |
+| PASS (Chromium PDF) / UNVERIFIED (printer) | Print summary / QR handout pagination | E2 Letter PDFs: summary 2 pages (8 sales), 3 pages (30 sales), handout 1 page; print-media hides everything but the summary/handout. Toasts print (observation). Physical printer not used. |
 | UNVERIFIED | Other engines, currencies and maximum load | One Chromium environment, mainly USD, 100-team fixture; larger limits/engines need separate bounded checks. |
-| UNVERIFIED | Unclaimed places / ties / unsold winner policy | Current engine requires entered unique results; resolve business policy before any rule change. |
+| UNVERIFIED (policy) / FAIL (feedback) | Unclaimed places / ties / unsold winner policy | Current engine requires entered unique results; E2 observed that an UNSOLD team can be placed and the purse silently goes unclaimed (CAL-P3-006). Resolve business policy before any rule change. |
 
 No hosted or unavailable capability above is counted as PASS. After approved fixes, rerun focused reproductions first, the protected API/math suites next, and relevant browser/device states before any separate deployment decision.

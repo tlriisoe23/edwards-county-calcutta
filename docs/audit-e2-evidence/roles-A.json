@@ -1,0 +1,50 @@
+[
+  {
+    "at": "2026-09-15T05:02:26.284Z",
+    "check": "signed-in non-operator sees access-required screen (390px)",
+    "result": "PASS",
+    "detail": {
+      "text": "Operator access requiredYour ChatGPT account is signed in, but it has not been granted access to this auction.Return to the public board",
+      "link": "/?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0"
+    }
+  },
+  {
+    "at": "2026-09-15T05:02:26.304Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/access-required-390.png"
+  },
+  {
+    "at": "2026-09-15T05:02:26.551Z",
+    "check": "non-operator API denial",
+    "result": "PASS",
+    "detail": {
+      "admin": 403,
+      "exportPayments": 403,
+      "publicRead": 200
+    }
+  },
+  {
+    "at": "2026-09-15T05:02:27.716Z",
+    "check": "signed-in non-operator sees access-required screen (1280px)",
+    "result": "PASS",
+    "detail": {
+      "text": "Operator access requiredYour ChatGPT account is signed in, but it has not been granted access to this auction.Return to the public board",
+      "link": "/?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0"
+    }
+  },
+  {
+    "at": "2026-09-15T05:02:27.738Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/access-required-1280.png"
+  },
+  {
+    "at": "2026-09-15T05:02:27.806Z",
+    "check": "non-operator API denial",
+    "result": "PASS",
+    "detail": {
+      "admin": 403,
+      "exportPayments": 403,
+      "publicRead": 200
+    }
+  }
+]

@@ -1,0 +1,689 @@
+[
+  {
+    "at": "2026-09-15T04:54:01.769Z",
+    "check": "tv live 1024x768 (iPad landscape / 1024)",
+    "result": "FAIL",
+    "detail": {
+      "scrollHeight": 1286,
+      "innerHeight": 768,
+      "singleScreen": false,
+      "statOverlaps": [
+        {
+          "value": "Net Calcutta pool",
+          "spill": 24
+        }
+      ],
+      "sectionOverlaps": [],
+      "bad": [
+        {
+          "sel": ".stats strong",
+          "text": "$5,354.99",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": false,
+          "rect": [
+            224,
+            949,
+            155,
+            42
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T04:54:01.801Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/tv-live-1024x768.png"
+  },
+  {
+    "at": "2026-09-15T04:54:03.642Z",
+    "check": "tv completed 1024x768 (iPad landscape / 1024)",
+    "result": "FAIL",
+    "detail": {
+      "scrollHeight": 1057,
+      "innerHeight": 768,
+      "singleScreen": false,
+      "statOverlaps": [
+        {
+          "value": "Average sale",
+          "spill": 24
+        }
+      ],
+      "sectionOverlaps": [],
+      "bad": [
+        {
+          "sel": ".stats strong",
+          "text": "$1,087.50",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": false,
+          "rect": [
+            693,
+            607,
+            155,
+            42
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T04:54:03.672Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/tv-completed-1024x768.png"
+  },
+  {
+    "at": "2026-09-15T04:54:05.521Z",
+    "check": "tv live 1093x614 (1366×768 at 125% OS scale)",
+    "result": "FAIL",
+    "detail": {
+      "scrollHeight": 1312,
+      "innerHeight": 614,
+      "singleScreen": false,
+      "statOverlaps": [
+        {
+          "value": "Net Calcutta pool",
+          "spill": 14
+        }
+      ],
+      "sectionOverlaps": [],
+      "bad": [
+        {
+          "sel": ".stats strong",
+          "text": "$5,354.99",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": false,
+          "rect": [
+            238,
+            975,
+            155,
+            42
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T04:54:05.555Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/tv-live-1093x614.png"
+  },
+  {
+    "at": "2026-09-15T04:54:07.387Z",
+    "check": "tv completed 1093x614 (1366×768 at 125% OS scale)",
+    "result": "FAIL",
+    "detail": {
+      "scrollHeight": 1066,
+      "innerHeight": 614,
+      "singleScreen": false,
+      "statOverlaps": [
+        {
+          "value": "Average sale",
+          "spill": 14
+        }
+      ],
+      "sectionOverlaps": [],
+      "bad": [
+        {
+          "sel": ".stats strong",
+          "text": "$1,087.50",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": false,
+          "rect": [
+            738,
+            616,
+            155,
+            42
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T04:54:07.419Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/tv-completed-1093x614.png"
+  },
+  {
+    "at": "2026-09-15T04:54:09.263Z",
+    "check": "tv live 1099x618 (just below 1100 grid)",
+    "result": "FAIL",
+    "detail": {
+      "scrollHeight": 1314,
+      "innerHeight": 618,
+      "singleScreen": false,
+      "statOverlaps": [
+        {
+          "value": "Net Calcutta pool",
+          "spill": 13
+        }
+      ],
+      "sectionOverlaps": [],
+      "bad": [
+        {
+          "sel": ".stats strong",
+          "text": "$5,354.99",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": false,
+          "rect": [
+            239,
+            977,
+            155,
+            42
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T04:54:09.290Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/tv-live-1099x618.png"
+  },
+  {
+    "at": "2026-09-15T04:54:11.135Z",
+    "check": "tv completed 1099x618 (just below 1100 grid)",
+    "result": "FAIL",
+    "detail": {
+      "scrollHeight": 1066,
+      "innerHeight": 618,
+      "singleScreen": false,
+      "statOverlaps": [
+        {
+          "value": "Average sale",
+          "spill": 13
+        }
+      ],
+      "sectionOverlaps": [],
+      "bad": [
+        {
+          "sel": ".stats strong",
+          "text": "$1,087.50",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": false,
+          "rect": [
+            742,
+            617,
+            155,
+            42
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T04:54:11.160Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/tv-completed-1099x618.png"
+  },
+  {
+    "at": "2026-09-15T04:54:12.989Z",
+    "check": "tv live 1100x619 (grid threshold)",
+    "result": "FAIL",
+    "detail": {
+      "scrollHeight": 1315,
+      "innerHeight": 619,
+      "singleScreen": false,
+      "statOverlaps": [
+        {
+          "value": "Net Calcutta pool",
+          "spill": 12
+        }
+      ],
+      "sectionOverlaps": [],
+      "bad": [
+        {
+          "sel": ".stats strong",
+          "text": "$5,354.99",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": false,
+          "rect": [
+            239,
+            977,
+            155,
+            42
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T04:54:13.019Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/tv-live-1100x619.png"
+  },
+  {
+    "at": "2026-09-15T04:54:14.888Z",
+    "check": "tv completed 1100x619 (grid threshold)",
+    "result": "FAIL",
+    "detail": {
+      "scrollHeight": 1067,
+      "innerHeight": 619,
+      "singleScreen": false,
+      "statOverlaps": [
+        {
+          "value": "Average sale",
+          "spill": 12
+        }
+      ],
+      "sectionOverlaps": [],
+      "bad": [
+        {
+          "sel": ".stats strong",
+          "text": "$1,087.50",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": false,
+          "rect": [
+            743,
+            617,
+            155,
+            42
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T04:54:14.918Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/tv-completed-1100x619.png"
+  },
+  {
+    "at": "2026-09-15T04:54:16.774Z",
+    "check": "tv live 1280x720 (laptop mirrored)",
+    "result": "PASS",
+    "detail": {
+      "scrollHeight": 720,
+      "innerHeight": 720,
+      "singleScreen": true,
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:54:18.603Z",
+    "check": "tv completed 1280x720 (laptop mirrored)",
+    "result": "PASS",
+    "detail": {
+      "scrollHeight": 720,
+      "innerHeight": 720,
+      "singleScreen": true,
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:54:20.471Z",
+    "check": "tv live 1440x900 (MacBook mirrored)",
+    "result": "PASS",
+    "detail": {
+      "scrollHeight": 900,
+      "innerHeight": 900,
+      "singleScreen": true,
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:54:22.314Z",
+    "check": "tv completed 1440x900 (MacBook mirrored)",
+    "result": "PASS",
+    "detail": {
+      "scrollHeight": 900,
+      "innerHeight": 900,
+      "singleScreen": true,
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:54:24.151Z",
+    "check": "tv live 1536x864 (1920×1080 at 125% OS scale)",
+    "result": "PASS",
+    "detail": {
+      "scrollHeight": 864,
+      "innerHeight": 864,
+      "singleScreen": true,
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:54:25.993Z",
+    "check": "tv completed 1536x864 (1920×1080 at 125% OS scale)",
+    "result": "PASS",
+    "detail": {
+      "scrollHeight": 864,
+      "innerHeight": 864,
+      "singleScreen": true,
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:54:27.823Z",
+    "check": "tv live 1280x1024 (5:4 projector)",
+    "result": "PASS",
+    "detail": {
+      "scrollHeight": 1024,
+      "innerHeight": 1024,
+      "singleScreen": true,
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:54:29.671Z",
+    "check": "tv completed 1280x1024 (5:4 projector)",
+    "result": "PASS",
+    "detail": {
+      "scrollHeight": 1024,
+      "innerHeight": 1024,
+      "singleScreen": true,
+      "statOverlaps": [],
+      "sectionOverlaps": [],
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:54:31.513Z",
+    "check": "public live 768x1024",
+    "result": "PASS",
+    "detail": {
+      "statOverlaps": [],
+      "bad": [],
+      "horizontalOverflow": false
+    }
+  },
+  {
+    "at": "2026-09-15T04:54:31.701Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-live-768x1024.png"
+  },
+  {
+    "at": "2026-09-15T04:54:33.525Z",
+    "check": "public live 1024x768",
+    "result": "PASS",
+    "detail": {
+      "statOverlaps": [],
+      "bad": [],
+      "horizontalOverflow": false
+    }
+  },
+  {
+    "at": "2026-09-15T04:54:33.725Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-live-1024x768.png"
+  },
+  {
+    "at": "2026-09-15T04:54:35.578Z",
+    "check": "public live 1093x614",
+    "result": "PASS",
+    "detail": {
+      "statOverlaps": [],
+      "bad": [],
+      "horizontalOverflow": false
+    }
+  },
+  {
+    "at": "2026-09-15T04:54:35.780Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-live-1093x614.png"
+  },
+  {
+    "at": "2026-09-15T04:54:38.833Z",
+    "check": "contrast specifics",
+    "result": "FAIL",
+    "detail": [
+      {
+        "surface": "tv",
+        "sel": ".queue-row .lot",
+        "color": "rgb(137, 145, 128)",
+        "background": "rgb(255, 255, 255)",
+        "fontSize": "22px",
+        "fontWeight": "400",
+        "text": "08",
+        "ratio": 3.27,
+        "needed": 4.5,
+        "ok": false
+      },
+      {
+        "surface": "tv",
+        "sel": ".sales-strip p",
+        "color": "rgb(109, 119, 102)",
+        "background": "rgb(237, 238, 228)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "text": "Taylor Syndicate",
+        "ratio": 4.01,
+        "needed": 4.5,
+        "ok": false
+      },
+      {
+        "surface": "tv",
+        "sel": ".sales-strip .sold-label",
+        "color": "rgb(65, 97, 71)",
+        "background": "rgb(237, 238, 228)",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "text": "SOLD",
+        "ratio": 5.93,
+        "needed": 4.5,
+        "ok": true
+      },
+      {
+        "surface": "tv",
+        "sel": ".next .fine",
+        "color": "rgb(110, 121, 109)",
+        "background": "rgb(255, 255, 255)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "text": "Auction order may change.",
+        "ratio": 4.55,
+        "needed": 4.5,
+        "ok": true
+      },
+      {
+        "surface": "tv",
+        "sel": ".stats p",
+        "color": "rgb(98, 113, 95)",
+        "background": "rgb(243, 243, 233)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "text": "Gross auction pool",
+        "ratio": 4.65,
+        "needed": 4.5,
+        "ok": true
+      },
+      {
+        "surface": "tv",
+        "sel": ".page-head .eyebrow",
+        "color": "rgb(99, 113, 102)",
+        "background": "rgb(243, 243, 233)",
+        "fontSize": "14px",
+        "fontWeight": "700",
+        "text": "Fictional Audit Course · Sept 19–20, 202",
+        "ratio": 4.6,
+        "needed": 4.5,
+        "ok": true
+      },
+      {
+        "surface": "tv",
+        "sel": ".connection",
+        "color": "rgb(70, 116, 81)",
+        "background": "rgb(243, 243, 233)",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "text": "Live updates",
+        "ratio": 4.85,
+        "needed": 4.5,
+        "ok": true
+      },
+      {
+        "surface": "public",
+        "sel": ".queue-row .lot",
+        "color": "rgb(137, 145, 128)",
+        "background": "rgb(255, 255, 255)",
+        "fontSize": "22px",
+        "fontWeight": "400",
+        "text": "08",
+        "ratio": 3.27,
+        "needed": 4.5,
+        "ok": false
+      },
+      {
+        "surface": "public",
+        "sel": ".sales-strip p",
+        "color": "rgb(109, 119, 102)",
+        "background": "rgb(237, 238, 228)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "text": "Taylor Syndicate",
+        "ratio": 4.01,
+        "needed": 4.5,
+        "ok": false
+      },
+      {
+        "surface": "public",
+        "sel": ".payouts small",
+        "color": "rgb(125, 129, 110)",
+        "background": "rgb(255, 255, 255)",
+        "fontSize": "11.2px",
+        "fontWeight": "400",
+        "text": "50%",
+        "ratio": 4.01,
+        "needed": 4.5,
+        "ok": false
+      },
+      {
+        "surface": "public",
+        "sel": ".team-card>p",
+        "color": "rgb(107, 118, 99)",
+        "background": "rgb(255, 255, 255)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "text": "Alex Archer · Ben Irwin",
+        "ratio": 4.78,
+        "needed": 4.5,
+        "ok": true
+      },
+      {
+        "surface": "public",
+        "sel": ".team-meta span",
+        "color": "rgb(108, 119, 95)",
+        "background": "rgb(255, 255, 255)",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "text": "Championship",
+        "ratio": 4.73,
+        "needed": 4.5,
+        "ok": true
+      },
+      {
+        "surface": "public",
+        "sel": ".queue-row p",
+        "color": "rgb(110, 121, 109)",
+        "background": "rgb(255, 255, 255)",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "text": "Championship",
+        "ratio": 4.55,
+        "needed": 4.5,
+        "ok": true
+      },
+      {
+        "surface": "public",
+        "sel": ".pool-amount>span",
+        "color": "rgb(105, 118, 97)",
+        "background": "rgb(255, 255, 255)",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "text": "NET FLIGHT POOL",
+        "ratio": 4.81,
+        "needed": 4.5,
+        "ok": true
+      },
+      {
+        "surface": "public",
+        "sel": ".projection-label",
+        "color": "rgb(102, 118, 95)",
+        "background": "rgb(255, 255, 255)",
+        "fontSize": "12px",
+        "fontWeight": "700",
+        "text": "PROJECTED PAYOUTS",
+        "ratio": 4.86,
+        "needed": 4.5,
+        "ok": true
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:54:38.835Z",
+    "check": "public flight filter tabs reference existing panels",
+    "result": "FAIL",
+    "detail": [
+      {
+        "name": "All flights",
+        "controls": "radix-_r_0_-content-all",
+        "exists": false
+      },
+      {
+        "name": "Championship",
+        "controls": "radix-_r_0_-content-1a6f8ecd-1a74-48a5-810b-65bbaf664f6f",
+        "exists": false
+      },
+      {
+        "name": "First Flight",
+        "controls": "radix-_r_0_-content-68c4f9e2-2985-49f7-8f3d-50ad34bb7bdd",
+        "exists": false
+      },
+      {
+        "name": "Second Flight",
+        "controls": "radix-_r_0_-content-f249696c-efa8-455b-a068-bfb8394bbf6d",
+        "exists": false
+      },
+      {
+        "name": "Third Flight",
+        "controls": "radix-_r_0_-content-43c272b5-a7d9-45cc-a4e7-fbbcf9f7f1a6",
+        "exists": false
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:54:41.498Z",
+    "check": "settlement receipt/payout tabs reference existing panels",
+    "result": "FAIL",
+    "detail": [
+      {
+        "name": "Auction payments",
+        "controls": "radix-_r_j_-content-receipt",
+        "exists": false
+      },
+      {
+        "name": "Tournament payouts",
+        "controls": "radix-_r_j_-content-payout",
+        "exists": false
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:54:44.238Z",
+    "check": "Operator link → sign-in → returns to admin for same event",
+    "result": "PASS",
+    "detail": "http://localhost:5173/admin?event=bf15b3ff-d6d9-4858-b85e-44f04fc74ae0"
+  }
+]

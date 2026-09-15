@@ -1,0 +1,74 @@
+[
+  {
+    "at": "2026-09-15T05:02:40.189Z",
+    "check": "operator (non-owner) desk without Access tab (390px)",
+    "result": "PASS",
+    "detail": {
+      "tabs": [
+        "Auction console",
+        "Teams",
+        "Buyers",
+        "Sales",
+        "Settlement",
+        "Setup & rules",
+        "Results",
+        "Exports",
+        "Display & sharing",
+        "Help",
+        "Activity"
+      ],
+      "accessScreen": 0
+    }
+  },
+  {
+    "at": "2026-09-15T05:02:42.155Z",
+    "check": "operator (non-owner) desk without Access tab (1280px)",
+    "result": "PASS",
+    "detail": {
+      "tabs": [
+        "Auction console",
+        "Teams",
+        "Buyers",
+        "Sales",
+        "Settlement",
+        "Setup & rules",
+        "Results",
+        "Exports",
+        "Display & sharing",
+        "Help",
+        "Activity"
+      ],
+      "accessScreen": 0
+    }
+  },
+  {
+    "at": "2026-09-15T05:02:42.317Z",
+    "check": "non-owner operator cannot change access; exports allowed",
+    "result": "PASS",
+    "detail": {
+      "operatorAdd": {
+        "status": 400,
+        "body": {
+          "error": "Only the owner can manage operator access."
+        }
+      },
+      "operatorRemove": {
+        "status": 400,
+        "body": {
+          "error": "Only the owner can manage operator access."
+        }
+      },
+      "exportBackup": 200,
+      "exportPayments": 200,
+      "adminMeta": {
+        "owner": false,
+        "operatorsExposed": 0
+      }
+    }
+  },
+  {
+    "at": "2026-09-15T05:02:42.356Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/operator-desk-non-owner.png"
+  }
+]

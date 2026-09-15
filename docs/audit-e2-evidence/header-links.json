@@ -1,0 +1,281 @@
+[
+  {
+    "at": "2026-09-15T04:55:44.479Z",
+    "check": "/admin header at 390px",
+    "result": "FAIL",
+    "detail": [
+      {
+        "tag": "A",
+        "text": "Public board",
+        "hasIcon": true,
+        "w": 22,
+        "h": 22,
+        "fontSize": "0px",
+        "visibleToPointer": true
+      },
+      {
+        "tag": "A",
+        "text": "Launch TV Display",
+        "hasIcon": true,
+        "w": 22,
+        "h": 22,
+        "fontSize": "0px",
+        "visibleToPointer": true
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Help",
+        "hasIcon": false,
+        "w": 29,
+        "h": 22,
+        "fontSize": "14px",
+        "visibleToPointer": true
+      },
+      {
+        "tag": "A",
+        "text": "Sign out",
+        "hasIcon": false,
+        "w": 0,
+        "h": 22,
+        "fontSize": "0px",
+        "visibleToPointer": false
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:55:44.508Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/operator-header-phone390.png"
+  },
+  {
+    "at": "2026-09-15T04:55:45.566Z",
+    "check": "/admin header at 700px",
+    "result": "FAIL",
+    "detail": [
+      {
+        "tag": "A",
+        "text": "Public board",
+        "hasIcon": true,
+        "w": 22,
+        "h": 22,
+        "fontSize": "0px",
+        "visibleToPointer": true
+      },
+      {
+        "tag": "A",
+        "text": "Launch TV Display",
+        "hasIcon": true,
+        "w": 22,
+        "h": 22,
+        "fontSize": "0px",
+        "visibleToPointer": true
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Help",
+        "hasIcon": false,
+        "w": 29,
+        "h": 22,
+        "fontSize": "14px",
+        "visibleToPointer": true
+      },
+      {
+        "tag": "A",
+        "text": "Sign out",
+        "hasIcon": false,
+        "w": 0,
+        "h": 22,
+        "fontSize": "0px",
+        "visibleToPointer": false
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:55:46.618Z",
+    "check": "/admin header at 701px",
+    "result": "PASS",
+    "detail": [
+      {
+        "tag": "A",
+        "text": "Public board",
+        "hasIcon": true,
+        "w": 101,
+        "h": 42,
+        "fontSize": "14px",
+        "visibleToPointer": true
+      },
+      {
+        "tag": "A",
+        "text": "Launch TV Display",
+        "hasIcon": true,
+        "w": 140,
+        "h": 42,
+        "fontSize": "14px",
+        "visibleToPointer": true
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Help",
+        "hasIcon": false,
+        "w": 29,
+        "h": 42,
+        "fontSize": "14px",
+        "visibleToPointer": true
+      },
+      {
+        "tag": "A",
+        "text": "Sign out",
+        "hasIcon": false,
+        "w": 51,
+        "h": 42,
+        "fontSize": "14px",
+        "visibleToPointer": true
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:55:47.660Z",
+    "check": "/admin header at 768px",
+    "result": "PASS",
+    "detail": [
+      {
+        "tag": "A",
+        "text": "Public board",
+        "hasIcon": true,
+        "w": 103,
+        "h": 24,
+        "fontSize": "14px",
+        "visibleToPointer": true
+      },
+      {
+        "tag": "A",
+        "text": "Launch TV Display",
+        "hasIcon": true,
+        "w": 142,
+        "h": 24,
+        "fontSize": "14px",
+        "visibleToPointer": true
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Help",
+        "hasIcon": false,
+        "w": 29,
+        "h": 24,
+        "fontSize": "14px",
+        "visibleToPointer": true
+      },
+      {
+        "tag": "A",
+        "text": "Sign out",
+        "hasIcon": false,
+        "w": 51,
+        "h": 24,
+        "fontSize": "14px",
+        "visibleToPointer": true
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:55:48.602Z",
+    "check": "/ header at 390px",
+    "result": "FAIL",
+    "detail": [
+      {
+        "tag": "A",
+        "text": "Auction board",
+        "hasIcon": false,
+        "w": 0,
+        "h": 22,
+        "fontSize": "0px",
+        "visibleToPointer": false
+      },
+      {
+        "tag": "A",
+        "text": "TV mode",
+        "hasIcon": true,
+        "w": 22,
+        "h": 22,
+        "fontSize": "0px",
+        "visibleToPointer": true
+      },
+      {
+        "tag": "A",
+        "text": "Operator",
+        "hasIcon": true,
+        "w": 22,
+        "h": 22,
+        "fontSize": "0px",
+        "visibleToPointer": true
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:55:49.567Z",
+    "check": "/ header at 700px",
+    "result": "FAIL",
+    "detail": [
+      {
+        "tag": "A",
+        "text": "Auction board",
+        "hasIcon": false,
+        "w": 0,
+        "h": 22,
+        "fontSize": "0px",
+        "visibleToPointer": false
+      },
+      {
+        "tag": "A",
+        "text": "TV mode",
+        "hasIcon": true,
+        "w": 22,
+        "h": 22,
+        "fontSize": "0px",
+        "visibleToPointer": true
+      },
+      {
+        "tag": "A",
+        "text": "Operator",
+        "hasIcon": true,
+        "w": 22,
+        "h": 22,
+        "fontSize": "0px",
+        "visibleToPointer": true
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:55:50.503Z",
+    "check": "/ header at 701px",
+    "result": "PASS",
+    "detail": [
+      {
+        "tag": "A",
+        "text": "Auction board",
+        "hasIcon": false,
+        "w": 86,
+        "h": 24,
+        "fontSize": "14px",
+        "visibleToPointer": true
+      },
+      {
+        "tag": "A",
+        "text": "TV mode",
+        "hasIcon": true,
+        "w": 82,
+        "h": 24,
+        "fontSize": "14px",
+        "visibleToPointer": true
+      },
+      {
+        "tag": "A",
+        "text": "Operator",
+        "hasIcon": true,
+        "w": 80,
+        "h": 24,
+        "fontSize": "14px",
+        "visibleToPointer": true
+      }
+    ]
+  }
+]

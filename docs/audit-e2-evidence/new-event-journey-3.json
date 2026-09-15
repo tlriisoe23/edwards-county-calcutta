@@ -1,0 +1,182 @@
+[
+  {
+    "at": "2026-09-15T05:01:19.381Z",
+    "check": "Escape with suggestion list open closes only the list",
+    "result": "FAIL",
+    "detail": {
+      "beforeEscape": {
+        "dialog": true,
+        "listbox": true,
+        "comboExpanded": "true",
+        "value": "Nob",
+        "focus": "Final purchaser"
+      },
+      "afterEscape": {
+        "dialog": false,
+        "listbox": false,
+        "focus": "BODY"
+      }
+    }
+  },
+  {
+    "at": "2026-09-15T05:01:20.200Z",
+    "note": "Escape with list closed",
+    "detail": {
+      "before": {
+        "dialog": true,
+        "listbox": false,
+        "comboExpanded": "false",
+        "value": "",
+        "focus": "Final purchaser"
+      },
+      "after": {
+        "dialog": false,
+        "listbox": false,
+        "focus": "BODY"
+      }
+    }
+  },
+  {
+    "at": "2026-09-15T05:01:21.522Z",
+    "check": "clicking \"Add buyer here\" while list is open opens the inline form in one click",
+    "result": "PASS",
+    "detail": {
+      "dialog": true,
+      "listbox": false,
+      "comboExpanded": "false",
+      "value": "",
+      "focus": "INPUT",
+      "inlineOpen": 1
+    }
+  },
+  {
+    "at": "2026-09-15T05:01:21.554Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/journey-sold-dialog-add-buyer.png"
+  },
+  {
+    "at": "2026-09-15T05:01:22.860Z",
+    "check": "inline buyer created and selected; confirm enabled",
+    "result": "PASS",
+    "detail": {
+      "dialog": true,
+      "listbox": false,
+      "comboExpanded": "false",
+      "value": "Journey Buyer",
+      "focus": "DIV"
+    }
+  },
+  {
+    "at": "2026-09-15T05:01:24.473Z",
+    "check": "sale confirmed; next team advanced",
+    "result": "PASS",
+    "detail": [
+      "Sold — purchaser recorded",
+      "Saved"
+    ]
+  },
+  {
+    "at": "2026-09-15T05:01:26.209Z",
+    "check": "public board shows the sale",
+    "result": "PASS"
+  },
+  {
+    "at": "2026-09-15T05:01:29.943Z",
+    "check": "complete after clearing block",
+    "result": "PASS",
+    "detail": [
+      "Saved",
+      "Saved"
+    ]
+  },
+  {
+    "at": "2026-09-15T05:01:30.511Z",
+    "note": "results tab rows",
+    "detail": [
+      {
+        "label": "Alpha / BravoSOLD",
+        "disabled": false
+      },
+      {
+        "label": "Charlie / DeltaUNSOLD",
+        "disabled": false
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T05:01:31.794Z",
+    "check": "UNSOLD team given place 1: response",
+    "result": "INFO",
+    "detail": {
+      "toast": [
+        "Saved",
+        "Saved"
+      ],
+      "entitlements": 0,
+      "entitlementText": [
+        "Entitlements appear after final positions are saved."
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T05:01:32.800Z",
+    "note": "payouts view after results",
+    "detail": [
+      "",
+      "Payouts appear after results are entered.Complete the auction, then enter finishing positions in Results."
+    ]
+  },
+  {
+    "at": "2026-09-15T05:01:33.076Z",
+    "check": "axe settlement payouts (journey event)",
+    "result": "FAIL",
+    "detail": [
+      {
+        "id": "aria-valid-attr-value",
+        "impact": "critical",
+        "help": "ARIA attributes must conform to valid values",
+        "nodes": [
+          {
+            "target": "#radix-_r_1b_-trigger-payout",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"true\" aria-controls=\"radix-_r_1b_-content...\" data-state=\"active\" id=\"radix-_r_1b_-trigger...\" data-slot=\"tabs-t",
+            "summary": "Fix all of the following:\n  Invalid ARIA attribute value: aria-controls=\"radix-_r_1b_-content-payout\""
+          }
+        ],
+        "count": 1
+      },
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "nodes": [
+          {
+            "target": ".admin-heading > div:nth-child(1) > .eyebrow",
+            "html": "<p class=\"eyebrow\">AUCTION OPERATIONS</p>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.27 (foreground color: #6c795f, background color: #f7f6f0, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio "
+          },
+          {
+            "target": "#radix-_r_1_-trigger-console",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger-...\" data-slot=\"tab",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #71837a, background color: #f7f6f0, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio"
+          },
+          {
+            "target": "#radix-_r_1_-trigger-teams",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger-...\" data-slot=\"tab",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #71837a, background color: #f7f6f0, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio"
+          },
+          {
+            "target": "#radix-_r_1_-trigger-buyers",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger-...\" data-slot=\"tab",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #71837a, background color: #f7f6f0, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio"
+          },
+          {
+            "target": "#radix-_r_1_-trigger-sales",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"radix-_r_1_-content-...\" data-state=\"inactive\" id=\"radix-_r_1_-trigger-...\" data-slot=\"tab",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #71837a, background color: #f7f6f0, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio"
+          }
+        ],
+        "count": 19
+      }
+    ]
+  }
+]

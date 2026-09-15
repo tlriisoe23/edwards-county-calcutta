@@ -1,0 +1,1675 @@
+[
+  {
+    "at": "2026-09-15T04:48:41.403Z",
+    "check": "public live phone320 containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 320,
+      "innerWidth": 320,
+      "scrollHeight": 850,
+      "innerHeight": 850,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:48:41.438Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-live-phone320.png"
+  },
+  {
+    "at": "2026-09-15T04:48:41.441Z",
+    "check": "public phone320 focusable-but-invisible controls",
+    "result": "PASS",
+    "detail": []
+  },
+  {
+    "at": "2026-09-15T04:48:41.493Z",
+    "note": "public phone320 tab order (first 6)",
+    "detail": [
+      {
+        "tag": "A",
+        "role": null,
+        "name": "THE CALCUTTAEDWARDS COUNTY",
+        "rect": [
+          16,
+          -2,
+          164,
+          86
+        ],
+        "fontSize": "16px",
+        "outline": "auto 1px",
+        "boxShadow": false
+      },
+      {
+        "tag": "A",
+        "role": null,
+        "name": "Operator sign in",
+        "rect": [
+          204,
+          17,
+          100,
+          48
+        ],
+        "fontSize": "16px",
+        "outline": "auto 1px",
+        "boxShadow": false
+      },
+      {
+        "body": true
+      },
+      {
+        "tag": "A",
+        "role": null,
+        "name": "THE CALCUTTAEDWARDS COUNTY",
+        "rect": [
+          16,
+          -2,
+          164,
+          86
+        ],
+        "fontSize": "16px",
+        "outline": "auto 1px",
+        "boxShadow": false
+      },
+      {
+        "tag": "A",
+        "role": null,
+        "name": "Operator sign in",
+        "rect": [
+          204,
+          17,
+          100,
+          48
+        ],
+        "fontSize": "16px",
+        "outline": "auto 1px",
+        "boxShadow": false
+      },
+      {
+        "body": true
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:48:41.497Z",
+    "note": "public phone320 header nav links",
+    "detail": []
+  },
+  {
+    "at": "2026-09-15T04:48:41.500Z",
+    "check": "public phone320 targets >= 24px",
+    "result": "PASS",
+    "detail": []
+  },
+  {
+    "at": "2026-09-15T04:48:43.228Z",
+    "check": "public live phone390 containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "scrollHeight": 7078,
+      "innerHeight": 844,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:48:43.390Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-live-phone390.png"
+  },
+  {
+    "at": "2026-09-15T04:48:43.394Z",
+    "check": "public phone390 focusable-but-invisible controls",
+    "result": "FAIL",
+    "detail": [
+      {
+        "tag": "A",
+        "text": "Auction board",
+        "href": "#board",
+        "rect": [
+          299,
+          30,
+          0,
+          22
+        ],
+        "fontSize": "0px"
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:48:43.424Z",
+    "note": "public phone390 tab order (first 6)",
+    "detail": [
+      {
+        "tag": "A",
+        "role": null,
+        "name": "THE CALCUTTAEDWARDS COUNTY",
+        "rect": [
+          20,
+          19,
+          188,
+          44
+        ],
+        "fontSize": "16px",
+        "outline": "auto 1px",
+        "boxShadow": false
+      },
+      {
+        "tag": "A",
+        "role": null,
+        "name": "Auction board",
+        "rect": [
+          299,
+          30,
+          0,
+          22
+        ],
+        "fontSize": "0px",
+        "outline": "auto 1px",
+        "boxShadow": false
+      },
+      {
+        "tag": "A",
+        "role": null,
+        "name": "TV mode",
+        "rect": [
+          313,
+          30,
+          22,
+          22
+        ],
+        "fontSize": "0px",
+        "outline": "auto 1px",
+        "boxShadow": false
+      },
+      {
+        "tag": "A",
+        "role": null,
+        "name": "Operator",
+        "rect": [
+          349,
+          30,
+          22,
+          22
+        ],
+        "fontSize": "0px",
+        "outline": "auto 1px",
+        "boxShadow": false
+      },
+      {
+        "tag": "BUTTON",
+        "role": "tab",
+        "name": "All flights",
+        "rect": [
+          23,
+          2981,
+          82,
+          42
+        ],
+        "fontSize": "16px",
+        "outline": "solid 3px",
+        "boxShadow": true
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "name": "Search teams",
+        "rect": [
+          20,
+          3038,
+          189,
+          42
+        ],
+        "fontSize": "14px",
+        "outline": "none 1px",
+        "boxShadow": true
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:48:43.427Z",
+    "note": "public phone390 header nav links",
+    "detail": [
+      {
+        "text": "Auction board",
+        "title": "",
+        "ariaLabel": null,
+        "w": 0,
+        "h": 22
+      },
+      {
+        "text": "TV mode",
+        "title": "TV mode",
+        "ariaLabel": null,
+        "w": 22,
+        "h": 22
+      },
+      {
+        "text": "Operator",
+        "title": "Operator area",
+        "ariaLabel": null,
+        "w": 22,
+        "h": 22
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:48:43.429Z",
+    "check": "public phone390 targets >= 24px",
+    "result": "WARN",
+    "detail": [
+      {
+        "text": "TV mode",
+        "w": 22,
+        "h": 22
+      },
+      {
+        "text": "Operator",
+        "w": 22,
+        "h": 22
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:48:44.512Z",
+    "check": "public live phone430 containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 430,
+      "innerWidth": 430,
+      "scrollHeight": 7031,
+      "innerHeight": 932,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:48:44.671Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-live-phone430.png"
+  },
+  {
+    "at": "2026-09-15T04:48:44.674Z",
+    "check": "public phone430 focusable-but-invisible controls",
+    "result": "FAIL",
+    "detail": [
+      {
+        "tag": "A",
+        "text": "Auction board",
+        "href": "#board",
+        "rect": [
+          337,
+          30,
+          0,
+          22
+        ],
+        "fontSize": "0px"
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:48:44.701Z",
+    "note": "public phone430 tab order (first 6)",
+    "detail": [
+      {
+        "tag": "A",
+        "role": null,
+        "name": "THE CALCUTTAEDWARDS COUNTY",
+        "rect": [
+          22,
+          19,
+          188,
+          44
+        ],
+        "fontSize": "16px",
+        "outline": "auto 1px",
+        "boxShadow": false
+      },
+      {
+        "tag": "A",
+        "role": null,
+        "name": "Auction board",
+        "rect": [
+          337,
+          30,
+          0,
+          22
+        ],
+        "fontSize": "0px",
+        "outline": "auto 1px",
+        "boxShadow": false
+      },
+      {
+        "tag": "A",
+        "role": null,
+        "name": "TV mode",
+        "rect": [
+          351,
+          30,
+          22,
+          22
+        ],
+        "fontSize": "0px",
+        "outline": "auto 1px",
+        "boxShadow": false
+      },
+      {
+        "tag": "A",
+        "role": null,
+        "name": "Operator",
+        "rect": [
+          387,
+          30,
+          22,
+          22
+        ],
+        "fontSize": "0px",
+        "outline": "auto 1px",
+        "boxShadow": false
+      },
+      {
+        "tag": "BUTTON",
+        "role": "tab",
+        "name": "All flights",
+        "rect": [
+          25,
+          2954,
+          82,
+          42
+        ],
+        "fontSize": "16px",
+        "outline": "solid 3px",
+        "boxShadow": true
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "name": "Search teams",
+        "rect": [
+          22,
+          3011,
+          225,
+          42
+        ],
+        "fontSize": "14px",
+        "outline": "none 1px",
+        "boxShadow": true
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:48:44.703Z",
+    "note": "public phone430 header nav links",
+    "detail": [
+      {
+        "text": "Auction board",
+        "title": "",
+        "ariaLabel": null,
+        "w": 0,
+        "h": 22
+      },
+      {
+        "text": "TV mode",
+        "title": "TV mode",
+        "ariaLabel": null,
+        "w": 22,
+        "h": 22
+      },
+      {
+        "text": "Operator",
+        "title": "Operator area",
+        "ariaLabel": null,
+        "w": 22,
+        "h": 22
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:48:44.704Z",
+    "check": "public phone430 targets >= 24px",
+    "result": "WARN",
+    "detail": [
+      {
+        "text": "TV mode",
+        "w": 22,
+        "h": 22
+      },
+      {
+        "text": "Operator",
+        "w": 22,
+        "h": 22
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:48:45.753Z",
+    "check": "public live tabletPortrait containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 768,
+      "innerWidth": 768,
+      "scrollHeight": 4731,
+      "innerHeight": 1024,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:48:45.931Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-live-tabletPortrait.png"
+  },
+  {
+    "at": "2026-09-15T04:48:46.984Z",
+    "check": "public live tabletLandscape containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 1024,
+      "innerWidth": 1024,
+      "scrollHeight": 4328,
+      "innerHeight": 768,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:48:47.166Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-live-tabletLandscape.png"
+  },
+  {
+    "at": "2026-09-15T04:48:48.240Z",
+    "check": "public live laptop containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "innerWidth": 1280,
+      "scrollHeight": 3911,
+      "innerHeight": 720,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:48:48.455Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-live-laptop.png"
+  },
+  {
+    "at": "2026-09-15T04:48:49.509Z",
+    "check": "public live zoom200laptop containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 640,
+      "innerWidth": 640,
+      "scrollHeight": 6809,
+      "innerHeight": 360,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:48:49.726Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-live-zoom200laptop.png"
+  },
+  {
+    "at": "2026-09-15T04:48:49.728Z",
+    "check": "public zoom200laptop focusable-but-invisible controls",
+    "result": "FAIL",
+    "detail": [
+      {
+        "tag": "A",
+        "text": "Auction board",
+        "href": "#board",
+        "rect": [
+          536,
+          30,
+          0,
+          22
+        ],
+        "fontSize": "0px"
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:48:49.756Z",
+    "note": "public zoom200laptop tab order (first 6)",
+    "detail": [
+      {
+        "tag": "A",
+        "role": null,
+        "name": "THE CALCUTTAEDWARDS COUNTY",
+        "rect": [
+          32,
+          19,
+          188,
+          44
+        ],
+        "fontSize": "16px",
+        "outline": "auto 1px",
+        "boxShadow": false
+      },
+      {
+        "tag": "A",
+        "role": null,
+        "name": "Auction board",
+        "rect": [
+          536,
+          30,
+          0,
+          22
+        ],
+        "fontSize": "0px",
+        "outline": "auto 1px",
+        "boxShadow": false
+      },
+      {
+        "tag": "A",
+        "role": null,
+        "name": "TV mode",
+        "rect": [
+          550,
+          30,
+          22,
+          22
+        ],
+        "fontSize": "0px",
+        "outline": "auto 1px",
+        "boxShadow": false
+      },
+      {
+        "tag": "A",
+        "role": null,
+        "name": "Operator",
+        "rect": [
+          586,
+          30,
+          22,
+          22
+        ],
+        "fontSize": "0px",
+        "outline": "auto 1px",
+        "boxShadow": false
+      },
+      {
+        "tag": "BUTTON",
+        "role": "tab",
+        "name": "All flights",
+        "rect": [
+          35,
+          2921,
+          82,
+          42
+        ],
+        "fontSize": "16px",
+        "outline": "solid 3px",
+        "boxShadow": true
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "name": "Search teams",
+        "rect": [
+          32,
+          2978,
+          414,
+          42
+        ],
+        "fontSize": "14px",
+        "outline": "none 1px",
+        "boxShadow": true
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:48:49.758Z",
+    "note": "public zoom200laptop header nav links",
+    "detail": [
+      {
+        "text": "Auction board",
+        "title": "",
+        "ariaLabel": null,
+        "w": 0,
+        "h": 22
+      },
+      {
+        "text": "TV mode",
+        "title": "TV mode",
+        "ariaLabel": null,
+        "w": 22,
+        "h": 22
+      },
+      {
+        "text": "Operator",
+        "title": "Operator area",
+        "ariaLabel": null,
+        "w": 22,
+        "h": 22
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:48:49.760Z",
+    "check": "public zoom200laptop targets >= 24px",
+    "result": "WARN",
+    "detail": [
+      {
+        "text": "TV mode",
+        "w": 22,
+        "h": 22
+      },
+      {
+        "text": "Operator",
+        "w": 22,
+        "h": 22
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:48:50.806Z",
+    "check": "public live zoom200desktop containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 960,
+      "innerWidth": 960,
+      "scrollHeight": 4435,
+      "innerHeight": 540,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:48:51.000Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-live-zoom200desktop.png"
+  },
+  {
+    "at": "2026-09-15T04:48:52.065Z",
+    "check": "public text contrast samples",
+    "result": "FAIL",
+    "detail": [
+      {
+        "sel": ".recent .eyebrow",
+        "color": "rgb(82, 96, 71)",
+        "background": "rgb(247, 246, 240)",
+        "fontSize": "14px",
+        "fontWeight": "700",
+        "text": "RECENT SALES",
+        "ratio": 6.21,
+        "needed": 4.5,
+        "ok": true
+      },
+      {
+        "sel": ".stats p",
+        "color": "rgb(98, 113, 95)",
+        "background": "rgb(247, 246, 240)",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "text": "Gross auction pool",
+        "ratio": 4.79,
+        "needed": 4.5,
+        "ok": true
+      },
+      {
+        "sel": ".fine",
+        "color": "rgb(110, 121, 109)",
+        "background": "rgb(255, 255, 255)",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "text": "Auction order may change.",
+        "ratio": 4.55,
+        "needed": 4.5,
+        "ok": true
+      },
+      {
+        "sel": ".muted",
+        "color": "rgb(101, 113, 95)",
+        "background": "rgb(247, 246, 240)",
+        "fontSize": "14px",
+        "fontWeight": "700",
+        "text": "THE COMPLETE FIELD",
+        "ratio": 4.75,
+        "needed": 4.5,
+        "ok": true
+      },
+      {
+        "sel": ".team-meta span",
+        "color": "rgb(108, 119, 95)",
+        "background": "rgb(255, 255, 255)",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "text": "Championship",
+        "ratio": 4.73,
+        "needed": 4.5,
+        "ok": true
+      },
+      {
+        "sel": ".badge.sold",
+        "color": "rgb(72, 98, 58)",
+        "background": "rgb(237, 242, 227)",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "text": "SOLD",
+        "ratio": 5.97,
+        "needed": 4.5,
+        "ok": true
+      },
+      {
+        "sel": ".pool-deduction span",
+        "color": "rgb(104, 118, 94)",
+        "background": "rgb(255, 255, 255)",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "text": "Gross $2,050",
+        "ratio": 4.84,
+        "needed": 4.5,
+        "ok": true
+      },
+      {
+        "sel": ".block-top span",
+        "color": "rgb(203, 214, 202)",
+        "background": "rgb(14, 52, 39)",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "text": "LIVE · ON THE BLOCK",
+        "ratio": 9.1,
+        "needed": 4.5,
+        "ok": true
+      },
+      {
+        "sel": ".block-foot span",
+        "color": "rgb(199, 212, 196)",
+        "background": "rgb(18, 63, 47)",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "text": "",
+        "ratio": 7.67,
+        "needed": 4.5,
+        "ok": true
+      },
+      {
+        "sel": ".players",
+        "color": "rgb(210, 221, 206)",
+        "background": "rgb(18, 63, 47)",
+        "fontSize": "18px",
+        "fontWeight": "400",
+        "text": "Gus Carver & Hal Keller",
+        "ratio": 8.42,
+        "needed": 4.5,
+        "ok": true
+      },
+      {
+        "sel": ".page-footer>span",
+        "color": "rgb(116, 128, 105)",
+        "background": "rgb(247, 246, 240)",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "text": "Recordkeeping & calculations only. Settl",
+        "ratio": 3.85,
+        "needed": 4.5,
+        "ok": false
+      },
+      {
+        "sel": ".connection",
+        "color": "rgb(70, 116, 81)",
+        "background": "rgb(247, 246, 240)",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "text": "Live updates",
+        "ratio": 5,
+        "needed": 4.5,
+        "ok": true
+      },
+      {
+        "sel": ".sold-label",
+        "color": "rgb(65, 97, 71)",
+        "background": "rgb(237, 238, 228)",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "text": "SOLD",
+        "ratio": 5.93,
+        "needed": 4.5,
+        "ok": true
+      },
+      {
+        "sel": ".payouts small",
+        "color": "rgb(125, 129, 110)",
+        "background": "rgb(255, 255, 255)",
+        "fontSize": "11.2px",
+        "fontWeight": "400",
+        "text": "50%",
+        "ratio": 4.01,
+        "needed": 4.5,
+        "ok": false
+      },
+      {
+        "sel": ".team-card>p",
+        "color": "rgb(107, 118, 99)",
+        "background": "rgb(255, 255, 255)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "text": "Alex Archer · Ben Irwin",
+        "ratio": 4.78,
+        "needed": 4.5,
+        "ok": true
+      },
+      {
+        "sel": ".queue-row p",
+        "color": "rgb(110, 121, 109)",
+        "background": "rgb(255, 255, 255)",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "text": "Third Flight",
+        "ratio": 4.55,
+        "needed": 4.5,
+        "ok": true
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:48:52.507Z",
+    "check": "axe public board laptop",
+    "result": "FAIL",
+    "detail": [
+      {
+        "id": "aria-valid-attr-value",
+        "impact": "critical",
+        "help": "ARIA attributes must conform to valid values",
+        "nodes": [
+          {
+            "target": "#radix-_r_0_-trigger-all",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"true\" aria-controls=\"radix-_r_0_-content-...\" data-state=\"active\" id=\"radix-_r_0_-trigger-...\" data-slot=\"tabs-t",
+            "summary": "Fix all of the following:\n  Invalid ARIA attribute value: aria-controls=\"radix-_r_0_-content-all\""
+          }
+        ],
+        "count": 1
+      },
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "nodes": [
+          {
+            "target": ".queue-row:nth-child(2) > .lot",
+            "html": "<span class=\"lot\">08</span>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.26 (foreground color: #899180, background color: #ffffff, font size: 16.5pt (22px), font weight: normal). Expected contrast rat"
+          },
+          {
+            "target": ".queue-row:nth-child(3) > .lot",
+            "html": "<span class=\"lot\">09</span>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.26 (foreground color: #899180, background color: #ffffff, font size: 16.5pt (22px), font weight: normal). Expected contrast rat"
+          },
+          {
+            "target": ".queue-row:nth-child(4) > .lot",
+            "html": "<span class=\"lot\">10</span>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.26 (foreground color: #899180, background color: #ffffff, font size: 16.5pt (22px), font weight: normal). Expected contrast rat"
+          },
+          {
+            "target": ".queue-row:nth-child(5) > .lot",
+            "html": "<span class=\"lot\">11</span>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.26 (foreground color: #899180, background color: #ffffff, font size: 16.5pt (22px), font weight: normal). Expected contrast rat"
+          },
+          {
+            "target": ".pool.panel:nth-child(1) > .payouts > div:nth-child(1) > span > small",
+            "html": "<small>50%</small>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #7d816e, background color: #ffffff, font size: 8.4pt (11.2px), font weight: normal). Expected contrast ratio"
+          }
+        ],
+        "count": 34
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:48:53.956Z",
+    "check": "axe public board phone390",
+    "result": "FAIL",
+    "detail": [
+      {
+        "id": "aria-valid-attr-value",
+        "impact": "critical",
+        "help": "ARIA attributes must conform to valid values",
+        "nodes": [
+          {
+            "target": "#radix-_r_0_-trigger-all",
+            "html": "<button type=\"button\" role=\"tab\" aria-selected=\"true\" aria-controls=\"radix-_r_0_-content-...\" data-state=\"active\" id=\"radix-_r_0_-trigger-...\" data-slot=\"tabs-t",
+            "summary": "Fix all of the following:\n  Invalid ARIA attribute value: aria-controls=\"radix-_r_0_-content-all\""
+          }
+        ],
+        "count": 1
+      },
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "nodes": [
+          {
+            "target": ".pool.panel:nth-child(1) > .payouts > div:nth-child(1) > span > small",
+            "html": "<small>50%</small>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #7d816e, background color: #ffffff, font size: 8.4pt (11.2px), font weight: normal). Expected contrast ratio"
+          },
+          {
+            "target": ".pool.panel:nth-child(1) > .payouts > div:nth-child(2) > span > small",
+            "html": "<small>30%</small>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #7d816e, background color: #ffffff, font size: 8.4pt (11.2px), font weight: normal). Expected contrast ratio"
+          },
+          {
+            "target": ".pool.panel:nth-child(1) > .payouts > div:nth-child(3) > span > small",
+            "html": "<small>20%</small>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #7d816e, background color: #ffffff, font size: 8.4pt (11.2px), font weight: normal). Expected contrast ratio"
+          },
+          {
+            "target": ".pool.panel:nth-child(2) > .payouts > div:nth-child(1) > span > small",
+            "html": "<small>50%</small>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #7d816e, background color: #ffffff, font size: 8.4pt (11.2px), font weight: normal). Expected contrast ratio"
+          },
+          {
+            "target": ".pool.panel:nth-child(2) > .payouts > div:nth-child(2) > span > small",
+            "html": "<small>30%</small>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #7d816e, background color: #ffffff, font size: 8.4pt (11.2px), font weight: normal). Expected contrast ratio"
+          }
+        ],
+        "count": 28
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:48:55.019Z",
+    "check": "public completed phone320 containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 320,
+      "innerWidth": 320,
+      "scrollHeight": 5063,
+      "innerHeight": 850,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:48:55.122Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-completed-phone320.png"
+  },
+  {
+    "at": "2026-09-15T04:48:56.182Z",
+    "check": "public completed phone390 containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "scrollHeight": 4840,
+      "innerHeight": 844,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:48:56.295Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-completed-phone390.png"
+  },
+  {
+    "at": "2026-09-15T04:48:57.340Z",
+    "check": "public completed laptop containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "innerWidth": 1280,
+      "scrollHeight": 2703,
+      "innerHeight": 720,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:48:57.385Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-completed-laptop.png"
+  },
+  {
+    "at": "2026-09-15T04:48:58.447Z",
+    "check": "public empty phone320 containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 320,
+      "innerWidth": 320,
+      "scrollHeight": 2218,
+      "innerHeight": 850,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:48:58.503Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-empty-phone320.png"
+  },
+  {
+    "at": "2026-09-15T04:48:59.557Z",
+    "check": "public empty phone390 containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "scrollHeight": 2002,
+      "innerHeight": 844,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:48:59.620Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-empty-phone390.png"
+  },
+  {
+    "at": "2026-09-15T04:49:00.687Z",
+    "check": "public empty laptop containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "innerWidth": 1280,
+      "scrollHeight": 1685,
+      "innerHeight": 720,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:00.718Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-empty-laptop.png"
+  },
+  {
+    "at": "2026-09-15T04:49:01.763Z",
+    "check": "public large phone320 containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 320,
+      "innerWidth": 320,
+      "scrollHeight": 26954,
+      "innerHeight": 850,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:02.233Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-large-phone320.png"
+  },
+  {
+    "at": "2026-09-15T04:49:02.235Z",
+    "note": "public large phone320 flight tab strip",
+    "detail": {
+      "tabs": 7,
+      "scrollWidth": 755,
+      "clientWidth": 288,
+      "overflowX": "auto"
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:02.610Z",
+    "check": "public large phone320 sixth flight filter",
+    "result": "PASS",
+    "detail": {
+      "cards": 16
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:02.952Z",
+    "check": "public large phone320 search + flight",
+    "result": "PASS",
+    "detail": {
+      "cards": 0,
+      "emptyText": "No teams match these filters."
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:02.972Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-large-filtered-phone320.png"
+  },
+  {
+    "at": "2026-09-15T04:49:04.214Z",
+    "check": "public large phone390 containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "scrollHeight": 26308,
+      "innerHeight": 844,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:04.634Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-large-phone390.png"
+  },
+  {
+    "at": "2026-09-15T04:49:04.636Z",
+    "note": "public large phone390 flight tab strip",
+    "detail": {
+      "tabs": 7,
+      "scrollWidth": 755,
+      "clientWidth": 351,
+      "overflowX": "auto"
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:05.003Z",
+    "check": "public large phone390 sixth flight filter",
+    "result": "PASS",
+    "detail": {
+      "cards": 16
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:05.341Z",
+    "check": "public large phone390 search + flight",
+    "result": "PASS",
+    "detail": {
+      "cards": 0,
+      "emptyText": "No teams match these filters."
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:05.372Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-large-filtered-phone390.png"
+  },
+  {
+    "at": "2026-09-15T04:49:06.439Z",
+    "check": "public large laptop containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "innerWidth": 1280,
+      "scrollHeight": 10195,
+      "innerHeight": 720,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:06.484Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-large-laptop.png"
+  },
+  {
+    "at": "2026-09-15T04:49:06.486Z",
+    "note": "public large laptop flight tab strip",
+    "detail": {
+      "tabs": 7,
+      "scrollWidth": 755,
+      "clientWidth": 755,
+      "overflowX": "auto"
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:06.872Z",
+    "check": "public large laptop sixth flight filter",
+    "result": "PASS",
+    "detail": {
+      "cards": 16
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:07.208Z",
+    "check": "public large laptop search + flight",
+    "result": "PASS",
+    "detail": {
+      "cards": 0,
+      "emptyText": "No teams match these filters."
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:07.248Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-large-filtered-laptop.png"
+  },
+  {
+    "at": "2026-09-15T04:49:08.322Z",
+    "check": "tv live tv1366 containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 1366,
+      "innerWidth": 1366,
+      "scrollHeight": 768,
+      "innerHeight": 768,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:08.324Z",
+    "check": "tv live tv1366 single screen / no section overlap",
+    "result": "PASS",
+    "detail": {
+      "scrollHeight": 768,
+      "innerHeight": 768,
+      "overlaps": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:08.362Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/tv-live-tv1366.png"
+  },
+  {
+    "at": "2026-09-15T04:49:09.444Z",
+    "check": "tv live tv1080 containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 1920,
+      "innerWidth": 1920,
+      "scrollHeight": 1080,
+      "innerHeight": 1080,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:09.447Z",
+    "check": "tv live tv1080 single screen / no section overlap",
+    "result": "PASS",
+    "detail": {
+      "scrollHeight": 1080,
+      "innerHeight": 1080,
+      "overlaps": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:09.508Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/tv-live-tv1080.png"
+  },
+  {
+    "at": "2026-09-15T04:49:09.776Z",
+    "check": "axe tv live 1080",
+    "result": "FAIL",
+    "detail": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "nodes": [
+          {
+            "target": ".queue-row:nth-child(2) > .lot",
+            "html": "<span class=\"lot\">08</span>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.26 (foreground color: #899180, background color: #ffffff, font size: 16.5pt (22px), font weight: normal). Expected contrast rat"
+          },
+          {
+            "target": ".queue-row:nth-child(3) > .lot",
+            "html": "<span class=\"lot\">09</span>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.26 (foreground color: #899180, background color: #ffffff, font size: 16.5pt (22px), font weight: normal). Expected contrast rat"
+          },
+          {
+            "target": ".queue-row:nth-child(4) > .lot",
+            "html": "<span class=\"lot\">10</span>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.26 (foreground color: #899180, background color: #ffffff, font size: 16.5pt (22px), font weight: normal). Expected contrast rat"
+          },
+          {
+            "target": "article:nth-child(1) > p",
+            "html": "<p>Taylor Syndicate</p>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #6d7766, background color: #edeee4, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio "
+          },
+          {
+            "target": "article:nth-child(2) > p",
+            "html": "<p>The Johnson Group</p>",
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #6d7766, background color: #edeee4, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio "
+          }
+        ],
+        "count": 6
+      }
+    ]
+  },
+  {
+    "at": "2026-09-15T04:49:09.780Z",
+    "check": "tv focusable-but-invisible",
+    "result": "PASS",
+    "detail": []
+  },
+  {
+    "at": "2026-09-15T04:49:10.818Z",
+    "check": "tv completed tv1366 containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 1366,
+      "innerWidth": 1366,
+      "scrollHeight": 768,
+      "innerHeight": 768,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:10.821Z",
+    "check": "tv completed tv1366 single screen / no section overlap",
+    "result": "PASS",
+    "detail": {
+      "scrollHeight": 768,
+      "innerHeight": 768,
+      "overlaps": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:10.854Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/tv-completed-tv1366.png"
+  },
+  {
+    "at": "2026-09-15T04:49:11.967Z",
+    "check": "tv completed tv1080 containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 1920,
+      "innerWidth": 1920,
+      "scrollHeight": 1080,
+      "innerHeight": 1080,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:11.969Z",
+    "check": "tv completed tv1080 single screen / no section overlap",
+    "result": "PASS",
+    "detail": {
+      "scrollHeight": 1080,
+      "innerHeight": 1080,
+      "overlaps": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:12.021Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/tv-completed-tv1080.png"
+  },
+  {
+    "at": "2026-09-15T04:49:13.095Z",
+    "check": "tv large tv1366 containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 1366,
+      "innerWidth": 1366,
+      "scrollHeight": 768,
+      "innerHeight": 768,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:13.097Z",
+    "check": "tv large tv1366 single screen / no section overlap",
+    "result": "PASS",
+    "detail": {
+      "scrollHeight": 768,
+      "innerHeight": 768,
+      "overlaps": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:13.132Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/tv-large-tv1366.png"
+  },
+  {
+    "at": "2026-09-15T04:49:14.240Z",
+    "check": "tv large tv1080 containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 1920,
+      "innerWidth": 1920,
+      "scrollHeight": 1080,
+      "innerHeight": 1080,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:14.242Z",
+    "check": "tv large tv1080 single screen / no section overlap",
+    "result": "PASS",
+    "detail": {
+      "scrollHeight": 1080,
+      "innerHeight": 1080,
+      "overlaps": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:14.297Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/tv-large-tv1080.png"
+  },
+  {
+    "at": "2026-09-15T04:49:15.352Z",
+    "check": "tv empty tv1366 containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 1366,
+      "innerWidth": 1366,
+      "scrollHeight": 768,
+      "innerHeight": 768,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:15.385Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/tv-empty-tv1366.png"
+  },
+  {
+    "at": "2026-09-15T04:49:16.441Z",
+    "check": "tv empty tv1080 containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 1920,
+      "innerWidth": 1920,
+      "scrollHeight": 1080,
+      "innerHeight": 1080,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:16.488Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/tv-empty-tv1080.png"
+  },
+  {
+    "at": "2026-09-15T04:49:17.545Z",
+    "check": "tv demo tv1366 containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 1366,
+      "innerWidth": 1366,
+      "scrollHeight": 768,
+      "innerHeight": 768,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:17.547Z",
+    "check": "tv demo tv1366 single screen / no section overlap",
+    "result": "PASS",
+    "detail": {
+      "scrollHeight": 768,
+      "innerHeight": 768,
+      "overlaps": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:17.583Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/tv-demo-tv1366.png"
+  },
+  {
+    "at": "2026-09-15T04:49:18.635Z",
+    "check": "tv demo tv1080 containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 1920,
+      "innerWidth": 1920,
+      "scrollHeight": 1080,
+      "innerHeight": 1080,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:18.637Z",
+    "check": "tv demo tv1080 single screen / no section overlap",
+    "result": "PASS",
+    "detail": {
+      "scrollHeight": 1080,
+      "innerHeight": 1080,
+      "overlaps": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:18.711Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/tv-demo-tv1080.png"
+  },
+  {
+    "at": "2026-09-15T04:49:19.779Z",
+    "check": "/ zoom200laptop (200% zoom emulation) containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 640,
+      "innerWidth": 640,
+      "scrollHeight": 6809,
+      "innerHeight": 360,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:19.974Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-zoom200laptop.png"
+  },
+  {
+    "at": "2026-09-15T04:49:21.089Z",
+    "check": "/tv zoom200laptop (200% zoom emulation) containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 640,
+      "innerWidth": 640,
+      "scrollHeight": 1392,
+      "innerHeight": 360,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:21.152Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/tv-zoom200laptop.png"
+  },
+  {
+    "at": "2026-09-15T04:49:22.223Z",
+    "check": "/ zoom200desktop (200% zoom emulation) containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 960,
+      "innerWidth": 960,
+      "scrollHeight": 4435,
+      "innerHeight": 540,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:22.413Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-zoom200desktop.png"
+  },
+  {
+    "at": "2026-09-15T04:49:23.462Z",
+    "check": "/tv zoom200desktop (200% zoom emulation) containment",
+    "result": "FAIL",
+    "detail": {
+      "horizontalOverflow": false,
+      "scrollWidth": 960,
+      "innerWidth": 960,
+      "scrollHeight": 1199,
+      "innerHeight": 540,
+      "bad": [
+        {
+          "sel": ".stats strong",
+          "text": "$4,927.50",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": false,
+          "rect": [
+            212,
+            861,
+            155,
+            42
+          ]
+        },
+        {
+          "sel": ".stats strong",
+          "text": "$912.50",
+          "clipped": false,
+          "outsideParent": true,
+          "outsideViewport": false,
+          "rect": [
+            652,
+            837,
+            127,
+            42
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:23.545Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/tv-zoom200desktop.png"
+  },
+  {
+    "at": "2026-09-15T04:49:25.188Z",
+    "check": "reduced motion runtime disables sold-toast animation",
+    "result": "PASS",
+    "detail": {
+      "soldToastAnimation": "none",
+      "scrollBehavior": "auto",
+      "matches": true
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:26.035Z",
+    "note": "unqualified / resolves to newest event",
+    "detail": {
+      "url": "http://localhost:5173/?event=f3694f59-2266-493e-bb7e-b5f80318ae87",
+      "h1": "Edwards County Calcutta Invitational"
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:27.619Z",
+    "check": "unknown event ID shows an explained state",
+    "result": "INFO",
+    "detail": {
+      "url": "http://localhost:5173/?event=does-not-exist",
+      "heading": "The auction is being prepared.",
+      "body": "The live board will appear here when the operator creates an event."
+    }
+  },
+  {
+    "at": "2026-09-15T04:49:27.644Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/public-unknown-event.png"
+  }
+]

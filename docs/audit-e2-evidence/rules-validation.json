@@ -1,0 +1,74 @@
+[
+  {
+    "at": "2026-09-15T04:57:03.868Z",
+    "check": "operator queue lot number contrast",
+    "result": "FAIL",
+    "detail": {
+      "color": "rgb(137, 145, 128)",
+      "background": "rgb(255, 255, 255)",
+      "fontSize": "22px",
+      "fontWeight": "400",
+      "text": "08",
+      "ratio": 3.27
+    }
+  },
+  {
+    "at": "2026-09-15T04:57:03.870Z",
+    "check": "operator inactive tab label contrast",
+    "result": "INFO",
+    "detail": {
+      "color": "oklab(0.308777 -0.0420588 0.010327 / 0.6)",
+      "background": "rgb(247, 246, 240)",
+      "fontSize": "13px",
+      "fontWeight": "400",
+      "text": "Teams",
+      "ratio": 16272407.18
+    }
+  },
+  {
+    "at": "2026-09-15T04:57:09.576Z",
+    "check": "cleared increment: feedback",
+    "result": "INFO",
+    "detail": {
+      "toast": [],
+      "nativeValidation": "Value must be greater than or equal to 0.01."
+    }
+  },
+  {
+    "at": "2026-09-15T04:57:14.904Z",
+    "check": "cleared minimum bid: saved value",
+    "result": "FAIL",
+    "detail": {
+      "toast": [
+        "Saved"
+      ],
+      "minBidBefore": 10000,
+      "minBidAfter": 0,
+      "fieldShowsNow": "0"
+    }
+  },
+  {
+    "at": "2026-09-15T04:57:14.952Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/operator-rules-minbid-zero.png"
+  },
+  {
+    "at": "2026-09-15T04:57:23.164Z",
+    "note": "minBid restored",
+    "detail": 10000
+  },
+  {
+    "at": "2026-09-15T04:57:25.120Z",
+    "check": "operator console 640x360 (200% zoom emulation) containment",
+    "result": "PASS",
+    "detail": {
+      "horizontalOverflow": false,
+      "bad": []
+    }
+  },
+  {
+    "at": "2026-09-15T04:57:25.267Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/operator-console-zoom200.png"
+  }
+]

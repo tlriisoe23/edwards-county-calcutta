@@ -1,6 +1,6 @@
 # Edwards County Calcutta — product audit
 
-2026-09-14 UTC · original audit `dfab14906c04b5a6d99ffffbfba4249883750eae` · updated with approved A/B resolutions `4dc2900` / `3d00923`.
+2026-09-14 UTC · original audit `dfab14906c04b5a6d99ffffbfba4249883750eae` · updated with approved A/B resolutions `4dc2900` / `3d00923` · **incremental audit E2 on 2026-09-15 at `d992d1c` adds CAL-P2-004…007 and CAL-P3-002…007 in [its own section below](#incremental-audit-e2--2026-09-15)**; the original register and A–D resolutions are unchanged.
 
 ## Executive assessment
 
@@ -244,3 +244,144 @@ Participant/mobile bidding, accounts, pre-bidding, silent/timed auctions, actual
 Read [TASK-TRACKER.md](TASK-TRACKER.md) for acceptance and status. **A/B/C/D are complete locally. Only optional Batch E (`CAL-P3-001`) remains**, for export-contract maintenance.
 
 The user must approve optional E before implementation. A/B/C/D approval does not authorize migration, production access changes or deployment. Hosted acceptance remains a later gate.
+
+## Incremental audit E2 — 2026-09-15
+
+Audit-only pass at `d992d1c` (working tree clean apart from this audit's untracked evidence), Linux host, local Sites dev server on `http://localhost:5173` with a **fresh** `.wrangler/state` (both tracked migrations applied; no pre-existing local review events existed in this checkout) and the starter's mock identity `seedy@sites.test`. The production container, its volume, `calcutta.edcogolf.org` and `portable/` were not touched. Browser evidence is headless Chromium 151 via Playwright with axe-core 4.13; scripts, fixture IDs and every JSON/PNG/PDF cited below are in [audit-e2-evidence/](audit-e2-evidence/) (`scripts/` reproduces the run against a local instance only). Synthetic events: `AUDIT-E2 Live` `bf15b3ff-d6d9-4858-b85e-44f04fc74ae0`, `AUDIT-E2 Completed` `62c3f604-c97b-44b2-937f-06b943b5c636`, `AUDIT-E2 Empty` `e98bb491-9dd1-48a0-af33-11c8b719076c`, `AUDIT-E2 Large` (100 teams, six flights) `20dc88c7-4a5d-4638-94bc-fda10eddec92`, demo `f3694f59-2266-493e-bb7e-b5f80318ae87`, `AUDIT-E2 Journey` `306d3cef-2c05-4604-b8e6-6dfe4c6be478`; plus rehearsal events from the existing suites (`b8adcb21…`, `db33befa…`, `07798bc1…`). All are disposable local records.
+
+### What is unchanged and still covered
+
+CAL-P1-001…005, CAL-P2-001…003 remain RESOLVED LOCAL; nothing in this pass regressed them. Re-observed as healthy: event context on public/TV/operator links and reload; keyboard sale journey (B, Enter, +, S, buyer search, Confirm, U) with one sale recorded and undone; price correction, reopen, void and undo through the Sales tab; skip/unsold/complete guards with plain-language messages; settlement partial/Mark paid/reversal with reasons required and overpayment separated; results keyboard entry with duplicate-place rejection; all seven export downloads; QR decode of the rendered image and copy-to-clipboard; TV live/completed/large/demo/empty at 1366×768 and 1920×1080 with full containment and one-screen layout; public board 320/390/430/768/1024/1280 and 200 %-zoom equivalents; six-flight filter strip and 100-team search; reduced-motion runtime; newest-event fallback; demo-reset phrase gate; and the existing 58-check acceptance and 72-check refinement suites (both pass at `d992d1c` on this fresh store). Auth copy that says “ChatGPT”/“Sites settings” exists only in `app/operator.tsx`, `app/admin/page.tsx` and `app/auction.tsx`, all of which `scripts/stage-portable.mjs` rewrites for the Google/portable build, so it is not a production finding. Hosted Google sign-in, real distinct accounts, physical TV/projector, printers and screen readers remain outside local reach; see [VALIDATION.md](VALIDATION.md).
+
+### Register additions
+
+Severity scale as before: P1 = a core journey fails or money/access is misrepresented; P2 = a journey is materially impaired for a plausible user or a WCAG AA failure on a primary surface; P3 = friction, unclear feedback or debt with a workaround. Confidence describes the observation, not the fix.
+
+#### CAL-P2-004 — Header links without an icon vanish at phone widths (operator “Sign out”, public “Auction board”)
+
+- **Status:** OPEN · **Severity/category:** P2 · USABILITY / ACCESSIBILITY · **Class:** Observed.
+- **Surface/route:** `.mast nav` on `/admin?event=ID` and `/?event=ID` at CSS widths ≤ 700 px (every phone; a 1280 px laptop at 200 % zoom).
+- **Evidence:** [header-links.json](audit-e2-evidence/header-links.json): at 390 and 700 px the operator `Sign out` anchor renders 0 × 22 px at `font-size: 0`, and the public `Auction board` (`#board`) anchor renders 0 × 22 px; at 701 px both are normal. [public-tv.json](audit-e2-evidence/public-tv.json) “focusable-but-invisible” fails at 390/430/640 and the recorded tab order shows keyboard focus landing on the invisible link between the brand and “TV mode”. [operator-header-phone390.png](audit-e2-evidence/operator-header-phone390.png) shows only the board icon, TV icon and Help.
+- **Reproduce:** Open the operator desk on a phone (or resize to ≤ 700 px). Look for Sign out. On the public board press Tab twice from the top.
+- **Expected:** Every header control stays visible with an accessible name and a ≥ 24 px target, or is deliberately removed from the tab order.
+- **Actual:** `@media(max-width:700px){.mast nav a{font-size:0;gap:0}}` assumes each link carries an SVG; the two icon-less links collapse to zero width but remain focusable.
+- **Impact:** An operator on a phone cannot sign out of a shared device except by typing the URL; keyboard users on the public board hit an invisible focus stop (WCAG 2.4.7). The icon-only TV/Operator links measure 22 × 22 px and rely on `title`, which is acceptable only via the spacing exception of WCAG 2.5.8 (observation, not a failure).
+- **Probable area:** `app/globals.css` phone `.mast nav` rule; `app/operator.tsx` Sign out anchor; `app/auction.tsx` `#board` anchor.
+- **Smallest correction:** Give the two links an icon (or a visually-hidden-text pattern with a visible icon) and keep a ≥ 24 px hit area; alternatively hide the `#board` anchor from the tab order at phone width where the board is directly below. Do not change the desktop header.
+- **Acceptance:** At 320/390/430/700/701 px, `/` and `/admin` header controls all have non-zero size, an accessible name and visible focus; a phone-width operator can sign out and land on the same event's public board.
+- **Confidence:** High.
+
+#### CAL-P2-005 — TV display overlaps and scrolls between phone rules and the ≥ 1100 × 700 grid
+
+- **Status:** OPEN · **Severity/category:** P2 · USABILITY DEFECT (display) · **Class:** Observed. Relation: CAL-P1-004 (Batch C) verified 1366×768 and 1920×1080; the grid it added applies only at `min-width:1100px and min-height:700px`.
+- **Surface/route:** `/tv?event=ID` at 951–1099 px wide or under 700 px tall.
+- **Evidence:** [followup.json](audit-e2-evidence/followup.json): live and completed states fail at 1024×768 (stat value spills 24 px into the next column), 1093×614 (14 px; this is a 1366×768 laptop at 125 % Windows scaling mirrored to a TV), 1099×618 (13 px) and 1100×619 (12 px, height below 700); document height 1312 px versus a 614 px viewport, so statistics and recent sales are off-screen. 1280×720, 1440×900, 1536×864 and 1280×1024 pass. Screenshots: [tv-live-1093x614.png](audit-e2-evidence/tv-live-1093x614.png), [tv-live-1024x768.png](audit-e2-evidence/tv-live-1024x768.png), [tv-zoom200desktop.png](audit-e2-evidence/tv-zoom200desktop.png) (960×540 shows “$4,927.50” colliding with “6 / 16”).
+- **Reproduce:** Open the TV view of the Live fixture at 1093×614 or on an iPad in landscape.
+- **Expected:** Whole-number and cent values stay inside their statistic cell; the display fits one screen or degrades intentionally.
+- **Actual:** `.tv .stats strong{font-size:38px}` with six or seven equal columns has no container-relative cap below 1100 px, and the one-screen grid does not engage.
+- **Impact:** A club laptop with OS scaling, or a tablet used as the room display, shows overlapping money figures on the primary spectator surface.
+- **Probable area:** `app/globals.css` TV block (`@media(min-width:1100px) and (min-height:700px)`), `.tv .stats strong`, `@media(max-width:1150px)` overrides.
+- **Smallest correction:** Apply the same `min(38px, Ncqw)` container sizing used above 1100 px to the intermediate band and lower the grid thresholds (or add a second breakpoint around 960 px / 600 px). Keep the phone TV rules.
+- **Acceptance:** Screenshot plus cell-containment assertions for live/paused/completed at 960×540, 1024×768, 1093×614, 1099×618, 1100×619 and 1280×720 with six and seven metrics; existing 1366×768 / 1920×1080 checks unchanged; decide and document whether one-screen layout is required below 700 px height.
+- **Confidence:** High for geometry; physical scaling still unverified.
+
+#### CAL-P2-006 — Escape in the Sold dialog discards the whole dialog while buyer suggestions are open
+
+- **Status:** OPEN · **Severity/category:** P2 · USABILITY (live-auction interaction) · **Class:** Observed.
+- **Surface/route:** Hammer / sold dialog, `/admin?event=ID`, buyer / syndicate combobox.
+- **Evidence:** [new-event-journey-3.json](audit-e2-evidence/new-event-journey-3.json): before Escape `{dialog:true, listbox:true, aria-expanded:"true", value:"Nob"}`; after one Escape `{dialog:false, focus:BODY}`. With the list closed, Escape closes the dialog as expected. While the list is open the rest of the dialog is `aria-hidden` (normal for a popup), so a keyboard user's only way to reach “Add buyer here” is to dismiss the list — which currently dismisses the sale.
+- **Reproduce:** Press Hammer / sold, type part of a name so suggestions appear, press Escape.
+- **Expected:** First Escape closes the suggestion list and keeps the input focused; a second Escape (or Cancel) closes the dialog.
+- **Actual:** The keydown reaches the Dialog's escape handler and the staged sale is cleared.
+- **Impact:** During fast bidding the operator loses the confirmation step and must press Hammer again; no bid or sale data is lost, but it invites hesitation and a wrong-buyer retry.
+- **Probable area:** `app/auction-controls.tsx` `SoldDialog` (`onOpenChange`), `components/ui/combobox.tsx` / `components/ui/dialog.tsx` escape propagation.
+- **Smallest correction:** Guard the dialog's `onEscapeKeyDown` while the combobox popup is open (or stop propagation in the combobox), leaving Cancel and the second Escape unchanged.
+- **Acceptance:** Keyboard-only: type, Escape (list closes, dialog stays, focus in input), Escape (dialog closes); mouse click on “Add buyer here” with the list open still works in one click (currently passes); S/U shortcuts stay suppressed while the dialog is open.
+- **Confidence:** High.
+
+#### CAL-P2-007 — Supporting text below 4.5 : 1 contrast on public, TV and operator surfaces
+
+- **Status:** OPEN · **Severity/category:** P2 · ACCESSIBILITY · **Class:** Observed (computed colours and axe `color-contrast`). Extends, does not reopen, CAL-P2-003 (which fixed only the RECENT SALES caption).
+- **Evidence:** [followup.json](audit-e2-evidence/followup.json) “contrast specifics”, [public-tv.json](audit-e2-evidence/public-tv.json), [operator.json](audit-e2-evidence/operator.json) and [rules-validation.json](audit-e2-evidence/rules-validation.json):
+
+| Text | Colour on background | Size / weight | Ratio | Where |
+|---|---|---|---|---|
+| Queue lot numbers `.lot` (“08”) | `#899180` on `#ffffff` | 22 px / 400 | **3.27 : 1** | Public and TV “Coming to the block”, operator “Next up” |
+| Recent-sale buyer line `.sales-strip p` | `#6d7766` on `#edeee4` | 14 px / 400 | **4.01 : 1** | Public and TV “Fresh off the block” |
+| Payout percentage `.payouts small` (“50%”) | `#7d816e` on `#ffffff` | 11.2 px / 400 | **4.01 : 1** | Public and operator pool cards |
+| Inactive operator tab labels | `text-foreground/60` ≈ `#71837a` on `#f7f6f0` | 13 px / 400 | **3.70 : 1** | Every operator screen (33 nodes on the console) |
+| “AUCTION OPERATIONS” eyebrow | `#6c795f` on `#f7f6f0` | 12 px / 700 | **4.27 : 1** | Operator heading |
+
+- **Expected:** ≥ 4.5 : 1 for text under 24 px regular / 18.66 px bold ([WCAG 1.4.3](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html)).
+- **Impact:** The operator's primary navigation labels and the spectator queue numbers are the most consequential; the others are supporting captions. Not a whole-product WCAG verdict.
+- **Probable area:** `app/globals.css` (`.lot`, `.sales-strip p`, `.payouts small`, `.admin-heading .eyebrow`), `components/ui/tabs.tsx` trigger colour token.
+- **Smallest correction:** Darken those tokens (and the tab-trigger opacity) until each measures ≥ 4.5 : 1 on its actual background; keep hierarchy.
+- **Acceptance:** Computed ratios ≥ 4.5 : 1 for the five selectors on public, TV and operator; axe reports no serious `color-contrast` node on public laptop/phone, TV 1080, operator console, settlement and exports.
+- **Confidence:** High.
+
+#### CAL-P3-002 — Filter “tabs” reference panels that do not exist
+
+- **Status:** OPEN · **Severity/category:** P3 · ACCESSIBILITY (semantics) · **Class:** Observed (axe critical `aria-valid-attr-value`); assistive-technology impact is a hypothesis, not measured.
+- **Evidence:** [followup.json](audit-e2-evidence/followup.json): the public flight filter (`aria-controls="radix-…-content-all"` and one per flight) and Settlement's “Auction payments / Tournament payouts” tabs point at IDs absent from the DOM because the code uses `TabsList` without `TabsContent`.
+- **Probable area:** `app/auction.tsx` board tools; `app/settlement.tsx` settlement tools.
+- **Smallest correction:** Wrap the filtered lists in `TabsContent` (keeps Radix semantics honest) or switch the filters to a toggle/radio group with `aria-pressed`/`aria-checked`; keep the visual style.
+- **Acceptance:** axe `aria-valid-attr-value` clean on `/`, `/admin` Settlement; keyboard arrow-key behaviour unchanged.
+
+#### CAL-P3-003 — Clearing “Minimum starting bid” (or the house deduction) saves 0 and reports “Saved”
+
+- **Status:** OPEN · **Severity/category:** P3 · USABILITY / data-entry hazard · **Class:** Observed for minimum bid; source-supported for deduction (same `min="0"` pattern).
+- **Evidence:** [rules-validation.json](audit-e2-evidence/rules-validation.json): `minBid` 10000 → **0** after clearing the field and saving; toast “Saved”; the field then shows `0`. By contrast, clearing “Minimum bid increment” is blocked by native validation (“Value must be greater than or equal to 0.01.”). Screenshot [operator-rules-minbid-zero.png](audit-e2-evidence/operator-rules-minbid-zero.png). The fixture value was restored afterwards.
+- **Impact:** A volunteer who clears the field to retype and saves silently removes the minimum, after which any positive bid (including $0.01) is accepted; the equivalent on the deduction field zeroes the house share. Recoverable by editing again, but there is no signal.
+- **Probable area:** `app/rules.tsx` numeric `setting()` handlers (`Math.round(Number('')*100)` → 0); `app/api/admin/route.ts` `cents.min(0)`.
+- **Smallest correction:** Treat an empty field as invalid (`required` plus a product-appropriate `min`), or confirm explicitly when saving 0. Whether $0 minimum / 0 % deduction should remain legal is a product decision; the silent path is the defect.
+- **Acceptance:** Clearing either field blocks save with a message; deliberate 0 (if allowed) is echoed in the toast.
+
+#### CAL-P3-004 — Import preview disables Import without identifying the invalid rows
+
+- **Status:** OPEN · **Severity/category:** P3 · USABILITY (validation feedback) · **Class:** Observed.
+- **Evidence:** [operator-import-preview.png](audit-e2-evidence/operator-import-preview.png), [operator.json](audit-e2-evidence/operator.json): a three-row paste with one valid quoted row, one unknown flight plus non-numeric index, and one empty name previews as three editable rows with no marker; “Import 3 teams” is simply disabled. The unknown flight shows only the select placeholder (“Import flight 2”) and the index `x` becomes blank.
+- **Smallest correction:** Per-row message or highlight (“flight not found”, “name required”, “index must be a number”) and a count in the button label; keep the atomic import.
+- **Acceptance:** Each blocking row is identified inline; fixing them enables Import; existing valid pastes unchanged.
+
+#### CAL-P3-005 — Access tab accepts the owner's own email and reports “Saved” for duplicates
+
+- **Status:** OPEN · **Severity/category:** P3 · USABILITY (admin clarity) · **Class:** Observed locally with the mock owner; hosted identities remain unverified.
+- **Evidence:** [operator.json](audit-e2-evidence/operator.json), [operator-access-laptop.png](audit-e2-evidence/operator-access-laptop.png): granting `seedy@sites.test` (the configured owner) succeeds and lists the owner as a revocable operator “Added by seedy@sites.test”; granting an already-listed email with different case reports “Saved” with no change (`ON CONFLICT DO NOTHING`) and writes an audit row. Revoking the owner row succeeds while owner access (from `ADMIN_EMAILS`) remains — verified when cleanup ran as the same owner. Test rows were removed.
+- **Smallest correction:** Reject or explain owner emails (“already an owner”), return “already has access” for duplicates, and show owners read-only above the list.
+- **Acceptance:** Owner email → explanatory message, no row; duplicate → explanatory message, no audit row; list distinguishes owners.
+
+#### CAL-P3-006 — Results accept a finishing place for an unsold team, then empty states say results are missing
+
+- **Status:** OPEN — policy recorded 2026-09-15, awaiting batch approval · **Severity/category:** P3 · BUSINESS RULE · **Class:** Observed.
+- **Recorded policy (owner, 2026-09-15):** an unclaimed purse share (a finishing place held by an unsold team) goes to the house. The house then decides, per event, either to add that amount back into the pot for the winners or to keep it. Placing an unsold team is therefore legal, not an error; the product must show the unclaimed amount explicitly and give the operator that house choice. Any change to `compute()` must implement exactly this rule.
+- **Evidence:** [new-event-journey-3.json](audit-e2-evidence/new-event-journey-3.json): on the Journey event (one sold, one UNSOLD team, completed) saving place 1 for the unsold team returns “Saved”; entitlements are 0; the Results panel says “Entitlements appear after final positions are saved.” and Settlement → Tournament payouts says “Payouts appear after results are entered. Complete the auction, then enter finishing positions in Results.” although both were done. The 1st-place purse is silently unclaimed. Withdrawn teams are correctly rejected server-side; unsold teams are not.
+- **Relation:** [VALIDATION.md](VALIDATION.md) already lists “Unclaimed places / ties / unsold winner policy” as UNVERIFIED policy. This finding is the user-visible consequence.
+- **Smallest correction (independent of policy):** When a placed team has no active sale, say so in Results and Settlement (“Place 1 is held by an unsold team — no entitlement; $X unclaimed”). Whether to block the entry, redistribute or retain the purse is a club decision to record before changing `compute()`.
+- **Acceptance:** Placing an unsold team produces an explicit, accurate message in both places; no change to entitlement arithmetic without the recorded decision.
+
+#### CAL-P3-007 — Hammer / sold and bid entry sit below the fold on first paint at common laptop sizes
+
+- **Status:** OPEN (observation; optional) · **Severity/category:** P3 · USABILITY (density) · **Class:** Observed; fullscreen mitigation source-supported only.
+- **Evidence:** [operator.json](audit-e2-evidence/operator.json): the Hammer button's bottom edge is at 921 px in a 720 px viewport (1280×720) and 958 px in 768 px (1024×768); visible without scrolling at 768×1024. [operator-console-laptop.png](audit-e2-evidence/operator-console-laptop.png). `:fullscreen` rules hide the mast, heading and event toolbar (~200 px), which would roughly fit — not verifiable headless.
+- **Smallest correction (optional):** A tighter LIVE header, or making the bid-entry panel sticky at the bottom of the console column, after checking fullscreen first.
+- **Acceptance:** Bid entry, increments and Hammer visible without scrolling at 1280×720 and 1024×768 with the block still showing team and bid.
+
+### Additional observations (not registered; promote if wanted)
+
+- Sonner toasts print: the `Toaster` sits outside `.admin-site`, so a fresh “Export ready” / “Link copied” toast appears in the print output ([print-summary-completed.png](audit-e2-evidence/print-summary-completed.png), [print-qr-handout.png](audit-e2-evidence/print-qr-handout.png)). One `@media print` rule fixes it.
+- A mistyped/unknown `?event=` on the public board shows “The auction is being prepared…” rather than “This link does not match an event” ([public-unknown-event.png](audit-e2-evidence/public-unknown-event.png)).
+- Exports copy labels Payment History “Administrator only”, but `app/api/export/route.ts` allows any operator (verified: a non-owner operator downloaded payments and the backup). Copy or policy mismatch.
+- The portable sign-in page (`portable/auth-handler.mjs`) shows the owner recovery form to every visitor and has no link back to the public board — source-supported, UNVERIFIED locally (Sites mock auth bypasses it).
+- Quick add accepts duplicate team names (no uniqueness rule); buyers are deduplicated. Not claimed as a defect.
+
+### Proposed batches (all **proposed**, none approved)
+
+| Batch | IDs | Outcome | Areas | Risk | Decision needed |
+|---|---|---|---|---|---|
+| F — Phone header controls and TV intermediate widths | CAL-P2-004, CAL-P2-005 | Every header control usable on phones; TV readable at 960–1099 px and < 700 px tall | `app/globals.css`, two anchors in `app/operator.tsx` / `app/auction.tsx` | Low–medium (CSS regression on shared header/TV) | Whether one-screen TV is required under 700 px tall |
+| G — Sold dialog Escape | CAL-P2-006 | Escape closes suggestions first | `app/auction-controls.tsx`, `components/ui/combobox.tsx` or `dialog.tsx` | Low | — |
+| H — Contrast and filter semantics | CAL-P2-007, CAL-P3-002 | AA contrast on the five listed texts; valid tab semantics | `app/globals.css`, `components/ui/tabs.tsx`, `app/auction.tsx`, `app/settlement.tsx` | Low | — |
+| I — Operator data-entry feedback | CAL-P3-003, CAL-P3-004, CAL-P3-005, optionally CAL-P3-007 | No silent zeros, identified import rows, honest access messages | `app/rules.tsx`, `app/editors.tsx`, `app/operator.tsx`, `app/api/admin/route.ts` messages | Low–medium | Whether $0 minimum / 0 % deduction stay legal |
+| — | CAL-P3-006 | Explicit unsold-winner messaging | `app/rules.tsx`, `app/settlement.tsx`; `lib/model.ts` only after decision | Medium if arithmetic changes | Unclaimed-purse policy |
+
+Validation for each: rerun the cited evidence script(s) in `audit-e2-evidence/scripts/` against a local instance, the focused reproduction, `node tests/acceptance.mjs`, `node tests/refinement.mjs`, TypeScript and build. Rollback is a plain revert; none touch schema, exports or money arithmetic (CAL-P3-006 excepted).

@@ -1,0 +1,82 @@
+[
+  {
+    "at": "2026-09-15T04:58:19.248Z",
+    "note": "create dialog fields",
+    "detail": [
+      "Tournament name",
+      "Calcutta name (optional)",
+      "Course",
+      "Tournament dates",
+      "Auction date / time"
+    ]
+  },
+  {
+    "at": "2026-09-15T04:58:19.585Z",
+    "check": "empty tournament name blocked natively",
+    "result": "PASS"
+  },
+  {
+    "at": "2026-09-15T04:58:21.085Z",
+    "note": "created event id",
+    "detail": "306d3cef-2c05-4604-b8e6-6dfe4c6be478"
+  },
+  {
+    "at": "2026-09-15T04:58:21.090Z",
+    "check": "new event lands on its console with SETUP status",
+    "result": "PASS",
+    "detail": "SETUPAUDIT-E2 Journey · 2026-09-14Start auction Full screenComplete"
+  },
+  {
+    "at": "2026-09-15T04:58:21.157Z",
+    "note": "screenshot",
+    "detail": "audit-e2-evidence/journey-new-event-console.png"
+  },
+  {
+    "at": "2026-09-15T04:58:21.772Z",
+    "note": "teams tab before flights",
+    "detail": {
+      "notice": [
+        "Add a flight in Setup & rules before adding teams."
+      ],
+      "addDisabled": true,
+      "editorDisabled": true
+    }
+  },
+  {
+    "at": "2026-09-15T04:58:24.164Z",
+    "check": "flight created with default ladder",
+    "result": "PASS",
+    "detail": "Total100.00% ✓"
+  },
+  {
+    "at": "2026-09-15T04:58:27.640Z",
+    "check": "two quick-added teams in roster",
+    "result": "PASS"
+  },
+  {
+    "at": "2026-09-15T04:58:29.781Z",
+    "check": "start puts first team on block",
+    "result": "PASS"
+  },
+  {
+    "at": "2026-09-15T04:58:31.064Z",
+    "check": "Start bid $100 records opening bid",
+    "result": "PASS"
+  },
+  {
+    "at": "2026-09-15T04:58:31.442Z",
+    "note": "sold dialog with no buyers",
+    "detail": {
+      "chips": 0,
+      "confirmDisabled": true
+    }
+  },
+  {
+    "at": "2026-09-15T04:58:31.780Z",
+    "note": "combobox empty state",
+    "detail": [
+      "No matching buyer. Use Add buyer below.",
+      ""
+    ]
+  }
+]

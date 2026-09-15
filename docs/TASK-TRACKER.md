@@ -22,8 +22,18 @@ The canonical description, reproduction, confidence and acceptance for every ID 
 | CAL-P2-002 | P2 RELIABILITY | Repeated creation request creates two events | RESOLVED LOCAL — `a76e57f`, [evidence](BATCH-D.md), includes demo | D |
 | CAL-P2-003 | P2 ACCESSIBILITY | Recent-sales caption contrast 3.77:1 | RESOLVED LOCAL — `4da7b9b`, [evidence](BATCH-C.md); now 6.02/6.21:1 | C |
 | CAL-P3-001 | P3 TECHNICAL DEBT | Distributed export contracts | OPEN — optional, awaiting approval | E |
+| CAL-P2-004 | P2 USABILITY / ACCESSIBILITY | Icon-less header links (operator Sign out, public Auction board) vanish at ≤ 700 px but stay focusable | OPEN — audit E2 2026-09-15, [evidence](audit-e2-evidence/header-links.json) | F |
+| CAL-P2-005 | P2 USABILITY DEFECT | TV stats overlap and page scrolls at 951–1099 px wide or < 700 px tall (1024×768, 1093×614) | OPEN — audit E2, [evidence](audit-e2-evidence/followup.json) | F |
+| CAL-P2-006 | P2 USABILITY | Escape with buyer suggestions open discards the whole Sold dialog | OPEN — audit E2, [evidence](audit-e2-evidence/new-event-journey-3.json) | G |
+| CAL-P2-007 | P2 ACCESSIBILITY | Lot numbers 3.27:1, sale buyer line 4.01:1, payout % 4.01:1, inactive operator tabs 3.70:1, eyebrow 4.27:1 | OPEN — audit E2, [evidence](audit-e2-evidence/followup.json) | H |
+| CAL-P3-002 | P3 ACCESSIBILITY | Flight and settlement filter tabs reference non-existent panels | OPEN — audit E2 | H |
+| CAL-P3-003 | P3 USABILITY | Cleared minimum bid / deduction saves 0 with “Saved” | OPEN — audit E2, [evidence](audit-e2-evidence/rules-validation.json) | I |
+| CAL-P3-004 | P3 USABILITY | Import preview blocks import without marking invalid rows | OPEN — audit E2, [evidence](audit-e2-evidence/operator-import-preview.png) | I |
+| CAL-P3-005 | P3 USABILITY | Access tab accepts owner email; duplicate grants report “Saved” | OPEN — audit E2, [evidence](audit-e2-evidence/operator.json) | I |
+| CAL-P3-006 | P3 BUSINESS RULE | Unsold team can take a finishing place; empty states then contradict | OPEN — policy recorded 2026-09-15 (house receives unclaimed share; house returns to pot or keeps) | J (proposed) |
+| CAL-P3-007 | P3 USABILITY | Hammer / bid entry below the fold on first paint at 1280×720 / 1024×768 | OPEN — optional observation | I (optional) |
 
-Only one optional P3 remains open; no open P1 or P2. P0: none demonstrated. Local resolution does not waive the blocked hosted gates in [VALIDATION.md](VALIDATION.md).
+After audit E2 (2026-09-15, `d992d1c`): **four open P2 and seven open P3 (one optional debt, one policy-gated); no open P1; P0: none demonstrated.** Canonical descriptions for the new IDs are in [PRODUCT-AUDIT.md § Incremental audit E2](PRODUCT-AUDIT.md#incremental-audit-e2--2026-09-15). Local resolution does not waive the blocked hosted gates in [VALIDATION.md](VALIDATION.md).
 
 ## Proposed implementation roadmap
 
@@ -88,6 +98,57 @@ Only one optional P3 remains open; no open P1 or P2. P0: none demonstrated. Loca
 - **Regression surface:** All existing CSV variants and importer. Perform after B/D so cleanup preserves corrected behavior.
 - **Order:** 5, optional after user-visible defects; do not treat it as a release blocker by itself.
 
+### Batch F — Phone header controls and TV intermediate widths (proposed)
+
+- **Status:** PROPOSED, awaiting approval.
+- **Exact IDs:** `CAL-P2-004`, `CAL-P2-005`.
+- **Objective:** Every header control remains usable at phone width (operator can sign out); the TV view stays readable at 960–1099 px wide and under 700 px tall.
+- **Why together:** Both are bounded responsive CSS corrections to shared header/TV rules introduced or left by earlier layout work; neither touches data or rules.
+- **Expected areas:** `app/globals.css` (phone `.mast nav`, TV grid thresholds and `.tv .stats strong` sizing); an icon or visible text on the Sign out and `#board` anchors in `app/operator.tsx` / `app/auction.tsx`.
+- **Risk:** Low–medium; shared header and TV CSS need the existing Batch C matrix rerun.
+- **Acceptance:** Header controls non-zero, named and focus-visible at 320/390/430/700/701 px on `/` and `/admin`; TV live/paused/completed contain all statistics at 960×540, 1024×768, 1093×614, 1099×618, 1100×619, 1280×720 plus the existing 1366×768 / 1920×1080 checks. Decision needed: whether one-screen TV is required below 700 px height.
+- **Order:** 6 — recommended first of the E2 batches (spectator display and phone operator).
+
+### Batch G — Sold dialog Escape (proposed)
+
+- **Status:** PROPOSED, awaiting approval.
+- **Exact IDs:** `CAL-P2-006`.
+- **Objective:** Escape dismisses buyer suggestions before it dismisses the sale.
+- **Expected areas:** `app/auction-controls.tsx` `SoldDialog`; `components/ui/combobox.tsx` or `components/ui/dialog.tsx` escape handling.
+- **Risk:** Low; verify stale-dialog, inline buyer creation and keyboard shortcut suppression still pass.
+- **Acceptance:** Keyboard-only: type → Escape keeps dialog and focus → Escape closes; Cancel/Confirm unchanged; one-click “Add buyer here” with the list open still works.
+- **Order:** 7.
+
+### Batch H — Contrast and filter semantics (proposed)
+
+- **Status:** PROPOSED, awaiting approval.
+- **Exact IDs:** `CAL-P2-007`, `CAL-P3-002`.
+- **Objective:** The five listed supporting texts meet 4.5:1; filter tabs reference real panels or use non-tab semantics.
+- **Expected areas:** `app/globals.css` colour tokens, `components/ui/tabs.tsx` trigger colour, `app/auction.tsx` board tools, `app/settlement.tsx` settlement tools.
+- **Risk:** Low; visual regression only.
+- **Acceptance:** Computed ratios ≥ 4.5:1 on public, TV and operator; axe reports no serious `color-contrast` and no `aria-valid-attr-value` on `/`, `/tv`, operator console, Settlement, Exports.
+- **Order:** 8.
+
+### Batch I — Operator data-entry feedback (proposed)
+
+- **Status:** PROPOSED, awaiting approval.
+- **Exact IDs:** `CAL-P3-003`, `CAL-P3-004`, `CAL-P3-005`; `CAL-P3-007` optional.
+- **Objective:** No silent zero settings, identified invalid import rows, honest Access messages; optionally keep the Hammer above the fold on laptops.
+- **Expected areas:** `app/rules.tsx`, `app/editors.tsx`, `app/operator.tsx` Access form, `app/api/admin/route.ts` messages (no schema).
+- **Risk:** Low–medium; decision needed on whether $0 minimum / 0 % deduction remain legal.
+- **Acceptance:** Per finding in PRODUCT-AUDIT; rerun import fixtures from Batch D and the Access checks from Batch A.
+- **Order:** 9.
+
+### Batch J — Unclaimed purse to the house (proposed)
+
+- **Status:** PROPOSED, awaiting approval. Policy recorded 2026-09-15 by the owner: an unclaimed purse share (place held by an unsold team) goes to the house; the house then chooses, per event, to add it back to the winners' pot or keep it.
+- **Exact IDs:** `CAL-P3-006`.
+- **Objective:** Placing an unsold team is legal; Results and Settlement show the unclaimed amount and the house's choice explicitly instead of empty-state copy that says results are missing.
+- **Expected areas:** `lib/model.ts` `compute()` (house-retained vs redistributed unclaimed share), a per-event house choice and Results-panel messaging in `app/rules.tsx`, settlement messaging in `app/settlement.tsx`, seeded oracle cases in `tests/audit-math.mjs`.
+- **Risk:** Medium — changes money arithmetic; the independent BigInt oracle must be extended with the new rule before `compute()` changes, and redistribution must remain cent-exact under largest-remainder.
+- **Acceptance:** Both house choices produce cent-exact totals that reconcile against the oracle; existing 1,000 seeded cases unchanged when no place is unclaimed; explicit messages in Results and Settlement.
+- **Order:** after F–I; route through `approved-findings-implementation`.
+
 ## Completed original audit work
 
 - Reconciled all requested current capabilities against code and test evidence.
@@ -98,4 +159,4 @@ Only one optional P3 remains open; no open P1 or P2. P0: none demonstrated. Loca
 
 ## Compact handoff
 
-**Remaining optional scope: Batch E, exact ID `CAL-P3-001`.** A/B/C/D are complete locally. All eight audited functional/accessibility findings are resolved locally; E is not a release blocker by itself. Do not implement E merely because it is listed here. After the user approves the next bounded set, preserve KEEP / PROTECT, run its focused reproductions and relevant regression suites, and update this tracker with evidence. Deployment needs separate authorization.
+**Remaining optional scope: Batch E, exact ID `CAL-P3-001`.** A/B/C/D are complete locally. All eight original findings are resolved locally; E is not a release blocker by itself. **Audit E2 (2026-09-15) adds proposed Batches F–I (CAL-P2-004…007, CAL-P3-002…005/007) and one policy-gated item (CAL-P3-006); nothing from E2 is approved.** Do not implement E–I merely because they are listed here. After the user approves the next bounded set, preserve KEEP / PROTECT, run its focused reproductions and relevant regression suites, and update this tracker with evidence. Deployment needs separate authorization; the live container was not changed by the audit.
