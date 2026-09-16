@@ -1,0 +1,85 @@
+{
+  "console-phone-390": {
+    "violations": [],
+    "passes": 32
+  },
+  "access-desktop": {
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "nodes": 1,
+        "targets": [
+          [
+            "span:nth-child(1) > small"
+          ]
+        ]
+      }
+    ],
+    "passes": 31
+  },
+  "settlement-desktop": {
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "nodes": 1,
+        "targets": [
+          [
+            ".empty-state > p"
+          ]
+        ]
+      }
+    ],
+    "passes": 31
+  },
+  "rules-desktop": {
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "nodes": 1,
+        "targets": [
+          [
+            ".flight-setting > span > small"
+          ]
+        ]
+      }
+    ],
+    "passes": 32
+  },
+  "teams-desktop": {
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "nodes": 6,
+        "targets": [
+          [
+            "th:nth-child(2)"
+          ],
+          [
+            "th:nth-child(3)"
+          ],
+          [
+            "th:nth-child(4)"
+          ],
+          [
+            "th:nth-child(5)"
+          ],
+          [
+            "th:nth-child(6)"
+          ],
+          [
+            "th:nth-child(7)"
+          ]
+        ]
+      }
+    ],
+    "passes": 35
+  },
+  "console-desktop": {
+    "violations": [],
+    "passes": 32
+  }
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "label": "Full-page axe clean on console-desktop ()",
+    "pass": true
+  },
+  {
+    "label": "Full-page axe clean on teams-desktop (color-contrast)",
+    "pass": false
+  },
+  {
+    "label": "Full-page axe clean on rules-desktop (color-contrast)",
+    "pass": false
+  },
+  {
+    "label": "Full-page axe clean on settlement-desktop (color-contrast)",
+    "pass": false
+  },
+  {
+    "label": "Full-page axe clean on access-desktop (color-contrast)",
+    "pass": false
+  },
+  {
+    "label": "Full-page axe clean on console-phone-390 ()",
+    "pass": true
+  }
+]

@@ -1,0 +1,135 @@
+{
+  "checks": 32,
+  "pass": 32,
+  "fail": 0,
+  "results": [
+    {
+      "label": "Operator sections nav landmark present",
+      "pass": true
+    },
+    {
+      "label": "Tablist labeled \"Prepare\" present",
+      "pass": true
+    },
+    {
+      "label": "Tablist labeled \"Run auction\" present",
+      "pass": true
+    },
+    {
+      "label": "Tablist labeled \"After auction\" present",
+      "pass": true
+    },
+    {
+      "label": "Tablist labeled \"Tools\" present",
+      "pass": true
+    },
+    {
+      "label": "Event & rules numbered 1",
+      "pass": true
+    },
+    {
+      "label": "Teams & flights numbered 2",
+      "pass": true
+    },
+    {
+      "label": "Teams & flights starts Not started (0 flights)",
+      "pass": true
+    },
+    {
+      "label": "Buyers starts Not started (0 buyers)",
+      "pass": true
+    },
+    {
+      "label": "Check TV display numbered 4 as a shortcut, not a tab",
+      "pass": true
+    },
+    {
+      "label": "Exactly one \"Current phase\" tag shown",
+      "pass": true
+    },
+    {
+      "label": "PREPARE is the current phase for a fresh SETUP event",
+      "pass": true
+    },
+    {
+      "label": "Visiting Teams & flights alone keeps it Not started",
+      "pass": true
+    },
+    {
+      "label": "Teams & flights becomes Needs attention once a flight exists but no team",
+      "pass": true
+    },
+    {
+      "label": "Teams & flights becomes Complete once a team is saved",
+      "pass": true
+    },
+    {
+      "label": "Buyers becomes Complete once a buyer is saved",
+      "pass": true
+    },
+    {
+      "label": "Check TV display opens the real Display & sharing screen",
+      "pass": true
+    },
+    {
+      "label": "Advanced settings opens the real Event & rules screen",
+      "pass": true
+    },
+    {
+      "label": "A \"Teams & flights\" help note exists below the Prepare tabs, outside the tablist",
+      "pass": true
+    },
+    {
+      "label": "Clicking the help affordance opens inline guidance (not hover-only)",
+      "pass": true
+    },
+    {
+      "label": "Opening help does not itself switch the active tab",
+      "pass": true
+    },
+    {
+      "label": "Arrow-right inside Prepare tablist moves focus to the next tab (roving tabindex intact)",
+      "pass": true
+    },
+    {
+      "label": "Focused nav trigger has a visible outline: solid 2px",
+      "pass": true
+    },
+    {
+      "label": "RUN AUCTION becomes current phase once the auction is LIVE",
+      "pass": true
+    },
+    {
+      "label": "Return to console appears once away from console during a live auction",
+      "pass": true
+    },
+    {
+      "label": "Return to console lands back on the live bid controls",
+      "pass": true
+    },
+    {
+      "label": "Access tab still present under Tools for the owner session",
+      "pass": true
+    },
+    {
+      "label": "axe finds 0 violations scoped to .op-nav ()",
+      "pass": true
+    },
+    {
+      "label": ".op-nav visible at 820px tablet width",
+      "pass": true
+    },
+    {
+      "label": "No horizontal page overflow at 390px (390px)",
+      "pass": true
+    },
+    {
+      "label": ".op-nav renders at 390px phone width",
+      "pass": true
+    },
+    {
+      "label": "axe finds 0 violations scoped to .op-nav at 390px ()",
+      "pass": true
+    }
+  ]
+}
