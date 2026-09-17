@@ -23,7 +23,8 @@ try {
   }
   db.exec(`CREATE TABLE IF NOT EXISTS portable_sessions(token TEXT PRIMARY KEY, body TEXT NOT NULL, expires INTEGER NOT NULL);
     CREATE TABLE IF NOT EXISTS portable_login_attempts(identity TEXT PRIMARY KEY, attempts INTEGER NOT NULL, until INTEGER NOT NULL);
-    CREATE TABLE IF NOT EXISTS portable_credentials(email TEXT PRIMARY KEY, password_hash TEXT NOT NULL);`);
+    CREATE TABLE IF NOT EXISTS portable_credentials(email TEXT PRIMARY KEY, password_hash TEXT NOT NULL);
+    CREATE TABLE IF NOT EXISTS portable_local_users(email TEXT PRIMARY KEY, display_name TEXT NOT NULL, password_hash TEXT NOT NULL, enabled INTEGER NOT NULL DEFAULT 1, created_by TEXT NOT NULL, created_at TEXT NOT NULL);`);
   if (db.prepare('PRAGMA foreign_key_check').all().length) throw Error('Foreign key violations.');
   db.exec('COMMIT');
   console.log('Portable schema is current.');

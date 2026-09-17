@@ -14,6 +14,7 @@
   --on-destructive: #ffffff; --destructive: #a4342e; --danger-surface: #f9e9e5;
   --success: #235b3b; --success-surface: #e3efdf;
   --warning: #705013; --warning-surface: #f5eedc;
+  --caution: #7d6600; --caution-surface: #f7f1cf;
   --money: #173f30; --action-value: #bfa064; --action-value-hover: #ceb277; --on-action-value: #173726;
   --current-lot: #123f2f; --on-current-lot: #f9f7ed;
   --current-lot-header: #0e3427; --current-lot-secondary: #d2ddce; --current-lot-border: #789783;
@@ -31,6 +32,7 @@
   --destructive: #9c0000; --danger-surface: #ffe8e8;
   --success: #00451e; --success-surface: #e0f4e5;
   --warning: #563900; --warning-surface: #fff2b0;
+  --caution: #4d4600; --caution-surface: #fff9c4;
   --money: #000000; --action-value: #ffdf00; --action-value-hover: #ffe85c; --on-action-value: #000000;
   --current-lot: #000000; --on-current-lot: #ffffff;
   --current-lot-header: #171717; --current-lot-secondary: #ffffff; --current-lot-border: #cccccc;
@@ -46,6 +48,7 @@
   --on-destructive: #3b1313; --destructive: #ffb4ab; --danger-surface: #482a2b;
   --success: #b4ebc5; --success-surface: #223e31;
   --warning: #ffe1a1; --warning-surface: #44391f;
+  --caution: #fff3b0; --caution-surface: #3a3319;
   --money: #ffe1a1; --action-value: #f1cf82; --action-value-hover: #ffe3a3; --on-action-value: #24200f;
   --current-lot: #132d31; --on-current-lot: #ffffff;
   --current-lot-header: #0b2025; --current-lot-secondary: #d1e4df; --current-lot-border: #7d9e98;
@@ -60,6 +63,7 @@
   --destructive: #a12b2b; --danger-surface: #ffe9e9;
   --success: #205b39; --success-surface: #e4f2e8;
   --warning: #705013; --warning-surface: #fff0cd;
+  --caution: #7d6600; --caution-surface: #fbf3d0;
   --money: #184b7b; --action-value: #184b7b; --action-value-hover: #12395e; --on-action-value: #ffffff;
   --current-lot: #e3edf8; --on-current-lot: #172d44;
   --current-lot-header: #184b7b; --current-lot-secondary: #354f69; --current-lot-border: #718498;

@@ -166,6 +166,19 @@ After audit E2 (2026-09-15, `d992d1c`) and Batches F, G, H and I: **no open P2 a
 - **Acceptance:** Both house choices produce cent-exact totals that reconcile against the oracle; existing 1,000 seeded cases unchanged when no place is unclaimed; explicit messages in Results and Settlement.
 - **Order:** after F–I; route through `approved-findings-implementation`.
 
+## User scope 2026-09-17 — UI2 purposeful UI refinement
+
+Not an audit finding: an owner-requested UI/UX refinement pass (Tools menu, contextual help,
+top-level theme selector, Prepare 1–4 redesign, TV auction-board polish, statistics hierarchy and
+semantic team-count color, local user accounts). Recorded here in the same non-audit pattern used
+for Leaderboard's L2/L3/R1 scope; does not approve anything else listed in this tracker.
+
+| ID | Scope | Status | Record |
+|---|---|---|---|
+| UI2-A…F | Tools dropdown, Prepare 1–4 redesign, theme quick-select, contextual `HelpTip`, TV bid-pulse/sold-settle animation, statistics hierarchy + semantic team-count color | IMPLEMENTED → VALIDATED (local) on `claude/ui2-refinement` (worktree `edwards-county-calcutta-ui2`), off clean `main` @ `cf3c0ca`. Not merged, not deployed. | [BATCH-CAL-UI2.md](BATCH-CAL-UI2.md) |
+| UI2-G | Local user accounts (Tools → Local Users), operator-level only, scrypt-hashed, portable-runtime-only | IMPLEMENTED → VALIDATED (local): `npm run test:portable` end-to-end incl. a real HTTP sign-in as a created local operator; owner-gated admin actions exercised against a live portable server; plain-build stub fails loudly, verified in-browser | [BATCH-CAL-UI2.md](BATCH-CAL-UI2.md) |
+| UI2-H | Responsive/TV `clamp()` audit at 1366×768/1920×1080/2560×1440/3840×2160 + narrow width | VALIDATED (local) — no source change needed; existing S1 proportional-typography system scales correctly through everything UI2 added; keyboard/focus and reduced-motion verified programmatically | [BATCH-CAL-UI2.md](BATCH-CAL-UI2.md) |
+
 ## Completed original audit work
 
 - Reconciled all requested current capabilities against code and test evidence.

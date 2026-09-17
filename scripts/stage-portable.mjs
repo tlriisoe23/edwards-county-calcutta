@@ -28,5 +28,8 @@ for (const name of ['auction.tsx', 'operator.tsx']) {
 const admin = join(target, 'app/admin/page.tsx');
 writeFileSync(admin, readFileSync(admin, 'utf8').replace('Your ChatGPT account', 'Your account'));
 const adminApi = join(target, 'app/api/admin/route.ts');
-writeFileSync(adminApi, 'import { publicOrigin } from "@/portable/sessions.mjs";\n' + readFileSync(adminApi, 'utf8').replace('new URL(request.url).origin', 'publicOrigin()'));
+const adminApiSource = readFileSync(adminApi, 'utf8')
+  .replace('new URL(request.url).origin', 'publicOrigin()')
+  .replace(/\n\/\/ PORTABLE-STUB-START[\s\S]*?\/\/ PORTABLE-STUB-END\n/, '\n');
+writeFileSync(adminApi, 'import { publicOrigin, createLocalUser, listLocalUsers, setLocalUserEnabled, resetLocalUserPassword } from "@/portable/sessions.mjs";\n' + adminApiSource);
 console.log('Portable build staged at ' + target);

@@ -49,17 +49,44 @@ export function verifyPassword(password, encoded) {
   if (!parts) return false;
   return timingSafeEqual(scryptSync(password, parts[1], 64), Buffer.from(parts[2], 'hex'));
 }
+// Returns the signed-in display name on success (owner recovery or an operator-level local
+// account), or null. Never returns which of the two paths matched — both fail identically.
 export function checkLocal(email, password) {
   const db = getDatabase().connection, now = Date.now();
   const owners = (process.env.ADMIN_EMAILS || '').toLowerCase().split(',').map(s => s.trim());
   // One persistent bucket prevents bypass by changing submitted email or IP headers.
   const limit = db.prepare("SELECT * FROM portable_login_attempts WHERE identity='local'").get();
-  if (limit && limit.until > now && limit.attempts >= 5) return false;
+  if (limit && limit.until > now && limit.attempts >= 5) return null;
   db.prepare(`INSERT INTO portable_login_attempts VALUES ('local',1,?) ON CONFLICT(identity) DO UPDATE SET
     attempts=CASE WHEN until<=? THEN 1 ELSE attempts+1 END,
     until=CASE WHEN until<=? THEN excluded.until ELSE until END`).run(now + 900000, now, now);
-  const row = db.prepare('SELECT password_hash FROM portable_credentials WHERE email=?').get(email);
-  if (!owners.includes(email) || !row || !verifyPassword(password, row.password_hash)) return false;
+  if (owners.includes(email)) {
+    const row = db.prepare('SELECT password_hash FROM portable_credentials WHERE email=?').get(email);
+    if (!row || !verifyPassword(password, row.password_hash)) return null;
+    db.prepare("DELETE FROM portable_login_attempts WHERE identity='local'").run();
+    return { displayName: email };
+  }
+  // Operator-level local accounts (Tools -> Local Users, D-CAL-4): never checked against the
+  // owner allowlist, and never able to become one — owner stays exclusively ADMIN_EMAILS-derived.
+  const row = db.prepare('SELECT display_name,password_hash,enabled FROM portable_local_users WHERE email=?').get(email);
+  if (!row || !row.enabled || !verifyPassword(password, row.password_hash)) return null;
   db.prepare("DELETE FROM portable_login_attempts WHERE identity='local'").run();
-  return true;
+  return { displayName: row.display_name };
+}
+export function createLocalUser(email, displayName, password, createdBy) {
+  const db = getDatabase().connection;
+  if (db.prepare('SELECT email FROM portable_local_users WHERE email=?').get(email)) throw Error(email + ' already has a local login.');
+  db.prepare('INSERT INTO portable_local_users (email,display_name,password_hash,enabled,created_by,created_at) VALUES (?,?,?,1,?,?)')
+    .run(email, displayName, passwordHash(password), createdBy, new Date().toISOString());
+}
+export function listLocalUsers() {
+  return getDatabase().connection.prepare('SELECT email,display_name,enabled,created_by,created_at FROM portable_local_users ORDER BY email').all();
+}
+export function setLocalUserEnabled(email, enabled) {
+  const changes = getDatabase().connection.prepare('UPDATE portable_local_users SET enabled=? WHERE email=?').run(enabled ? 1 : 0, email).changes;
+  if (!changes) throw Error('No local login for ' + email + '.');
+}
+export function resetLocalUserPassword(email, password) {
+  const changes = getDatabase().connection.prepare('UPDATE portable_local_users SET password_hash=? WHERE email=?').run(passwordHash(password), email).changes;
+  if (!changes) throw Error('No local login for ' + email + '.');
 }

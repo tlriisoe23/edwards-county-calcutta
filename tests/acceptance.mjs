@@ -70,6 +70,21 @@ await send('undo');check(d.totals.gross===75000,'Undo void restores sale');
 await send('sale_reopen',{id:saleId,notes:'Rehearsal reopen'});check(d.teams.find(t=>t.id===tA).status==='UPCOMING'&&d.totals.gross===0,'Reopen returns team to auction without old pool contribution');
 await send('undo');
 await send('operator_add',{email:'rehearsal-operator@example.test'});let adminRead=await read();check(adminRead.operators.some(o=>o.email==='rehearsal-operator@example.test'),'Owner grants additional operator access');await send('operator_remove',{email:'rehearsal-operator@example.test'});adminRead=await read();check(!adminRead.operators.some(o=>o.email==='rehearsal-operator@example.test'),'Owner revokes additional operator access');
+// Local user accounts (Tools -> Local Users) only exist in the portable deployment; only
+// exercise the live admin-API actions when running under the portable test harness, which signs
+// in as the real owner via the actual local-login HTTP form (see tests/test-session.mjs).
+if(process.env.CALCUTTA_TEST_PASSWORD){
+  const localEmail='rehearsal-local-user@example.test';
+  await send('local_user_create',{email:localEmail,displayName:'Rehearsal Local User',password:'a genuinely long fixture password',confirmPassword:'a genuinely long fixture password'});
+  adminRead=await read();check(adminRead.localUsers.some(u=>u.email===localEmail&&u.display_name==='Rehearsal Local User'&&u.enabled===1),'Owner creates a local user account');
+  check(!('password_hash' in adminRead.localUsers.find(u=>u.email===localEmail)),'Local user listing never exposes the password hash');
+  await send('local_user_create',{email:localEmail,displayName:'Duplicate',password:'a genuinely long fixture password',confirmPassword:'a genuinely long fixture password'},{expected:400});
+  await send('local_user_create',{email:localEmail+'2',displayName:'Mismatch',password:'a genuinely long fixture password',confirmPassword:'does not match'},{expected:400});
+  await send('local_user_set_enabled',{email:localEmail,enabled:false});adminRead=await read();check(adminRead.localUsers.find(u=>u.email===localEmail).enabled===0,'Owner disables a local user account');
+  await send('local_user_set_enabled',{email:localEmail,enabled:true});
+  await send('local_user_reset_password',{email:localEmail,password:'a different long fixture password',confirmPassword:'a different long fixture password'});
+  check(true,'Owner resets a local user password');
+}
 for(let i=0;i<500;i++){const total=1+Math.floor(Math.random()*10000000),a=Math.floor(Math.random()*10001),b=Math.floor(Math.random()*(10001-a)),split=splitCents(total,[a,b,10000-a-b]);assert.equal(split.reduce((x,y)=>x+y,0),total);assert.ok(split.every(Number.isSafeInteger));}check(true,'500 randomized cent-exact payout splits');
 check(parsePaste('"Smith, Jones",John,Mike,Championship Flight,8.4')[0][0]==='Smith, Jones','Quoted CSV round trip');
 await send('results',{rows:d.teams.map(t=>({teamId:t.id,finish:null}))});

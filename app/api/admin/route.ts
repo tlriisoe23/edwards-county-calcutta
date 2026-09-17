@@ -12,6 +12,18 @@ const buyerSchema = z.object({ id: id.optional(), name: text, group: z.string().
 const timestamp = () => new Date().toISOString();
 function requireThat(condition: any, message: string) { if (!condition)
     throw Error(message); }
+// PORTABLE-STUB-START
+// Local user accounts (Tools -> Local Users) exist only in the self-hosted portable deployment
+// (portable/sessions.mjs, scrypt-hashed, operator-level only per D-CAL-4). scripts/stage-portable.mjs
+// replaces this block with a real import at staging time, mirroring the existing publicOrigin()
+// precedent above. The plain Sites/ChatGPT build keeps these throwing stubs so it still compiles;
+// that deployment target is not production (see AGENTS.md) and local accounts are out of scope for it.
+function portableOnly(): never { throw Error("Local accounts require the portable deployment."); }
+const createLocalUser: (email: string, displayName: string, password: string, createdBy: string) => void = portableOnly;
+const listLocalUsers: () => { email: string; display_name: string; enabled: number; created_by: string; created_at: string }[] = portableOnly;
+const setLocalUserEnabled: (email: string, enabled: boolean) => void = portableOnly;
+const resetLocalUserPassword: (email: string, password: string) => void = portableOnly;
+// PORTABLE-STUB-END
 function settingsSchema() { return z.object({ theme: z.enum(themeIds).optional(), trackBidder: z.boolean(), quickStarts: z.array(cents.refine(v => v > 0)).min(1).max(8), buybackMode: z.enum(["off", "calculate", "track"]), buybackSuggested: percent, minBid: cents, increment: cents.refine(v => v > 0), quickIncrements: z.array(cents.refine(v => v > 0)).min(1).max(8), poolMode: z.enum(["separate", "combined", "custom"]), deductionType: z.enum(["none", "percent", "fixed"]), deduction: cents, buybackMax: percent, buybackPriceMode: z.enum(["proportional", "fixed"]), buybackFixed: cents, buybackDeadline: z.string().max(40), autoAdvance: z.boolean(), showBidder: z.boolean(), showBid: z.boolean(), showBuyer: z.boolean(), showSalePrice: z.boolean(), showUpcoming: z.boolean(), showHandicap: z.boolean(), showPayouts: z.boolean(), showBuyback: z.boolean(), showTotalPool: z.boolean(), showFlightPools: z.boolean() }).superRefine((s, c) => { if (s.deductionType === "percent" && s.deduction > 10000)
     c.addIssue({ code: "custom", message: "Deduction cannot exceed 100%." });
     // D-CAL-2: a positive opening bid is required, and "no house cut" is only ever the None type — never a blank or zero amount.
@@ -29,7 +41,9 @@ export async function GET(request: Request) { try {
     const audit = data ? (await statement('SELECT id,actor,action,recordId,createdAt,undone FROM audit WHERE eventId=? ORDER BY createdAt DESC LIMIT 100', data.event.id).all()).results : [];
     const operators = who.owner ? (await db().prepare('SELECT email,addedBy,createdAt FROM operators ORDER BY email').all()).results : [];
     const owners = who.owner ? ownerEmails() : [];
-    return Response.json({ data, events, audit, operators, owners, user: { email: who.email, owner: who.owner } }, { headers: { "Cache-Control": "private, no-store" } });
+    let localUsers: Row[] = [];
+    if (who.owner) { try { localUsers = listLocalUsers(); } catch { /* not the portable deployment target */ } }
+    return Response.json({ data, events, audit, operators, owners, localUsers, user: { email: who.email, owner: who.owner } }, { headers: { "Cache-Control": "private, no-store" } });
 }
 catch (e) {
     console.error(e);
@@ -88,6 +102,57 @@ export async function POST(request: Request) {
                 if (await replay()) return Response.json({ ok: true, duplicate: true });
                 throw error;
             }
+            return Response.json({ ok: true });
+        }
+        if (action === "local_user_create" || action === "local_user_set_enabled" || action === "local_user_reset_password") {
+            requireThat(who.owner, "Only the owner can manage local user accounts.");
+            const email = z.string().trim().email().max(254).parse(p.email).toLowerCase();
+            requireThat(!ownerEmails().includes(email), "The owner cannot also have a separate local login.");
+            const auditAction = action + " " + email;
+            const replay = async () => {
+                const prior = await statement('SELECT actor,action FROM audit WHERE id=?', requestId).first<Row>();
+                if (!prior)
+                    return false;
+                requireThat(prior.actor === who.email && prior.action === auditAction, "This request ID changed its action or operator. Submit a new request.");
+                return true;
+            };
+            if (await replay())
+                return Response.json({ ok: true, duplicate: true });
+            const auditEvent = await db().prepare('SELECT id FROM events ORDER BY createdAt DESC LIMIT 1').first<Row>();
+            requireThat(auditEvent, "Create an event before managing local user accounts.");
+            const now = timestamp();
+            // Local accounts live in the portable runtime's own SQLite connection, a separate API
+            // surface from the D1-style statements batched elsewhere in this route (see D-CAL-7 /
+            // BATCH-CAL-UI2.md) — the account write and the audit entry are two sequential steps,
+            // not one atomic batch. The account change is the source of truth for sign-in; a lost
+            // audit row on a rare mid-request failure is a traceability gap, not a security issue.
+            let after: Row;
+            if (action === "local_user_create") {
+                const displayName = z.string().trim().min(1).max(150).parse(p.displayName);
+                const password = z.string().min(14, "Use a password between 14 and 1024 characters.").max(1024).parse(p.password);
+                requireThat(password === p.confirmPassword, "Passwords do not match.");
+                try {
+                    createLocalUser(email, displayName, password, who.email);
+                }
+                catch (e) {
+                    if (await replay())
+                        return Response.json({ ok: true, duplicate: true });
+                    throw e;
+                }
+                after = { email, displayName };
+            }
+            else if (action === "local_user_set_enabled") {
+                const enabled = z.boolean().parse(p.enabled);
+                setLocalUserEnabled(email, enabled);
+                after = { email, enabled };
+            }
+            else {
+                const password = z.string().min(14, "Use a password between 14 and 1024 characters.").max(1024).parse(p.password);
+                requireThat(password === p.confirmPassword, "Passwords do not match.");
+                resetLocalUserPassword(email, password);
+                after = { email };
+            }
+            await insert("audit", { id: requestId, eventId: auditEvent!.id, actor: who.email, action: auditAction, after: JSON.stringify(after), createdAt: now }).run();
             return Response.json({ ok: true });
         }
         if (action === "create_event" || action === "load_demo") {
