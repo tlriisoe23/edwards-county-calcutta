@@ -1,0 +1,1224 @@
+[
+  {
+    "name": "Auction console",
+    "violations": [
+      {
+        "id": "target-size",
+        "impact": "serious",
+        "tags": [
+          "cat.sensory-and-visual-cues",
+          "wcag22aa",
+          "wcag258"
+        ],
+        "description": "Ensure touch targets have sufficient size and space",
+        "help": "All touch targets must be 24px large, or leave sufficient space",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/target-size?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "target-size",
+                "data": {
+                  "minSize": 24,
+                  "width": 19,
+                  "height": 19
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Target has insufficient size (19px by 19px, should be at least 24px by 24px)"
+              },
+              {
+                "id": "target-offset",
+                "data": {
+                  "closestOffset": 19,
+                  "minOffset": 24
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button data-slot=\"button\" data-variant=\"outline\" data-size=\"default\" class=\"inline-flex shrink-0...\" type=\"button\">",
+                    "target": [
+                      ".nav-group:nth-child(1) > .nav-item > .nav-shortcut.px-4[type=\"button\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary aria-label=\"What is Check TV display?\">",
+            "target": [
+              "summary[aria-label=\"What is Check TV display?\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Target has insufficient size (19px by 19px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+          },
+          {
+            "any": [
+              {
+                "id": "target-size",
+                "data": {
+                  "minSize": 24,
+                  "width": 19,
+                  "height": 19
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Target has insufficient size (19px by 19px, should be at least 24px by 24px)"
+              },
+              {
+                "id": "target-offset",
+                "data": {
+                  "closestOffset": 19,
+                  "minOffset": 24
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button data-slot=\"button\" data-variant=\"outline\" data-size=\"default\" class=\"inline-flex shrink-0...\" type=\"button\">",
+                    "target": [
+                      ".nav-group:nth-child(4) > .nav-item > .nav-shortcut.px-4[type=\"button\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary aria-label=\"What is Advanced settings?\">",
+            "target": [
+              "summary[aria-label=\"What is Advanced settings?\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Target has insufficient size (19px by 19px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Event & rules",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "tags": [
+          "cat.color",
+          "wcag2aa",
+          "wcag143",
+          "TTv5",
+          "TT13.c",
+          "EN-301-549",
+          "EN-9.1.4.3",
+          "ACT",
+          "RGAAv4",
+          "RGAA-3.2.1"
+        ],
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#7b846f",
+                  "bgColor": "#ffffff",
+                  "contrastRatio": 3.9,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<section class=\"panel settings-card\">",
+                    "target": [
+                      "aside > .settings-card.panel:nth-child(1)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.9 (foreground color: #7b846f, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<small>Own pool in custom mode</small>",
+            "target": [
+              ".flight-setting:nth-child(2) > span > small"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.9 (foreground color: #7b846f, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#7b846f",
+                  "bgColor": "#ffffff",
+                  "contrastRatio": 3.9,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<section class=\"panel settings-card\">",
+                    "target": [
+                      "aside > .settings-card.panel:nth-child(1)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.9 (foreground color: #7b846f, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<small>Own pool in custom mode</small>",
+            "target": [
+              ".flight-setting:nth-child(3) > span > small"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.9 (foreground color: #7b846f, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      },
+      {
+        "id": "target-size",
+        "impact": "serious",
+        "tags": [
+          "cat.sensory-and-visual-cues",
+          "wcag22aa",
+          "wcag258"
+        ],
+        "description": "Ensure touch targets have sufficient size and space",
+        "help": "All touch targets must be 24px large, or leave sufficient space",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/target-size?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "target-size",
+                "data": {
+                  "minSize": 24,
+                  "width": 19,
+                  "height": 19
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Target has insufficient size (19px by 19px, should be at least 24px by 24px)"
+              },
+              {
+                "id": "target-offset",
+                "data": {
+                  "closestOffset": 19,
+                  "minOffset": 24
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button data-slot=\"button\" data-variant=\"outline\" data-size=\"default\" class=\"inline-flex shrink-0...\" type=\"button\">",
+                    "target": [
+                      ".nav-group:nth-child(1) > .nav-item > .nav-shortcut.px-4.has-\\[\\>svg\\]\\:px-3"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary aria-label=\"What is Check TV display?\">",
+            "target": [
+              "summary[aria-label=\"What is Check TV display?\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Target has insufficient size (19px by 19px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+          },
+          {
+            "any": [
+              {
+                "id": "target-size",
+                "data": {
+                  "minSize": 24,
+                  "width": 19,
+                  "height": 19
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Target has insufficient size (19px by 19px, should be at least 24px by 24px)"
+              },
+              {
+                "id": "target-offset",
+                "data": {
+                  "closestOffset": 19,
+                  "minOffset": 24
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button data-slot=\"button\" data-variant=\"outline\" data-size=\"default\" class=\"inline-flex shrink-0...\" type=\"button\">",
+                    "target": [
+                      ".nav-group:nth-child(4) > .nav-item > .nav-shortcut.px-4.has-\\[\\>svg\\]\\:px-3"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary aria-label=\"What is Advanced settings?\">",
+            "target": [
+              "summary[aria-label=\"What is Advanced settings?\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Target has insufficient size (19px by 19px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Teams & flights",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "tags": [
+          "cat.color",
+          "wcag2aa",
+          "wcag143",
+          "TTv5",
+          "TT13.c",
+          "EN-301-549",
+          "EN-9.1.4.3",
+          "ACT",
+          "RGAAv4",
+          "RGAA-3.2.1"
+        ],
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#738067",
+                  "bgColor": "#f0f2e9",
+                  "contrastRatio": 3.7,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Order</th>",
+                    "target": [
+                      "th:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Order</th>",
+            "target": [
+              "th:nth-child(2)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#738067",
+                  "bgColor": "#f0f2e9",
+                  "contrastRatio": 3.7,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Team / players</th>",
+                    "target": [
+                      "th:nth-child(3)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Team / players</th>",
+            "target": [
+              "th:nth-child(3)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#738067",
+                  "bgColor": "#f0f2e9",
+                  "contrastRatio": 3.7,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Flight</th>",
+                    "target": [
+                      "th:nth-child(4)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Flight</th>",
+            "target": [
+              "th:nth-child(4)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#738067",
+                  "bgColor": "#f0f2e9",
+                  "contrastRatio": 3.7,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Index</th>",
+                    "target": [
+                      "th:nth-child(5)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Index</th>",
+            "target": [
+              "th:nth-child(5)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#738067",
+                  "bgColor": "#f0f2e9",
+                  "contrastRatio": 3.7,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Status</th>",
+                    "target": [
+                      "th:nth-child(6)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Status</th>",
+            "target": [
+              "th:nth-child(6)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#738067",
+                  "bgColor": "#f0f2e9",
+                  "contrastRatio": 3.7,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Actions</th>",
+                    "target": [
+                      "th:nth-child(7)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Actions</th>",
+            "target": [
+              "th:nth-child(7)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      },
+      {
+        "id": "target-size",
+        "impact": "serious",
+        "tags": [
+          "cat.sensory-and-visual-cues",
+          "wcag22aa",
+          "wcag258"
+        ],
+        "description": "Ensure touch targets have sufficient size and space",
+        "help": "All touch targets must be 24px large, or leave sufficient space",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/target-size?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "target-size",
+                "data": {
+                  "minSize": 24,
+                  "width": 19,
+                  "height": 19
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Target has insufficient size (19px by 19px, should be at least 24px by 24px)"
+              },
+              {
+                "id": "target-offset",
+                "data": {
+                  "closestOffset": 19,
+                  "minOffset": 24
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button data-slot=\"button\" data-variant=\"outline\" data-size=\"default\" class=\"inline-flex shrink-0...\" type=\"button\">",
+                    "target": [
+                      ".nav-group:nth-child(1) > .nav-item > .nav-shortcut.bg-background.dark\\:border-input"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary aria-label=\"What is Check TV display?\">",
+            "target": [
+              "summary[aria-label=\"What is Check TV display?\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Target has insufficient size (19px by 19px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+          },
+          {
+            "any": [
+              {
+                "id": "target-size",
+                "data": {
+                  "minSize": 24,
+                  "width": 19,
+                  "height": 19
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Target has insufficient size (19px by 19px, should be at least 24px by 24px)"
+              },
+              {
+                "id": "target-offset",
+                "data": {
+                  "closestOffset": 19,
+                  "minOffset": 24
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button data-slot=\"button\" data-variant=\"outline\" data-size=\"default\" class=\"inline-flex shrink-0...\" type=\"button\">",
+                    "target": [
+                      ".nav-group:nth-child(4) > .nav-item > .nav-shortcut.bg-background.dark\\:border-input"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary aria-label=\"What is Advanced settings?\">",
+            "target": [
+              "summary[aria-label=\"What is Advanced settings?\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Target has insufficient size (19px by 19px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Display & sharing",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "tags": [
+          "cat.color",
+          "wcag2aa",
+          "wcag143",
+          "TTv5",
+          "TT13.c",
+          "EN-301-549",
+          "EN-9.1.4.3",
+          "ACT",
+          "RGAAv4",
+          "RGAA-3.2.1"
+        ],
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#18372b",
+                  "bgColor": "#173f30",
+                  "contrastRatio": 1.1,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<a href=\"http://localhost:518...\" target=\"_blank\" rel=\"noreferrer\" data-slot=\"button\" data-variant=\"default\" data-size=\"default\" class=\"inline-flex shrink-0...\">",
+                    "target": [
+                      ".settings-card.panel:nth-child(1) > .actions:nth-child(5) > .bg-primary.text-primary-foreground.hover\\:bg-primary\\/90"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 1.1 (foreground color: #18372b, background color: #173f30, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"http://localhost:518...\" target=\"_blank\" rel=\"noreferrer\" data-slot=\"button\" data-variant=\"default\" data-size=\"default\" class=\"inline-flex shrink-0...\">",
+            "target": [
+              ".settings-card.panel:nth-child(1) > .actions:nth-child(5) > .bg-primary.text-primary-foreground.hover\\:bg-primary\\/90"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.1 (foreground color: #18372b, background color: #173f30, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#18372b",
+                  "bgColor": "#173f30",
+                  "contrastRatio": 1.1,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<a href=\"http://localhost:518...\" target=\"_blank\" rel=\"noreferrer\" data-slot=\"button\" data-variant=\"default\" data-size=\"default\" class=\"inline-flex shrink-0...\">",
+                    "target": [
+                      ".settings-card.panel:nth-child(2) > .actions > .bg-primary.text-primary-foreground.hover\\:bg-primary\\/90"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 1.1 (foreground color: #18372b, background color: #173f30, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"http://localhost:518...\" target=\"_blank\" rel=\"noreferrer\" data-slot=\"button\" data-variant=\"default\" data-size=\"default\" class=\"inline-flex shrink-0...\">",
+            "target": [
+              ".settings-card.panel:nth-child(2) > .actions > .bg-primary.text-primary-foreground.hover\\:bg-primary\\/90"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.1 (foreground color: #18372b, background color: #173f30, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      },
+      {
+        "id": "target-size",
+        "impact": "serious",
+        "tags": [
+          "cat.sensory-and-visual-cues",
+          "wcag22aa",
+          "wcag258"
+        ],
+        "description": "Ensure touch targets have sufficient size and space",
+        "help": "All touch targets must be 24px large, or leave sufficient space",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/target-size?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "target-size",
+                "data": {
+                  "minSize": 24,
+                  "width": 19,
+                  "height": 19
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Target has insufficient size (19px by 19px, should be at least 24px by 24px)"
+              },
+              {
+                "id": "target-offset",
+                "data": {
+                  "closestOffset": 19,
+                  "minOffset": 24
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button data-slot=\"button\" data-variant=\"outline\" data-size=\"default\" class=\"inline-flex shrink-0...\" type=\"button\">",
+                    "target": [
+                      ".nav-group:nth-child(1) > .nav-item > .nav-shortcut.bg-background.hover\\:bg-accent"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary aria-label=\"What is Check TV display?\">",
+            "target": [
+              "summary[aria-label=\"What is Check TV display?\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Target has insufficient size (19px by 19px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+          },
+          {
+            "any": [
+              {
+                "id": "target-size",
+                "data": {
+                  "minSize": 24,
+                  "width": 19,
+                  "height": 19
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Target has insufficient size (19px by 19px, should be at least 24px by 24px)"
+              },
+              {
+                "id": "target-offset",
+                "data": {
+                  "closestOffset": 19,
+                  "minOffset": 24
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button data-slot=\"button\" data-variant=\"outline\" data-size=\"default\" class=\"inline-flex shrink-0...\" type=\"button\">",
+                    "target": [
+                      ".nav-group:nth-child(4) > .nav-item > .nav-shortcut.bg-background.hover\\:bg-accent"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary aria-label=\"What is Advanced settings?\">",
+            "target": [
+              "summary[aria-label=\"What is Advanced settings?\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Target has insufficient size (19px by 19px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Sales",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "tags": [
+          "cat.color",
+          "wcag2aa",
+          "wcag143",
+          "TTv5",
+          "TT13.c",
+          "EN-301-549",
+          "EN-9.1.4.3",
+          "ACT",
+          "RGAAv4",
+          "RGAA-3.2.1"
+        ],
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#738067",
+                  "bgColor": "#f0f2e9",
+                  "contrastRatio": 3.7,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Team</th>",
+                    "target": [
+                      "th:nth-child(1)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Team</th>",
+            "target": [
+              "th:nth-child(1)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#738067",
+                  "bgColor": "#f0f2e9",
+                  "contrastRatio": 3.7,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Buyer</th>",
+                    "target": [
+                      "th:nth-child(2)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Buyer</th>",
+            "target": [
+              "th:nth-child(2)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#738067",
+                  "bgColor": "#f0f2e9",
+                  "contrastRatio": 3.7,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Sale price</th>",
+                    "target": [
+                      "th:nth-child(3)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Sale price</th>",
+            "target": [
+              "th:nth-child(3)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#738067",
+                  "bgColor": "#f0f2e9",
+                  "contrastRatio": 3.7,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Ownership</th>",
+                    "target": [
+                      "th:nth-child(4)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Ownership</th>",
+            "target": [
+              "th:nth-child(4)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#738067",
+                  "bgColor": "#f0f2e9",
+                  "contrastRatio": 3.7,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Status</th>",
+                    "target": [
+                      "th:nth-child(5)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Status</th>",
+            "target": [
+              "th:nth-child(5)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#738067",
+                  "bgColor": "#f0f2e9",
+                  "contrastRatio": 3.7,
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Actions</th>",
+                    "target": [
+                      "th:nth-child(6)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<th data-slot=\"table-head\" class=\"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;&gt;[role=checkbox]]:translate-y-[2px]\">Actions</th>",
+            "target": [
+              "th:nth-child(6)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.7 (foreground color: #738067, background color: #f0f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      },
+      {
+        "id": "target-size",
+        "impact": "serious",
+        "tags": [
+          "cat.sensory-and-visual-cues",
+          "wcag22aa",
+          "wcag258"
+        ],
+        "description": "Ensure touch targets have sufficient size and space",
+        "help": "All touch targets must be 24px large, or leave sufficient space",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/target-size?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "target-size",
+                "data": {
+                  "minSize": 24,
+                  "width": 19,
+                  "height": 19
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Target has insufficient size (19px by 19px, should be at least 24px by 24px)"
+              },
+              {
+                "id": "target-offset",
+                "data": {
+                  "closestOffset": 19,
+                  "minOffset": 24
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button data-slot=\"button\" data-variant=\"outline\" data-size=\"default\" class=\"inline-flex shrink-0...\" type=\"button\">",
+                    "target": [
+                      ".nav-group:nth-child(1) > .nav-item > .nav-shortcut.h-9.px-4"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary aria-label=\"What is Check TV display?\">",
+            "target": [
+              "summary[aria-label=\"What is Check TV display?\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Target has insufficient size (19px by 19px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+          },
+          {
+            "any": [
+              {
+                "id": "target-size",
+                "data": {
+                  "minSize": 24,
+                  "width": 19,
+                  "height": 19
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Target has insufficient size (19px by 19px, should be at least 24px by 24px)"
+              },
+              {
+                "id": "target-offset",
+                "data": {
+                  "closestOffset": 19,
+                  "minOffset": 24
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button data-slot=\"button\" data-variant=\"outline\" data-size=\"default\" class=\"inline-flex shrink-0...\" type=\"button\">",
+                    "target": [
+                      ".nav-group:nth-child(4) > .nav-item > .nav-shortcut.h-9.px-4"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary aria-label=\"What is Advanced settings?\">",
+            "target": [
+              "summary[aria-label=\"What is Advanced settings?\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Target has insufficient size (19px by 19px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Help",
+    "violations": [
+      {
+        "id": "target-size",
+        "impact": "serious",
+        "tags": [
+          "cat.sensory-and-visual-cues",
+          "wcag22aa",
+          "wcag258"
+        ],
+        "description": "Ensure touch targets have sufficient size and space",
+        "help": "All touch targets must be 24px large, or leave sufficient space",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/target-size?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "target-size",
+                "data": {
+                  "minSize": 24,
+                  "width": 19,
+                  "height": 19
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Target has insufficient size (19px by 19px, should be at least 24px by 24px)"
+              },
+              {
+                "id": "target-offset",
+                "data": {
+                  "closestOffset": 19,
+                  "minOffset": 24
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button data-slot=\"button\" data-variant=\"outline\" data-size=\"default\" class=\"inline-flex shrink-0...\" type=\"button\">",
+                    "target": [
+                      ".nav-group:nth-child(1) > .nav-item > .nav-shortcut.bg-background.hover\\:bg-accent"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary aria-label=\"What is Check TV display?\">",
+            "target": [
+              "summary[aria-label=\"What is Check TV display?\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Target has insufficient size (19px by 19px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+          },
+          {
+            "any": [
+              {
+                "id": "target-size",
+                "data": {
+                  "minSize": 24,
+                  "width": 19,
+                  "height": 19
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Target has insufficient size (19px by 19px, should be at least 24px by 24px)"
+              },
+              {
+                "id": "target-offset",
+                "data": {
+                  "closestOffset": 19,
+                  "minOffset": 24
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button data-slot=\"button\" data-variant=\"outline\" data-size=\"default\" class=\"inline-flex shrink-0...\" type=\"button\">",
+                    "target": [
+                      ".nav-group:nth-child(4) > .nav-item > .nav-shortcut.bg-background.hover\\:bg-accent"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary aria-label=\"What is Advanced settings?\">",
+            "target": [
+              "summary[aria-label=\"What is Advanced settings?\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Target has insufficient size (19px by 19px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+          }
+        ]
+      }
+    ]
+  }
+]

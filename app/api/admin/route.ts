@@ -1,3 +1,4 @@
+import { themeIds } from '@/lib/themes';
 import { z } from "zod";
 import { db, statement, insert, update, read, freshEvent, identity, ownerEmails } from "@/lib/store";
 import { defaultSettings, type Row } from "@/lib/model";
@@ -11,7 +12,7 @@ const buyerSchema = z.object({ id: id.optional(), name: text, group: z.string().
 const timestamp = () => new Date().toISOString();
 function requireThat(condition: any, message: string) { if (!condition)
     throw Error(message); }
-function settingsSchema() { return z.object({ trackBidder: z.boolean(), quickStarts: z.array(cents.refine(v => v > 0)).min(1).max(8), buybackMode: z.enum(["off", "calculate", "track"]), buybackSuggested: percent, minBid: cents, increment: cents.refine(v => v > 0), quickIncrements: z.array(cents.refine(v => v > 0)).min(1).max(8), poolMode: z.enum(["separate", "combined", "custom"]), deductionType: z.enum(["none", "percent", "fixed"]), deduction: cents, buybackMax: percent, buybackPriceMode: z.enum(["proportional", "fixed"]), buybackFixed: cents, buybackDeadline: z.string().max(40), autoAdvance: z.boolean(), showBidder: z.boolean(), showBid: z.boolean(), showBuyer: z.boolean(), showSalePrice: z.boolean(), showUpcoming: z.boolean(), showHandicap: z.boolean(), showPayouts: z.boolean(), showBuyback: z.boolean(), showTotalPool: z.boolean(), showFlightPools: z.boolean() }).superRefine((s, c) => { if (s.deductionType === "percent" && s.deduction > 10000)
+function settingsSchema() { return z.object({ theme: z.enum(themeIds).optional(), trackBidder: z.boolean(), quickStarts: z.array(cents.refine(v => v > 0)).min(1).max(8), buybackMode: z.enum(["off", "calculate", "track"]), buybackSuggested: percent, minBid: cents, increment: cents.refine(v => v > 0), quickIncrements: z.array(cents.refine(v => v > 0)).min(1).max(8), poolMode: z.enum(["separate", "combined", "custom"]), deductionType: z.enum(["none", "percent", "fixed"]), deduction: cents, buybackMax: percent, buybackPriceMode: z.enum(["proportional", "fixed"]), buybackFixed: cents, buybackDeadline: z.string().max(40), autoAdvance: z.boolean(), showBidder: z.boolean(), showBid: z.boolean(), showBuyer: z.boolean(), showSalePrice: z.boolean(), showUpcoming: z.boolean(), showHandicap: z.boolean(), showPayouts: z.boolean(), showBuyback: z.boolean(), showTotalPool: z.boolean(), showFlightPools: z.boolean() }).superRefine((s, c) => { if (s.deductionType === "percent" && s.deduction > 10000)
     c.addIssue({ code: "custom", message: "Deduction cannot exceed 100%." });
     // D-CAL-2: a positive opening bid is required, and "no house cut" is only ever the None type — never a blank or zero amount.
     if (s.minBid < 100) c.addIssue({ code: "custom", message: "Enter a minimum starting bid of at least $1.00" });
@@ -150,11 +151,17 @@ export async function POST(request: Request) {
         const setBlock = (t: Row | null) => { cmds.push(statement("UPDATE teams SET status='UPCOMING' WHERE eventId=? AND status='ON_BLOCK'", eventId)); if (t)
             cmds.push(update("teams", { status: "ON_BLOCK" }, "id", t.id)); cmds.push(update("auction_state", { teamId: t?.id || null, bid: 0, buyerId: null }, "eventId", eventId)); };
         switch (action) {
+            case "theme_update": {
+                const { theme } = z.object({ theme: z.enum(themeIds) }).strict().parse(p);
+                // Presentation-only save: retain every auction setting and live record.
+                cmds.push(update("events", { settings: JSON.stringify({ ...s, theme }) }, "id", eventId));
+                break;
+            }
             case "event_update": {
                 const v = z.object({ name: text, calcuttaName: text, course: z.string().max(150), dates: z.string().max(100), auctionAt: z.string().max(40), description: note, rules: note, currency: z.enum(["USD", "CAD", "GBP", "EUR", "AUD"]), settings: settingsSchema() }).parse(p);
                 if (v.settings.poolMode !== s.poolMode)
                     requireThat(!data.teams.some((t: Row) => t.finish), "Clear finishing positions before changing the pool configuration.");
-                cmds.push(update("events", { ...v, settings: JSON.stringify(v.settings) }, "id", eventId));
+                cmds.push(update("events", { ...v, settings: JSON.stringify({ ...v.settings, theme: v.settings.theme ?? s.theme }) }, "id", eventId));
                 if (!v.settings.trackBidder) cmds.push(update("auction_state", { buyerId: null }, "eventId", eventId));
                 break;
             }

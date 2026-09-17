@@ -1,0 +1,342 @@
+{
+  "checks": [
+    {
+      "label": "classic/1280/Results: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Results: immediate full-page axe",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Settlement: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Settlement: immediate full-page axe",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Results: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Results: immediate full-page axe",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Results: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Results: immediate full-page axe",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Settlement: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Settlement: immediate full-page axe",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Results: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Results: immediate full-page axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Results: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Results: immediate full-page axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Settlement: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Settlement: immediate full-page axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Results: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Results: immediate full-page axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/390/Results: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/390/Results: immediate full-page axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/390/Settlement: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/390/Settlement: immediate full-page axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/390/Results: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/390/Results: immediate full-page axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Results: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Results: immediate full-page axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Settlement: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Settlement: immediate full-page axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Results: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Results: immediate full-page axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/390/Results: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "dark-event/390/Results: immediate full-page axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/390/Settlement: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "dark-event/390/Settlement: immediate full-page axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/390/Results: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "dark-event/390/Results: immediate full-page axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Results: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Results: immediate full-page axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Settlement: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Settlement: immediate full-page axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Results: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Results: immediate full-page axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/390/Results: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "light-event/390/Results: immediate full-page axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/390/Settlement: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "light-event/390/Settlement: immediate full-page axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/390/Results: navigation colors switch without interpolation",
+      "pass": true
+    },
+    {
+      "label": "light-event/390/Results: immediate full-page axe",
+      "pass": true
+    }
+  ],
+  "scans": [
+    {
+      "theme": "classic",
+      "width": 1280,
+      "target": "Results",
+      "violations": []
+    },
+    {
+      "theme": "classic",
+      "width": 1280,
+      "target": "Settlement",
+      "violations": []
+    },
+    {
+      "theme": "classic",
+      "width": 1280,
+      "target": "Results",
+      "violations": []
+    },
+    {
+      "theme": "classic",
+      "width": 390,
+      "target": "Results",
+      "violations": []
+    },
+    {
+      "theme": "classic",
+      "width": 390,
+      "target": "Settlement",
+      "violations": []
+    },
+    {
+      "theme": "classic",
+      "width": 390,
+      "target": "Results",
+      "violations": []
+    },
+    {
+      "theme": "high-contrast",
+      "width": 1280,
+      "target": "Results",
+      "violations": []
+    },
+    {
+      "theme": "high-contrast",
+      "width": 1280,
+      "target": "Settlement",
+      "violations": []
+    },
+    {
+      "theme": "high-contrast",
+      "width": 1280,
+      "target": "Results",
+      "violations": []
+    },
+    {
+      "theme": "high-contrast",
+      "width": 390,
+      "target": "Results",
+      "violations": []
+    },
+    {
+      "theme": "high-contrast",
+      "width": 390,
+      "target": "Settlement",
+      "violations": []
+    },
+    {
+      "theme": "high-contrast",
+      "width": 390,
+      "target": "Results",
+      "violations": []
+    },
+    {
+      "theme": "dark-event",
+      "width": 1280,
+      "target": "Results",
+      "violations": []
+    },
+    {
+      "theme": "dark-event",
+      "width": 1280,
+      "target": "Settlement",
+      "violations": []
+    },
+    {
+      "theme": "dark-event",
+      "width": 1280,
+      "target": "Results",
+      "violations": []
+    },
+    {
+      "theme": "dark-event",
+      "width": 390,
+      "target": "Results",
+      "violations": []
+    },
+    {
+      "theme": "dark-event",
+      "width": 390,
+      "target": "Settlement",
+      "violations": []
+    },
+    {
+      "theme": "dark-event",
+      "width": 390,
+      "target": "Results",
+      "violations": []
+    },
+    {
+      "theme": "light-event",
+      "width": 1280,
+      "target": "Results",
+      "violations": []
+    },
+    {
+      "theme": "light-event",
+      "width": 1280,
+      "target": "Settlement",
+      "violations": []
+    },
+    {
+      "theme": "light-event",
+      "width": 1280,
+      "target": "Results",
+      "violations": []
+    },
+    {
+      "theme": "light-event",
+      "width": 390,
+      "target": "Results",
+      "violations": []
+    },
+    {
+      "theme": "light-event",
+      "width": 390,
+      "target": "Settlement",
+      "violations": []
+    },
+    {
+      "theme": "light-event",
+      "width": 390,
+      "target": "Results",
+      "violations": []
+    }
+  ]
+}

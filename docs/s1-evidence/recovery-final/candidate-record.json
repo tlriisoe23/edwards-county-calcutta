@@ -1,0 +1,45 @@
+{
+  "recordedAt": "2026-09-17T03:01:23.426356+00:00",
+  "inheritedHead": "f4a7e77baae943461f7bc6161a223f61ec5100d8",
+  "candidateCommit": null,
+  "state": "Uncommitted; locally validated; human acceptance pending; no merge or deployment",
+  "sourceSha256": {
+    "app/api/admin/route.ts": "e3f2b28f7e603d41a26ebbeb48a59243a3df25b766914c6672994b15c866d241",
+    "app/auction.tsx": "b5c3b54f35cbf540ff91980fe08cc59db421bdc4d686405ef100fa46f669a85c",
+    "app/globals.css": "1694f960d350bdc4848d493f16ad8bd350d0691b3c59511462563ca3badf1fab",
+    "app/operator.tsx": "39071030e3d990744f73f1f88e4f4163e584f3d8eb103741399dd98d4906cb74",
+    "app/refinements.css": "c069dad2a04363a0374c93596a4829751123d9e16d30f12f84297d7bb6a47361",
+    "app/rules.tsx": "4dc5f4853bd3722875fb780e9d504cc2560a0840b99d3d918812b9aef8050bbd",
+    "app/sharing.tsx": "0d056ac4251feaf9cb4a629b8db1fbe9db46c90b3ea4797659f1af5709d50e90",
+    "app/theme-settings.tsx": "6001a25bb8f59d9a4d6e8866ba3b32d7d4c35730281cf3f02a239164b2b77e4a",
+    "app/themes.css": "4ac4b99c43923f4eed1ed3f8ac22e5c21eb6122119aba1174194fc8dd17244ba",
+    "lib/model.ts": "4f678435e7f08f54c19b96432955826d239b2c0baf4ed9a37e457e3356d71816",
+    "lib/store.ts": "98f59b3fa90d5e149281d3246ba4ef60dd86e3b9678985e43312d077dca13bf5",
+    "lib/themes.ts": "c2320baa8e712bd3730d4046f8fae0878a534a6560c3f7a60079ff16655c7fbd",
+    "tests/s1-browser.mjs": "e8f71642b9090e4500ee2fdc9cb7b2ed8ef4bc9cc84e6fab31348171bbbfd159",
+    "tests/s1-navigation.mjs": "3491272a7f7f58e554a4ed05a71570712183c4431f91ad83037ef4cc7825b5a7",
+    "tests/s1-portable-roles.mjs": "bcf31bb43ddc4ebd82fcd6fcf204f9a39fd9a542f9271cfd0b1f44502d372e1e",
+    "tests/s1-roles.mjs": "f324b704fa0ced3b6085598bacc9e920f52c58c4f9cd010f87401514ebdf5668",
+    "tests/s1-themes.mjs": "bee60f8d0b323bc13082f88d6df2088dd9161764d4d164947c7a005df3b2b1c2",
+    "tests/s1-tv.mjs": "b5e44bd5ca107ee7981a5ddb455085f9c20d4f865141a97a748be50a5e7f3a36"
+  },
+  "tvLayouts": 216,
+  "scalingComparisons": 56,
+  "portableRoleChecks": 13,
+  "broadBrowser": {
+    "passed": 370,
+    "failed": 2,
+    "resolution": "Both navigation contrast failures resolved by focused final check; raw run preserved"
+  },
+  "finalNavigation": {
+    "checks": 48,
+    "axeScans": 24,
+    "failures": 0,
+    "confirmedExitCode": 0
+  },
+  "sourceLint": {
+    "errors": 48,
+    "warnings": 42,
+    "baselineEquivalent": true
+  }
+}

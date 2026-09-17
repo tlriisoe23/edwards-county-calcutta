@@ -1,12 +1,14 @@
+import { normalizeTheme } from './themes.ts';
 export type Row = Record<string, any>;
 export const defaultSettings = {
+    theme: "classic",
     trackBidder: false, quickStarts: [10000, 20000, 30000, 50000], buybackMode: "off", buybackSuggested: 5000,
     minBid: 10000, increment: 2500, quickIncrements: [2500, 5000, 10000, 25000], poolMode: "separate",
     deductionType: "percent", deduction: 1000, buybackMax: 5000, buybackPriceMode: "proportional", buybackFixed: 0, buybackDeadline: "",
     autoAdvance: true, showBidder: true, showBid: true, showBuyer: true, showSalePrice: true, showUpcoming: true, showHandicap: true, showPayouts: true, showBuyback: false, showTotalPool: true, showFlightPools: true
 };
 // Existing events retain their prior bidder/ownership tools; newly created events use the new defaults.
-export function normalizeSettings(value: Row): Row { return { ...defaultSettings, trackBidder: true, buybackMode: "track", ...value }; }
+export function normalizeSettings(value: Row): Row { return { ...defaultSettings, trackBidder: true, buybackMode: "track", ...value, theme: normalizeTheme(value.theme) }; }
 export const publicFlags = ["showBidder", "showBid", "showBuyer", "showSalePrice", "showUpcoming", "showHandicap", "showPayouts", "showBuyback", "showTotalPool", "showFlightPools"];
 export function splitCents(total: number, weights: number[]) { const base = weights.map(w => Math.floor(total * w / 10000)); let left = total - base.reduce((a, b) => a + b, 0); const order = weights.map((w, i) => ({ i, r: (total * w) % 10000 })).sort((a, b) => b.r - a.r || a.i - b.i); for (let j = 0; j < left; j++)
     base[order[j % order.length].i]++; return base; }

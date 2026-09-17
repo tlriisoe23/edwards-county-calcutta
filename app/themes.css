@@ -1,0 +1,70 @@
+/* Semantic roles. Components consume these; presets only change values. */
+:root {
+  color-scheme: light;
+  --background: #f7f6f0; --foreground: #18372b;
+  --card: #ffffff; --card-foreground: var(--foreground);
+  --popover: var(--card); --popover-foreground: var(--foreground);
+  --primary: #173f30; --primary-foreground: #ffffff;
+  --secondary: #eeeee6; --secondary-foreground: var(--foreground);
+  --muted: var(--secondary); --muted-foreground: #526047;
+  --text-secondary: var(--muted-foreground); --lot-foreground: var(--text-secondary);
+  --accent: #e4e9df; --accent-foreground: var(--foreground);
+  --selected: var(--primary); --selected-foreground: var(--primary-foreground);
+  --border: #c5cbbf; --input: #818c7b; --ring: #806324;
+  --on-destructive: #ffffff; --destructive: #a4342e; --danger-surface: #f9e9e5;
+  --success: #235b3b; --success-surface: #e3efdf;
+  --warning: #705013; --warning-surface: #f5eedc;
+  --money: #173f30; --action-value: #bfa064; --action-value-hover: #ceb277; --on-action-value: #173726;
+  --current-lot: #123f2f; --on-current-lot: #f9f7ed;
+  --current-lot-header: #0e3427; --current-lot-secondary: #d2ddce; --current-lot-border: #789783;
+  --active-bid: #f3d994; --live-indicator: #d3eda7;
+  --paused: #695016; --on-paused: #ffffff;
+  --brand-detail: #806324;
+  --shadow: #00000026; --radius: .5rem;
+  --sidebar: var(--primary); --sidebar-foreground: var(--primary-foreground);
+}
+:root[data-theme="high-contrast"] {
+  --background: #ffffff; --foreground: #000000; --card: #ffffff;
+  --primary: #000000; --primary-foreground: #ffffff;
+  --secondary: #eeeeee; --muted-foreground: #292929;
+  --accent: #e5e5e5; --border: #595959; --input: #000000; --ring: #003eb3;
+  --destructive: #9c0000; --danger-surface: #ffe8e8;
+  --success: #00451e; --success-surface: #e0f4e5;
+  --warning: #563900; --warning-surface: #fff2b0;
+  --money: #000000; --action-value: #ffdf00; --action-value-hover: #ffe85c; --on-action-value: #000000;
+  --current-lot: #000000; --on-current-lot: #ffffff;
+  --current-lot-header: #171717; --current-lot-secondary: #ffffff; --current-lot-border: #cccccc;
+  --active-bid: #ffea00; --live-indicator: #ffea00;
+  --paused: #ffea00; --on-paused: #000000; --brand-detail: #563900;
+}
+:root[data-theme="dark-event"] {
+  color-scheme: dark;
+  --background: #101a20; --foreground: #f2f6f4; --card: #1b2a32;
+  --primary: #a5dcc3; --primary-foreground: #102b22;
+  --secondary: #293b44; --muted-foreground: #c0cfcf;
+  --accent: #334b55; --border: #627983; --input: #90a8b1; --ring: #ffdc84;
+  --on-destructive: #3b1313; --destructive: #ffb4ab; --danger-surface: #482a2b;
+  --success: #b4ebc5; --success-surface: #223e31;
+  --warning: #ffe1a1; --warning-surface: #44391f;
+  --money: #ffe1a1; --action-value: #f1cf82; --action-value-hover: #ffe3a3; --on-action-value: #24200f;
+  --current-lot: #132d31; --on-current-lot: #ffffff;
+  --current-lot-header: #0b2025; --current-lot-secondary: #d1e4df; --current-lot-border: #7d9e98;
+  --active-bid: #ffe1a1; --live-indicator: #b4ebc5;
+  --paused: #ffe1a1; --on-paused: #24200f; --brand-detail: #ffe1a1;
+}
+:root[data-theme="light-event"] {
+  --background: #f2f5f9; --foreground: #172d44; --card: #ffffff;
+  --primary: #184b7b; --primary-foreground: #ffffff;
+  --secondary: #e8eef5; --muted-foreground: #42576c;
+  --accent: #dce9f5; --border: #b8c5d1; --input: #718498; --ring: #184b7b;
+  --destructive: #a12b2b; --danger-surface: #ffe9e9;
+  --success: #205b39; --success-surface: #e4f2e8;
+  --warning: #705013; --warning-surface: #fff0cd;
+  --money: #184b7b; --action-value: #184b7b; --action-value-hover: #12395e; --on-action-value: #ffffff;
+  --current-lot: #e3edf8; --on-current-lot: #172d44;
+  --current-lot-header: #184b7b; --current-lot-secondary: #354f69; --current-lot-border: #718498;
+  --active-bid: #103f6c; --live-indicator: #ffffff;
+  --paused: #705013; --on-paused: #ffffff; --brand-detail: #705013;
+}
+/* Header foreground is independent of the current-lot body (Light Event). */
+:root { --on-current-lot-header: #ffffff; }

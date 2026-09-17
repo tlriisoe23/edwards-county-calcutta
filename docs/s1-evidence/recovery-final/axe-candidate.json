@@ -1,0 +1,426 @@
+[
+  {
+    "label": "classic/1280/Event & rules",
+    "violations": []
+  },
+  {
+    "label": "classic/1280/Teams & flights",
+    "violations": []
+  },
+  {
+    "label": "classic/1280/Buyers",
+    "violations": []
+  },
+  {
+    "label": "classic/1280/Auction console",
+    "violations": []
+  },
+  {
+    "label": "classic/1280/Sales",
+    "violations": []
+  },
+  {
+    "label": "classic/1280/Results",
+    "violations": []
+  },
+  {
+    "label": "classic/1280/Settlement",
+    "violations": []
+  },
+  {
+    "label": "classic/1280/Exports",
+    "violations": []
+  },
+  {
+    "label": "classic/1280/Display & sharing",
+    "violations": []
+  },
+  {
+    "label": "classic/1280/Help",
+    "violations": []
+  },
+  {
+    "label": "classic/1280/Activity",
+    "violations": []
+  },
+  {
+    "label": "classic/1280/Access",
+    "violations": []
+  },
+  {
+    "label": "classic/390/Event & rules",
+    "violations": []
+  },
+  {
+    "label": "classic/390/Display & sharing",
+    "violations": []
+  },
+  {
+    "label": "classic/Sold dialog",
+    "violations": []
+  },
+  {
+    "label": "classic///390",
+    "violations": []
+  },
+  {
+    "label": "classic///820",
+    "violations": []
+  },
+  {
+    "label": "classic///1280",
+    "violations": []
+  },
+  {
+    "label": "classic//tv/1920",
+    "violations": []
+  },
+  {
+    "label": "classic//tv/3840",
+    "violations": []
+  },
+  {
+    "label": "high-contrast/1280/Event & rules",
+    "violations": []
+  },
+  {
+    "label": "high-contrast/1280/Teams & flights",
+    "violations": []
+  },
+  {
+    "label": "high-contrast/1280/Buyers",
+    "violations": []
+  },
+  {
+    "label": "high-contrast/1280/Auction console",
+    "violations": []
+  },
+  {
+    "label": "high-contrast/1280/Sales",
+    "violations": []
+  },
+  {
+    "label": "high-contrast/1280/Results",
+    "violations": []
+  },
+  {
+    "label": "high-contrast/1280/Settlement",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "nodes": [
+          {
+            "target": [
+              "#radix-_r_1_-trigger-results > span"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.01 (foreground color: #fdfdfd, background color: #ffffff, font size: 10.1pt (13.5px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "high-contrast/1280/Exports",
+    "violations": []
+  },
+  {
+    "label": "high-contrast/1280/Display & sharing",
+    "violations": []
+  },
+  {
+    "label": "high-contrast/1280/Help",
+    "violations": []
+  },
+  {
+    "label": "high-contrast/1280/Activity",
+    "violations": []
+  },
+  {
+    "label": "high-contrast/1280/Access",
+    "violations": []
+  },
+  {
+    "label": "high-contrast/390/Event & rules",
+    "violations": []
+  },
+  {
+    "label": "high-contrast/390/Display & sharing",
+    "violations": []
+  },
+  {
+    "label": "high-contrast/Sold dialog",
+    "violations": []
+  },
+  {
+    "label": "high-contrast///390",
+    "violations": []
+  },
+  {
+    "label": "high-contrast///820",
+    "violations": []
+  },
+  {
+    "label": "high-contrast///1280",
+    "violations": []
+  },
+  {
+    "label": "high-contrast//tv/1920",
+    "violations": []
+  },
+  {
+    "label": "high-contrast//tv/3840",
+    "violations": []
+  },
+  {
+    "label": "dark-event/1280/Event & rules",
+    "violations": []
+  },
+  {
+    "label": "dark-event/1280/Teams & flights",
+    "violations": []
+  },
+  {
+    "label": "dark-event/1280/Buyers",
+    "violations": []
+  },
+  {
+    "label": "dark-event/1280/Auction console",
+    "violations": []
+  },
+  {
+    "label": "dark-event/1280/Sales",
+    "violations": []
+  },
+  {
+    "label": "dark-event/1280/Results",
+    "violations": []
+  },
+  {
+    "label": "dark-event/1280/Settlement",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "nodes": [
+          {
+            "target": [
+              "#radix-_r_1_-trigger-results > span"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.04 (foreground color: #153027, background color: #1b2a32, font size: 10.1pt (13.5px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "dark-event/1280/Exports",
+    "violations": []
+  },
+  {
+    "label": "dark-event/1280/Display & sharing",
+    "violations": []
+  },
+  {
+    "label": "dark-event/1280/Help",
+    "violations": []
+  },
+  {
+    "label": "dark-event/1280/Activity",
+    "violations": []
+  },
+  {
+    "label": "dark-event/1280/Access",
+    "violations": []
+  },
+  {
+    "label": "dark-event/390/Event & rules",
+    "violations": []
+  },
+  {
+    "label": "dark-event/390/Display & sharing",
+    "violations": []
+  },
+  {
+    "label": "dark-event/Sold dialog",
+    "violations": []
+  },
+  {
+    "label": "dark-event///390",
+    "violations": []
+  },
+  {
+    "label": "dark-event///820",
+    "violations": []
+  },
+  {
+    "label": "dark-event///1280",
+    "violations": []
+  },
+  {
+    "label": "dark-event//tv/1920",
+    "violations": []
+  },
+  {
+    "label": "dark-event//tv/3840",
+    "violations": []
+  },
+  {
+    "label": "light-event/1280/Event & rules",
+    "violations": []
+  },
+  {
+    "label": "light-event/1280/Teams & flights",
+    "violations": []
+  },
+  {
+    "label": "light-event/1280/Buyers",
+    "violations": []
+  },
+  {
+    "label": "light-event/1280/Auction console",
+    "violations": []
+  },
+  {
+    "label": "light-event/1280/Sales",
+    "violations": []
+  },
+  {
+    "label": "light-event/1280/Results",
+    "violations": []
+  },
+  {
+    "label": "light-event/1280/Settlement",
+    "violations": []
+  },
+  {
+    "label": "light-event/1280/Exports",
+    "violations": []
+  },
+  {
+    "label": "light-event/1280/Display & sharing",
+    "violations": []
+  },
+  {
+    "label": "light-event/1280/Help",
+    "violations": []
+  },
+  {
+    "label": "light-event/1280/Activity",
+    "violations": []
+  },
+  {
+    "label": "light-event/1280/Access",
+    "violations": []
+  },
+  {
+    "label": "light-event/390/Event & rules",
+    "violations": []
+  },
+  {
+    "label": "light-event/390/Display & sharing",
+    "violations": []
+  },
+  {
+    "label": "light-event/Sold dialog",
+    "violations": []
+  },
+  {
+    "label": "light-event///390",
+    "violations": []
+  },
+  {
+    "label": "light-event///820",
+    "violations": []
+  },
+  {
+    "label": "light-event///1280",
+    "violations": []
+  },
+  {
+    "label": "light-event//tv/1920",
+    "violations": []
+  },
+  {
+    "label": "light-event//tv/3840",
+    "violations": []
+  },
+  {
+    "label": "classic/SETUP/TV",
+    "violations": []
+  },
+  {
+    "label": "high-contrast/SETUP/TV",
+    "violations": []
+  },
+  {
+    "label": "dark-event/SETUP/TV",
+    "violations": []
+  },
+  {
+    "label": "light-event/SETUP/TV",
+    "violations": []
+  },
+  {
+    "label": "classic/READY/TV",
+    "violations": []
+  },
+  {
+    "label": "high-contrast/READY/TV",
+    "violations": []
+  },
+  {
+    "label": "dark-event/READY/TV",
+    "violations": []
+  },
+  {
+    "label": "light-event/READY/TV",
+    "violations": []
+  },
+  {
+    "label": "classic/LIVE/TV",
+    "violations": []
+  },
+  {
+    "label": "high-contrast/LIVE/TV",
+    "violations": []
+  },
+  {
+    "label": "dark-event/LIVE/TV",
+    "violations": []
+  },
+  {
+    "label": "light-event/LIVE/TV",
+    "violations": []
+  },
+  {
+    "label": "classic/PAUSED/TV",
+    "violations": []
+  },
+  {
+    "label": "high-contrast/PAUSED/TV",
+    "violations": []
+  },
+  {
+    "label": "dark-event/PAUSED/TV",
+    "violations": []
+  },
+  {
+    "label": "light-event/PAUSED/TV",
+    "violations": []
+  },
+  {
+    "label": "classic/COMPLETED/TV",
+    "violations": []
+  },
+  {
+    "label": "high-contrast/COMPLETED/TV",
+    "violations": []
+  },
+  {
+    "label": "dark-event/COMPLETED/TV",
+    "violations": []
+  },
+  {
+    "label": "light-event/COMPLETED/TV",
+    "violations": []
+  }
+]

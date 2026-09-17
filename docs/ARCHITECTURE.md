@@ -103,3 +103,15 @@ Batch C (`4da7b9b`) changes CSS only. Desktop TV uses a viewport-height grid wit
 ## Boundaries needing later evidence
 
 Hosted real-user sign-in/allowlist revocation, anonymous internet access, deployment migrations and persistence are BLOCKED by the absence of an approved deployment. Maximum configured capacity (500 teams), long-running audit retention, regional latency and many simultaneous clients are UNVERIFIED. Observed 100-team results are in [VALIDATION.md](VALIDATION.md). Avoid replacing the architecture to address those unknowns.
+
+## S1 event presentation
+
+`lib/themes.ts` defines four allowed preset IDs and a Classic fallback; `app/themes.css` owns semantic palette values. Existing `globals.css`/`refinements.css` components consume surface, text, action/selected, money, current-lot/bid, success/warning/danger/paused and focus roles. Flight identity colors stay event-owned border accents with visible names; QR/print retain fixed ink/paper colors. C1 navigation structure is unchanged.
+
+The sole setting is `event.settings.theme`, in the existing JSON (D1 or portable SQLite); no migration, separate store, cookies or browser preference. `normalizeSettings` handles absent/unknown persisted themes. The public projection exposes only the preset ID alongside its existing allowed fields. `theme_update` validates the preset and changes only that JSON key through the existing revision guard, transaction, audit and undo path. Ordinary `event_update` remains compatible with older clients that omit theme. Presentation changes trigger existing full-board polling refreshes. The document-root attribute makes portals inherit the same theme; no-event/loading views use Classic.
+
+Display & sharing owns the radio preset selector and explicit Save theme. Advanced is a native disclosure inside the existing Rules form, opened/focused by C1's existing shortcut; no new tab or route. Its controls retain the same drafts, validation, save action and confirmations. Money rules, flights, payout ladders and lifecycle controls stay visible in normal setup. See [S1](S1.md) for the workflow rationale and evidence.
+
+### TV resolution and content sizing (S1)
+
+`app/globals.css` owns the TV typography/spacing system. `--tv-unit` is 1px at 1920×1080 and 2px at 3840×2160, constrained by the smaller viewport axis; label, body, heading and spacing roles scale together. Container bounds preserve long current-lot/bid content. `Stats` passes only the formatted value’s character count (`--value-length`) so TV amounts reserve space for currency, separators and cents without changing their values. Normal 1080p statistics are 56px with 24px labels; unusually long totals reduce to fit their cell. Below 700px high the existing compact TV band remains. Public/operator typography is unaffected by these TV selectors. Browser measurements do not establish physical viewing-distance legibility.

@@ -1,0 +1,1495 @@
+{
+  "checks": [
+    {
+      "label": "C1 original tab values preserved",
+      "pass": true
+    },
+    {
+      "label": "Normal setup starts with Advanced closed",
+      "pass": true
+    },
+    {
+      "label": "Minimum bid stays visible",
+      "pass": true
+    },
+    {
+      "label": "Payouts stay visible",
+      "pass": true
+    },
+    {
+      "label": "C1 shortcut opens Advanced on existing rules tab",
+      "pass": true
+    },
+    {
+      "label": "Shortcut focuses summary",
+      "pass": true
+    },
+    {
+      "label": "Space closes disclosure",
+      "pass": true
+    },
+    {
+      "label": "Enter opens disclosure",
+      "pass": true
+    },
+    {
+      "label": "Keyboard summary has visible focus outline",
+      "pass": true
+    },
+    {
+      "label": "Tab enters Advanced controls",
+      "pass": true
+    },
+    {
+      "label": "Advanced save persists through existing event settings",
+      "pass": true
+    },
+    {
+      "label": "Advanced setting restored",
+      "pass": true
+    },
+    {
+      "label": "Arrow keys choose theme presets",
+      "pass": true
+    },
+    {
+      "label": "Radio navigation does not save until explicit Save theme",
+      "pass": true
+    },
+    {
+      "label": "Theme option has a comfortable touch target",
+      "pass": true
+    },
+    {
+      "label": "classic: saved theme reaches already-open TV through polling",
+      "pass": true
+    },
+    {
+      "label": "classic: persists after reload",
+      "pass": true
+    },
+    {
+      "label": "classic: explicit preset overrides device dark preference",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Event & rules: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Event & rules: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Teams & flights: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Teams & flights: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Buyers: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Buyers: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Auction console: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Auction console: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Sales: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Sales: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Results: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Results: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Settlement: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Settlement: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Exports: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Exports: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Display & sharing: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Display & sharing: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Help: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Help: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Activity: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Activity: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Access: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Access: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Event & rules: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Teams & flights: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Buyers: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Auction console: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Sales: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Results: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Settlement: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Exports: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Display & sharing: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Help: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Activity: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Access: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Event & rules: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Event & rules: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Teams & flights: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Buyers: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Auction console: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Sales: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Results: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Settlement: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Exports: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Display & sharing: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Display & sharing: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Help: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Activity: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Access: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic: B shortcut focuses bid",
+      "pass": true
+    },
+    {
+      "label": "classic: Sold dialog receives focus",
+      "pass": true
+    },
+    {
+      "label": "classic: portal inherits theme",
+      "pass": true
+    },
+    {
+      "label": "classic/Sold dialog: axe",
+      "pass": true
+    },
+    {
+      "label": "classic: Sold dialog traps keyboard focus",
+      "pass": true
+    },
+    {
+      "label": "classic: Escape closes Sold",
+      "pass": true
+    },
+    {
+      "label": "classic: U opens existing undo confirmation",
+      "pass": true
+    },
+    {
+      "label": "classic: + shortcut preserves minimum increment",
+      "pass": true
+    },
+    {
+      "label": "classic: Enter records typed bid",
+      "pass": true
+    },
+    {
+      "label": "classic///390: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic///390: axe",
+      "pass": true
+    },
+    {
+      "label": "classic///820: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic///820: axe",
+      "pass": true
+    },
+    {
+      "label": "classic///1280: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic///1280: axe",
+      "pass": true
+    },
+    {
+      "label": "classic//tv/1920: no horizontal page overflow (1920/1920)",
+      "pass": true
+    },
+    {
+      "label": "classic//tv/1920: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/1920: TV fits one screen",
+      "pass": true
+    },
+    {
+      "label": "classic//tv/3840: no horizontal page overflow (3840/3840)",
+      "pass": true
+    },
+    {
+      "label": "classic//tv/3840: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/3840: TV fits one screen",
+      "pass": true
+    },
+    {
+      "label": "high-contrast: saved theme reaches already-open TV through polling",
+      "pass": true
+    },
+    {
+      "label": "high-contrast: persists after reload",
+      "pass": true
+    },
+    {
+      "label": "high-contrast: explicit preset overrides device dark preference",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Event & rules: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Event & rules: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Teams & flights: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Teams & flights: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Buyers: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Buyers: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Auction console: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Auction console: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Sales: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Sales: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Results: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Results: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Settlement: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Settlement: axe",
+      "pass": false
+    },
+    {
+      "label": "high-contrast/1280/Exports: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Exports: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Display & sharing: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Display & sharing: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Help: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Help: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Activity: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Activity: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Access: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1280/Access: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/820/Event & rules: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/820/Teams & flights: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/820/Buyers: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/820/Auction console: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/820/Sales: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/820/Results: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/820/Settlement: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/820/Exports: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/820/Display & sharing: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/820/Help: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/820/Activity: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/820/Access: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/390/Event & rules: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/390/Event & rules: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/390/Teams & flights: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/390/Buyers: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/390/Auction console: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/390/Sales: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/390/Results: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/390/Settlement: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/390/Exports: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/390/Display & sharing: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/390/Display & sharing: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/390/Help: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/390/Activity: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/390/Access: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast: B shortcut focuses bid",
+      "pass": true
+    },
+    {
+      "label": "high-contrast: Sold dialog receives focus",
+      "pass": true
+    },
+    {
+      "label": "high-contrast: portal inherits theme",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/Sold dialog: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast: Sold dialog traps keyboard focus",
+      "pass": true
+    },
+    {
+      "label": "high-contrast: Escape closes Sold",
+      "pass": true
+    },
+    {
+      "label": "high-contrast: U opens existing undo confirmation",
+      "pass": true
+    },
+    {
+      "label": "high-contrast: + shortcut preserves minimum increment",
+      "pass": true
+    },
+    {
+      "label": "high-contrast: Enter records typed bid",
+      "pass": true
+    },
+    {
+      "label": "high-contrast///390: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast///390: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast///820: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast///820: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast///1280: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast///1280: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast//tv/1920: no horizontal page overflow (1920/1920)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast//tv/1920: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/1920: TV fits one screen",
+      "pass": true
+    },
+    {
+      "label": "high-contrast//tv/3840: no horizontal page overflow (3840/3840)",
+      "pass": true
+    },
+    {
+      "label": "high-contrast//tv/3840: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/3840: TV fits one screen",
+      "pass": true
+    },
+    {
+      "label": "dark-event: saved theme reaches already-open TV through polling",
+      "pass": true
+    },
+    {
+      "label": "dark-event: persists after reload",
+      "pass": true
+    },
+    {
+      "label": "dark-event: explicit preset overrides device dark preference",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Event & rules: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Event & rules: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Teams & flights: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Teams & flights: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Buyers: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Buyers: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Auction console: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Auction console: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Sales: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Sales: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Results: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Results: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Settlement: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Settlement: axe",
+      "pass": false
+    },
+    {
+      "label": "dark-event/1280/Exports: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Exports: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Display & sharing: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Display & sharing: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Help: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Help: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Activity: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Activity: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Access: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1280/Access: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/820/Event & rules: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/820/Teams & flights: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/820/Buyers: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/820/Auction console: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/820/Sales: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/820/Results: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/820/Settlement: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/820/Exports: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/820/Display & sharing: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/820/Help: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/820/Activity: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/820/Access: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/390/Event & rules: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/390/Event & rules: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/390/Teams & flights: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/390/Buyers: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/390/Auction console: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/390/Sales: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/390/Results: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/390/Settlement: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/390/Exports: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/390/Display & sharing: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/390/Display & sharing: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/390/Help: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/390/Activity: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "dark-event/390/Access: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "dark-event: B shortcut focuses bid",
+      "pass": true
+    },
+    {
+      "label": "dark-event: Sold dialog receives focus",
+      "pass": true
+    },
+    {
+      "label": "dark-event: portal inherits theme",
+      "pass": true
+    },
+    {
+      "label": "dark-event/Sold dialog: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event: Sold dialog traps keyboard focus",
+      "pass": true
+    },
+    {
+      "label": "dark-event: Escape closes Sold",
+      "pass": true
+    },
+    {
+      "label": "dark-event: U opens existing undo confirmation",
+      "pass": true
+    },
+    {
+      "label": "dark-event: + shortcut preserves minimum increment",
+      "pass": true
+    },
+    {
+      "label": "dark-event: Enter records typed bid",
+      "pass": true
+    },
+    {
+      "label": "dark-event///390: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "dark-event///390: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event///820: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "dark-event///820: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event///1280: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "dark-event///1280: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event//tv/1920: no horizontal page overflow (1920/1920)",
+      "pass": true
+    },
+    {
+      "label": "dark-event//tv/1920: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/1920: TV fits one screen",
+      "pass": true
+    },
+    {
+      "label": "dark-event//tv/3840: no horizontal page overflow (3840/3840)",
+      "pass": true
+    },
+    {
+      "label": "dark-event//tv/3840: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/3840: TV fits one screen",
+      "pass": true
+    },
+    {
+      "label": "light-event: saved theme reaches already-open TV through polling",
+      "pass": true
+    },
+    {
+      "label": "light-event: persists after reload",
+      "pass": true
+    },
+    {
+      "label": "light-event: explicit preset overrides device dark preference",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Event & rules: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Event & rules: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Teams & flights: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Teams & flights: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Buyers: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Buyers: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Auction console: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Auction console: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Sales: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Sales: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Results: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Results: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Settlement: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Settlement: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Exports: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Exports: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Display & sharing: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Display & sharing: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Help: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Help: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Activity: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Activity: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Access: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "light-event/1280/Access: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/820/Event & rules: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "light-event/820/Teams & flights: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "light-event/820/Buyers: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "light-event/820/Auction console: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "light-event/820/Sales: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "light-event/820/Results: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "light-event/820/Settlement: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "light-event/820/Exports: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "light-event/820/Display & sharing: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "light-event/820/Help: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "light-event/820/Activity: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "light-event/820/Access: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "light-event/390/Event & rules: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "light-event/390/Event & rules: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/390/Teams & flights: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "light-event/390/Buyers: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "light-event/390/Auction console: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "light-event/390/Sales: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "light-event/390/Results: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "light-event/390/Settlement: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "light-event/390/Exports: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "light-event/390/Display & sharing: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "light-event/390/Display & sharing: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/390/Help: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "light-event/390/Activity: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "light-event/390/Access: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "light-event: B shortcut focuses bid",
+      "pass": true
+    },
+    {
+      "label": "light-event: Sold dialog receives focus",
+      "pass": true
+    },
+    {
+      "label": "light-event: portal inherits theme",
+      "pass": true
+    },
+    {
+      "label": "light-event/Sold dialog: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event: Sold dialog traps keyboard focus",
+      "pass": true
+    },
+    {
+      "label": "light-event: Escape closes Sold",
+      "pass": true
+    },
+    {
+      "label": "light-event: U opens existing undo confirmation",
+      "pass": true
+    },
+    {
+      "label": "light-event: + shortcut preserves minimum increment",
+      "pass": true
+    },
+    {
+      "label": "light-event: Enter records typed bid",
+      "pass": true
+    },
+    {
+      "label": "light-event///390: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "light-event///390: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event///820: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "light-event///820: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event///1280: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "light-event///1280: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event//tv/1920: no horizontal page overflow (1920/1920)",
+      "pass": true
+    },
+    {
+      "label": "light-event//tv/1920: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/1920: TV fits one screen",
+      "pass": true
+    },
+    {
+      "label": "light-event//tv/3840: no horizontal page overflow (3840/3840)",
+      "pass": true
+    },
+    {
+      "label": "light-event//tv/3840: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/3840: TV fits one screen",
+      "pass": true
+    },
+    {
+      "label": "classic/SETUP: explicit state text",
+      "pass": true
+    },
+    {
+      "label": "classic/SETUP: one-screen TV",
+      "pass": true
+    },
+    {
+      "label": "classic/SETUP/TV: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/SETUP: explicit state text",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/SETUP: one-screen TV",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/SETUP/TV: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/SETUP: explicit state text",
+      "pass": true
+    },
+    {
+      "label": "dark-event/SETUP: one-screen TV",
+      "pass": true
+    },
+    {
+      "label": "dark-event/SETUP/TV: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/SETUP: explicit state text",
+      "pass": true
+    },
+    {
+      "label": "light-event/SETUP: one-screen TV",
+      "pass": true
+    },
+    {
+      "label": "light-event/SETUP/TV: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/READY: explicit state text",
+      "pass": true
+    },
+    {
+      "label": "classic/READY: one-screen TV",
+      "pass": true
+    },
+    {
+      "label": "classic/READY/TV: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/READY: explicit state text",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/READY: one-screen TV",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/READY/TV: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/READY: explicit state text",
+      "pass": true
+    },
+    {
+      "label": "dark-event/READY: one-screen TV",
+      "pass": true
+    },
+    {
+      "label": "dark-event/READY/TV: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/READY: explicit state text",
+      "pass": true
+    },
+    {
+      "label": "light-event/READY: one-screen TV",
+      "pass": true
+    },
+    {
+      "label": "light-event/READY/TV: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/LIVE: explicit state text",
+      "pass": true
+    },
+    {
+      "label": "classic/LIVE: one-screen TV",
+      "pass": true
+    },
+    {
+      "label": "classic/LIVE/TV: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/LIVE: explicit state text",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/LIVE: one-screen TV",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/LIVE/TV: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/LIVE: explicit state text",
+      "pass": true
+    },
+    {
+      "label": "dark-event/LIVE: one-screen TV",
+      "pass": true
+    },
+    {
+      "label": "dark-event/LIVE/TV: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/LIVE: explicit state text",
+      "pass": true
+    },
+    {
+      "label": "light-event/LIVE: one-screen TV",
+      "pass": true
+    },
+    {
+      "label": "light-event/LIVE/TV: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/PAUSED: explicit state text",
+      "pass": true
+    },
+    {
+      "label": "classic/PAUSED: one-screen TV",
+      "pass": true
+    },
+    {
+      "label": "classic/PAUSED/TV: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/PAUSED: explicit state text",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/PAUSED: one-screen TV",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/PAUSED/TV: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/PAUSED: explicit state text",
+      "pass": true
+    },
+    {
+      "label": "dark-event/PAUSED: one-screen TV",
+      "pass": true
+    },
+    {
+      "label": "dark-event/PAUSED/TV: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/PAUSED: explicit state text",
+      "pass": true
+    },
+    {
+      "label": "light-event/PAUSED: one-screen TV",
+      "pass": true
+    },
+    {
+      "label": "light-event/PAUSED/TV: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/COMPLETED: explicit state text",
+      "pass": true
+    },
+    {
+      "label": "classic/COMPLETED: one-screen TV",
+      "pass": true
+    },
+    {
+      "label": "classic/COMPLETED/TV: axe",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/COMPLETED: explicit state text",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/COMPLETED: one-screen TV",
+      "pass": true
+    },
+    {
+      "label": "high-contrast/COMPLETED/TV: axe",
+      "pass": true
+    },
+    {
+      "label": "dark-event/COMPLETED: explicit state text",
+      "pass": true
+    },
+    {
+      "label": "dark-event/COMPLETED: one-screen TV",
+      "pass": true
+    },
+    {
+      "label": "dark-event/COMPLETED/TV: axe",
+      "pass": true
+    },
+    {
+      "label": "light-event/COMPLETED: explicit state text",
+      "pass": true
+    },
+    {
+      "label": "light-event/COMPLETED: one-screen TV",
+      "pass": true
+    },
+    {
+      "label": "light-event/COMPLETED/TV: axe",
+      "pass": true
+    },
+    {
+      "label": "No browser page errors",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "passed": 370,
+  "failed": 2
+}

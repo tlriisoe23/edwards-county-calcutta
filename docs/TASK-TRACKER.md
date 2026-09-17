@@ -1,5 +1,22 @@
 # Finding tracker and proposed batches
 
+## Current planned work — 2026-09-16
+
+- **C1 Operator Navigation:** complete and merged; accepted foundation at `f4a7e77`.
+- **S1 Purposeful Themes + Advanced Settings:** accepted by the human; **commit, merge and production deployment authorized; release in progress**. Recovered branch `task/s1-themes-advanced`, sibling worktree `edwards-county-calcutta-s1`, uncommitted at base `f4a7e77`. Themes/Advanced preserved; true TV scaling, content containment and navigation contrast completed. [Scope, measured evidence and exact human gate](S1.md). Existing lint debt remains; physical hardware is unverified. The latest user instruction explicitly authorizes commit, merge and deployment of S1.
+- **C2 Auction Night / dual-screen operation:** expected next, not implemented by S1. Requirements below; later roadmap items remain deferred.
+
+
+### C2 requirements recorded during S1 recovery — not implemented
+
+- Primary display is the operator desk; secondary display is the TV/fullscreen board. The operator must retain normal mouse/focus use on the primary monitor while TV remains on the secondary display.
+- Investigate the reported fullscreen mouse/focus “capture” on actual dual-display hardware. Source inspection during S1 found no `requestPointerLock` or pointer-lock listener in app/components/lib; this is not a runtime or physical-hardware conclusion. Pointer lock must not be required.
+- Improve **Launch TV Display** using the best supported multi-monitor/window-placement behavior, with a clear manual fallback when placement APIs/permissions are unavailable. Test focus changes and fullscreen retention on relevant browsers/OS combinations.
+- Provide a compact **Auction Night** operating layout for LIVE/PAUSED: core controls fit a typical 1366×768 working viewport without routine vertical scrolling. Current lot/team, bid controls, buyer/bidder, increment, Sold/advance and Pause/correction dominate.
+- Collapse or de-emphasize PREPARE / AFTER AUCTION / TOOLS during active operation while keeping them accessible. Preserve C1’s accepted information architecture; adapt density rather than replacing navigation.
+- Acceptance must include actual two-display operator/TV use and the reported focus issue. S1’s browser viewport checks cannot close C2.
+
+
 Separate approved portability work now has a [hosting implementation](PORTABLE-HOSTING.md)
 and [validation record](PORTABLE-VALIDATION.md). Remaining: configure real Google
 credentials and owner recovery password; verify owner-data import/cutover; configure

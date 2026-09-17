@@ -1,0 +1,263 @@
+{
+  "checks": [
+    {
+      "label": "C1 original tab values preserved",
+      "pass": true
+    },
+    {
+      "label": "Normal setup starts with Advanced closed",
+      "pass": true
+    },
+    {
+      "label": "Minimum bid stays visible",
+      "pass": true
+    },
+    {
+      "label": "Payouts stay visible",
+      "pass": true
+    },
+    {
+      "label": "C1 shortcut opens Advanced on existing rules tab",
+      "pass": true
+    },
+    {
+      "label": "Shortcut focuses summary",
+      "pass": true
+    },
+    {
+      "label": "Space closes disclosure",
+      "pass": true
+    },
+    {
+      "label": "Enter opens disclosure",
+      "pass": true
+    },
+    {
+      "label": "Keyboard summary has visible focus outline",
+      "pass": true
+    },
+    {
+      "label": "Tab enters Advanced controls",
+      "pass": true
+    },
+    {
+      "label": "Advanced save persists through existing event settings",
+      "pass": true
+    },
+    {
+      "label": "Advanced setting restored",
+      "pass": true
+    },
+    {
+      "label": "classic: saved theme reaches already-open TV through polling",
+      "pass": true
+    },
+    {
+      "label": "classic: persists after reload",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Event & rules: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Event & rules: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Teams & flights: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Teams & flights: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Buyers: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Buyers: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Auction console: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Auction console: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Sales: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Sales: axe",
+      "pass": false
+    },
+    {
+      "label": "classic/1280/Results: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Results: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Settlement: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Settlement: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Exports: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Exports: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Display & sharing: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Display & sharing: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Help: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Help: axe",
+      "pass": false
+    },
+    {
+      "label": "classic/1280/Activity: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Activity: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Access: no horizontal page overflow (1280/1280)",
+      "pass": true
+    },
+    {
+      "label": "classic/1280/Access: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Event & rules: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Teams & flights: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Buyers: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Auction console: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Sales: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Results: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Settlement: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Exports: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Display & sharing: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Help: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Activity: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/820/Access: no horizontal page overflow (820/820)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Event & rules: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Event & rules: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Teams & flights: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Buyers: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Auction console: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Sales: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Results: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Settlement: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Exports: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Display & sharing: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Display & sharing: axe",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Help: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Activity: no horizontal page overflow (390/390)",
+      "pass": true
+    },
+    {
+      "label": "classic/390/Access: no horizontal page overflow (390/390)",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "passed": 62,
+  "failed": 2
+}

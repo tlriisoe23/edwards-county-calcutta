@@ -1,0 +1,30 @@
+{
+  "role": "operator",
+  "environment": "Isolated portable database and synthetic sessions; no real identities",
+  "checks": [
+    {
+      "label": "operator API read boundary",
+      "pass": true
+    },
+    {
+      "label": "Server exposes correct owner flag",
+      "pass": true
+    },
+    {
+      "label": "Operator cannot read owner Access list",
+      "pass": true
+    },
+    {
+      "label": "Operator cannot grant Access",
+      "pass": true
+    },
+    {
+      "label": "Authorized non-owner can save theme",
+      "pass": true
+    },
+    {
+      "label": "Access tab remains owner-only",
+      "pass": true
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef, useCallback, type CSSProperties } from "react";
 import { Flag, Monitor, ShieldCheck, ArrowUpRight, Maximize, Search, ArrowLeft, WifiOff, Radio, Check, LayoutGrid } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { money, type Row } from "@/lib/model";
 import { eventPath } from "@/lib/sharing";
+import { normalizeTheme } from "@/lib/themes";
 import AdminPanel from "./operator";
 export function Choice({ value, onChange, items, label }: any) { return <Select value={String(value)} onValueChange={onChange}><SelectTrigger aria-label={label} className="choice"><SelectValue placeholder={label}/></SelectTrigger><SelectContent>{items.map((x: any) => <SelectItem key={typeof x === "string" ? x : x.value} value={typeof x === "string" ? x : x.value}>{typeof x === "string" ? x : x.label}</SelectItem>)}</SelectContent></Select>; }
 export function Brand({ eventId }: { eventId?: string | null }) { return <a className="brand" href={eventPath('/', eventId)}><Flag size={27}/><span>THE CALCUTTA<small>EDWARDS COUNTY</small></span></a>; }
@@ -22,7 +23,7 @@ export function Block({ data, admin = false }: any) {
 export function Stats({ data, admin = false }: any) { const t = data.totals, e = data.event, values: any[] = []; if (admin || e.settings.showTotalPool)
     values.push(["Gross auction pool", money(t.gross, e.currency)], ["Net Calcutta pool", money(t.net, e.currency)]); values.push(["Teams sold", t.sold + " / " + data.teams.length], ["Teams remaining", t.remaining]); if (admin || e.settings.showSalePrice)
     values.push(["Average sale", money(t.average, e.currency)], ["Highest sale", money(t.highest, e.currency)]); if (e.status === "COMPLETED" && (admin || e.settings.showSalePrice))
-    values.push(["Lowest sale", money(t.lowest, e.currency)]); return <section className="stats" style={{ gridTemplateColumns: "repeat(" + Math.min(values.length, 6) + ",1fr)" }}>{values.map(([l, v]) => <div key={l}><p>{l}</p><strong>{v}</strong></div>)}</section>; }
+    values.push(["Lowest sale", money(t.lowest, e.currency)]); return <section className="stats" style={{ gridTemplateColumns: "repeat(" + Math.min(values.length, 6) + ",1fr)" }}>{values.map(([l, v]) => <div key={l}><p>{l}</p><strong style={{ "--value-length": String(v).length } as CSSProperties}>{v}</strong></div>)}</section>; }
 export function PoolCards({ data, admin = false }: any) { const e = data.event; if (!admin && !e.settings.showFlightPools)
     return null; return <section className="pools">{data.totals.pools.map((p: Row) => <article className="pool panel" key={p.id}><div className="section-title"><h2>{p.name}</h2><span className="pill">{p.sold} / {p.teams} sold</span></div><div className="pool-amount"><strong>{money(p.net, e.currency)}</strong><span>NET FLIGHT POOL</span></div><div className="pool-deduction"><span>Gross {money(p.gross, e.currency)}</span><span>House / charity −{money(p.deduction, e.currency)}</span></div>{(admin || e.settings.showPayouts) && <><p className="eyebrow projection-label">{e.status === "COMPLETED" ? "FINAL PURSES" : "PROJECTED PAYOUTS"}</p><div className="payouts">{p.payouts.map((r: Row) => <div key={r.place}><span>{r.place === 1 ? "1st" : r.place === 2 ? "2nd" : r.place === 3 ? "3rd" : r.place + "th"} <small>{r.percent / 100}%</small></span><strong>{money(r.amount, e.currency)}</strong></div>)}</div></>}</article>)}</section>; }
 export default function Auction({ admin = false, tv = false, user }: any) {
@@ -127,6 +128,12 @@ export default function Auction({ admin = false, tv = false, user }: any) {
     catch {
         toast.error("Fullscreen is unavailable in this browser. Open TV mode in a separate tab.");
     } };
+    const theme = normalizeTheme(data?.event.settings.theme);
+    useEffect(() => {
+        // Root inheritance includes portals (dialogs, select menus and notifications).
+        document.documentElement.dataset.theme = theme;
+        return () => { delete document.documentElement.dataset.theme; };
+    }, [theme]);
     const linkEventId = data?.event.id || eventId;
     if (admin)
         return <><AdminPanel data={data} meta={meta} user={user} selectedEventId={eventId} offline={offline} loaded={loaded} refresh={() => refresh(true)} selectEvent={selectEvent} fullscreen={fullscreen}/><Toaster richColors/></>;

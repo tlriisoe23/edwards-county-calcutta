@@ -1,0 +1,94 @@
+[
+  {
+    "label": "classic/1280/Event & rules",
+    "violations": []
+  },
+  {
+    "label": "classic/1280/Teams & flights",
+    "violations": []
+  },
+  {
+    "label": "classic/1280/Buyers",
+    "violations": []
+  },
+  {
+    "label": "classic/1280/Auction console",
+    "violations": []
+  },
+  {
+    "label": "classic/1280/Sales",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "nodes": [
+          {
+            "target": [
+              "#radix-_r_1_-trigger-console > span"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.83 (foreground color: #87917f, background color: #b8c4c0, font size: 10.1pt (13.5px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#radix-_r_1_-trigger-sales > span"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.93 (foreground color: #cacec7, background color: #5e7a6f, font size: 10.1pt (13.5px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "classic/1280/Results",
+    "violations": []
+  },
+  {
+    "label": "classic/1280/Settlement",
+    "violations": []
+  },
+  {
+    "label": "classic/1280/Exports",
+    "violations": []
+  },
+  {
+    "label": "classic/1280/Display & sharing",
+    "violations": []
+  },
+  {
+    "label": "classic/1280/Help",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "nodes": [
+          {
+            "target": [
+              "#radix-_r_1_-trigger-sharing > span"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.84 (foreground color: #87907f, background color: #b8c4c0, font size: 10.1pt (13.5px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#radix-_r_1_-trigger-help > span"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #cacfc7, background color: #5e7a6f, font size: 10.1pt (13.5px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "classic/1280/Activity",
+    "violations": []
+  },
+  {
+    "label": "classic/1280/Access",
+    "violations": []
+  },
+  {
+    "label": "classic/390/Event & rules",
+    "violations": []
+  },
+  {
+    "label": "classic/390/Display & sharing",
+    "violations": []
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "role": "owner",
+  "environment": "Isolated portable database and synthetic sessions; no real identities",
+  "checks": [
+    {
+      "label": "owner API read boundary",
+      "pass": true
+    },
+    {
+      "label": "Server exposes correct owner flag",
+      "pass": true
+    },
+    {
+      "label": "Access tab remains owner-only",
+      "pass": true
+    }
+  ]
+}

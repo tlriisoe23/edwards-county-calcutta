@@ -1,0 +1,22 @@
+{
+  "role": "outsider",
+  "environment": "Isolated portable database and synthetic sessions; no real identities",
+  "checks": [
+    {
+      "label": "outsider API read boundary",
+      "pass": true
+    },
+    {
+      "label": "Signed-in non-operator cannot save theme",
+      "pass": true
+    },
+    {
+      "label": "Access tab remains owner-only",
+      "pass": true
+    },
+    {
+      "label": "Non-operator cannot reach settings UI",
+      "pass": true
+    }
+  ]
+}
