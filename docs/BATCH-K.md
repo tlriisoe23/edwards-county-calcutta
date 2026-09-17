@@ -83,8 +83,17 @@ Specifically still open:
 
 ## Rollback
 
-Plain revert; no migration, no schema, no API contract change. Production container
-unchanged — implemented and locally (statically) validated only, not deployed.
+Plain revert; no migration, no schema, no API contract change.
+
+**Deployment status update, 2026-09-17:** merged to `main` @ `ba0f0b3` together with
+UI2, then `ecgc-calcutta-app-1` was rebuilt and restarted at 2026-09-17T14:01 UTC.
+`docker compose ps` reports healthy; `GET /`, `GET /tv`, `GET /api/public` all returned
+200. This confirms the container is up and serving the merged code; it does **not**
+confirm the compact console's actual rendered geometry, the TV popup window's real
+multi-window behavior, or anything about the Tools dropdown/theme picker introduced by
+UI2 in the same deploy — none of that was exercised in a live browser against
+production. Rollback, if needed, is `docker compose up -d --build` against the prior
+commit (`3a8460f`, pre-UI2/C2) with no database change required either direction.
 
 ## Superseded branch
 

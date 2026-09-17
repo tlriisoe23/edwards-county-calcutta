@@ -14,10 +14,16 @@ consolidated doc rather than six separate `BATCH-CAL-A.md`…`BATCH-CAL-F.md` fi
 efficiency tradeoff for a large pre-authorized scope rather than an audited finding queue).
 
 **Status update, 2026-09-17:** `claude/ui2-refinement` has since been merged into `main`
-(merge commit `9c4319c`) — the "not merged" framing above and in `docs/TASK-TRACKER.md`'s
-UI2 row is now stale for the merge half; **it is merged, but still not deployed**
-(`ecgc-calcutta-app-1`'s running image still dates to the earlier S1 build). Left the
-original prose above intact as the as-implemented record rather than rewritten.
+(merge commit `9c4319c`) — the "not merged" framing above is now stale. Left the original
+prose above intact as the as-implemented record rather than rewritten.
+
+**Status update, 2026-09-17 (later the same day):** merged to `main` @ `ba0f0b3` together
+with Batch K/C2, then `ecgc-calcutta-app-1` was rebuilt and restarted at 2026-09-17T14:01
+UTC. `docker compose ps` reports healthy; `GET /`, `GET /tv`, `GET /api/public` all
+returned 200. This is a read-only public-path check only — the Tools dropdown, theme
+quick-picker, `HelpTip`, and Local Users feature were not exercised against production
+(no production operator credentials available in this session). The only event on the
+container is the pre-existing `demo: 1` fixture; no real settlement data was touched.
 
 ## A — Tools dropdown menu
 

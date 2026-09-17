@@ -4,7 +4,7 @@
 
 - **C1 Operator Navigation:** complete and merged; accepted foundation at `f4a7e77`.
 - **S1 Purposeful Themes + Advanced Settings:** accepted by the human and **released** — committed as `494929b`, `task/s1-themes-advanced` fast-forwarded to the same commit, `ecgc-calcutta-app-1` rebuilt and healthy; see the dated entry in [CURRENT-STATE.md](CURRENT-STATE.md) for the read-only production verification performed in this session and its limits. [Scope and measured evidence](S1.md). Existing lint debt remains; physical hardware is unverified.
-- **C2 Auction Night / dual-screen operation:** requirements below were recorded during S1 recovery. **Reworked, implemented and merged to `main`** (`d4b3709`, from `claude/c2v2-dual-screen-compact-console`) — a TV popup window instead of a same-window tab, and a state-driven compact console with a persistent override replacing the rejected sticky-panel approach to `CAL-P3-007`, rebuilt against the merged UI2 nav (Tools dropdown, Prepare step cards) after UI2 removed the four-`NavGroup`/`NavShortcut`/`NavHelp` layout the first C2 pass depended on — see [BATCH-K.md](BATCH-K.md). The original `claude/c2-tv-popup-compact-console` pass (worktree `edwards-county-calcutta-c2`) is superseded, kept only as a reference; it was never merged. tsc/lint/build/58-58/72-72 all passed pre-merge and tsc/build were re-verified clean immediately after merging. **Not deployed** — `ecgc-calcutta-app-1` is unchanged; browser-rendered verification of the compact layout is still outstanding.
+- **C2 Auction Night / dual-screen operation:** requirements below were recorded during S1 recovery. **Reworked, implemented and merged to `main`** (`d4b3709`, from `claude/c2v2-dual-screen-compact-console`) — a TV popup window instead of a same-window tab, and a state-driven compact console with a persistent override replacing the rejected sticky-panel approach to `CAL-P3-007`, rebuilt against the merged UI2 nav (Tools dropdown, Prepare step cards) after UI2 removed the four-`NavGroup`/`NavShortcut`/`NavHelp` layout the first C2 pass depended on — see [BATCH-K.md](BATCH-K.md). The original `claude/c2-tv-popup-compact-console` pass (worktree `edwards-county-calcutta-c2`) is superseded, kept only as a reference; it was never merged. tsc/lint/build/58-58/72-72 all passed pre-merge and tsc/build were re-verified clean immediately after merging. **Deployed** — `ecgc-calcutta-app-1` rebuilt 2026-09-17T14:01 UTC (same rebuild as UI2 above, same commit `ba0f0b3`); public routes read-only verified 200. Browser-rendered verification of the compact layout, and the TV popup window's real multi-window behavior, remain outstanding — not exercised against production or any live browser in this session.
 
 
 ### C2 requirements recorded during S1 recovery — not implemented
@@ -117,7 +117,7 @@ After audit E2 (2026-09-15, `d992d1c`) and Batches F, G, H and I: **no open P2 a
 
 ### Batch F — Phone header controls and TV intermediate widths (implemented locally)
 
-- **Status:** APPROVED 2026-09-15 · IMPLEMENTED (local) and validated on `claude/cal-f-phone-header-tv`, see [BATCH-F.md](BATCH-F.md); not merged, not deployed. Decision recorded: one-screen TV **is** required below 700 px height (1366×768 at 125 % scaling = 1093×614); implemented down to 951 × 500 px.
+- **Status:** APPROVED 2026-09-15 · IMPLEMENTED (local) and validated on `claude/cal-f-phone-header-tv`, see [BATCH-F.md](BATCH-F.md). **Since merged to `main` and deployed on `ecgc-calcutta-app-1`** (see the Stable register above, CAL-P2-004/005). Decision recorded: one-screen TV **is** required below 700 px height (1366×768 at 125 % scaling = 1093×614); implemented down to 951 × 500 px.
 - **Exact IDs:** `CAL-P2-004`, `CAL-P2-005`.
 - **Objective:** Every header control remains usable at phone width (operator can sign out); the TV view stays readable at 960–1099 px wide and under 700 px tall.
 - **Why together:** Both are bounded responsive CSS corrections to shared header/TV rules introduced or left by earlier layout work; neither touches data or rules.
@@ -128,7 +128,7 @@ After audit E2 (2026-09-15, `d992d1c`) and Batches F, G, H and I: **no open P2 a
 
 ### Batch G — Sold dialog Escape (implemented locally)
 
-- **Status:** APPROVED 2026-09-15 · IMPLEMENTED (local) and validated on `claude/cal-g-sold-dialog-escape` (stacked on the Batch F branch), see [BATCH-G.md](BATCH-G.md); not merged, not deployed. Implemented as an `onEscapeKeyDown` guard on the Sold `DialogContent`; shared dialog/combobox primitives unchanged.
+- **Status:** APPROVED 2026-09-15 · IMPLEMENTED (local) and validated on `claude/cal-g-sold-dialog-escape` (stacked on the Batch F branch), see [BATCH-G.md](BATCH-G.md). **Since merged to `main` and deployed on `ecgc-calcutta-app-1`** (see the Stable register above, CAL-P2-006). Implemented as an `onEscapeKeyDown` guard on the Sold `DialogContent`; shared dialog/combobox primitives unchanged.
 - **Exact IDs:** `CAL-P2-006`.
 - **Objective:** Escape dismisses buyer suggestions before it dismisses the sale.
 - **Expected areas:** `app/auction-controls.tsx` `SoldDialog`; `components/ui/combobox.tsx` or `components/ui/dialog.tsx` escape handling.
@@ -138,7 +138,7 @@ After audit E2 (2026-09-15, `d992d1c`) and Batches F, G, H and I: **no open P2 a
 
 ### Batch H — Contrast and filter semantics (implemented locally)
 
-- **Status:** APPROVED 2026-09-15 · IMPLEMENTED (local) and validated on `claude/cal-h-contrast-tabs` (stacked on the Batch G branch), see [BATCH-H.md](BATCH-H.md); not merged, not deployed. Token-level fix (`--muted-foreground` → `#5c6a5f`, new `--lot-foreground` `#636e60`, tab trigger `text-muted-foreground`); the filter tabs gained real `TabsContent` panels rather than switching to toggle buttons, keeping arrow-key behaviour unchanged.
+- **Status:** APPROVED 2026-09-15 · IMPLEMENTED (local) and validated on `claude/cal-h-contrast-tabs` (stacked on the Batch G branch), see [BATCH-H.md](BATCH-H.md). **Since merged to `main` and deployed on `ecgc-calcutta-app-1`** (see the Stable register above, CAL-P2-007/CAL-P3-002). Token-level fix (`--muted-foreground` → `#5c6a5f`, new `--lot-foreground` `#636e60`, tab trigger `text-muted-foreground`); the filter tabs gained real `TabsContent` panels rather than switching to toggle buttons, keeping arrow-key behaviour unchanged.
 - **Exact IDs:** `CAL-P2-007`, `CAL-P3-002`.
 - **Objective:** The five listed supporting texts meet 4.5:1; filter tabs reference real panels or use non-tab semantics.
 - **Expected areas:** `app/globals.css` colour tokens, `components/ui/tabs.tsx` trigger colour, `app/auction.tsx` board tools, `app/settlement.tsx` settlement tools.
@@ -148,7 +148,7 @@ After audit E2 (2026-09-15, `d992d1c`) and Batches F, G, H and I: **no open P2 a
 
 ### Batch I — Operator data-entry feedback (implemented locally)
 
-- **Status:** APPROVED 2026-09-15 (D-CAL-2…5) · `CAL-P3-003/004/005` IMPLEMENTED (local) and validated on `claude/cal-i-data-entry` (stacked on the Batch H branch), see [BATCH-I.md](BATCH-I.md); `CAL-P3-007` DEFERRED under D-CAL-5 with measurements (a sticky panel would cover the current bid at both laptop sizes); not merged, not deployed. Harness 17/17 on the implemented IDs, focused suite 43/43 (server rules, Access, Batch A access and Batch D import reruns), acceptance 58/58, refinement 72/72.
+- **Status:** APPROVED 2026-09-15 (D-CAL-2…5) · `CAL-P3-003/004/005` IMPLEMENTED (local) and validated on `claude/cal-i-data-entry` (stacked on the Batch H branch), see [BATCH-I.md](BATCH-I.md); `CAL-P3-007` DEFERRED under D-CAL-5 with measurements (a sticky panel would cover the current bid at both laptop sizes) — since addressed architecturally by Batch K/C2, see the Stable register above. **`CAL-P3-003/004/005` since merged to `main` and deployed on `ecgc-calcutta-app-1`.** Harness 17/17 on the implemented IDs, focused suite 43/43 (server rules, Access, Batch A access and Batch D import reruns), acceptance 58/58, refinement 72/72.
 - **Exact IDs:** `CAL-P3-003`, `CAL-P3-004`, `CAL-P3-005`; `CAL-P3-007` optional.
 - **Objective:** No silent zero settings, identified invalid import rows, honest Access messages; optionally keep the Hammer above the fold on laptops.
 - **Expected areas:** `app/rules.tsx`, `app/editors.tsx`, `app/operator.tsx` Access form, `app/api/admin/route.ts` messages (no schema).
@@ -175,7 +175,7 @@ for Leaderboard's L2/L3/R1 scope; does not approve anything else listed in this 
 
 | ID | Scope | Status | Record |
 |---|---|---|---|
-| UI2-A…F | Tools dropdown, Prepare 1–4 redesign, theme quick-select, contextual `HelpTip`, TV bid-pulse/sold-settle animation, statistics hierarchy + semantic team-count color | IMPLEMENTED → VALIDATED (local) on `claude/ui2-refinement`, off clean `main` @ `cf3c0ca`. **Merged to `main` as `9c4319c` on 2026-09-17; not yet deployed** (`ecgc-calcutta-app-1`'s running image still predates this merge). | [BATCH-CAL-UI2.md](BATCH-CAL-UI2.md) |
+| UI2-A…F | Tools dropdown, Prepare 1–4 redesign, theme quick-select, contextual `HelpTip`, TV bid-pulse/sold-settle animation, statistics hierarchy + semantic team-count color | IMPLEMENTED → VALIDATED (local) on `claude/ui2-refinement`, off clean `main` @ `cf3c0ca`. Merged to `main` as `9c4319c` on 2026-09-17. **Deployed** — `ecgc-calcutta-app-1` rebuilt 2026-09-17T14:01 UTC; public routes read-only verified 200; operator-side (Tools dropdown, theme picker, Local Users) not exercised against production. | [BATCH-CAL-UI2.md](BATCH-CAL-UI2.md) |
 | UI2-G | Local user accounts (Tools → Local Users), operator-level only, scrypt-hashed, portable-runtime-only | IMPLEMENTED → VALIDATED (local): `npm run test:portable` end-to-end incl. a real HTTP sign-in as a created local operator; owner-gated admin actions exercised against a live portable server; plain-build stub fails loudly, verified in-browser | [BATCH-CAL-UI2.md](BATCH-CAL-UI2.md) |
 | UI2-H | Responsive/TV `clamp()` audit at 1366×768/1920×1080/2560×1440/3840×2160 + narrow width | VALIDATED (local) — no source change needed; existing S1 proportional-typography system scales correctly through everything UI2 added; keyboard/focus and reduced-motion verified programmatically | [BATCH-CAL-UI2.md](BATCH-CAL-UI2.md) |
 
