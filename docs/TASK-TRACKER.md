@@ -3,8 +3,8 @@
 ## Current planned work — 2026-09-16
 
 - **C1 Operator Navigation:** complete and merged; accepted foundation at `f4a7e77`.
-- **S1 Purposeful Themes + Advanced Settings:** accepted by the human; **commit, merge and production deployment authorized; release in progress**. Recovered branch `task/s1-themes-advanced`, sibling worktree `edwards-county-calcutta-s1`, uncommitted at base `f4a7e77`. Themes/Advanced preserved; true TV scaling, content containment and navigation contrast completed. [Scope, measured evidence and exact human gate](S1.md). Existing lint debt remains; physical hardware is unverified. The latest user instruction explicitly authorizes commit, merge and deployment of S1.
-- **C2 Auction Night / dual-screen operation:** expected next, not implemented by S1. Requirements below; later roadmap items remain deferred.
+- **S1 Purposeful Themes + Advanced Settings:** accepted by the human and **released** — committed as `494929b`, `task/s1-themes-advanced` fast-forwarded to the same commit, `ecgc-calcutta-app-1` rebuilt and healthy; see the dated entry in [CURRENT-STATE.md](CURRENT-STATE.md) for the read-only production verification performed in this session and its limits. [Scope and measured evidence](S1.md). Existing lint debt remains; physical hardware is unverified.
+- **C2 Auction Night / dual-screen operation:** requirements below were recorded during S1 recovery. **Implemented locally on `claude/c2-tv-popup-compact-console`** (a TV popup window instead of a same-window tab, and a state-driven compact console with a persistent override replacing the rejected sticky-panel approach to `CAL-P3-007`) — see [BATCH-K.md](../../edwards-county-calcutta-c2/docs/BATCH-K.md) in that branch's worktree. Not merged to `main`, not deployed; browser-rendered verification is still outstanding.
 
 
 ### C2 requirements recorded during S1 recovery — not implemented
