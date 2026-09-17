@@ -15,7 +15,7 @@
   `teams` array while the visible list is filtered), and the page scrolled itself back to the top
   (Radix Popover refocusing a nav help trigger without `preventScroll`; the same cause also stole
   focus from the bid field on hover). tsc, build, lint (48/37 — byte-identical to the measured `main`
-  baseline), acceptance 58/58, refinement 72/72, new `tests/ui3-reorder.mjs` 18/18 and new rendered
+  baseline), acceptance 58/58, refinement 72/72, new `tests/ui3-reorder.mjs` 20/20 and new rendered
   `tests/ui3-browser.mjs` 63/63 all pass; 22 screenshots at 1920×1080 / 1366×768 / 820 / 390 plus a
   TV check are in `docs/batch-l-evidence/`. The live container is untouched and still runs `ba0f0b3`.
   See [BATCH-L.md](BATCH-L.md).

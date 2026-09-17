@@ -112,7 +112,9 @@ already reads — `create_event` / `load_demo` are excluded because `freshEvent`
 without a before-snapshot. **No new plumbing or API change was needed.** Both confirmations (the
 `U` shortcut and the button) now read e.g. *"This will undo: Team skipped for now — Reed / Foster,
 recorded 1:30 PM by op@test."*, with sales named by team and amount, and *"There is no recorded
-action to undo yet."* on a fresh event. The same sentence is the Undo button's hover tip.
+action to undo yet."* on a fresh event — in which case the caller's follow-on sentence (version
+check / audit trail) is deliberately *not* appended, so the dialog does not reassure you about a
+correction that is not going to happen. The same sentence is the Undo button's hover tip.
 
 ## 6. Bug — Next Up arrows renumbered the lot without moving the team
 
@@ -132,7 +134,7 @@ operator can see**, then returns the complete id order to save. `move()` now tak
 search/flight/status filter. At either end of the visible list it is a no-op instead of a silent
 renumber.
 
-**Regression test:** `tests/ui3-reorder.mjs` — 18 pure checks (10 reorder, 8 undo-description),
+**Regression test:** `tests/ui3-reorder.mjs` — 20 pure checks (10 reorder, 10 undo-description),
 including the on-block-predecessor case, a hidden team between two visible ones, the filtered
 roster, both boundaries and a single-row list. Plus four browser checks in `tests/ui3-browser.mjs`.
 
@@ -185,9 +187,10 @@ only) hides it while the board is on screen and brings it back when you scroll u
 | `npm run lint` (build artifacts excluded, as Batch K established) | **85 problems — 48 errors / 37 warnings, byte-identical to the `main` baseline**; zero new debt |
 | `node tests/acceptance.mjs` | **58 / 58 PASS** |
 | `node tests/refinement.mjs` | **72 / 72 PASS** |
-| `node tests/ui3-reorder.mjs` (new) | **18 / 18 PASS** |
+| `node tests/ui3-reorder.mjs` (new) | **20 / 20 PASS** |
 | `node tests/ui3-browser.mjs` (new, rendered) | **63 / 63 PASS** |
 | Responsive containment 390 / 820 / 1366 / 1920 + TV 1920 | **PASS**, no horizontal overflow anywhere; TV one screen |
+| Moved controls still *work*, not just render | **PASS** — the `U` shortcut opens the dialog with the new wording, Tools → Load demo creates an event, Tools → Reset demo data still gates on the typed `RESET DEMO DATA` confirmation |
 
 **The `main` lint baseline was measured, not quoted**: a `git worktree` of `main` @ `8405a8a` was
 linted with the same ignore patterns and produced 48 errors / 37 warnings, matching Batch K's record.

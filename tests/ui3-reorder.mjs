@@ -55,9 +55,11 @@ check(lastUndoable(audit).id === '2', 'Skips undo rows when naming the last undo
 check(lastUndoable([{ id: '9', action: 'load_demo', createdAt: now, undone: 0 }]) === null, 'Creation rows carry no before-snapshot and are never offered');
 check(lastUndoable([{ id: '9', action: 'bid', createdAt: now, undone: 1 }]) === null, 'An already-undone row is not offered again');
 check(describeUndo([], null) === 'There is no recorded action to undo yet.', 'A fresh event says there is nothing to undo');
+check(describeUndo([], null, 'The correction remains in the audit trail.') === 'There is no recorded action to undo yet.', 'With nothing to undo, the follow-on reassurance is not appended');
 
 const data = { event: { currency: 'USD' }, teams, buyers: [], flights: [], sales: [] };
-const text = describeUndo(audit, data);
+const text = describeUndo(audit, data, 'Other operator changes are protected by a version check.');
+check(text.endsWith('Other operator changes are protected by a version check.'), 'The caller\'s follow-on sentence is appended when there is something to undo');
 check(/^This will undo: Team skipped for now — Reed \/ Foster/.test(text), 'Names the action and the record it touched: ' + text);
 check(/recorded \d/.test(text) && /by op@test/.test(text), 'Names when it happened and who did it');
 const saleData = { event: { currency: 'USD' }, teams, buyers: [], flights: [], sales: [{ id: 's1', teamId: 'd', amount: 45000 }] };

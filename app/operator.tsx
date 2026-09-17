@@ -203,7 +203,7 @@ export default function AdminPanel({ data, meta, user, selectedEventId, offline,
         increase(s.increment);
     } if (ev.key.toLowerCase() === 'u') {
         ev.preventDefault();
-        ask('Undo last action?', describeUndo(meta.audit, data) + ' The correction remains in the audit trail.', 'undo');
+        ask('Undo last action?', describeUndo(meta.audit, data, 'The correction remains in the audit trail.'), 'undo');
     } }; window.addEventListener('keydown', key); return () => window.removeEventListener('keydown', key); });
     const flightOptions = flights.map((f: Row) => ({ value: f.id, label: f.name }));
     // `visible` is the list the arrows actually appear in ("Next up", or the filtered roster) —
@@ -253,7 +253,7 @@ export default function AdminPanel({ data, meta, user, selectedEventId, offline,
     // compact state, the scroll position or the open tab. "Auto" only appears once the operator has
     // overridden the automatic behaviour, and says plainly what clicking it restores.
     const headerControls = <div className="mast-controls">
-        {e && <ControlTip text={describeUndo(meta.audit, data)}><Button variant="outline" size="sm" disabled={busy || offline} onClick={() => ask('Undo last action?', describeUndo(meta.audit, data) + ' Other operator changes are protected by a version check.', 'undo')}><Undo2 /> Undo</Button></ControlTip>}
+        {e && <ControlTip text={describeUndo(meta.audit, data)}><Button variant="outline" size="sm" disabled={busy || offline} onClick={() => ask('Undo last action?', describeUndo(meta.audit, data, 'Other operator changes are protected by a version check.'), 'undo')}><Undo2 /> Undo</Button></ControlTip>}
         {e && <div className="theme-quick-picker"><Choice label="Event theme" value={normalizeTheme(e.settings.theme)} onChange={(theme: string) => act('theme_update', { theme }, { message: 'Theme saved for this event' })} items={themePresets.map(p => ({ value: p.id, label: p.name }))}/></div>}
         <ControlTip text="Hides the heading rows and shrinks the navigation so more of the auction console fits on screen. Follows the auction status automatically unless you set it here."><label className="compact-toggle"><Switch checked={compact} onCheckedChange={(v: boolean) => setCompactOverride(v ? 'on' : 'off')} aria-label="Compact view"/> Compact view</label></ControlTip>
         {compactOverride !== 'auto' && <ControlTip text="Compact view is manually set — click to let it follow the auction status automatically again."><Button type="button" variant="ghost" size="sm" className="compact-auto" onClick={() => setCompactOverride('auto')}>Auto</Button></ControlTip>}

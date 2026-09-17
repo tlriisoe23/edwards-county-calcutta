@@ -36,12 +36,16 @@ function recordName(entry: Row, data: Row | null): string {
     }
     return '';
 }
-export function describeUndo(audit: Row[] = [], data: Row | null = null): string {
+// `note` is the caller's follow-on sentence (version check, audit trail). It is only appended when
+// there is actually something to undo — otherwise "there is nothing to undo" would be followed by a
+// reassurance about a correction that is not going to happen.
+export function describeUndo(audit: Row[] = [], data: Row | null = null, note = ''): string {
     const entry = lastUndoable(audit);
     if (!entry)
         return 'There is no recorded action to undo yet.';
     const what = actionNames[entry.action] || entry.action.replaceAll('_', ' ');
     const name = recordName(entry, data);
     const when = entry.createdAt ? new Date(entry.createdAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) : '';
-    return 'This will undo: ' + what + (name ? ' — ' + name : '') + [when && ', recorded ' + when, entry.actor && ' by ' + entry.actor].filter(Boolean).join('') + '.';
+    const described = 'This will undo: ' + what + (name ? ' — ' + name : '') + [when && ', recorded ' + when, entry.actor && ' by ' + entry.actor].filter(Boolean).join('') + '.';
+    return note ? described + ' ' + note : described;
 }

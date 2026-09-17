@@ -15,7 +15,7 @@ not touched. Scope and decisions: [BATCH-L.md](BATCH-L.md).
 | Lint against a **measured** `main` baseline | **PASS — no new debt.** 48 errors / 37 warnings on the branch, identical to `main` @ `8405a8a` linted in a `git worktree` with the same ignore patterns. Compared per rule and per file from two `-f json` reports, which caught the two diagnostics this branch briefly added (unused `HelpTip` import, one unescaped apostrophe); both fixed |
 | Existing acceptance rehearsal | **PASS**, 58 / 58 |
 | Existing refinement rehearsal | **PASS**, 72 / 72 |
-| New reorder + undo-description units, `node tests/ui3-reorder.mjs` | **PASS**, 18 / 18 — on-block predecessor, hidden team between visible ones, filtered roster, both boundaries, single-row list, server-mirrored undo selection |
+| New reorder + undo-description units, `node tests/ui3-reorder.mjs` | **PASS**, 20 / 20 — on-block predecessor, hidden team between visible ones, filtered roster, both boundaries, single-row list, server-mirrored undo selection |
 | New rendered operator checks, `node tests/ui3-browser.mjs` | **PASS**, 63 / 63, headless Chromium at 1920×1080 and 1366×768; [checks.json](batch-l-evidence/checks.json) |
 | Responsive containment 390 / 820 / 1366 / 1920, operator + public + step-5 dialog | **PASS**, zero horizontal overflow at every width; [responsive.json](batch-l-evidence/responsive.json) |
 | TV route 1920×1080 | **PASS**, still one screen, no overflow in either axis (route unchanged by this batch) |
@@ -24,6 +24,7 @@ not touched. Scope and decisions: [BATCH-L.md](BATCH-L.md).
 | Bug UI3-7 reproduced before fixing | **FAIL observed, then PASS after fix.** Instrumented `scrollTo`/`scrollIntoView`/`focus`: scroll jumped 180 → 0 → 360 → 10 on Teams & flights, stack trace naming Radix Popover `onCloseAutoFocus`. After the fix the instrumentation log is empty and drift is 0–4 px over 7 s on every tab |
 | Hover help stealing focus from the bid field | **FAIL observed, then PASS after fix**; focus now stays on *Bid amount* while hovering help |
 | Sticky masthead vs one-screen console | **Recorded trade-off, measured both ways.** Sticky everywhere pushed the Hammer row to 814 px at 1366×768 (past the fold, breaking D-CAL-5 / CAL-P3-007), so the masthead sticks on every tab except the console |
+| Controls moved into Tools / the masthead exercised for behaviour | **PASS** — `U` shortcut dialog, Tools → Load demo creates an event, Tools → Reset demo data still requires the typed confirmation before Confirm enables |
 | Production behaviour of anything in this batch | **UNVERIFIED.** Not merged, not deployed; `ecgc-calcutta-app-1` still runs `ba0f0b3` |
 | Other browser engines, screen readers, physical second display, touch tooltips, axe/contrast rerun for the new tab-strip surfaces | **UNVERIFIED**; headless Chromium only |
 

@@ -1,6 +1,6 @@
 {
  "base": "http://localhost:5173",
- "ranAt": "2026-09-17T15:37:49.621Z",
+ "ranAt": "2026-09-17T15:41:19.366Z",
  "checks": [
   {
    "label": "Flat strip lists the five tabs in order",
@@ -305,17 +305,17 @@
   {
    "label": "Undo dialog states what it will undo",
    "pass": true,
-   "detail": "This will undo: Team skipped for now — Reed / Foster, recorded 10:37 AM by seedy@sites.test. Other operator changes are protected by a version check."
+   "detail": "This will undo: Team skipped for now — Reed / Foster, recorded 10:40 AM by seedy@sites.test. Other operator changes are protected by a version check."
   },
   {
    "label": "Undo names the action",
    "pass": true,
-   "detail": "This will undo: Team skipped for now — Reed / Foster, recorded 10:37 AM by seedy@sites.test. Other operator changes are protected by a version check."
+   "detail": "This will undo: Team skipped for now — Reed / Foster, recorded 10:40 AM by seedy@sites.test. Other operator changes are protected by a version check."
   },
   {
    "label": "Undo names when it was recorded",
    "pass": true,
-   "detail": "This will undo: Team skipped for now — Reed / Foster, recorded 10:37 AM by seedy@sites.test. Other operator changes are protected by a version check."
+   "detail": "This will undo: Team skipped for now — Reed / Foster, recorded 10:40 AM by seedy@sites.test. Other operator changes are protected by a version check."
   },
   {
    "label": "Prepare shows five steps",
@@ -403,7 +403,7 @@
   {
    "label": "TV window is the TV route",
    "pass": true,
-   "detail": "http://localhost:5173/tv?event=0a8366e1-1f26-43c1-a009-be5d05da4fce"
+   "detail": "http://localhost:5173/tv?event=89f2fa5d-6512-4ed6-8d3e-dee208021061"
   },
   {
    "label": "Auction is LIVE after the choice",
@@ -595,7 +595,7 @@
   {
    "label": "This-screen choice turns this window into the TV display",
    "pass": true,
-   "detail": "http://localhost:5173/tv?event=0ebf7fe1-b760-4b7a-8b5a-1ba88cfb366f"
+   "detail": "http://localhost:5173/tv?event=8d694d37-65fa-44e5-b20c-541146ee8323"
   },
   {
    "label": "This-screen choice also starts the auction",
