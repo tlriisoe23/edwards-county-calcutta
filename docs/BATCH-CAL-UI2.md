@@ -13,6 +13,12 @@ Sub-batches A–F below were implemented and validated together in one working s
 consolidated doc rather than six separate `BATCH-CAL-A.md`…`BATCH-CAL-F.md` files, a deliberate
 efficiency tradeoff for a large pre-authorized scope rather than an audited finding queue).
 
+**Status update, 2026-09-17:** `claude/ui2-refinement` has since been merged into `main`
+(merge commit `9c4319c`) — the "not merged" framing above and in `docs/TASK-TRACKER.md`'s
+UI2 row is now stale for the merge half; **it is merged, but still not deployed**
+(`ecgc-calcutta-app-1`'s running image still dates to the earlier S1 build). Left the
+original prose above intact as the as-implemented record rather than rewritten.
+
 ## A — Tools dropdown menu
 
 Replaced the `TOOLS` nav group (a row of tab buttons: Display & sharing / Help / Activity / Access
