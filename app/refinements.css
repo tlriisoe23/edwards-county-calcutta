@@ -69,3 +69,16 @@
 .return-console:hover{background:var(--action-value-hover)!important}
 .notice-link{color:var(--primary);font-weight:600;text-decoration:underline;background:none;border:0;padding:0;cursor:pointer;font:inherit}
 @media(max-width:850px){.op-nav{column-gap:22px}}
+/* C2v2: state-driven compact console (LIVE/PAUSED or manual override) — reclaims the header
+   stack without covering the block or bid controls (kept clear per D-CAL-5/CAL-P3-007).
+   Reworked against the UI2 nav (Tools dropdown, Prepare step cards) which replaced the
+   original four-NavGroup layout C2's first pass was built against. */
+.compact.console-active .mast,.compact.console-active .admin-heading,.compact.console-active .event-toolbar{display:none}
+.compact.console-active{padding-top:12px}
+.op-nav-compact{align-items:center;row-gap:10px}
+.op-nav-expanded{border-bottom:0;margin-bottom:0;padding-top:16px}
+.nav-group-collapsed{margin-top:2px}
+.compact-toggle{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-secondary);cursor:pointer}
+.op-nav>.compact-toggle{margin-left:auto}
+.nav-expand{margin-left:auto}
+@media(max-width:650px){.op-nav-compact{align-items:flex-start}.nav-expand{margin-left:0}}
