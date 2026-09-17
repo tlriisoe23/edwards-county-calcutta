@@ -1,0 +1,83 @@
+[
+ {
+  "label": "phone-390",
+  "w": 390,
+  "h": 844,
+  "overflowX": 0,
+  "compactToggle": true,
+  "undo": true,
+  "tools": true,
+  "tabs": 5,
+  "tabsBox": {
+   "l": 20,
+   "r": 371
+  },
+  "prepareCols": 1,
+  "tabsWrapRows": 3,
+  "dialogFits": true,
+  "publicOverflowX": 0,
+  "publicAnchorAtTop": 1
+ },
+ {
+  "label": "tablet-820",
+  "w": 820,
+  "h": 1180,
+  "overflowX": 0,
+  "compactToggle": true,
+  "undo": true,
+  "tools": true,
+  "tabs": 5,
+  "tabsBox": {
+   "l": 34,
+   "r": 786
+  },
+  "prepareCols": 2,
+  "tabsWrapRows": 2,
+  "dialogFits": true,
+  "publicOverflowX": 0,
+  "publicAnchorAtTop": 1
+ },
+ {
+  "label": "laptop-1366",
+  "w": 1366,
+  "h": 768,
+  "overflowX": 0,
+  "compactToggle": true,
+  "undo": true,
+  "tools": true,
+  "tabs": 5,
+  "tabsBox": {
+   "l": 57,
+   "r": 1309
+  },
+  "prepareCols": 5,
+  "tabsWrapRows": 2,
+  "dialogFits": true,
+  "publicOverflowX": 0,
+  "publicAnchorAtTop": 1
+ },
+ {
+  "label": "desktop-1920",
+  "w": 1920,
+  "h": 1080,
+  "overflowX": 0,
+  "compactToggle": true,
+  "undo": true,
+  "tools": true,
+  "tabs": 5,
+  "tabsBox": {
+   "l": 191,
+   "r": 1729
+  },
+  "prepareCols": 5,
+  "tabsWrapRows": 2,
+  "dialogFits": true,
+  "publicOverflowX": 0,
+  "publicAnchorAtTop": 1
+ },
+ {
+  "label": "tv-1920",
+  "overflowY": 0,
+  "overflowX": 0
+ }
+]

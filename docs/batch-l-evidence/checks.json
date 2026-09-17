@@ -1,0 +1,612 @@
+{
+ "base": "http://localhost:5173",
+ "ranAt": "2026-09-17T15:37:49.621Z",
+ "checks": [
+  {
+   "label": "Flat strip lists the five tabs in order",
+   "pass": true,
+   "detail": [
+    "Auction console",
+    "View and Edit Sales",
+    "Results",
+    "Settlement",
+    "Exports"
+   ]
+  },
+  {
+   "label": "Exactly one tab strip",
+   "pass": true,
+   "detail": 1
+  },
+  {
+   "label": "No NavGroup headers or below-tab note rows remain",
+   "pass": true,
+   "detail": {
+    "tabs": [
+     "Auction console",
+     "View and Edit Sales",
+     "Results",
+     "Settlement",
+     "Exports"
+    ],
+    "lists": 1,
+    "groups": 0,
+    "notes": 0,
+    "returnBtn": 0,
+    "eyebrows": []
+   }
+  },
+  {
+   "label": "Return to console button removed",
+   "pass": true,
+   "detail": 0
+  },
+  {
+   "label": "No RUN/AFTER AUCTION captions above the tabs",
+   "pass": true,
+   "detail": []
+  },
+  {
+   "label": "Active tab carries the page surface colour (connects to the panel)",
+   "pass": true,
+   "detail": {
+    "page": "rgb(247, 246, 240)",
+    "bar": "2px",
+    "active": {
+     "bg": "rgb(247, 246, 240)",
+     "shadow": "rgb(23, 63, 48) 0px 3px 0px 0px inset",
+     "borderTop": "rgb(197, 203, 191)",
+     "borderBottomWidth": "0px"
+    },
+    "inactive": {
+     "bg": "rgb(238, 238, 230)",
+     "shadow": "none",
+     "borderTop": "rgba(0, 0, 0, 0)",
+     "borderBottomWidth": "0px"
+    }
+   }
+  },
+  {
+   "label": "Active and inactive tabs differ in surface",
+   "pass": true,
+   "detail": {
+    "page": "rgb(247, 246, 240)",
+    "bar": "2px",
+    "active": {
+     "bg": "rgb(247, 246, 240)",
+     "shadow": "rgb(23, 63, 48) 0px 3px 0px 0px inset",
+     "borderTop": "rgb(197, 203, 191)",
+     "borderBottomWidth": "0px"
+    },
+    "inactive": {
+     "bg": "rgb(238, 238, 230)",
+     "shadow": "none",
+     "borderTop": "rgba(0, 0, 0, 0)",
+     "borderBottomWidth": "0px"
+    }
+   }
+  },
+  {
+   "label": "Active tab has an accent bar",
+   "pass": true,
+   "detail": "rgb(23, 63, 48) 0px 3px 0px 0px inset"
+  },
+  {
+   "label": "Active tab notches through the strip rule",
+   "pass": true,
+   "detail": {
+    "page": "rgb(247, 246, 240)",
+    "bar": "2px",
+    "active": {
+     "bg": "rgb(247, 246, 240)",
+     "shadow": "rgb(23, 63, 48) 0px 3px 0px 0px inset",
+     "borderTop": "rgb(197, 203, 191)",
+     "borderBottomWidth": "0px"
+    },
+    "inactive": {
+     "bg": "rgb(238, 238, 230)",
+     "shadow": "none",
+     "borderTop": "rgba(0, 0, 0, 0)",
+     "borderBottomWidth": "0px"
+    }
+   }
+  },
+  {
+   "label": "Tab \"View and Edit Sales\" selects itself and shows a panel",
+   "pass": true
+  },
+  {
+   "label": "Tab \"Results\" selects itself and shows a panel",
+   "pass": true
+  },
+  {
+   "label": "Tab \"Settlement\" selects itself and shows a panel",
+   "pass": true
+  },
+  {
+   "label": "Tab \"Exports\" selects itself and shows a panel",
+   "pass": true
+  },
+  {
+   "label": "Tab \"Auction console\" selects itself and shows a panel",
+   "pass": true
+  },
+  {
+   "label": "Compact toggle and theme picker live in the masthead",
+   "pass": true,
+   "detail": {
+    "compact": true,
+    "theme": true,
+    "toolbarTheme": false,
+    "mastVisible": true,
+    "compactMode": true
+   }
+  },
+  {
+   "label": "Theme picker no longer in the event toolbar",
+   "pass": true,
+   "detail": {
+    "compact": true,
+    "theme": true,
+    "toolbarTheme": false,
+    "mastVisible": true,
+    "compactMode": true
+   }
+  },
+  {
+   "label": "Masthead stays visible while compact",
+   "pass": true,
+   "detail": {
+    "compact": true,
+    "theme": true,
+    "toolbarTheme": false,
+    "mastVisible": true,
+    "compactMode": true
+   }
+  },
+  {
+   "label": "Compact toggle still rendered after scrolling",
+   "pass": true
+  },
+  {
+   "label": "Auto appears once compact is set manually",
+   "pass": true
+  },
+  {
+   "label": "Auto explains what it restores on hover",
+   "pass": true,
+   "detail": [
+    "Compact view is manually set — click to let it follow the auction status automatically again."
+   ]
+  },
+  {
+   "label": "Auto restores status-driven compact and hides itself",
+   "pass": true,
+   "detail": {
+    "beforeAuto": false,
+    "afterAuto": {
+     "compact": true,
+     "autoGone": true
+    }
+   }
+  },
+  {
+   "label": "Load demo is in the Tools menu",
+   "pass": true,
+   "detail": [
+    "Display & sharing",
+    "Help",
+    "Activity",
+    "Access",
+    "Local Users",
+    "Advanced settings",
+    "Load demo",
+    "Reset demo data"
+   ]
+  },
+  {
+   "label": "Reset demo data is in the Tools menu",
+   "pass": true,
+   "detail": [
+    "Display & sharing",
+    "Help",
+    "Activity",
+    "Access",
+    "Local Users",
+    "Advanced settings",
+    "Load demo",
+    "Reset demo data"
+   ]
+  },
+  {
+   "label": "Every Tools item explains itself in plain language",
+   "pass": true,
+   "detail": [
+    {
+     "label": "Display & sharing",
+     "note": "Public board link, QR code and what the TV screen shows"
+    },
+    {
+     "label": "Help",
+     "note": "Auction-night checklist and how each part of the app works"
+    },
+    {
+     "label": "Activity",
+     "note": "The audit trail: every change, who made it and when"
+    },
+    {
+     "label": "Access",
+     "note": "Grant or revoke operator access for this site"
+    },
+    {
+     "label": "Local Users",
+     "note": "Create a local sign-in for someone without a Google account"
+    },
+    {
+     "label": "Advanced settings",
+     "note": "Opens Event & rules with the advanced section expanded"
+    },
+    {
+     "label": "Load demo",
+     "note": "Creates a separate fictional event to practise on — your events are kept"
+    },
+    {
+     "label": "Reset demo data",
+     "note": "Clears this demonstration event’s teams, buyers and sales"
+    }
+   ]
+  },
+  {
+   "label": "Load demo no longer on the working toolbar",
+   "pass": true
+  },
+  {
+   "label": "Standalone demo-reset panel removed",
+   "pass": true
+  },
+  {
+   "label": "Masthead controls stay on screen while scrolling a long tab",
+   "pass": true,
+   "detail": {
+    "scrollY": 900,
+    "mastTop": 0,
+    "controlsVisible": true
+   }
+  },
+  {
+   "label": "Masthead is not sticky on the auction console",
+   "pass": true,
+   "detail": {
+    "sticky": 0,
+    "hammerBottom": 707,
+    "vh": 1080
+   }
+  },
+  {
+   "label": "Hammer row still clears the fold on the console",
+   "pass": true,
+   "detail": {
+    "sticky": 0,
+    "hammerBottom": 707,
+    "vh": 1080
+   }
+  },
+  {
+   "label": "Sales tab hover says what you can do there",
+   "pass": true,
+   "detail": [
+    "Every hammer on record — go here to correct a price, reopen or void a sale."
+   ]
+  },
+  {
+   "label": "Undo stays reachable in the masthead while the auction is LIVE",
+   "pass": true
+  },
+  {
+   "label": "Undo dialog states what it will undo",
+   "pass": true,
+   "detail": "This will undo: Team skipped for now — Reed / Foster, recorded 10:37 AM by seedy@sites.test. Other operator changes are protected by a version check."
+  },
+  {
+   "label": "Undo names the action",
+   "pass": true,
+   "detail": "This will undo: Team skipped for now — Reed / Foster, recorded 10:37 AM by seedy@sites.test. Other operator changes are protected by a version check."
+  },
+  {
+   "label": "Undo names when it was recorded",
+   "pass": true,
+   "detail": "This will undo: Team skipped for now — Reed / Foster, recorded 10:37 AM by seedy@sites.test. Other operator changes are protected by a version check."
+  },
+  {
+   "label": "Prepare shows five steps",
+   "pass": true,
+   "detail": [
+    "Event & rules",
+    "Teams & flights",
+    "Buyers",
+    "TV / Display Settings",
+    "Start Auction"
+   ]
+  },
+  {
+   "label": "Step 4 renamed to TV / Display Settings",
+   "pass": true,
+   "detail": [
+    "Event & rules",
+    "Teams & flights",
+    "Buyers",
+    "TV / Display Settings",
+    "Start Auction"
+   ]
+  },
+  {
+   "label": "Step 5 is Start Auction",
+   "pass": true,
+   "detail": [
+    "Event & rules",
+    "Teams & flights",
+    "Buyers",
+    "TV / Display Settings",
+    "Start Auction"
+   ]
+  },
+  {
+   "label": "No horizontal overflow at 1366 with five steps",
+   "pass": true,
+   "detail": {
+    "right": 1176,
+    "inner": 1366,
+    "overflow": 0
+   }
+  },
+  {
+   "label": "Step 5 offers two placements",
+   "pass": true,
+   "detail": {
+    "title": "Where should the TV display open?",
+    "choices": [
+     {
+      "label": "Open TV/Display on this screen",
+      "body": "This window becomes the TV display. You will need to sign in to calcutta.edcogolf.org/admin from a different device to keep operating the auction."
+     },
+     {
+      "label": "Open on an external TV/MonitorMost operators",
+      "body": "The TV window that opens can be dragged to that screen and made full screen. You keep controlling everything from this device."
+     }
+    ]
+   }
+  },
+  {
+   "label": "First choice is this screen",
+   "pass": true,
+   "detail": "Open TV/Display on this screen"
+  },
+  {
+   "label": "Second choice is an external TV/Monitor",
+   "pass": true,
+   "detail": "Open on an external TV/MonitorMost operators"
+  },
+  {
+   "label": "This-screen note warns you must operate from another device",
+   "pass": true,
+   "detail": "This window becomes the TV display. You will need to sign in to calcutta.edcogolf.org/admin from a different device to keep operating the auction."
+  },
+  {
+   "label": "External note covers drag, full screen and keeping control here",
+   "pass": true,
+   "detail": "The TV window that opens can be dragged to that screen and made full screen. You keep controlling everything from this device."
+  },
+  {
+   "label": "External choice opens a separate TV window",
+   "pass": true
+  },
+  {
+   "label": "TV window is the TV route",
+   "pass": true,
+   "detail": "http://localhost:5173/tv?event=0a8366e1-1f26-43c1-a009-be5d05da4fce"
+  },
+  {
+   "label": "Auction is LIVE after the choice",
+   "pass": true,
+   "detail": {
+    "status": "LIVE",
+    "navTop": 8,
+    "dialogOpen": false
+   }
+  },
+  {
+   "label": "Dialog closed after choosing",
+   "pass": true,
+   "detail": {
+    "status": "LIVE",
+    "navTop": 8,
+    "dialogOpen": false
+   }
+  },
+  {
+   "label": "Tab bar sits at the top of the viewport after starting",
+   "pass": true,
+   "detail": {
+    "status": "LIVE",
+    "navTop": 8,
+    "dialogOpen": false
+   }
+  },
+  {
+   "label": "Prepare block is out of view once the auction started",
+   "pass": true
+  },
+  {
+   "label": "Console Resume also pins the tab bar to the top",
+   "pass": true,
+   "detail": {
+    "status": "LIVE",
+    "navTop": 8
+   }
+  },
+  {
+   "label": "Move up swaps the two teams in Next up",
+   "pass": true,
+   "detail": {
+    "before": [
+     "Reed / Foster",
+     "Parker / Ellis",
+     "Morgan / Blake",
+     "Walsh / Turner",
+     "Carter / Lewis",
+     "Ross / Mitchell"
+    ],
+    "afterUp": [
+     "Parker / Ellis",
+     "Reed / Foster",
+     "Morgan / Blake",
+     "Walsh / Turner",
+     "Carter / Lewis",
+     "Ross / Mitchell"
+    ]
+   }
+  },
+  {
+   "label": "Lot numbers stay a stable sequence after a visible swap",
+   "pass": true,
+   "detail": {
+    "before": [
+     "07",
+     "08",
+     "09",
+     "10",
+     "11",
+     "12"
+    ],
+    "after": [
+     "07",
+     "08",
+     "09",
+     "10",
+     "11",
+     "12"
+    ]
+   }
+  },
+  {
+   "label": "Move up at the top of Next up is a no-op, not a silent renumber",
+   "pass": true,
+   "detail": {
+    "afterUp": {
+     "names": [
+      "Parker / Ellis",
+      "Reed / Foster",
+      "Morgan / Blake",
+      "Walsh / Turner",
+      "Carter / Lewis",
+      "Ross / Mitchell"
+     ],
+     "lots": [
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12"
+     ]
+    },
+    "atTop": {
+     "names": [
+      "Parker / Ellis",
+      "Reed / Foster",
+      "Morgan / Blake",
+      "Walsh / Turner",
+      "Carter / Lewis",
+      "Ross / Mitchell"
+     ],
+     "lots": [
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12"
+     ]
+    }
+   }
+  },
+  {
+   "label": "Move down swaps with the next visible team",
+   "pass": true,
+   "detail": {
+    "atTop": [
+     "Parker / Ellis",
+     "Reed / Foster",
+     "Morgan / Blake",
+     "Walsh / Turner",
+     "Carter / Lewis",
+     "Ross / Mitchell"
+    ],
+    "afterDown": [
+     "Reed / Foster",
+     "Parker / Ellis",
+     "Morgan / Blake",
+     "Walsh / Turner",
+     "Carter / Lewis",
+     "Ross / Mitchell"
+    ]
+   }
+  },
+  {
+   "label": "Scroll position holds steady across poll refreshes",
+   "pass": true,
+   "detail": {
+    "min": 728,
+    "max": 728
+   }
+  },
+  {
+   "label": "Page never snaps back to the top on its own",
+   "pass": true,
+   "detail": [
+    728,
+    728,
+    728,
+    728,
+    728,
+    728,
+    728,
+    728
+   ]
+  },
+  {
+   "label": "Contextual help never steals focus from the bid field",
+   "pass": true
+  },
+  {
+   "label": "Auction board link is offered from the top of the public page",
+   "pass": true,
+   "detail": 1
+  },
+  {
+   "label": "Auction board link disappears once the board is on screen",
+   "pass": true,
+   "detail": 0
+  },
+  {
+   "label": "Auction board link returns when you scroll back up",
+   "pass": true
+  },
+  {
+   "label": "This-screen choice turns this window into the TV display",
+   "pass": true,
+   "detail": "http://localhost:5173/tv?event=0ebf7fe1-b760-4b7a-8b5a-1ba88cfb366f"
+  },
+  {
+   "label": "This-screen choice also starts the auction",
+   "pass": true,
+   "detail": "LIVE"
+  },
+  {
+   "label": "No uncaught page errors",
+   "pass": true,
+   "detail": []
+  }
+ ],
+ "errors": []
+}

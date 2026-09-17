@@ -2,6 +2,37 @@
 
 2026-09-14 UTC · baseline `dfab14906c04b5a6d99ffffbfba4249883750eae`. Reports are local audit evidence, not production sign-off. PASS = observed expected result; FAIL = demonstrated mismatch; BLOCKED = a needed environment/tool is unavailable; UNVERIFIED = not exercised sufficiently. A successful build does not convert any browser or hosted gap into PASS.
 
+## Batch L (UI3) — 2026-09-17, local candidate with rendered evidence, no merge/deployment
+
+Branch `claude/ui3-flat-tabs-operator`, branched from `main` @ `8405a8a`. Local `.wrangler/state`
+and disposable demo events only; the production container, its volume and the Cloudflare route were
+not touched. Scope and decisions: [BATCH-L.md](BATCH-L.md).
+
+| Check | Result and provenance |
+|---|---|
+| TypeScript | **PASS**, `node node_modules/typescript/bin/tsc --noEmit --incremental false`, no errors |
+| Build | **PASS**, `npm run build`, all stages; route table unchanged |
+| Lint against a **measured** `main` baseline | **PASS — no new debt.** 48 errors / 37 warnings on the branch, identical to `main` @ `8405a8a` linted in a `git worktree` with the same ignore patterns. Compared per rule and per file from two `-f json` reports, which caught the two diagnostics this branch briefly added (unused `HelpTip` import, one unescaped apostrophe); both fixed |
+| Existing acceptance rehearsal | **PASS**, 58 / 58 |
+| Existing refinement rehearsal | **PASS**, 72 / 72 |
+| New reorder + undo-description units, `node tests/ui3-reorder.mjs` | **PASS**, 18 / 18 — on-block predecessor, hidden team between visible ones, filtered roster, both boundaries, single-row list, server-mirrored undo selection |
+| New rendered operator checks, `node tests/ui3-browser.mjs` | **PASS**, 63 / 63, headless Chromium at 1920×1080 and 1366×768; [checks.json](batch-l-evidence/checks.json) |
+| Responsive containment 390 / 820 / 1366 / 1920, operator + public + step-5 dialog | **PASS**, zero horizontal overflow at every width; [responsive.json](batch-l-evidence/responsive.json) |
+| TV route 1920×1080 | **PASS**, still one screen, no overflow in either axis (route unchanged by this batch) |
+| Console fold vs `main`, measured on two dev servers | **PASS, slightly improved**: Hammer row bottom 707 px (branch) vs 713 px (`main`) at 1366×768 and 1280×720; 756 px vs 762 px at 1024×768. All clear the fold |
+| Bug UI3-6 reproduced before fixing | **FAIL observed on `main` behaviour, then PASS after fix.** Demo fixture: *Move Reed / Foster up* moved the lot 07 → 06 → 05 over two clicks with the Next up order unchanged both times |
+| Bug UI3-7 reproduced before fixing | **FAIL observed, then PASS after fix.** Instrumented `scrollTo`/`scrollIntoView`/`focus`: scroll jumped 180 → 0 → 360 → 10 on Teams & flights, stack trace naming Radix Popover `onCloseAutoFocus`. After the fix the instrumentation log is empty and drift is 0–4 px over 7 s on every tab |
+| Hover help stealing focus from the bid field | **FAIL observed, then PASS after fix**; focus now stays on *Bid amount* while hovering help |
+| Sticky masthead vs one-screen console | **Recorded trade-off, measured both ways.** Sticky everywhere pushed the Hammer row to 814 px at 1366×768 (past the fold, breaking D-CAL-5 / CAL-P3-007), so the masthead sticks on every tab except the console |
+| Production behaviour of anything in this batch | **UNVERIFIED.** Not merged, not deployed; `ecgc-calcutta-app-1` still runs `ba0f0b3` |
+| Other browser engines, screen readers, physical second display, touch tooltips, axe/contrast rerun for the new tab-strip surfaces | **UNVERIFIED**; headless Chromium only |
+
+Reproduce: start a local dev server with a fresh store, then
+`UI3_PLAYWRIGHT_MODULE=<path to an installed playwright> node tests/ui3-browser.mjs`,
+`node tests/ui3-reorder.mjs`, and `node docs/batch-l-evidence/responsive.mjs` /
+`fold.mjs` for the viewport and fold measurements. All browser scripts refuse a non-localhost origin.
+Playwright is intentionally outside this project's dependency tree, matching `tests/s1-browser.mjs`.
+
 ## S1 recovery — 2026-09-16, local candidate, no merge/deployment
 
 Recovered `/home/tanner/development/edwards-county-calcutta-s1`, branch `task/s1-themes-advanced`, inherited HEAD/base `f4a7e77baae943461f7bc6161a223f61ec5100d8`. Implementation remains uncommitted. [S1 scope, file list, commands and human gate](S1.md) is the compact handoff. Evidence uses synthetic local records only. Existing evidence is retained; superseded takeover iterations are under ignored `.sites-runtime/s1/takeover-iterations`.

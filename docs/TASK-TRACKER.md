@@ -1,5 +1,17 @@
 # Finding tracker and proposed batches
 
+## Current planned work — 2026-09-17
+
+- **UI3 operator desk refinement (Batch L):** owner-requested pass — one flat tab bar replacing the
+  RUN AUCTION / AFTER AUCTION groups, prepare step 4 renamed and step 5 "Start Auction" with a TV
+  placement dialog, compact toggle / theme picker / Undo pinned to the masthead, Load demo and Reset
+  demo data moved into Tools, hover help on controls in place of the below-nav note blocks, an undo
+  confirmation that names the action it will undo, and two reported defects reproduced and fixed
+  (Next Up arrows renumbering instead of reordering; the page scrolling itself back to the top).
+  IMPLEMENTED → VALIDATED (local, **including rendered-browser evidence**) on
+  `claude/ui3-flat-tabs-operator`, branched from `main` @ `8405a8a`. **Not merged, not deployed** —
+  the live container still runs `ba0f0b3`. See [BATCH-L.md](BATCH-L.md).
+
 ## Current planned work — 2026-09-16
 
 - **C1 Operator Navigation:** complete and merged; accepted foundation at `f4a7e77`.
@@ -178,6 +190,35 @@ for Leaderboard's L2/L3/R1 scope; does not approve anything else listed in this 
 | UI2-A…F | Tools dropdown, Prepare 1–4 redesign, theme quick-select, contextual `HelpTip`, TV bid-pulse/sold-settle animation, statistics hierarchy + semantic team-count color | IMPLEMENTED → VALIDATED (local) on `claude/ui2-refinement`, off clean `main` @ `cf3c0ca`. Merged to `main` as `9c4319c` on 2026-09-17. **Deployed** — `ecgc-calcutta-app-1` rebuilt 2026-09-17T14:01 UTC; public routes read-only verified 200; operator-side (Tools dropdown, theme picker, Local Users) not exercised against production. | [BATCH-CAL-UI2.md](BATCH-CAL-UI2.md) |
 | UI2-G | Local user accounts (Tools → Local Users), operator-level only, scrypt-hashed, portable-runtime-only | IMPLEMENTED → VALIDATED (local): `npm run test:portable` end-to-end incl. a real HTTP sign-in as a created local operator; owner-gated admin actions exercised against a live portable server; plain-build stub fails loudly, verified in-browser | [BATCH-CAL-UI2.md](BATCH-CAL-UI2.md) |
 | UI2-H | Responsive/TV `clamp()` audit at 1366×768/1920×1080/2560×1440/3840×2160 + narrow width | VALIDATED (local) — no source change needed; existing S1 proportional-typography system scales correctly through everything UI2 added; keyboard/focus and reduced-motion verified programmatically | [BATCH-CAL-UI2.md](BATCH-CAL-UI2.md) |
+
+## User scope 2026-09-17 — UI3 operator desk refinement (Batch L)
+
+Not an audit finding: a second owner-requested UI/UX pass over the operator desk, recorded in the
+same non-audit pattern as UI2. Items 6 and 7 are reported defects, reproduced in a browser before
+being fixed. Does not approve anything else listed in this tracker.
+
+| ID | Scope | Status | Record |
+|---|---|---|---|
+| UI3-1 | One flat, unlabelled tab bar (Auction console · View and Edit Sales · Results · Settlement · Exports); `NavGroup`, its captions and *Return to console* removed; active tab drawn as the front edge of the panel below it | IMPLEMENTED → VALIDATED (local, rendered) | [BATCH-L.md](BATCH-L.md) |
+| UI3-2 | Prepare step 4 → *TV / Display Settings*; new step 5 *Start Auction* with the TV-placement dialog; both entry points start the auction and scroll the tab bar to the top | IMPLEMENTED → VALIDATED (local, rendered). Decision recorded: step 5 and the in-console Start/Resume both remain | [BATCH-L.md](BATCH-L.md) |
+| UI3-3 | Compact toggle, theme picker and Undo pinned to the masthead; Load demo + Reset demo data into Tools; *Auto* kept and explained, not deleted | IMPLEMENTED → VALIDATED (local, rendered). Trade-off recorded: the masthead sticks on every tab **except** the console, where a sticky bar breaks the D-CAL-5 / CAL-P3-007 one-screen bar | [BATCH-L.md](BATCH-L.md) |
+| UI3-4 | `.nav-notes` blocks removed; new `ControlTip` hover help on 19 rendered controls (15 sites); Tools items describe themselves inline | IMPLEMENTED → VALIDATED (local, rendered). Deviation recorded: inline descriptions for dropdown items instead of hover | [BATCH-L.md](BATCH-L.md) |
+| UI3-5 | Undo confirmation names the actual action, record, time and operator, from existing `meta.audit` — no new plumbing | IMPLEMENTED → VALIDATED (local, rendered + 8 unit checks) | [BATCH-L.md](BATCH-L.md) |
+| UI3-6 | **Bug:** Next Up / roster arrows renumbered the lot without moving the team. Cause: `move()` swapped neighbours in the full `teams` array while the visible list is filtered. Fixed by `reorderVisible()` | REPRODUCED → FIXED → VALIDATED (local, rendered + 10 unit checks in `tests/ui3-reorder.mjs`) | [BATCH-L.md](BATCH-L.md) |
+| UI3-7 | **Bug:** the operator page scrolled itself back to the top. Cause: Radix Popover's `onCloseAutoFocus` refocusing a nav `HelpTip` trigger without `preventScroll`; same source also stole focus from the bid field on hover | REPRODUCED (instrumented stack trace) → FIXED → VALIDATED (local, rendered) | [BATCH-L.md](BATCH-L.md) |
+| UI3-8 | Public board `#board` anchor kept but self-hiding via `IntersectionObserver` while the board is in view | IMPLEMENTED → VALIDATED (local, rendered). Decision recorded: kept rather than removed — the board is below the fold at 390 px and at 1080p | [BATCH-L.md](BATCH-L.md) |
+
+## Future ideas, not authorized
+
+Recorded only so the idea is not lost. **Nothing here is approved, scoped or started, and none of it
+may be built without an explicit, separate go-ahead.**
+
+- **Offline operation for venues without internet access.** The owner raised wanting to explore a
+  version of the app that can run an auction at a venue with no connectivity. Nothing has been
+  designed or estimated. It would touch areas this project currently treats as settled — the
+  operator/board/TV split all assume a reachable server, and the portable container still expects a
+  network for its Cloudflare tunnel and Google sign-in — so it needs its own requirements pass,
+  decision record and approval before any code. Not part of Batch L.
 
 ## Completed original audit work
 
