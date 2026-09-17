@@ -177,7 +177,7 @@ for Leaderboard's L2/L3/R1 scope; does not approve anything else listed in this 
 |---|---|---|---|
 | UI2-A…F | Tools dropdown, Prepare 1–4 redesign, theme quick-select, contextual `HelpTip`, TV bid-pulse/sold-settle animation, statistics hierarchy + semantic team-count color | IMPLEMENTED → VALIDATED (local) on `claude/ui2-refinement` (worktree `edwards-county-calcutta-ui2`), off clean `main` @ `cf3c0ca`. Not merged, not deployed. | [BATCH-CAL-UI2.md](BATCH-CAL-UI2.md) |
 | UI2-G | Local user accounts (Tools → Local Users), operator-level only, scrypt-hashed, portable-runtime-only | IMPLEMENTED → VALIDATED (local): `npm run test:portable` end-to-end incl. a real HTTP sign-in as a created local operator; owner-gated admin actions exercised against a live portable server; plain-build stub fails loudly, verified in-browser | [BATCH-CAL-UI2.md](BATCH-CAL-UI2.md) |
-| UI2-H | Responsive/TV `clamp()` audit at 1366×768/1920×1080/2560×1440/3840×2160 + narrow width | pending | BATCH-CAL-UI2.md (to be extended) |
+| UI2-H | Responsive/TV `clamp()` audit at 1366×768/1920×1080/2560×1440/3840×2160 + narrow width | VALIDATED (local) — no source change needed; existing S1 proportional-typography system scales correctly through everything UI2 added; keyboard/focus and reduced-motion verified programmatically | [BATCH-CAL-UI2.md](BATCH-CAL-UI2.md) |
 
 ## Completed original audit work
 

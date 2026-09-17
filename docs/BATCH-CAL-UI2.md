@@ -209,3 +209,50 @@ one now).
 
 No schema, auction/settlement math, authentication, or route changed in A–F. No migration, no
 deployment, no production access.
+
+## H — Responsive/TV scaling audit
+
+No source changes were required by this pass — the existing S1 proportional-typography system
+(`--tv-unit`/container queries in `app/globals.css`, documented in `docs/ARCHITECTURE.md`) already
+scales correctly through everything A–G added; this batch is verification, not new CSS.
+
+**Method:** headless Chromium (Playwright, via a scratch install — this repo has no `playwright`
+devDependency of its own; existing `tests/*-browser.mjs` files in this repo use the same
+dynamic-import pattern against whatever `playwright` is available) against the local dev server,
+sweeping 1366×768, 1920×1080, 2560×1440, 3840×2160 and a 390×844 narrow width, on `/tv`, `/`
+(public) and `/admin`, using the same demo event throughout.
+
+**Results:**
+
+| Viewport | TV bid font | TV stats font | Horizontal overflow | Vertical overflow |
+|---|---|---|---|---|
+| 1366×768 | 83.3px | 39.8px | none | none |
+| 1920×1080 | 117.1px | 56px | none | none |
+| 2560×1440 | 156.1px | 74.7px | none | none |
+| 3840×2160 | 234.2px | 112px | none | none |
+| 390×844 (phone, `/tv`) | 46.75px | 26px | none | scrolls vertically |
+
+Bid font scales exactly proportionally from 1080p→4K (117.1px → 234.2px, a clean 2.00× for a
+2.00× linear resolution increase) — not "comically huge," about 6% of the 4K frame's width, and
+never depends on browser zoom. No route showed horizontal overflow at any tested width, including
+the public board's responsive stats grid (6 columns down to 2 at phone width). The phone-width
+`/tv` result scrolling vertically is expected and out of this requirement's scope — the TV route
+targets clubhouse-display aspect ratios (already the subject of the existing Batch C/F work), not
+portrait phones; nobody views the clubhouse TV on a held phone.
+
+**Reduced motion:** with `prefers-reduced-motion: reduce` emulated, the new `.tv .big-bid`
+`bid-pulse` animation resolves to computed `animationName: "none"` — confirmed programmatically,
+not just by reading the CSS source order.
+
+**Keyboard/focus:** Tab reaches the new Tools trigger (confirmed via `aria-label="Tools menu"`);
+Enter opens the menu; ArrowDown moves through items in order (Display & sharing → Help → Activity
+confirmed); Escape closes the menu **and returns focus to the trigger** (Radix's built-in behavior,
+verified, not assumed); the theme quick-select shows a 3px solid focus outline when focused via
+keyboard.
+
+**Not performed in this session** (recorded rather than silently skipped): an axe-core automated
+scan (this scratch Playwright install didn't have `@axe-core/playwright` on hand; the manual
+contrast math and keyboard checks above cover the highest-risk items from this batch specifically),
+and physical-hardware TV/projector viewing — both remain the same kind of later gate this repo's
+tracker already treats every prior batch's hardware verification as (see Batch C/F: "physical
+clubhouse display rehearsal remains a later gate").
