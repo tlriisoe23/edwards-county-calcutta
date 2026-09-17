@@ -1,12 +1,19 @@
 "use client";
 import { useId, useRef, useState } from 'react';
-import type { ReactNode } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 import { Info } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 // Contextual help that reveals on hover AND keyboard focus (desktop), and on tap (touch, which
 // fires no hover events) — one component instead of scattered small info icons. A short close
 // delay lets the pointer travel from the trigger onto the content without it vanishing first.
+//
+// Both auto-focus behaviours are suppressed: this is a tooltip, not a dialog, so it must never
+// move focus. Radix would otherwise focus the content on open (stealing focus from whatever the
+// operator was typing into, e.g. the bid field) and focus the trigger again on close *without*
+// `preventScroll`, which scrolled the trigger back into view — the operator-reported "page jumps
+// back to the top while I'm scrolling", since these triggers sit in the nav at the top of the page.
 export function HelpTip({ label, children, iconOnly }: { label: string; children: ReactNode; iconOnly?: boolean }) {
     const [open, setOpen] = useState(false);
     const id = useId();
@@ -19,8 +26,19 @@ export function HelpTip({ label, children, iconOnly }: { label: string; children
                 <Info size={13} aria-hidden="true"/>{!iconOnly && <span>{label}</span>}
             </button>
         </PopoverTrigger>
-        <PopoverContent id={id} className="help-tip-content" side="bottom" align="start" onMouseEnter={show} onMouseLeave={hide}>
+        <PopoverContent id={id} className="help-tip-content" side="bottom" align="start" onOpenAutoFocus={ev => ev.preventDefault()} onCloseAutoFocus={ev => ev.preventDefault()} onMouseEnter={show} onMouseLeave={hide}>
             <p>{children}</p>
         </PopoverContent>
     </Popover>;
+}
+
+// The same contextual help attached directly to a control the operator already uses, rather than
+// to a separate info icon beside it: "what does this button do, and where does it take me?".
+// Built on the tooltip primitive (not the popover above) because a tooltip never takes focus and
+// never swallows the wrapped control's own click.
+export function ControlTip({ text, children }: { text: string; children: ReactElement }) {
+    return <Tooltip>
+        <TooltipTrigger asChild>{children}</TooltipTrigger>
+        <TooltipContent className="control-tip" side="bottom" sideOffset={6}>{text}</TooltipContent>
+    </Tooltip>;
 }

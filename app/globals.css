@@ -157,8 +157,8 @@ button,input,textarea,[role=combobox]{font:inherit}button{touch-action:manipulat
 .pool-amount strong,.sales-strip strong,.team-sale strong,.buyer-total strong,.amount,.entitlement>strong{color:var(--money)}
 input[data-slot=input],textarea[data-slot=textarea],.choice{border-color:var(--input)}
 /* Switch paired navigation colors together; interpolation can erase the outgoing label. */
-.nav-group-list [data-slot=tabs-trigger]{transition:none}
-.nav-group-list [data-slot=tabs-trigger][data-state=active]{background:var(--selected);color:var(--selected-foreground)}
+.op-tabs [role=tab]{transition:none}
+.op-tabs [role=tab][aria-selected=true]{color:var(--selected)}
 [data-slot=tabs-trigger][data-state=active] .nav-num{background:var(--selected-foreground);color:var(--selected)}
 :where(a,button,input,textarea,select,summary,[tabindex]):focus-visible{outline:3px solid var(--ring);outline-offset:3px}
 .block :focus-visible{outline-color:var(--active-bid)}
