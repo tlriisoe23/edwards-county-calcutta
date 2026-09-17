@@ -60,8 +60,9 @@ export async function POST(request) {
     }
     if (path !== '/api/auth/local' || flow?.kind !== 'login') return html('<p>Request expired.</p>', 403);
     const email = (form.get('email') || '').trim().toLowerCase();
-    if (!checkLocal(email, form.get('password') || '')) return html('<p>Sign-in failed or is temporarily limited. <a href="/signin-with-chatgpt">Try again</a>.</p>', 403);
-    const user = { userId: 'local:' + email, email, displayName: email, fullName: null };
+    const local = checkLocal(email, form.get('password') || '');
+    if (!local) return html('<p>Sign-in failed or is temporarily limited. <a href="/signin-with-chatgpt">Try again</a>.</p>', 403);
+    const user = { userId: 'local:' + email, email, displayName: local.displayName, fullName: null };
     return redirect(flow.returnTo, cookie('calcutta_session', createSession({ kind: 'user', user }), 28800));
   } catch { return html('<p>Sign-in is unavailable.</p>', 503); }
 }

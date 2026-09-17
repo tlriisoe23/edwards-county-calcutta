@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from 'react';
-import { Gavel, Plus, Undo2, Pause, Play, ArrowUp, ArrowDown, GripVertical, ExternalLink, Search, Download, Users, Monitor, ShieldCheck, Pencil, MoreHorizontal, LogOut, Circle, CheckCircle2, AlertCircle, ChevronDown, Wrench } from 'lucide-react';
+import { Gavel, Plus, Undo2, Pause, Play, ArrowUp, ArrowDown, GripVertical, ExternalLink, Search, Download, Users, Monitor, ShieldCheck, Pencil, MoreHorizontal, LogOut, Circle, CheckCircle2, AlertCircle, ChevronDown, Wrench, KeyRound } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -35,9 +35,58 @@ function NavStatus({ state }: { state: string }) { const [Icon, text] = readines
 // each group instead lists its item notes in a plain row below the tabs.
 function NavItem({ value, num, label, status }: { value: string; num?: number; label: string; status?: string }) { return <TabsTrigger value={value}>{num != null && <span className="nav-num" aria-hidden="true">{num}</span>}<span>{label}</span>{status && <NavStatus state={status}/>}</TabsTrigger>; }
 function NavGroup({ label, caption, current, children, notes }: { label: string; caption: string; current?: boolean; children: ReactNode; notes?: { label: string; text: string }[] }) { return <section className="nav-group"><div className="nav-group-head"><h2 className="eyebrow">{label}</h2>{current && <span className="nav-current-tag">Current phase</span>}<p className="fine">{caption}</p></div>{children}{notes && notes.length > 0 && <div className="nav-notes">{notes.map(n => <HelpTip key={n.label} label={n.label}>{n.text}</HelpTip>)}</div>}</section>; }
+type LocalUser = { email: string; display_name: string; enabled: number; created_by: string; created_at: string };
+// Lightweight local login accounts (Tools -> Local Users): operator-level only, never owner
+// (D-CAL-4/7). Password fields never round-trip a stored value; a reset always requires a fresh
+// password rather than showing or reusing the existing hash.
+function LocalUsersDialog({ open, onOpenChange, users, busy, act }: { open: boolean; onOpenChange: (open: boolean) => void; users: LocalUser[]; busy: boolean; act: (action: string, payload?: Row, options?: Row) => Promise<any> }) {
+    const [form, setForm] = useState({ email: '', displayName: '', password: '', confirmPassword: '' });
+    const [reset, setReset] = useState<{ email: string; password: string; confirmPassword: string } | null>(null);
+    return <>
+        <Dialog open={open} onOpenChange={onOpenChange}>
+            <DialogContent className="wide-dialog">
+                <DialogHeader><DialogTitle><KeyRound size={19} aria-hidden="true"/> Local Users</DialogTitle><DialogDescription>Create a quick local sign-in for someone without configuring a Google account. Local logins are always operator-level — never owner.</DialogDescription></DialogHeader>
+                <form className="dialog-form" onSubmit={async ev => { ev.preventDefault(); if (await act('local_user_create', form, { message: form.displayName + ' can now sign in locally' }))
+                    setForm({ email: '', displayName: '', password: '', confirmPassword: '' }); }}>
+                    <div className="form-grid">
+                        <Field label="Login email"><Input type="email" required value={form.email} onChange={ev => setForm(f => ({ ...f, email: ev.target.value }))} placeholder="name@example.com"/></Field>
+                        <Field label="Display name"><Input required value={form.displayName} onChange={ev => setForm(f => ({ ...f, displayName: ev.target.value }))} placeholder="Front desk"/></Field>
+                        <Field label="Password"><Input type="password" required minLength={14} autoComplete="new-password" value={form.password} onChange={ev => setForm(f => ({ ...f, password: ev.target.value }))}/></Field>
+                        <Field label="Confirm password"><Input type="password" required minLength={14} autoComplete="new-password" value={form.confirmPassword} onChange={ev => setForm(f => ({ ...f, confirmPassword: ev.target.value }))}/></Field>
+                    </div>
+                    {form.password && form.confirmPassword && form.password !== form.confirmPassword && <p className="field-error">Passwords do not match.</p>}
+                    <p className="fine">14–1024 characters. Stored as a salted scrypt hash — never as plain text, never shown again.</p>
+                    <Button type="submit" disabled={busy || !form.email || !form.displayName || form.password.length < 14 || form.password !== form.confirmPassword}><Plus/> Create local login</Button>
+                </form>
+                <h3>Existing local users</h3>
+                {users.map(u => <div className="access-row" key={u.email}>
+                    <span>{u.display_name}<small>{u.email} · Added by {u.created_by}{u.enabled ? '' : ' · Disabled'}</small></span>
+                    <div className="actions">
+                        <Button variant="outline" size="sm" disabled={busy} onClick={() => act('local_user_set_enabled', { email: u.email, enabled: !u.enabled }, { message: u.enabled ? 'Login disabled' : 'Login enabled' })}>{u.enabled ? 'Disable' : 'Enable'}</Button>
+                        <Button variant="outline" size="sm" disabled={busy} onClick={() => setReset({ email: u.email, password: '', confirmPassword: '' })}>Reset password</Button>
+                    </div>
+                </div>)}
+                {!users.length && <p className="muted">No local logins yet.</p>}
+            </DialogContent>
+        </Dialog>
+        <Dialog open={!!reset} onOpenChange={open => { if (!open) setReset(null); }}>
+            <DialogContent>
+                <DialogHeader><DialogTitle>Reset password</DialogTitle><DialogDescription>{reset?.email}</DialogDescription></DialogHeader>
+                <form className="dialog-form" onSubmit={async ev => { ev.preventDefault(); if (reset && await act('local_user_reset_password', { email: reset.email, password: reset.password, confirmPassword: reset.confirmPassword }, { message: 'Password reset' }))
+                    setReset(null); }}>
+                    <Field label="New password"><Input type="password" required minLength={14} autoComplete="new-password" value={reset?.password || ''} onChange={ev => setReset(r => r && ({ ...r, password: ev.target.value }))}/></Field>
+                    <Field label="Confirm new password"><Input type="password" required minLength={14} autoComplete="new-password" value={reset?.confirmPassword || ''} onChange={ev => setReset(r => r && ({ ...r, confirmPassword: ev.target.value }))}/></Field>
+                    {reset && reset.password && reset.confirmPassword && reset.password !== reset.confirmPassword && <p className="field-error">Passwords do not match.</p>}
+                    <Button type="submit" disabled={busy || !reset || reset.password.length < 14 || reset.password !== reset.confirmPassword}>Save new password</Button>
+                </form>
+            </DialogContent>
+        </Dialog>
+    </>;
+}
 export default function AdminPanel({ data, meta, user, selectedEventId, offline, loaded, refresh, selectEvent, fullscreen }: any) {
     const [tab, setTab] = useState('console'), [busy, setBusy] = useState(false), [modal, storeModal] = useState<Row | null>(null), [confirm, setConfirm] = useState<Row | null>(null), [bid, setBid] = useState(''), [buyerId, setBuyerId] = useState<string | null>(null), [quick, setQuick] = useState({ name: '', p1: '', p2: '', flightId: '' }), [query, setQuery] = useState(''), [flightFilter, setFlightFilter] = useState('all'), [statusFilter, setStatusFilter] = useState('all'), [selected, setSelected] = useState<string[]>([]), [accessEmail, setAccessEmail] = useState(''), [reset, setReset] = useState('');
     const [advancedRequest, setAdvancedRequest] = useState(0);
+    const [localUsersOpen, setLocalUsersOpen] = useState(false);
     const [saleDraft, setSaleDraft] = useState<Row | null>(null);
     const locking = useRef(false), bidInput = useRef<HTMLInputElement>(null), drag = useRef<string | null>(null);
     const e = data?.event, s = e?.settings, flights = data?.flights || [], teams = data?.teams || [], buyers = data?.buyers || [];
@@ -117,6 +166,7 @@ export default function AdminPanel({ data, meta, user, selectedEventId, offline,
 <DropdownMenuItem onSelect={() => { setAdvancedRequest(0); setTab('help'); }}>Help</DropdownMenuItem>
 <DropdownMenuItem onSelect={() => { setAdvancedRequest(0); setTab('activity'); }}>Activity</DropdownMenuItem>
 {user.owner && <DropdownMenuItem onSelect={() => { setAdvancedRequest(0); setTab('access'); }}>Access</DropdownMenuItem>}
+{user.owner && <DropdownMenuItem onSelect={() => setLocalUsersOpen(true)}>Local Users</DropdownMenuItem>}
 <DropdownMenuItem onSelect={() => { setAdvancedRequest(n => n + 1); setTab('rules'); }}>Advanced settings</DropdownMenuItem>
 </DropdownMenuContent></DropdownMenu><a href={'/signout-with-chatgpt?return_to=' + encodeURIComponent(eventPath('/', e?.id || selectedEventId))} target="_top" title="Sign out"><LogOut /> Sign out</a></nav></header><div className="admin-heading"><div><p className="eyebrow">AUCTION OPERATIONS</p><h1>The operator’s desk</h1></div><div className="admin-identity"><span>{user.email}{user.email.endsWith("@sites.test") ? " · Local sign-in simulation" : ""}</span><span className={'connection ' + (offline ? 'offline' : '')}>{offline ? 'Reconnecting…' : 'Connected'}</span></div></div><div className="event-toolbar"><div className="event-picker">{meta.events?.length > 0 && <Choice label="Current event" value={e?.id || selectedEventId || meta.events[0].id} onChange={selectEvent} items={meta.events.map((x: Row) => ({ value: x.id, label: x.name + (x.demo ? ' · Demo' : '') }))}/>}</div>{e && <div className="theme-quick-picker"><Choice label="Event theme" value={normalizeTheme(e.settings.theme)} onChange={(theme: string) => act('theme_update', { theme }, { message: 'Theme saved for this event' })} items={themePresets.map(p => ({ value: p.id, label: p.name }))}/></div>}{tab !== 'console' && (e?.status === 'LIVE' || e?.status === 'PAUSED') && <Button className="return-console" onClick={() => setTab('console')}><Gavel size={16}/> Return to console</Button>}<Button variant="outline" onClick={() => setModal({ type: 'event', name: '', course: '', calcuttaName: '', dates: '', auctionAt: '' })}><Plus /> New event</Button><Button variant="outline" disabled={busy || offline} onClick={() => ask('Load a demonstration event?', 'Create a separate fictional event with 12 teams and sample sales. Existing events will be kept.', 'load_demo')}>Load demo</Button>{e && <Button variant="outline" disabled={busy || offline} onClick={() => ask('Undo last action?', 'Restore the previous auction state. Other operator changes are protected by a version check.', 'undo')}><Undo2 /> Undo last action</Button>}</div>
  {!data ? <div className="empty-state"><Gavel size={42}/><h2>{!loaded ? 'Loading your desk…' : 'Ready for your next auction.'}</h2><p>Create an event to start with a clean field, or load the demonstration event.</p></div> : <><Tabs value={tab} onValueChange={value => { setAdvancedRequest(0); setTab(value); }}><nav className="op-nav" aria-label="Operator sections">
@@ -147,6 +197,7 @@ export default function AdminPanel({ data, meta, user, selectedEventId, offline,
  {user.owner && <TabsContent value="access"><section className="panel settings-card"><ShieldCheck size={28}/><h2>Operator access</h2><p>The owner allowlist is protected in Sites settings. Grant or revoke additional operator access here. Operators can run auctions and edit records; only owners can manage access.</p><form className="access-form" onSubmit={async (ev) => { ev.preventDefault(); if (await act('operator_add', { email: accessEmail }))
             setAccessEmail(''); }}><Field label="Operator’s ChatGPT email"><Input type="email" required value={accessEmail} onChange={ev => setAccessEmail(ev.target.value)} placeholder="name@example.com"/></Field><Button type="submit" disabled={busy}><Plus /> Grant operator access</Button></form><h3>Owners</h3>{(meta.owners?.length ? meta.owners : [user.email]).map((email: string) => <div className="owner-row" key={email}><span>{email}<small>{email === user.email ? 'You · ' : ''}Owner access comes from the site settings and cannot be granted or revoked here.</small></span><span className="badge">Owner</span></div>)}<h3>Operators</h3>{meta.operators.map((o: Row) => <div className="access-row" key={o.email}><span>{o.email}<small>Added by {o.addedBy}</small></span><Button variant="outline" disabled={busy} onClick={() => ask('Revoke operator access?', o.email + ' will lose access on their next request.', 'operator_remove', { email: o.email })}>Revoke</Button></div>)}{!meta.operators.length && <p className="muted">No additional operators have been granted access.</p>}</section></TabsContent>}
  </Tabs>{e.demo === 1 && <section className="demo-reset panel"><div><h3>Demonstration records</h3><p className="muted">Clear this event’s fictional teams, buyers and sales to prepare your own field.</p></div><Button variant="outline" onClick={() => { setReset(''); ask('Reset demo data?', 'This clears all records in the current demonstration event. Other events are kept.', 'reset_demo', {}, { reset: true }); }}>Reset demo data</Button></section>}</>}
+ {user.owner && <LocalUsersDialog open={localUsersOpen} onOpenChange={setLocalUsersOpen} users={meta.localUsers || []} busy={busy} act={act}/>}
  {saleDraft && data && <SoldDialog key={saleDraft.teamId} sale={saleDraft} setSale={setSaleDraft} data={data} act={act} busy={busy}/>}
  <Editors modal={modal} setModal={setModal} data={data} busy={busy} act={(action: string, payload: Row, opts: Row = {}) => act(action, payload, { ...opts, revision: modal?.revision })} setBuyerId={setBuyerId}/>
  <AlertDialog open={!!confirm} onOpenChange={open => { if (!open && !busy)

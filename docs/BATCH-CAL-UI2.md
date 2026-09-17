@@ -87,7 +87,104 @@ decision, since the request was unambiguous.
 6.17:1, high-contrast 8.94:1, dark-event 11.21:1, light-event 6.17:1 (WCAG relative-luminance
 formula, all ≥4.5:1 AA for normal text).
 
-## Validation performed
+## G — Local user accounts (Tools → Local Users)
+
+Extends the existing owner-only "local recovery login" (`portable/auth-handler.mjs`,
+`portable/sessions.mjs`) into a general, lightweight local-account feature — without changing how
+the owner is determined, and without adding a new hashing dependency.
+
+**Schema:** `portable_local_users(email PK, display_name, password_hash, enabled, created_by,
+created_at)` added to `portable/migrate.mjs` alongside the existing `portable_credentials` /
+`portable_sessions` / `portable_login_attempts` tables — kept **separate** from
+`portable_credentials`, which stays exclusively the original owner-recovery path.
+
+**Hashing:** the existing hand-rolled `scrypt` scheme in `portable/sessions.mjs`
+(`scryptSync`/`timingSafeEqual`, format `scrypt:<salt>:<hash>`) — no bcrypt/argon2 dependency
+added, no plaintext ever stored, no password ever logged, no hash ever returned to the client
+(`listLocalUsers()` only ever selects `email,display_name,enabled,created_by,created_at`).
+
+**Auth wiring:** `checkLocal(email, password)` now tries the owner-recovery path first (unchanged
+behavior), then an **enabled** `portable_local_users` row, returning `{ displayName }` on success
+so `portable/auth-handler.mjs`'s login POST can use the stored display name instead of hardcoding
+the email. The shared five-attempt/15-minute rate-limit bucket is unchanged and still covers both
+paths together.
+
+**Operator-level only, by construction (confirmed decision):** `local_user_create` (in
+`app/api/admin/route.ts`) writes to **both** `operators` (reusing the exact insert path
+`operator_add` already uses) and `portable_local_users` in the same request. Owner is still
+computed exclusively from `ADMIN_EMAILS` (`ownerEmails()`) — untouched by this feature — so a
+local account can never become owner regardless of what it's granted; the create action explicitly
+rejects an email that's already on the owner allowlist.
+
+**Cross-build-target seam (the one real architectural wrinkle, resolved with existing
+precedent):** `app/api/admin/route.ts` is shared, compiled source for both the portable deployment
+(what's actually live in production, per `AGENTS.md`) and a separate, non-production Sites/ChatGPT
+build target that must not statically pull in the portable runtime's `node:sqlite`-backed code.
+Checked-in source defines four throwing placeholders (`createLocalUser`, `listLocalUsers`,
+`setLocalUserEnabled`, `resetLocalUserPassword`, all delegating to one `portableOnly(): never`
+thrower so no stub parameter is ever "unused" — zero new lint warnings) between
+`// PORTABLE-STUB-START/END` markers. `scripts/stage-portable.mjs` replaces that block with a real
+import from `@/portable/sessions.mjs` at staging time — the *same* mechanism already used one line
+above it for `publicOrigin()`, just extended. Verified, not assumed: `npm run build:portable`
+compiles cleanly with the real imports substituted (Next's own TypeScript pass), and the plain
+`npm run build` compiles cleanly with the stub in place.
+
+The account write and the audit-trail write are two sequential steps, not one atomic transaction
+— `portable_local_users` lives on the portable runtime's raw SQLite connection, a different API
+surface from the D1-style batched statements used for `operators`/`audit`, even though (verified
+via `portable/runtime.mjs`'s `env.DB` getter) they are the same physical database file in
+production. The account write is the source of truth for sign-in; a lost audit row on a rare
+mid-request failure is a traceability gap, not a security issue. Recorded here rather than left
+implicit.
+
+**UI:** `Tools ▾ → Local Users` opens a dialog (`LocalUsersDialog` in `app/operator.tsx`) with a
+create form (login email, display name, password, confirm — deliberately **no role selector**,
+since operator-only isn't a choice) and a list of existing local users with Disable/Enable and
+Reset password actions, mirroring the existing Access tab's `.access-row` pattern. Client-side
+validation (password length/match) mirrors the server's rules so failures are never opaque.
+
+**Known caveat, recorded rather than quietly worked around:** the feature is portable-runtime-only
+by design, matching the existing local-recovery login's own scope. If the Sites/ChatGPT target is
+ever activated for real use, the GET payload's `localUsers` list degrades gracefully to `[]`
+(caught, not thrown), but the Tools → Local Users menu entry itself would still render there today
+— revisit its visibility if that target ever becomes a real second production deployment (it isn't
+one now).
+
+### Validation for G specifically
+
+- `node tests/portable-local-users.mjs` (new, mirrors the existing `tests/portable-auth.mjs`
+  style — no full server, direct module-level calls): create → login succeeds with the stored
+  display name; wrong password rejected; unknown email rejected; listing never includes the
+  password hash; duplicate email rejected (not silently overwritten); disabling blocks sign-in
+  even with the correct password, re-enabling restores it; a password reset invalidates the old
+  password and accepts the new one; a full real HTTP round-trip through `/signin-with-chatgpt` →
+  `/api/auth/local` as the newly created account, confirming the resulting session is never the
+  owner identity. Wired into `npm run test:portable`.
+- `tests/acceptance.mjs` gained a block (guarded by `process.env.CALCUTTA_TEST_PASSWORD`, exactly
+  matching the existing convention in `tests/test-session.mjs` that only the portable test harness
+  signs in via the real local-login HTTP form) exercising the actual admin-API actions —
+  `local_user_create`/`local_user_set_enabled`/`local_user_reset_password` — through a live running
+  server as the real owner: create, duplicate rejected (400), password-mismatch rejected (400),
+  disable, enable, reset. Confirmed this block is skipped (not run, not failed) under the plain
+  `node tests/acceptance.mjs` dev-server command that this repo's `AGENTS.md` documents as the
+  default — no regression to that existing command.
+- Full `npm run test:portable` (`portable-storage` → `portable-auth` → `portable-local-users` →
+  `portable-integration`) passed end-to-end against the actual built standalone portable server,
+  including the pre-existing acceptance (62 checks, +4 from this batch) and refinement (72 checks)
+  suites and the database-import roundtrip check.
+- `npm run build:portable` and plain `npm run build` both compile cleanly.
+- Headless-browser check against the plain (non-portable) dev server: Tools → Local Users opens a
+  correctly laid-out dialog; attempting to create an account there surfaces the exact honest error
+  "Local accounts require the portable deployment." as a toast, not a crash or silent failure —
+  confirming the stub fails loudly outside its intended runtime, per the documented caveat above.
+- `node node_modules/typescript/bin/tsc --noEmit --incremental false` — clean.
+- `npm run lint` (excluding the gitignored `.sites-runtime`/`dist` build-artifact directories,
+  which are not part of this change and were not previously excluded from this repo's lint script
+  either — a pre-existing config gap, not introduced here): 48 errors (unchanged from baseline) /
+  37 warnings (down from the 43-warning baseline; this batch introduced zero new warnings and the
+  A–F dead-code removal net-reduced the total).
+
+## Validation performed for A–F
 
 - `node node_modules/typescript/bin/tsc --noEmit --incremental false` — clean, no errors.
 - `npm run lint` — unchanged from baseline (48 pre-existing errors / 43 warnings, none introduced
