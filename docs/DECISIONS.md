@@ -17,3 +17,12 @@ practice (club rule sheets, Golf Genius Calcutta module, auction software conven
 
 Batch order stands as proposed: F → G → H → I → J. Nothing here authorizes a redeploy of
 `ecgc-calcutta-app-1`; that remains a separate decision.
+
+## Night-of correctness — 2026-09-18
+
+| ID | Finding | Decision |
+|---|---|---|
+| D-CAL-8 | UI-CA-08 | The bid field **replaces** what it holds. It is kept equal to the server's current bid so a clerk can see and correct it, which is right — but that made the documented `B`-then-type path append, turning $1,300 into $12,501,300 whenever the result happened to satisfy the increment rule. Selecting on focus keeps the visible-current-bid behaviour and removes the trap, and `min` is now the event's minimum bid so an impossible number is refused by the control as well as the server. |
+| D-CAL-9 | UI-CA-09 | Enter confirms the sale, handled **on the dialog** rather than by wrapping its body in a form — the inline add-buyer form already lives inside it, and a nested `<form>` is invalid. Enter is deliberately not intercepted while the buyer list is open or the add-buyer form is up, because each owns the key for its own purpose. Focus returns to the bid field on close, so the keyboard path runs lot to lot without reaching for the mouse. |
+| D-CAL-10 | UI-CA-16 | Reopening a completed auction confirms, like every other consequential act in this product. Its button names the act — **Reopen auction** — rather than reading "Confirm", which is the pattern UI-CA-15 asks for across every dialog; it is applied here only, where this change already touched one, rather than swept through all of them unasked. |
+| D-CAL-11 | UI-CA-07 | Undo is disabled when `lastUndoable()` finds nothing, and both ways in — the `U` key and the button — carry one sentence. A control that opens a dialog explaining it cannot work is worse than a disabled control that says why. |

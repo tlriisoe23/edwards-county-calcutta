@@ -2,6 +2,29 @@
 
 2026-09-14 UTC · baseline `dfab14906c04b5a6d99ffffbfba4249883750eae`. Reports are local audit evidence, not production sign-off. PASS = observed expected result; FAIL = demonstrated mismatch; BLOCKED = a needed environment/tool is unavailable; UNVERIFIED = not exercised sufficiently. A successful build does not convert any browser or hosted gap into PASS.
 
+## Night-of correctness — 2026-09-18, local candidate, no deployment
+
+Branch `claude/cal-night-of`, off `main` @ `b6fb0f0` (the Batch L merge). The four findings the
+2026-09-17 audit put first; scope and decisions in [BATCH-NIGHT-OF.md](BATCH-NIGHT-OF.md),
+D-CAL-8..11.
+
+| Check | Result and provenance |
+|---|---|
+| Types | **PASS** — `tsc --noEmit --incremental false` |
+| Lint | **unchanged** — 82 problems (48 errors, 34 warnings), compared against `main` from a detached worktree; none introduced here. The raw `npm run lint` figure of ~6,900 comes from the script linting generated `.sites-runtime` output. |
+| Build | **PASS** — `npm run build` |
+| Acceptance | **PASS** — `tests/acceptance.mjs`, 58 checks |
+| Refinement | **PASS** — `tests/refinement.mjs`, 72 checks |
+| Queue reorder | **PASS** — `tests/ui3-reorder.mjs`, 20 checks |
+| UI3 rendered | **PASS** — `tests/ui3-browser.mjs`, 63/63 |
+| **Night-of rendered** | **PASS** — `tests/night-of.mjs`, **12/12**, each written against the audit's own acceptance test: B-then-type records $1,300 and not $12,501,300; Enter records the sale and focus returns to the bid field; restarting a completed auction asks first and changes nothing until confirmed; Undo is disabled with nothing to undo |
+| Production | **NOT DEPLOYED** — local `.wrangler/state` and disposable demo events only; the container, its volume and the Cloudflare route were not touched |
+
+**Both browser suites need `UI3_PLAYWRIGHT_MODULE`**: playwright is not a dependency of this
+repository, so neither runs from a clean checkout. They also write screenshots into
+`docs/batch-l-evidence` by default, overwriting Batch L's evidence; `UI3_EVIDENCE` was pointed at a
+scratch directory and the originals restored.
+
 ## Batch L (UI3) — 2026-09-17, local candidate with rendered evidence, no merge/deployment
 
 Branch `claude/ui3-flat-tabs-operator`, branched from `main` @ `8405a8a`. Local `.wrangler/state`
