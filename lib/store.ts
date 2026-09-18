@@ -11,6 +11,34 @@ export async function identity() { const user = await getChatGPTUser(); if (!use
 export const tableNames = ["flights", "teams", "players", "buyers", "auction_state", "sales", "ownership", "payout_rules"] as const;
 export function statement(sql: string, ...args: any[]) { return db().prepare(sql).bind(...args.map(x => x === undefined ? null : x)); }
 export function insert(table: string, row: Row) { const keys = Object.keys(row); return statement('INSERT INTO "' + table + '" (' + keys.map(k => '"' + k + '"').join(",") + ') VALUES (' + keys.map(() => "?").join(",") + ')', ...keys.map(k => row[k])); }
+/**
+ * Multi-row INSERTs for fixtures that would otherwise need hundreds of them.
+ *
+ * The fifty-team demo is 150 rows of teams and players. Sent as 150 separate
+ * statements the local D1 runner drops the connection, and it has to commit as
+ * one batch or a retry leaves half an event behind — so the rows are folded
+ * into as few statements as D1 will take. Its ceiling is **100 bound parameters
+ * per query**, so the fold is capped well under that rather than at the row
+ * count, and the result is a list of statements, not one.
+ *
+ * Every row must carry the same columns; the keys come from the first.
+ */
+export function insertMany(table: string, rows: Row[], maxBindings = 90) {
+    if (!rows.length) return [];
+    const keys = Object.keys(rows[0]);
+    const columns = keys.map((k) => '"' + k + '"').join(",");
+    const perChunk = Math.max(1, Math.floor(maxBindings / keys.length));
+    const out = [];
+    for (let i = 0; i < rows.length; i += perChunk) {
+        const chunk = rows.slice(i, i + perChunk);
+        out.push(statement(
+            'INSERT INTO "' + table + '" (' + columns + ') VALUES ' +
+                chunk.map(() => "(" + keys.map(() => "?").join(",") + ")").join(","),
+            ...chunk.flatMap((row) => keys.map((k) => row[k])),
+        ));
+    }
+    return out;
+}
 export function update(table: string, row: Row, key: string, value: any) { return statement('UPDATE "' + table + '" SET ' + Object.keys(row).map(k => '"' + k + '"=?').join(",") + ' WHERE "' + key + '"=?', ...Object.values(row), value); }
 export async function read(eventId?: string): Promise<Row | null> {
     if (!eventId) {
