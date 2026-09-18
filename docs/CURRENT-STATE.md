@@ -2,6 +2,16 @@
 
 ## Deployed — 2026-09-18
 
+- **The fifty-team two-day fixture is live.** `main` @ `799cdc7` runs in `ecgc-calcutta-app-1` as of
+  2026-09-18 ~23:55 UTC, healthy in 7 s, no schema change. Tools → *Load 50-team demo* creates the
+  same fifty teams the leaderboard's own two-day demo builds — four flights at 13 · 13 · 12 · 12,
+  each team carrying its pop in the handicap column — at **SETUP**, with nothing sold, nothing on the
+  block and buyers already listed, so an evening can be rehearsed from the first lot (D-CAL-12..14).
+  The twelve-team demo stays for practising the console mid-auction. Live data is unchanged: the
+  fixture is loaded by an operator and by nothing else. Rollback image
+  `ecgc-calcutta:pre-demo50-20260918`.
+
+
 - **Batch L (UI3 operator desk) and the night-of correctness set are merged and live.** `main` @
   `1fd3718` is running in `ecgc-calcutta-app-1` as of 2026-09-18 ~16:35 UTC; the container reported
   healthy within 15 s and `migrate.mjs` said "Portable schema is current" — no schema change. A

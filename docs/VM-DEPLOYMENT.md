@@ -117,6 +117,41 @@ Rollback: `docker tag ecgc-calcutta:pre-nightof-20260918 ecgc-calcutta:portable`
 `docker compose --env-file .env.portable -f portable/compose.yaml up -d --no-deps app`. Take a fresh
 snapshot first, per this document's own operations note, to preserve post-deployment writes.
 
+## Redeploy — 2026-09-18 (the fifty-team two-day fixture)
+
+Authorized by the owner, alongside the leaderboard's matching demo (W-2). Deployed `799cdc7` —
+WC-7, decisions D-CAL-12..14. **No schema change**; `migrate.mjs` reported "Portable schema is
+current".
+
+The pre-deploy snapshot was taken by hand again, because this repository still has **no backup
+script** (OC-1 in the leaderboard's tracker; the sibling's `scripts/backup-scheduled.sh` has no
+counterpart here):
+
+1. `docker exec … node portable/backup.mjs /data/pre-deploy-20260918T235332.sqlite`, `docker cp` out
+   to `~/backups/ecgc-calcutta/calcutta-20260918T235332.sqlite` (2,621,440 bytes, mode 600), then
+   removed the in-container copy.
+2. Verified the host copy opens: `integrity_check` **ok**, 2 events, 129 audit rows, and **no teams,
+   sales or ownership rows at all** — nothing financial was at risk.
+3. Rollback tag: the running image (`sha256:e4bab77a9f34…`, commit `1fd3718`) tagged
+   `ecgc-calcutta:pre-demo50-20260918`. The new image is also tagged `ecgc-calcutta:799cdc7`.
+4. `compose build app`, `compose up -d --no-deps app`: only `ecgc-calcutta-app-1` recreated,
+   **healthy within 7 s**. The leaderboard kept its uptime.
+
+Production verification (read-only, 2026-09-18 ~23:55 UTC):
+
+| Check | Result |
+|---|---|
+| Container | healthy, image `sha256:08cb8a62eecc…`, started 23:55:02 UTC |
+| HTTPS | `/` 200, `/tv` 200, `/api/public` 200, `/admin` 307, anonymous `/api/admin` 403 |
+| Database | `integrity_check` ok; 2 events / 0 teams / 0 sales / 129 audit — **unchanged**: the fixture is loaded from Tools by an operator and by nothing else |
+| Browser | `/` at 1440 and `/tv` at 1920, **zero JavaScript errors**; the live event is *Edwards County 2 Day 2 Man Calcutta* |
+| Pre-merge | 19/19 `tests/two-day-demo.mjs`, plus acceptance 58, refinement 72, UI3 63/63, reorder 20, night-of 12/12; lint unchanged at 77 problems |
+| Blocked | The operator console was **not exercised signed in on production** — behind Google, and this repository still has no signed-in rehearsal harness (OC-2). The fixture's own evidence is from a local instance. |
+
+Rollback: `docker tag ecgc-calcutta:pre-demo50-20260918 ecgc-calcutta:portable`, then
+`docker compose --env-file .env.portable -f portable/compose.yaml up -d --no-deps app`. Take a fresh
+snapshot first.
+
 ## Operations
 
 Run commands from the relevant VM repository, independently for each application:

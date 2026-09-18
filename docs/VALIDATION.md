@@ -2,7 +2,7 @@
 
 2026-09-14 UTC · baseline `dfab14906c04b5a6d99ffffbfba4249883750eae`. Reports are local audit evidence, not production sign-off. PASS = observed expected result; FAIL = demonstrated mismatch; BLOCKED = a needed environment/tool is unavailable; UNVERIFIED = not exercised sufficiently. A successful build does not convert any browser or hosted gap into PASS.
 
-## The fifty-team two-day fixture — 2026-09-18, local candidate
+## The fifty-team two-day fixture — 2026-09-18, merged and deployed
 
 Branch `claude/cal-demo-50`, off `main` @ `bd79867`. WC-7, the Calcutta half of the owner's
 "create another demo with 50 teams to simulate our 2 day 2 man coming up". Decisions D-CAL-12..14.
@@ -18,7 +18,7 @@ Branch `claude/cal-demo-50`, off `main` @ `bd79867`. WC-7, the Calcutta half of 
 | UI3 rendered | **PASS** — `tests/ui3-browser.mjs`, 63/63 |
 | Night-of rendered | **PASS** — `tests/night-of.mjs`, 12/12 |
 | **Two-day fixture** | **PASS** — `tests/two-day-demo.mjs`, **19/19** (new): fifty teams with no repeated name, two players each, four flights splitting 13 · 13 · 12 · 12, every pop a non-negative half stroke with each flight's leader level, and the event at **SETUP** with no sales, nothing on the block and buyers already listed |
-| Production | **NOT DEPLOYED** at the time of writing |
+| Production | **DEPLOYED** 2026-09-18 — merged at `799cdc7`, healthy in 7 s, no schema change. Pre-deploy snapshot copied off the volume by hand and verified (ok, 2 events, 129 audit, 0 sales); rollback image `ecgc-calcutta:pre-demo50-20260918`. `/` 200, `/tv` 200, `/api/public` 200, `/admin` 307, anonymous `/api/admin` 403, zero JavaScript errors, live data unchanged. The operator console was **not** driven signed in on production (OC-2). |
 
 **The first attempt did not commit.** A hundred and seventy-odd single-row inserts made the local D1
 runner answer *"Network connection lost"* rather than any validation error; folding them into
