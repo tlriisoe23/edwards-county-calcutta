@@ -2,7 +2,7 @@
 
 2026-09-14 UTC · baseline `dfab14906c04b5a6d99ffffbfba4249883750eae`. Reports are local audit evidence, not production sign-off. PASS = observed expected result; FAIL = demonstrated mismatch; BLOCKED = a needed environment/tool is unavailable; UNVERIFIED = not exercised sufficiently. A successful build does not convert any browser or hosted gap into PASS.
 
-## Night-of correctness — 2026-09-18, local candidate, no deployment
+## Night-of correctness — 2026-09-18, merged and deployed
 
 Branch `claude/cal-night-of`, off `main` @ `b6fb0f0` (the Batch L merge). The four findings the
 2026-09-17 audit put first; scope and decisions in [BATCH-NIGHT-OF.md](BATCH-NIGHT-OF.md),
@@ -18,14 +18,16 @@ D-CAL-8..11.
 | Queue reorder | **PASS** — `tests/ui3-reorder.mjs`, 20 checks |
 | UI3 rendered | **PASS** — `tests/ui3-browser.mjs`, 63/63 |
 | **Night-of rendered** | **PASS** — `tests/night-of.mjs`, **12/12**, each written against the audit's own acceptance test: B-then-type records $1,300 and not $12,501,300; Enter records the sale and focus returns to the bid field; restarting a completed auction asks first and changes nothing until confirmed; Undo is disabled with nothing to undo |
-| Production | **NOT DEPLOYED** — local `.wrangler/state` and disposable demo events only; the container, its volume and the Cloudflare route were not touched |
+| Production | **DEPLOYED** 2026-09-18 — merged at `1fd3718` and rebuilt into `ecgc-calcutta-app-1`, healthy in 15 s, no schema change. Pre-deploy snapshot copied off the volume and verified (`integrity_check` ok, 2 events, 129 audit, 0 sales); rollback image `ecgc-calcutta:pre-nightof-20260918`. The Cloudflare route was not touched. |
+| Production — public paths | **PASS** — `/` 200, `/tv` 200, `/api/public` 200, `/admin` 307, anonymous `/api/admin` 403; rendered `/` at 1440 and 390 and `/tv` at 1920 with **zero JavaScript errors** |
+| Production — operator console | **BLOCKED** — behind Google sign-in, and this repository has no signed-in rehearsal harness (the sibling leaderboard's `tests/console-rehearsal.mjs` is the model). Every operator-side result above is from a local instance. This is the same standing gap recorded after S1, UI2 and C2, not a new one. |
 
 **Both browser suites need `UI3_PLAYWRIGHT_MODULE`**: playwright is not a dependency of this
 repository, so neither runs from a clean checkout. They also write screenshots into
 `docs/batch-l-evidence` by default, overwriting Batch L's evidence; `UI3_EVIDENCE` was pointed at a
 scratch directory and the originals restored.
 
-## Batch L (UI3) — 2026-09-17, local candidate with rendered evidence, no merge/deployment
+## Batch L (UI3) — 2026-09-17, merged `b6fb0f0` and deployed 2026-09-18
 
 Branch `claude/ui3-flat-tabs-operator`, branched from `main` @ `8405a8a`. Local `.wrangler/state`
 and disposable demo events only; the production container, its volume and the Cloudflare route were
@@ -48,7 +50,7 @@ not touched. Scope and decisions: [BATCH-L.md](BATCH-L.md).
 | Hover help stealing focus from the bid field | **FAIL observed, then PASS after fix**; focus now stays on *Bid amount* while hovering help |
 | Sticky masthead vs one-screen console | **Recorded trade-off, measured both ways.** Sticky everywhere pushed the Hammer row to 814 px at 1366×768 (past the fold, breaking D-CAL-5 / CAL-P3-007), so the masthead sticks on every tab except the console |
 | Controls moved into Tools / the masthead exercised for behaviour | **PASS** — `U` shortcut dialog, Tools → Load demo creates an event, Tools → Reset demo data still requires the typed confirmation before Confirm enables |
-| Production behaviour of anything in this batch | **UNVERIFIED.** Not merged, not deployed; `ecgc-calcutta-app-1` still runs `ba0f0b3` |
+| Production behaviour of anything in this batch | **Merged `b6fb0f0`, deployed 2026-09-18 in `1fd3718`.** Public paths PASS; the signed-in operator console remains **UNVERIFIED** on production — behind Google, no rehearsal harness in this repository |
 | Other browser engines, screen readers, physical second display, touch tooltips, axe/contrast rerun for the new tab-strip surfaces | **UNVERIFIED**; headless Chromium only |
 
 Reproduce: start a local dev server with a fresh store, then

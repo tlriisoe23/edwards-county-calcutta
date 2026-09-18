@@ -222,10 +222,21 @@ removed. An intermediate version of this batch *did* regress that number to 744 
 1280×720 and 1024×768) before the duplicated spacing was found — recorded because a green build
 would not have caught it.
 
+**Status update, 2026-09-18:** merged to `main` (merge commit `b6fb0f0`) and **deployed** the same
+day inside `1fd3718`, together with the night-of correctness set — the "not applied to production"
+framing above is now stale. The prose is left as the as-implemented record rather than rewritten.
+The production check after that deploy was **public-path only**: `/`, `/tv` and `/api/public`
+answered 200, `/admin` 307, anonymous `/api/admin` 403, and a rendered pass over `/` at 1440 and 390
+and `/tv` at 1920 showed zero JavaScript errors — but the operator console this batch rebuilds was
+**not exercised signed in on production**, so every operator-side result here remains local
+evidence. See [VM-DEPLOYMENT.md](VM-DEPLOYMENT.md).
+
 ### Still UNVERIFIED
 
-- **Nothing here has been applied to production.** `ecgc-calcutta-app-1` still runs `ba0f0b3`
-  (Batch K). No container, volume or Cloudflare route was touched. Deployment is a separate decision.
+- **As written, nothing here had been applied to production** — `ecgc-calcutta-app-1` still ran
+  `ba0f0b3` (Batch K), and no container, volume or Cloudflare route was touched. Superseded by the
+  2026-09-18 deploy above; what stays unverified is the **signed-in operator console on
+  production**, which is behind Google and has no rehearsal harness in this repository.
 - Physical multi-monitor behaviour of the step 5 "external" path — the popup is confirmed to be a
   real separate window on the TV route, and dragging it to a second display is unchanged from
   Batch K's mechanism, but no second physical display was used.

@@ -1,34 +1,58 @@
-# Current state — 2026-09-17 UTC
+# Current state — 2026-09-18 UTC
 
-## Current planned work — 2026-09-17
+## Deployed — 2026-09-18
 
-- **UI3 operator desk refinement (Batch L) — implemented and locally validated, NOT merged, NOT
-  deployed.** On `claude/ui3-flat-tabs-operator` off `main` @ `8405a8a`: the RUN AUCTION / AFTER
-  AUCTION nav groups are replaced by one flat tab bar (Auction console · View and Edit Sales ·
-  Results · Settlement · Exports) with an active tab drawn as the front edge of the panel below it;
-  *Return to console* is removed; prepare step 4 is renamed *TV / Display Settings* and a new step 5
-  *Start Auction* asks where the TV display should open before going LIVE; the compact toggle, theme
-  picker and Undo are pinned to the masthead (Load demo and Reset demo data moved into Tools); the
-  below-nav help blocks are replaced by hover tips on the controls themselves; the undo confirmation
-  now names the action it will undo. **Two reported defects were reproduced before being fixed:**
-  the Next Up arrows renumbered a lot instead of reordering the queue (`move()` operated on the full
-  `teams` array while the visible list is filtered), and the page scrolled itself back to the top
-  (Radix Popover refocusing a nav help trigger without `preventScroll`; the same cause also stole
-  focus from the bid field on hover). tsc, build, lint (48/37 — byte-identical to the measured `main`
-  baseline), acceptance 58/58, refinement 72/72, new `tests/ui3-reorder.mjs` 20/20 and new rendered
-  `tests/ui3-browser.mjs` 63/63 all pass; 22 screenshots at 1920×1080 / 1366×768 / 820 / 390 plus a
-  TV check are in `docs/batch-l-evidence/`. The live container is untouched and still runs `ba0f0b3`.
-  See [BATCH-L.md](BATCH-L.md).
+- **Batch L (UI3 operator desk) and the night-of correctness set are merged and live.** `main` @
+  `1fd3718` is running in `ecgc-calcutta-app-1` as of 2026-09-18 ~16:35 UTC; the container reported
+  healthy within 15 s and `migrate.mjs` said "Portable schema is current" — no schema change. A
+  pre-deploy snapshot was taken by hand (this repository has **no backup script**) and verified off
+  the volume: `integrity_check` ok, 2 events, 129 audit rows, **no sales, ownership or settlement
+  rows**, so nothing financial was at risk. Rollback image: `ecgc-calcutta:pre-nightof-20260918`.
+  See [VM-DEPLOYMENT.md](VM-DEPLOYMENT.md).
 
-  This batch closes the rendered-browser gap Batches I and K left open **for its own scope only**:
-  it does not retrospectively verify the compact console or TV popup behaviour shipped in Batch K
-  against production, and it says nothing about hosted behaviour.
+  **Batch L** replaced the RUN AUCTION / AFTER AUCTION nav groups with one flat tab bar (Auction
+  console · View and Edit Sales · Results · Settlement · Exports), an active tab drawn as the front
+  edge of the panel below it; removed *Return to console*; renamed prepare step 4 *TV / Display
+  Settings* and added step 5 *Start Auction*, which asks where the TV display should open before
+  going LIVE; pinned the compact toggle, theme picker and Undo to the masthead (Load demo and Reset
+  demo data moved into Tools); replaced the below-nav help blocks with hover tips on the controls
+  themselves; and made the undo confirmation name the action it will undo. Two reported defects were
+  reproduced before being fixed: the Next Up arrows renumbered a lot instead of reordering the queue
+  (`move()` operated on the full `teams` array while the visible list is filtered), and the page
+  scrolled itself back to the top (Radix Popover refocusing a nav help trigger without
+  `preventScroll`; the same cause also stole focus from the bid field on hover). See
+  [BATCH-L.md](BATCH-L.md).
+
+  **The night-of set** is UI-CA-07/08/09/16, the four the 2026-09-17 audit put first. UI-CA-08 is
+  the one that mattered: the bid field appended rather than replaced, so the documented keyboard
+  path (`B`, then type) could record **$12,501,300** as a real bid. Also: Enter in the sale dialog
+  now records the sale and returns focus to the bid field, reopening a completed auction always
+  confirms, and Undo is disabled when there is nothing to undo. See
+  [BATCH-NIGHT-OF.md](BATCH-NIGHT-OF.md) and D-CAL-8..11.
+
+  Evidence: tsc, build, lint unchanged against the measured `main` baseline, acceptance 58/58,
+  refinement 72/72, `tests/ui3-reorder.mjs` 20/20, `tests/ui3-browser.mjs` 63/63 and the new
+  `tests/night-of.mjs` **12/12**, each written against the audit's own acceptance test; 22
+  screenshots at 1920×1080 / 1366×768 / 820 / 390 plus a TV check in `docs/batch-l-evidence/`.
+
+  **Production verification is public-path only**, as it was after S1, UI2 and C2: `/` and `/tv`
+  200, `/api/public` 200, `/admin` 307, anonymous `/api/admin` 403, and a rendered check of `/` at
+  1440 and 390 and `/tv` at 1920 with **zero JavaScript errors**. The operator console was **not
+  exercised signed in on production** — it is behind Google here, and unlike the sibling leaderboard
+  this repository has no signed-in rehearsal harness. Everything above is evidenced against a local
+  instance. That remains this product's standing verification gap, and closing it is the same work
+  the leaderboard did in `tests/console-rehearsal.mjs`.
+
+  The live event is *Edwards County 2 Day 2 Man Calcutta* — the owner's real upcoming tournament —
+  with no sales recorded against it yet.
+
+## Earlier work
 
 - **C1 Operator Navigation:** complete and merged; accepted foundation at `f4a7e77`.
 - **S1 Purposeful Themes + Advanced Settings:** accepted, released, deployed (`494929b`). See [S1.md](S1.md).
 - **UI2 purposeful UI refinement:** Tools dropdown, Prepare 1–4 redesign, theme quick-select, contextual `HelpTip`, TV bid-pulse/sold-settle animation, statistics hierarchy, local user accounts. Merged to `main` (`9c4319c`). See [BATCH-CAL-UI2.md](BATCH-CAL-UI2.md).
 - **C2 Auction Night / dual-screen operation:** TV popup window (replacing the same-window tab) and a state-driven compact console (replacing the rejected sticky-panel approach to `CAL-P3-007`), reworked against the merged UI2 nav. Merged to `main` (`d4b3709`). See [BATCH-K.md](BATCH-K.md).
-- **Deployed 2026-09-17T14:01–14:03 UTC:** `ecgc-calcutta-app-1` was rebuilt and restarted against `main` @ `ba0f0b3` (includes S1 + UI2 + C2 above). `docker compose ps` reports healthy; `GET /`, `GET /tv` and `GET /api/public` all returned 200 against the rebuilt container. This is a read-only public-path check only — it does not exercise the operator-side theme selector, Tools dropdown, compact console, TV popup window, or Local Users feature, none of which were exercised against production in this session (no production operator credentials available here). The only event currently on the container is the pre-existing `demo: 1` fixture, not a real event; no real settlement data was touched by this deploy. A production operator-side check is still an open verification gap, same as it was after the S1 deploy.
+- **Superseded — deployed 2026-09-17T14:01–14:03 UTC:** `ecgc-calcutta-app-1` was rebuilt and restarted against `main` @ `ba0f0b3` (includes S1 + UI2 + C2 above). `docker compose ps` reports healthy; `GET /`, `GET /tv` and `GET /api/public` all returned 200 against the rebuilt container. This is a read-only public-path check only — it does not exercise the operator-side theme selector, Tools dropdown, compact console, TV popup window, or Local Users feature, none of which were exercised against production in this session (no production operator credentials available here). The only event currently on the container is the pre-existing `demo: 1` fixture, not a real event; no real settlement data was touched by this deploy. A production operator-side check is still an open verification gap, same as it was after the S1 deploy.
 
 
 **Batch I (2026-09-15, merged to `main` and redeployed to `ecgc-calcutta-app-1`):** the owner approved CAL-P3-003/004/005 (and CAL-P3-007 conditionally) under D-CAL-2…5; the three are implemented and validated locally per [BATCH-I.md](BATCH-I.md) — a blank or sub-$1.00 minimum starting bid and a blank Percent/Fixed deduction now block *Save event & rules* with the decision's messages, client- and server-side, and only deduction type *None* means no house cut; the import preview names each blocking row's reasons and counts them in the button ("Import 3 teams · 2 rows need attention"); Access rejects the owner email ("already an owner") and duplicates ("already has access") without writing a row or audit entry and lists owners read-only above operators (17/17 implemented-ID harness rows, 43/43 focused server checks including the Batch A access and Batch D import reruns, 58/58 and 72/72 suites; lint failures pre-existing). **CAL-P3-007 is deferred**: a sticky bid panel, even compacted together with the block, still covers 65–76 px of the current bid at 1024×768 / 1280×720, so it cannot meet D-CAL-5's proviso as a small layout change. The live portable container was rebuilt and restarted on 2026-09-15 against the merged `main` branch.

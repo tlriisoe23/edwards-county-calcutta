@@ -71,8 +71,14 @@ Disabled until there is something to undo; one sentence for both paths.
 | `tests/ui3-browser.mjs` | **PASS** — 63/63 |
 | `tests/night-of.mjs` | **PASS** — 12/12 (new) |
 
-Local `.wrangler/state` and disposable demo events only. The production container, its volume and
-the Cloudflare route were not touched. **Not deployed.**
+Local `.wrangler/state` and disposable demo events only — the four checks above are local evidence.
+
+**Deployed 2026-09-18** at `1fd3718`, on the owner's authorization, together with Batch L: no schema
+change, healthy in 15 s, rollback image `ecgc-calcutta:pre-nightof-20260918`, pre-deploy snapshot
+copied off the volume and verified (`integrity_check` ok, 2 events, 129 audit rows, **0 sales**).
+The Cloudflare route was not touched. Production verification is public-path only; the operator
+console where all four of these behaviours live was **not exercised signed in on production**. See
+[VM-DEPLOYMENT.md](VM-DEPLOYMENT.md).
 
 ## Two things the next session should know
 

@@ -79,6 +79,44 @@ DELETE journal mode; the original Windows databases were not modified. Import in
 a new destination succeeded. The initialized empty first destination is retained
 as /data/calcutta-initial-empty.sqlite. Do not use it as a restore source.
 
+## Redeploy — 2026-09-18 (Batch L and the night-of correctness set)
+
+Authorized by the owner ("Yes" to deploying both apps). Deployed `1fd3718` — the Batch L merge and the
+four night-of fixes. **No schema migration**; `migrate.mjs` reported "Portable schema is current".
+
+This container holds real settlement records, and this repository has **no backup script** of its
+own — unlike the sibling leaderboard's `scripts/backup-scheduled.sh`. The documented path was
+followed by hand, and the same way that script does it, because a snapshot that stays on the live
+volume protects against a bad write and not against losing the volume:
+
+1. `docker exec … node portable/backup.mjs /data/pre-deploy-<stamp>.sqlite` — consistent, via
+   SQLite's own backup API.
+2. `docker cp` it **out** to `~/backups/ecgc-calcutta/calcutta-20260918T163324.sqlite` (2,613,248
+   bytes, mode 600, directory mode 700), then removed the in-container copy.
+3. Verified the host copy opens: `integrity_check` **ok**, 2 events, 129 audit rows, and **no sales,
+   ownership or settlement rows at all** — so nothing financial was at risk in this deploy.
+4. Rollback tag: the running image tagged `ecgc-calcutta:pre-nightof-20260918`. The new image is
+   tagged `ecgc-calcutta:1fd3718`.
+5. `compose build app`, `compose up -d --no-deps app`: only `ecgc-calcutta-app-1` recreated,
+   **healthy within 15 s**. The leaderboard was untouched.
+
+**That missing backup script is worth fixing**: the leaderboard's takes the snapshot, copies it off
+the volume, verifies it opens and applies retention, and runs nightly from cron. This product has
+the same needs and more, and nothing equivalent.
+
+Production verification (read-only, 2026-09-18 ~16:36 UTC):
+
+| Check | Result |
+|---|---|
+| HTTPS | `/` 200, `/tv` 200, `/api/public` 200, `/admin` 307, anonymous `/api/admin` 403 |
+| Database | `integrity_check` **ok**, 2 events / 0 teams / 0 sales / 129 audit — unchanged across the deploy |
+| Browser | `/` at **1440 and 390** and `/tv` at 1920, **zero JavaScript errors**; the live event is *Edwards County 2 Day 2 Man Calcutta* |
+| Blocked | The operator console was **not exercised signed in on production** — it sits behind Google here too, and this repository has no equivalent of the leaderboard's signed-in rehearsal. Batch L and the night-of set are evidenced against a local instance only: 63/63 UI3 rendered checks and 12/12 night-of checks. |
+
+Rollback: `docker tag ecgc-calcutta:pre-nightof-20260918 ecgc-calcutta:portable`, then
+`docker compose --env-file .env.portable -f portable/compose.yaml up -d --no-deps app`. Take a fresh
+snapshot first, per this document's own operations note, to preserve post-deployment writes.
+
 ## Operations
 
 Run commands from the relevant VM repository, independently for each application:

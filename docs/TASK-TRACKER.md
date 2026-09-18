@@ -1,6 +1,6 @@
 # Finding tracker and proposed batches
 
-## Current planned work — 2026-09-17
+## Current state — 2026-09-18
 
 - **UI3 operator desk refinement (Batch L):** owner-requested pass — one flat tab bar replacing the
   RUN AUCTION / AFTER AUCTION groups, prepare step 4 renamed and step 5 "Start Auction" with a TV
@@ -8,13 +8,15 @@
   demo data moved into Tools, hover help on controls in place of the below-nav note blocks, an undo
   confirmation that names the action it will undo, and two reported defects reproduced and fixed
   (Next Up arrows renumbering instead of reordering; the page scrolling itself back to the top).
-  IMPLEMENTED → VALIDATED (local, **including rendered-browser evidence**) on
-  `claude/ui3-flat-tabs-operator`, branched from `main` @ `8405a8a`. **Not merged, not deployed** —
-  the live container still runs `ba0f0b3`. See [BATCH-L.md](BATCH-L.md).
+  IMPLEMENTED → VALIDATED → **MERGED (`b6fb0f0`) → DEPLOYED 2026-09-18**; the live container runs
+  `main` @ `1fd3718`, which carries this batch and the night-of set. Production verification is
+  public-path only — the operator console this batch rebuilds was **not exercised signed in on
+  production**. See [BATCH-L.md](BATCH-L.md) and [VM-DEPLOYMENT.md](VM-DEPLOYMENT.md).
 - **UI audit 2026-09-17 (`UI-CA-*`) — PROPOSED, not approved, nothing implemented.** A cleanliness /
   usability / readability pass over this product and the ECGC Leaderboard together. It was read on
   `claude/ui3-flat-tabs-operator` @ `775f1cf` (Batch L / UI3, **unmerged** — this branch and the live
-  container both predate it), because UI3 is the direction the console is heading. **Every finding records
+  container both predate it — UI3 has since merged at `b6fb0f0` and deployed, so the `main + UI3`
+  findings now describe what is live), because UI3 is the direction the console is heading. **Every finding records
   whether it is `main + UI3`, a UI3 regression, or UI3-only**, so a UI3-only finding lapses if UI3 is
   abandoned and the `main + UI3` ones apply to what is deployed today. 34 findings in
   [UI-AUDIT-2026-09-17.md](UI-AUDIT-2026-09-17.md) §4 (0 P1, 15 P2, 19 P3) plus 10 cross-product `UI-X-*`
@@ -50,10 +52,13 @@ HTTPS/DNS and off-host backup retention. This does not approve optional Batch E.
 
 The canonical description, reproduction, confidence and acceptance for every ID is in [PRODUCT-AUDIT.md](PRODUCT-AUDIT.md). Do not renumber an ID when its status changes; append validation evidence and a commit reference after an approved fix. A source change is not verified until its acceptance passes, and a local pass is not hosted verification.
 
-## Night-of correctness — implemented 2026-09-18, not deployed
+## Night-of correctness — deployed 2026-09-18
 
 UI-CA-07, 08, 09 and 16 from the 2026-09-17 audit — the set §5.1 put first — implemented on
-`claude/cal-night-of` and recorded in [BATCH-NIGHT-OF.md](BATCH-NIGHT-OF.md) with D-CAL-8..11.
+`claude/cal-night-of`, recorded in [BATCH-NIGHT-OF.md](BATCH-NIGHT-OF.md) with D-CAL-8..11, merged
+at `1fd3718` and **deployed the same day**. Mark these four CLOSED against what is live, with the
+standing caveat that the evidence is local: the production check after the deploy was public-path
+only.
 **UI-CA-08 was the one that mattered**: the bid field appended rather than replaced, so the
 documented keyboard path could record $12,501,300 as a real bid. 12 rendered checks, each written
 against the audit's own acceptance test. The rest of the `UI-CA-*` set is untouched, including
@@ -61,7 +66,10 @@ UI-CA-15 proper.
 
 Two gaps found while doing it, both worth their own fix: **playwright is not a dependency here**, so
 neither browser suite runs from a clean checkout, and **both suites overwrite Batch L's evidence
-directory by default** simply by running.
+directory by default** simply by running. A third surfaced at deploy time: **this repository has no
+backup script**, unlike the sibling leaderboard's `scripts/backup-scheduled.sh`, so the pre-deploy
+snapshot of a database holding settlement records was taken by hand. For a product whose whole
+purpose is money owed, that is the most valuable of the three to fix.
 
 ## Owner scope 2026-09-18 — requested, not started
 
@@ -81,6 +89,18 @@ AGENTS.md sets out.
 | WC-6 | **Import teams from the leaderboard.** Today they are retyped or pasted by hand. The leaderboard's side of this is W-9/O-10, which specifies the format this product's bulk import already parses — `team · player 1 · player 2 · flight · handicap` — with the Calcutta pop carried in the handicap column. Whether it stays a paste or becomes a sync is a decision the owner has to make first, because a sync crosses the isolation both repositories' AGENTS.md set out (see the leaderboard's D-LB-50..52). |
 | WC-7 | **A 50-team fixture matching the leaderboard's new demo.** The leaderboard is gaining a 50-team, two-day, two-man demo (W-2); this product needs the same 50 teams so a full evening — flights, auction, settlement — can be rehearsed against the format actually being run. |
 | WC-8 | **An auto-scrolling public/TV board, and the Calcutta equivalent of the leaderboard's.** The owner wants a continuously scrolling option rather than a paging slideshow, and a Calcutta board that matches the leaderboard's exactly with one extra column for the pop. The leaderboard's side is W-8. Note this product's TV is already the best screen in either app per the 2026-09-17 audit — **do not regress it** to gain a scroll mode. |
+
+## Engineering gaps found while shipping — 2026-09-18
+
+Not owner requests and not audit findings: four things that made this work harder or riskier than it
+needed to be. Each is small, and the first is the one that matters.
+
+| ID | Gap |
+|---|---|
+| OC-1 | **This repository has no backup script.** The sibling leaderboard has `scripts/backup-scheduled.sh` — it snapshots through SQLite's backup API, copies the file **off** the volume, verifies it opens, applies retention, and runs nightly from cron. This product holds real settlement records and has nothing equivalent, so the 2026-09-18 pre-deploy snapshot was taken by hand. Port it, then schedule it. A snapshot that never leaves the volume protects against a bad write, not against losing the volume. |
+| OC-2 | **No signed-in rehearsal of the operator console.** Production sits behind Google, so every operator-side claim in this repository's validation log is local evidence — every batch since S1 has recorded the same gap. The leaderboard closed it with `tests/console-rehearsal.mjs`: build the image from the working tree, run it against a **copy** of the newest backup, sign in with a password generated for that run, drive every tab. That is the model, and it never touches the live container. |
+| OC-3 | **Neither browser suite runs from a clean checkout.** `playwright` is not a dependency here, unlike the leaderboard's. Both suites accept `UI3_PLAYWRIGHT_MODULE` and were run pointed at the sibling's installed copy. |
+| OC-4 | **Both browser suites overwrite `docs/batch-l-evidence/` by default**, simply by running — Batch L's recorded evidence was overwritten and restored from Git during the night-of work. A default that destroys another batch's evidence is a trap; give each run its own directory. |
 
 ## Stable register
 
