@@ -1,5 +1,20 @@
 # Finding tracker and proposed batches
 
+## Current planned work — 2026-09-17
+
+- **UI audit 2026-09-17 (`UI-CA-*`) — PROPOSED, not approved, nothing implemented.** A cleanliness /
+  usability / readability pass over this product and the ECGC Leaderboard together. It was read on
+  `claude/ui3-flat-tabs-operator` @ `775f1cf` (Batch L / UI3, **unmerged** — this branch and the live
+  container both predate it), because UI3 is the direction the console is heading. **Every finding records
+  whether it is `main + UI3`, a UI3 regression, or UI3-only**, so a UI3-only finding lapses if UI3 is
+  abandoned and the `main + UI3` ones apply to what is deployed today. 34 findings in
+  [UI-AUDIT-2026-09-17.md](UI-AUDIT-2026-09-17.md) §4 (0 P1, 15 P2, 19 P3) plus 10 cross-product `UI-X-*`
+  items in §5; evidence in [ui-audit-2026-09-17-evidence/](ui-audit-2026-09-17-evidence/).
+  **IDs are a separate series and do not collide with the `CAL-*` / `D-CAL-*` register below.** Each finding
+  has an acceptance test and can be approved individually; the suggested first batch is §5.1.
+  The `UI-LB-*` half lives in `ecgc-leaderboard/docs/UI-AUDIT-2026-09-17.md`.
+  *Audit only — no source, schema, container or route was changed to produce it.*
+
 ## Current planned work — 2026-09-16
 
 - **C1 Operator Navigation:** complete and merged; accepted foundation at `f4a7e77`.
