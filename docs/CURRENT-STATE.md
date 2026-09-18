@@ -1,6 +1,28 @@
-# Current state — 2026-09-15 UTC
+# Current state — 2026-09-17 UTC
 
 ## Current planned work — 2026-09-17
+
+- **UI3 operator desk refinement (Batch L) — implemented and locally validated, NOT merged, NOT
+  deployed.** On `claude/ui3-flat-tabs-operator` off `main` @ `8405a8a`: the RUN AUCTION / AFTER
+  AUCTION nav groups are replaced by one flat tab bar (Auction console · View and Edit Sales ·
+  Results · Settlement · Exports) with an active tab drawn as the front edge of the panel below it;
+  *Return to console* is removed; prepare step 4 is renamed *TV / Display Settings* and a new step 5
+  *Start Auction* asks where the TV display should open before going LIVE; the compact toggle, theme
+  picker and Undo are pinned to the masthead (Load demo and Reset demo data moved into Tools); the
+  below-nav help blocks are replaced by hover tips on the controls themselves; the undo confirmation
+  now names the action it will undo. **Two reported defects were reproduced before being fixed:**
+  the Next Up arrows renumbered a lot instead of reordering the queue (`move()` operated on the full
+  `teams` array while the visible list is filtered), and the page scrolled itself back to the top
+  (Radix Popover refocusing a nav help trigger without `preventScroll`; the same cause also stole
+  focus from the bid field on hover). tsc, build, lint (48/37 — byte-identical to the measured `main`
+  baseline), acceptance 58/58, refinement 72/72, new `tests/ui3-reorder.mjs` 20/20 and new rendered
+  `tests/ui3-browser.mjs` 63/63 all pass; 22 screenshots at 1920×1080 / 1366×768 / 820 / 390 plus a
+  TV check are in `docs/batch-l-evidence/`. The live container is untouched and still runs `ba0f0b3`.
+  See [BATCH-L.md](BATCH-L.md).
+
+  This batch closes the rendered-browser gap Batches I and K left open **for its own scope only**:
+  it does not retrospectively verify the compact console or TV popup behaviour shipped in Batch K
+  against production, and it says nothing about hosted behaviour.
 
 - **C1 Operator Navigation:** complete and merged; accepted foundation at `f4a7e77`.
 - **S1 Purposeful Themes + Advanced Settings:** accepted, released, deployed (`494929b`). See [S1.md](S1.md).

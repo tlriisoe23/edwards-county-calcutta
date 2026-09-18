@@ -126,3 +126,22 @@ export function parsePaste(text: string) { const lines: string[][] = []; let row
     throw Error("Close the quoted field before importing."); row.push(cell.trim()); if (row.some(Boolean))
     lines.push(row); if (lines[0]?.[0].toLowerCase().replaceAll(" ", "") === "teamname")
     lines.shift(); return lines; }
+// Reorder one team relative to the sequence the operator can actually SEE, not the raw stored
+// order. "Next up" is `teams` filtered to UPCOMING and sliced to 8, and the roster table is
+// filtered by search/flight/status — in both, a team's neighbour on screen is usually NOT its
+// neighbour in `teams`. Swapping raw neighbours is what made the up/down arrows renumber a lot
+// without moving the team: from the top of "Next up" the raw predecessor is the team on the block
+// or an already-sold team, so the visible list never changed. Returns the full id order to save,
+// or null when the team is already at that end of the visible sequence (nothing to do).
+export function reorderVisible(teams: Row[], visibleIds: string[], id: string, delta: number): string[] | null {
+    const order = teams.map(t => t.id);
+    const visible = order.filter(tid => visibleIds.includes(tid));
+    const from = visible.indexOf(id), to = from + delta;
+    if (from < 0 || to < 0 || to >= visible.length)
+        return null;
+    const a = order.indexOf(id), b = order.indexOf(visible[to]);
+    if (a < 0 || b < 0)
+        return null;
+    [order[a], order[b]] = [order[b], order[a]];
+    return order;
+}
