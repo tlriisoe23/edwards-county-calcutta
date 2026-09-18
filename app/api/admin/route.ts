@@ -1,7 +1,8 @@
 import { themeIds } from '@/lib/themes';
 import { z } from "zod";
-import { db, statement, insert, update, read, freshEvent, identity, ownerEmails } from "@/lib/store";
+import { db, statement, insert, insertMany, update, read, freshEvent, identity, ownerEmails } from "@/lib/store";
 import { defaultSettings, type Row } from "@/lib/model";
+import { twoDayFlights, twoDayTeams } from "@/lib/demo-two-day";
 export const dynamic = "force-dynamic";
 const text = z.string().trim().min(1).max(150), note = z.string().max(4000).default(""), id = text;
 const cents = z.number().int().min(0).max(100000000);
@@ -156,7 +157,14 @@ export async function POST(request: Request) {
             return Response.json({ ok: true });
         }
         if (action === "create_event" || action === "load_demo") {
-            const input = action === "load_demo" ? { name: "Edwards County Calcutta Invitational", course: "Edwards County Golf Course", dates: "September 19–20, 2026", auctionAt: "2026-09-18T18:00" } : z.object({ name: text, course: z.string().max(150).default(""), calcuttaName: z.string().max(150).optional(), dates: z.string().max(100).optional(), auctionAt: z.string().max(40).optional(), description: note }).parse(p);
+            // Which demo: the twelve-team one mid-auction, for practising the
+            // console, or the fifty-team two-day two-man the club actually runs
+            // (WC-7), which starts before the first lot so the evening itself
+            // can be rehearsed.
+            const twoDay = action === "load_demo" && z.object({ variant: z.string().optional() }).parse(p).variant === "twoDay";
+            const input = action === "load_demo" ? (twoDay
+                ? { name: "Edwards County Two Day Two Man — Demo", course: "Edwards County Golf Course", dates: "September 26–27, 2026", auctionAt: "2026-09-26T18:00" }
+                : { name: "Edwards County Calcutta Invitational", course: "Edwards County Golf Course", dates: "September 19–20, 2026", auctionAt: "2026-09-18T18:00" }) : z.object({ name: text, course: z.string().max(150).default(""), calcuttaName: z.string().max(150).optional(), dates: z.string().max(100).optional(), auctionAt: z.string().max(40).optional(), description: note }).parse(p);
             const replay = async () => {
                 const prior = await statement('SELECT eventId,actor,action,"after" FROM audit WHERE id=?', requestId).first<Row>();
                 if (!prior) return null;
@@ -167,7 +175,35 @@ export async function POST(request: Request) {
             if (existing) return Response.json({ ok: true, duplicate: true, eventId: existing });
             const created = freshEvent(input, who.email, action === "load_demo", requestId);
             const cmds = created.commands;
-            if (action === "load_demo") {
+            if (twoDay) {
+                // Four flights, the same split the leaderboard drew from day one,
+                // and no sales: the auction has not happened yet, which is the
+                // whole point of rehearsing against it.
+                // Grouped into one statement per table: a hundred and seventy
+                // separate inserts is enough to make the local D1 runner drop
+                // the connection, and this batch has to commit as a unit.
+                const flightIds = twoDayFlights.map(() => crypto.randomUUID());
+                cmds.push(...insertMany("flights", twoDayFlights.map((name, i) =>
+                    ({ id: flightIds[i], eventId: created.id, name, order: i, color: ["#b79a59", "#889b75", "#6f8aa6", "#9b7f95"][i], ownPool: 1 }))));
+                cmds.push(...insertMany("payout_rules", twoDayFlights.flatMap((_, i) =>
+                    [5000, 3000, 2000].map((percent, j) =>
+                        ({ id: crypto.randomUUID(), eventId: created.id, poolId: flightIds[i], place: j + 1, percent })))));
+                const teamIds = twoDayTeams.map(() => crypto.randomUUID());
+                cmds.push(...insertMany("teams", twoDayTeams.map(([name, , , flight, pop], i) => ({
+                    id: teamIds[i], eventId: created.id, flightId: flightIds[flight], name,
+                    // The pop, carried where this product already keeps a
+                    // per-team number the room can see.
+                    handicap: pop,
+                    seed: i + 1, notes: "", privateNotes: "Demonstration team", order: i, status: "UPCOMING",
+                }))));
+                cmds.push(...insertMany("players", twoDayTeams.flatMap(([, one, two], i) =>
+                    [one, two].map((name, j) => ({ id: crypto.randomUUID(), teamId: teamIds[i], name, order: j })))));
+                // Buyers who would already be in the room, so the first sale can
+                // be recorded without typing a name first. No sales: nothing has
+                // been bought yet.
+                cmds.push(...insertMany("buyers", ["The Johnson Group", "Taylor Syndicate", "The Weekend Club", "Table Six Syndicate", "Smith Family", "Back Nine Partners", "Clubhouse Table 4", "The Cart Barn"].map((name, i) =>
+                    ({ id: crypto.randomUUID(), eventId: created.id, name, group: i === 3 ? "Table 6" : "", contact: "fictional@example.test", privateNotes: "Fictional demonstration buyer" }))));
+            } else if (action === "load_demo") {
                 const f1 = crypto.randomUUID(), f2 = crypto.randomUUID();
                 [["Championship Flight", f1], ["First Flight", f2]].forEach(([name, f], i) => { cmds.push(insert("flights", { id: f, eventId: created.id, name, order: i, color: i ? "#889b75" : "#b79a59", ownPool: 1 })); [5000, 3000, 2000].forEach((percent, j) => cmds.push(insert("payout_rules", { id: crypto.randomUUID(), eventId: created.id, poolId: f, place: j + 1, percent }))); });
                 const names = ["The Johnson Group", "Taylor Syndicate", "The Weekend Club", "Table Six Syndicate", "Smith Family"], buyerIds = names.map(() => crypto.randomUUID());

@@ -2,6 +2,33 @@
 
 2026-09-14 UTC · baseline `dfab14906c04b5a6d99ffffbfba4249883750eae`. Reports are local audit evidence, not production sign-off. PASS = observed expected result; FAIL = demonstrated mismatch; BLOCKED = a needed environment/tool is unavailable; UNVERIFIED = not exercised sufficiently. A successful build does not convert any browser or hosted gap into PASS.
 
+## The fifty-team two-day fixture — 2026-09-18, local candidate
+
+Branch `claude/cal-demo-50`, off `main` @ `bd79867`. WC-7, the Calcutta half of the owner's
+"create another demo with 50 teams to simulate our 2 day 2 man coming up". Decisions D-CAL-12..14.
+
+| Check | Result and provenance |
+|---|---|
+| Types | **PASS** — `tsc --noEmit --incremental false` |
+| Lint | **unchanged** — 77 problems (48 errors, 29 warnings) on `app lib`, the same figure measured on `main` from a stash in the same tree; none introduced |
+| Build | **PASS** — `npm run build` |
+| Acceptance | **PASS** — `tests/acceptance.mjs`, 58 |
+| Refinement | **PASS** — `tests/refinement.mjs`, 72 |
+| Queue reorder | **PASS** — `tests/ui3-reorder.mjs`, 20 |
+| UI3 rendered | **PASS** — `tests/ui3-browser.mjs`, 63/63 |
+| Night-of rendered | **PASS** — `tests/night-of.mjs`, 12/12 |
+| **Two-day fixture** | **PASS** — `tests/two-day-demo.mjs`, **19/19** (new): fifty teams with no repeated name, two players each, four flights splitting 13 · 13 · 12 · 12, every pop a non-negative half stroke with each flight's leader level, and the event at **SETUP** with no sales, nothing on the block and buyers already listed |
+| Production | **NOT DEPLOYED** at the time of writing |
+
+**The first attempt did not commit.** A hundred and seventy-odd single-row inserts made the local D1
+runner answer *"Network connection lost"* rather than any validation error; folding them into
+multi-row INSERTs chunked under D1's ~100-parameter ceiling fixed it (D-CAL-14). Worth recording
+because the failure names nothing about size.
+
+**Not covered**: that the fifty names here still match the leaderboard's. They were copied from it on
+2026-09-18 and nothing checks the two against each other — by design, since the repositories share no
+code, but it means a reshape there needs a re-emit here.
+
 ## Night-of correctness — 2026-09-18, merged and deployed
 
 Branch `claude/cal-night-of`, off `main` @ `b6fb0f0` (the Batch L merge). The four findings the
