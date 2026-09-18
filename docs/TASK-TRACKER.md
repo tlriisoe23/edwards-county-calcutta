@@ -50,6 +50,19 @@ HTTPS/DNS and off-host backup retention. This does not approve optional Batch E.
 
 The canonical description, reproduction, confidence and acceptance for every ID is in [PRODUCT-AUDIT.md](PRODUCT-AUDIT.md). Do not renumber an ID when its status changes; append validation evidence and a commit reference after an approved fix. A source change is not verified until its acceptance passes, and a local pass is not hosted verification.
 
+## Night-of correctness — implemented 2026-09-18, not deployed
+
+UI-CA-07, 08, 09 and 16 from the 2026-09-17 audit — the set §5.1 put first — implemented on
+`claude/cal-night-of` and recorded in [BATCH-NIGHT-OF.md](BATCH-NIGHT-OF.md) with D-CAL-8..11.
+**UI-CA-08 was the one that mattered**: the bid field appended rather than replaced, so the
+documented keyboard path could record $12,501,300 as a real bid. 12 rendered checks, each written
+against the audit's own acceptance test. The rest of the `UI-CA-*` set is untouched, including
+UI-CA-15 proper.
+
+Two gaps found while doing it, both worth their own fix: **playwright is not a dependency here**, so
+neither browser suite runs from a clean checkout, and **both suites overwrite Batch L's evidence
+directory by default** simply by running.
+
 ## Owner scope 2026-09-18 — requested, not started
 
 Written as task prompts: each carries enough context to be picked up without the conversation that
