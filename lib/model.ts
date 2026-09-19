@@ -145,3 +145,20 @@ export function reorderVisible(teams: Row[], visibleIds: string[], id: string, d
     [order[a], order[b]] = [order[b], order[a]];
     return order;
 }
+
+/**
+ * "September 19–20, 2026" from the leaderboard's ISO start and end — the way
+ * this product already writes an event's dates by hand (D-CAL-24). Parsed as
+ * text, never as a Date, so a time zone cannot move a tournament by a day.
+ */
+export function tournamentDates(start?: string | null, end?: string | null): string {
+    const parse = (v?: string | null) => { const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(v ?? "")); return m ? { y: +m[1], m: +m[2], d: +m[3] } : null; };
+    const month = (m: number) => ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][m - 1] ?? "";
+    const a = parse(start), b = parse(end) ?? a;
+    if (!a || !month(a.m)) return "";
+    if (!b || !month(b.m) || (a.y === b.y && a.m === b.m && a.d === b.d)) return `${month(a.m)} ${a.d}, ${a.y}`;
+    if (a.y === b.y && a.m === b.m) return `${month(a.m)} ${a.d}–${b.d}, ${a.y}`;
+    if (a.y === b.y) return `${month(a.m)} ${a.d} – ${month(b.m)} ${b.d}, ${a.y}`;
+    return `${month(a.m)} ${a.d}, ${a.y} – ${month(b.m)} ${b.d}, ${b.y}`;
+}
+
