@@ -214,6 +214,7 @@ check(!broken.ok() || brokenBody.note || brokenBody.rows?.length === 0,
     check(built.event.dates === 'September 26–27, 2026', 'with the dates written the way this product writes them', built.event.dates);
     check(built.event.auctionAt === '2026-09-26T18:00', 'and the auction time the operator gave', built.event.auctionAt);
     check(built.event.status === 'SETUP' && built.event.demo === 0, 'a real event, not started');
+    check(built.event.settings?.handicapLabel === 'Pop', `and the room reads each team's number as a pop (${built.event.settings?.handicapLabel})`);
     check(built.flights.map((f) => f.name).join('|') === seed.event.flights.join('|'), 'flights in the leaderboard\'s order', built.flights.map((f) => f.name));
     check(built.flights.every((f) => f.ownPool && built.payoutRules.filter((r) => r.poolId === f.id).length === 3), 'each with its own pool paying three places');
     check(built.teams.length === 50 && built.teams.every((t) => t.status === 'UPCOMING'), 'fifty teams, all upcoming', built.teams.length);
@@ -255,6 +256,7 @@ check(!broken.ok() || brokenBody.note || brokenBody.rows?.length === 0,
     await up.goto(base + '/admin?event=' + made.eventId);
     await up.waitForTimeout(1200);
     const button = up.getByRole('button', { name: 'Import event from the leaderboard' });
+    await button.waitFor({ timeout: 20000 }).catch(() => {});
     check(await button.count() === 1, 'the desk offers it beside New event');
     await button.click();
     const dialog = up.getByRole('dialog');

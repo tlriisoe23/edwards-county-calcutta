@@ -139,4 +139,12 @@ const remaining=(await eventIds()).length;
 const again=await send('event_delete',{eventId:replayId},{requestId:replayRequest});
 check(again.b.duplicate===true&&(await eventIds()).length===remaining,'Repeating the delete request ID is a no-op, not a second deletion');
 eventId=mainEventId;await read();
+// WC-9: what a team's number is called is a setting, saved with the rest and read back.
+await read();
+await send('event_update',{...eventPayload(),settings:{...d.event.settings,handicapLabel:'Handicap'}});
+await read();
+check(d.event.settings.handicapLabel==='Handicap','the label for a team\'s number round-trips through event settings');
+await send('event_update',{...eventPayload(),settings:{...d.event.settings,handicapLabel:'Index'}});
+await read();
+check(d.event.settings.handicapLabel==='Index','and can be set back');
 const report={checks,eventIds:[mainEventId,demoTestId],at:new Date().toISOString(),status:'passed'};writeFileSync('.sites-runtime/acceptance-report.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));

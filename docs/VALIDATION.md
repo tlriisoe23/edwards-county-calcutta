@@ -24,6 +24,18 @@ the branch; not merged, not deployed** — the live container still runs `868318
 | `npm run test:console` | **NOT RUN** — it builds Docker images; excluded from this task by instruction. The console rehearsal's two carve-outs were removed, so its next run is the check that OC-5 and OC-7 stay fixed on a real image |
 | Production | **UNVERIFIED** — nothing here has been merged or deployed; the live container is unchanged |
 
+## A team's number is called what it is — 19 September 2026
+
+WC-9, branch `claude/cal-pop-label`, decision D-CAL-32. Not deployed.
+
+| Check | Result |
+|---|---|
+| The label | **PASS** — acceptance **68**: it round-trips through event settings and can be set back; refinement 72 |
+| From the leaderboard | **PASS** — `tests/leaderboard-import.mjs`: an event created from the leaderboard says *Pop* |
+| That suite as a whole | **57 of 58, then a crash** — on a VM loaded by a GitHub Actions runner for another repository (load 4–6 all afternoon): the one miss was a fixed 1.2-second wait in an older desk-path check, since made to wait properly; the re-run then hit a pre-existing 30-second wait. Not a code failure — the same waits pass at a load near one — and the suite is re-run clean before the next release |
+| Candidate image | **PASS** — `npm run test:console`, **43** signed-in checks |
+| Static | tsc clean; eslint **76**, one warning fewer than the baseline |
+
 ## A renamed team is the same team — 19 September 2026
 
 OC-8, branch `claude/cal-import-source-id`, decision D-CAL-30. **Carries a schema migration**

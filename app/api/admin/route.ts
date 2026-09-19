@@ -25,7 +25,7 @@ const listLocalUsers: () => { username: string; email: string; display_name: str
 const setLocalUserEnabled: (username: string, enabled: boolean) => void = portableOnly;
 const resetLocalUserPassword: (username: string, password: string) => void = portableOnly;
 // PORTABLE-STUB-END
-function settingsSchema() { return z.object({ theme: z.enum(themeIds).optional(), trackBidder: z.boolean(), quickStarts: z.array(cents.refine(v => v > 0)).min(1).max(8), buybackMode: z.enum(["off", "calculate", "track"]), buybackSuggested: percent, minBid: cents, increment: cents.refine(v => v > 0), quickIncrements: z.array(cents.refine(v => v > 0)).min(1).max(8), poolMode: z.enum(["separate", "combined", "custom"]), deductionType: z.enum(["none", "percent", "fixed"]), deduction: cents, buybackMax: percent, buybackPriceMode: z.enum(["proportional", "fixed"]), buybackFixed: cents, buybackDeadline: z.string().max(40), autoAdvance: z.boolean(), showBidder: z.boolean(), showBid: z.boolean(), showBuyer: z.boolean(), showSalePrice: z.boolean(), showUpcoming: z.boolean(), showHandicap: z.boolean(), showPayouts: z.boolean(), showBuyback: z.boolean(), showTotalPool: z.boolean(), showFlightPools: z.boolean() }).superRefine((s, c) => { if (s.deductionType === "percent" && s.deduction > 10000)
+function settingsSchema() { return z.object({ theme: z.enum(themeIds).optional(), handicapLabel: z.string().trim().min(1).max(20).optional(), trackBidder: z.boolean(), quickStarts: z.array(cents.refine(v => v > 0)).min(1).max(8), buybackMode: z.enum(["off", "calculate", "track"]), buybackSuggested: percent, minBid: cents, increment: cents.refine(v => v > 0), quickIncrements: z.array(cents.refine(v => v > 0)).min(1).max(8), poolMode: z.enum(["separate", "combined", "custom"]), deductionType: z.enum(["none", "percent", "fixed"]), deduction: cents, buybackMax: percent, buybackPriceMode: z.enum(["proportional", "fixed"]), buybackFixed: cents, buybackDeadline: z.string().max(40), autoAdvance: z.boolean(), showBidder: z.boolean(), showBid: z.boolean(), showBuyer: z.boolean(), showSalePrice: z.boolean(), showUpcoming: z.boolean(), showHandicap: z.boolean(), showPayouts: z.boolean(), showBuyback: z.boolean(), showTotalPool: z.boolean(), showFlightPools: z.boolean() }).superRefine((s, c) => { if (s.deductionType === "percent" && s.deduction > 10000)
     c.addIssue({ code: "custom", message: "Deduction cannot exceed 100%." });
     // D-CAL-2: a positive opening bid is required, and "no house cut" is only ever the None type — never a blank or zero amount.
     if (s.minBid < 100) c.addIssue({ code: "custom", message: "Enter a minimum starting bid of at least $1.00" });
@@ -323,7 +323,10 @@ export async function POST(request: Request) {
                 { name: source.name.trim().slice(0, 150), course: source.course.trim().slice(0, 150), dates: tournamentDates(source.start, source.end), auctionAt: input.auctionAt || "" },
                 who.email, false, requestId, { action, after: input });
             const cmds = created.commands;
-            if (last?.settings) cmds.push(update("events", { settings: last.settings }, "id", created.id));
+            // The number each team carries over from the leaderboard is its pop,
+            // and the room should read it as one (WC-9).
+            const baseSettings = (() => { try { return last?.settings ? JSON.parse(String(last.settings)) : defaultSettings; } catch { return defaultSettings; } })();
+            cmds.push(update("events", { settings: JSON.stringify({ ...baseSettings, handicapLabel: "Pop" }) }, "id", created.id));
             // The same palette and the same three places `flight_import` and
             // `flight_save` give a flight: a board built this way must not
             // settle differently because it arrived differently.
