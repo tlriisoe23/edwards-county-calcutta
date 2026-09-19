@@ -171,7 +171,15 @@ input[data-slot=input],textarea[data-slot=textarea],.choice{border-color:var(--i
 .theme-option>span>span,.theme-option small{display:block;margin-top:6px;color:var(--text-secondary);font-size:14px}
 .theme-option small{font-weight:bold;color:var(--foreground)}
 .advanced-settings{border:1px solid var(--border);border-radius:7px;margin:24px 0;padding:0 18px}
-.advanced-settings>summary{cursor:pointer;padding:16px 0;min-height:48px;scroll-margin-top:20px}
+/* WC-3 / W-6: a disclosure must look like something you can click. The same bordered pill with a
+   turning caret the leaderboard gave its "Keyboard and rules" — the title is the control, the line
+   beneath it stays explanatory text. */
+.advanced-settings>summary{cursor:pointer;padding:16px 0;min-height:48px;scroll-margin-top:20px;list-style:none;user-select:none}
+.advanced-settings>summary::-webkit-details-marker{display:none}
+.advanced-settings>summary>strong,.advanced-settings>summary>b{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:6px 14px 6px 12px;border:1px solid var(--border);border-radius:999px;background:var(--card);color:var(--foreground);font-weight:600;font-size:14px}
+.advanced-settings>summary>strong::before,.advanced-settings>summary>b::before{content:"▸";font-size:12px;color:var(--muted-foreground);transition:transform .12s ease}
+.advanced-settings[open]>summary>strong::before,.advanced-settings[open]>summary>b::before{transform:rotate(90deg);color:var(--primary)}
+.advanced-settings>summary:hover>strong,.advanced-settings>summary:hover>b,.advanced-settings[open]>summary>strong,.advanced-settings[open]>summary>b{border-color:var(--primary);color:var(--primary)}
 .advanced-settings>summary>span{display:block;font-size:13px;color:var(--text-secondary);margin-top:6px}
 .advanced-settings[open]{padding-bottom:18px}
 .advanced-settings h3{margin-top:22px}
