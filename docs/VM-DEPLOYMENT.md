@@ -65,6 +65,36 @@ the migration**: the previous image reads `portable_local_users` by `email`, whi
 no longer has as its key; with no local users in production that costs nothing today, but a rollback
 after local logins are created would need the table restored from the pre-migration snapshot as well.
 
+## Redeploy — 2026-09-19 (the afternoon's units: a renamed team is the same team, and the rest)
+
+Authorized by the owner ("yes on all of it", then "ok i ran those commands"): the owner ran
+`scripts/release.sh afternoon` from `main` @ `953e48a` at 20:30 UTC. Deployed `953e48a`: OC-5, OC-7, WC-4,
+OC-9 (D-CAL-26..29), OC-8 (D-CAL-30), WC-3 (D-CAL-31), WC-9 (D-CAL-32), WC-1 (D-CAL-33) and a repaired
+acceptance fixture. **Schema migration**: `drizzle/0002_tearful_senator_kelly.sql` adds `teams.sourceId`;
+`portable_migrations` on the post-migration snapshot lists 0000, 0001 and 0002. The fifty teams already on
+the test event carry no source id — they were imported before this release — and take one the next time
+the field is brought over from the leaderboard.
+
+Snapshots `calcutta-20260919T202959` before and `…T203011` after, 3 events / 4 flights / 50 teams /
+16 sales / 175 audit; local users 0, keyed by username. Rollback tag `ecgc-calcutta:pre-afternoon-20260919`
+on the previous image (`sha256:ba2c90448614…`, `8683183`). Recreated, **healthy at 20:30:03 UTC**; the
+leaderboard kept its uptime until its own release two minutes later.
+
+Production verification (read-only, `scripts/release.sh --verify-only`, 20:34 UTC):
+
+| Check | Result |
+|---|---|
+| Container | healthy, on `ecgc-calcutta_default` and `ecgc-interconnect` |
+| HTTPS | `/` 200, `/tv` 200, `/api/public` 200, `/admin` 307, anonymous `/api/admin` 403 |
+| Private wire | this container read the leaderboard in **76 ms**: the test event, 50 flighted rows, 4 flights |
+| Database | post-migration snapshot: `integrity_check` ok; 3 / 4 / 50 / 16 / 175; `teams.sourceId` present |
+| Browser | `/` at 1440 and `/tv` at 1920, **zero JavaScript errors** |
+| Blocked | the operator console was **not exercised signed in on production** (Google); each unit was driven signed in by `npm run test:console` on its candidate image, the last of them 47 checks with the migration applied to a copy of production |
+
+Rollback: `docker tag ecgc-calcutta:pre-afternoon-20260919 ecgc-calcutta:portable`, then
+`compose up -d --no-deps app`. Take a fresh snapshot first. **Rolling back leaves `teams.sourceId` in
+place**; the previous image ignores the column, so that costs nothing.
+
 ## Routing and authentication
 
 Both approved public hostnames route through existing Cloudflare tunnel ecgc-preview

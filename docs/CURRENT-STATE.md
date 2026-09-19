@@ -1,6 +1,12 @@
 # Current state — 2026-09-18 UTC
 
-## On `main`, not deployed — 2026-09-19, afternoon
+## Deployed — 2026-09-19, 20:30 UTC
+
+- **`main` @ `953e48a` is live**, run by the owner with `scripts/release.sh afternoon`; the units below are
+  all on production now, with `drizzle/0002` applied. Rollback image `ecgc-calcutta:pre-afternoon-20260919`;
+  see [VM-DEPLOYMENT.md](VM-DEPLOYMENT.md).
+
+## Landed in the afternoon — 2026-09-19
 
 - **Four smaller items landed** (OC-5 keyboard-reachable tables, OC-7 no idle leaderboard probe, WC-4 the
   owner can delete an event — never one holding settlement records unless it is a demo — and OC-9 the desk
