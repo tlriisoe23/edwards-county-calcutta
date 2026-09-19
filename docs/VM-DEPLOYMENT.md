@@ -181,6 +181,27 @@ Production verification (read-only, 2026-09-19 ~01:16 UTC):
 Rollback: `docker tag ecgc-calcutta:pre-import-20260919 ecgc-calcutta:portable`, then
 `compose up -d --no-deps app`. Take a fresh snapshot first.
 
+## Redeploy — 2026-09-19 (the import's missing half)
+
+Authorized by the owner, who reported the defect from their first real use of the previous release.
+Deployed `b2f583e` — D-CAL-20..22. **No schema change**.
+
+Snapshot first via `scripts/backup-scheduled.sh` (9 retained); rollback tag
+`ecgc-calcutta:pre-flightimport-20260919` on the running image (commit `9ba8c15`). Recreated,
+**healthy within 6 s**; the leaderboard kept its uptime.
+
+Production verification (read-only, 2026-09-19 ~04:12 UTC):
+
+| Check | Result |
+|---|---|
+| HTTPS | `/` 200, `/tv` 200, `/api/public` 200, `/admin` 307, anonymous `/api/admin` 403 |
+| Database | `integrity_check` ok; 2 events / **0 flights** / 0 teams / 0 sales / 131 audit — unchanged, and the zero flights are the state that prompted this release |
+| **What the import now offers** | the live leaderboard field reads **Championship 7 · A 4 · B 8 · C 8 · D 5**, 32 rows. Before this release those five names were a message; now they are a button. |
+| Blocked | The operator console was **not exercised signed in on production** (OC-2). The dialog path is evidenced by 30/30 against a local pair, which is where all three of this release's defects lived. |
+
+Rollback: `docker tag ecgc-calcutta:pre-flightimport-20260919 ecgc-calcutta:portable`, then
+`compose up -d --no-deps app`.
+
 ## Operations
 
 Run commands from the relevant VM repository, independently for each application:

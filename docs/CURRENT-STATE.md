@@ -2,6 +2,14 @@
 
 ## Deployed — 2026-09-19
 
+- **The import can create the flights it needs.** `main` @ `b2f583e`, live since ~04:12 UTC, healthy
+  in 6 s. The first real use of the previous release hit a correct refusal with a useless remedy —
+  both live events have no flights, so every row had nowhere to land and the advice was to retype
+  five names by hand. The dialog now offers them, in the leaderboard's order, each with its own pool
+  paying three places; it also names which leaderboard event it is reading and lets you change it
+  (D-CAL-20..22). Rollback image `ecgc-calcutta:pre-flightimport-20260919`.
+
+
 - **Importing the flighted field from the leaderboard is live.** `main` @ `9ba8c15` runs in
   `ecgc-calcutta-app-1` as of 2026-09-19 ~01:15 UTC, healthy in 7 s, no schema change. The team
   import dialog offers *Import from the leaderboard*, reading it over `ecgc-interconnect` — an

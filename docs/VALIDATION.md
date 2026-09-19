@@ -4,6 +4,9 @@
 
 ## The import's missing half — 2026-09-19
 
+**Merged and deployed `b2f583e` 2026-09-19T04:12 UTC**, healthy in 6 s, no schema change, live data
+unchanged. See [VM-DEPLOYMENT.md](VM-DEPLOYMENT.md).
+
 Reported from the owner's first real use, against the deployed `9ba8c15`: *"No flight here is called
 Championship or A Flight or B Flight or C Flight or D Flight. Add them under Event & rules, then
 import again."* Both live Calcutta events had **zero flights** while the leaderboard had five with a
