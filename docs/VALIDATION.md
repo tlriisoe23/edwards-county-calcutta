@@ -2,6 +2,21 @@
 
 2026-09-14 UTC · baseline `dfab14906c04b5a6d99ffffbfba4249883750eae`. Reports are local audit evidence, not production sign-off. PASS = observed expected result; FAIL = demonstrated mismatch; BLOCKED = a needed environment/tool is unavailable; UNVERIFIED = not exercised sufficiently. A successful build does not convert any browser or hosted gap into PASS.
 
+## The event created from the leaderboard — 19 September 2026
+
+Branch `claude/cal-event-from-leaderboard`. Decision D-CAL-24; the owner's request is WC-10. Not deployed.
+
+| Check | Result |
+|---|---|
+| One request | **PASS** — `event_from_leaderboard` against the leaderboard's fifty-team two-day demo: the event named and placed as the leaderboard has it, dates *September 26–27, 2026*, the auction time given, SETUP and not a demo; four flights in the leaderboard's order, each with its own pool paying three places; fifty teams, all upcoming, each in its flight with its pop and both players, in the leaderboard's order; the money rules from the existing event rather than the defaults |
+| Idempotent | **PASS** — the same request ID again answers `duplicate` with the same event and creates nothing |
+| Not flighted yet | **PASS** — a public tournament with no Calcutta field becomes an empty event with the note; a Draft on the leaderboard is refused as "no longer exists", which is the leaderboard's rule and is now covered by the test as well |
+| The desk | **PASS** — the button sits beside *New event* on an event in SETUP (the LIVE console is compact and hides the toolbar on purpose); the dialog offers every public leaderboard tournament, previews the name, flights with sizes and teams; one click creates it, the desk moves to it, nothing is rejected on the way |
+| Suites | **PASS** — `tests/leaderboard-import.mjs` **52** (was 30) against both dev servers; tsc clean; eslint at the 77 baseline; `npm run build` |
+
+**Not covered**: the button on the deployed image with a real `LEADERBOARD_URL` — `npm run test:console`
+has no leaderboard beside it, so the button is hidden there by design.
+
 ## Tournament eve — 19 September 2026
 
 Nothing deployed, nothing live touched. Branch `claude/cal-console-rehearsal`; the leaderboard's half

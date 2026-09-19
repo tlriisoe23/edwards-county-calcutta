@@ -1,5 +1,12 @@
 # Current state — 2026-09-18 UTC
 
+## Requested and built the same night — 2026-09-19
+
+- **The event is created from the leaderboard** (WC-10, D-CAL-24): *Import event from the leaderboard*
+  beside *New event* reads the tournament over the private wire — name, course, dates, flights, every
+  team with its pop — previews it and creates the event in one click, asking only for the auction time.
+  On `main`, validated (52 import checks, build), **not deployed**.
+
 ## Tournament eve — 2026-09-19
 
 - **The desk is now rehearsed signed in before a deploy** (OC-2 closed, D-CAL-23): `npm run

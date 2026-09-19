@@ -196,6 +196,91 @@ check(!broken.ok() || brokenBody.note || brokenBody.rows?.length === 0,
     await ui.close();
 }
 
+// ---- Creating the event itself from the leaderboard (WC-10).
+//
+// The recommended setup: one request reads the tournament off the board and
+// makes the event — name, course, dates, flights in the board's order, every
+// flighted team with its pop — so nothing is retyped and nothing is exported.
+{
+    const requestId = crypto.randomUUID();
+    const make = () => context.request.post(base + '/api/admin', { headers: { origin: base },
+        data: { action: 'event_from_leaderboard', payload: { slug: seed.event.slug, auctionAt: '2026-09-26T18:00' }, requestId } });
+    const made = await (await make()).json();
+    check(!!made.eventId && made.created?.flights === 4 && made.created?.teams === 50,
+        `one request creates the event with its four flights and fifty teams`, made);
+    const built = (await (await context.request.get(base + '/api/admin?event=' + made.eventId)).json()).data;
+    check(built.event.name === seed.event.name, 'named as the leaderboard names it', built.event.name);
+    check(built.event.course === seed.event.course, 'at the leaderboard\'s course', built.event.course);
+    check(built.event.dates === 'September 26–27, 2026', 'with the dates written the way this product writes them', built.event.dates);
+    check(built.event.auctionAt === '2026-09-26T18:00', 'and the auction time the operator gave', built.event.auctionAt);
+    check(built.event.status === 'SETUP' && built.event.demo === 0, 'a real event, not started');
+    check(built.flights.map((f) => f.name).join('|') === seed.event.flights.join('|'), 'flights in the leaderboard\'s order', built.flights.map((f) => f.name));
+    check(built.flights.every((f) => f.ownPool && built.payoutRules.filter((r) => r.poolId === f.id).length === 3), 'each with its own pool paying three places');
+    check(built.teams.length === 50 && built.teams.every((t) => t.status === 'UPCOMING'), 'fifty teams, all upcoming', built.teams.length);
+    const byName = new Map(pulled.rows.map((r) => [r.name, r]));
+    check(built.teams.every((t) => byName.has(t.name) && Number(t.handicap) === byName.get(t.name).pop
+        && built.flights.find((f) => f.id === t.flightId)?.name === byName.get(t.name).flight), 'every team in its flight with its pop');
+    check(built.teams.every((t) => (t.players || []).length === 2), 'and both players', built.teams[0]?.players);
+    check([...built.teams].sort((a, b) => a.order - b.order).map((t) => t.name).join('|') === pulled.rows.map((r) => r.name).join('|'),
+        'in the leaderboard\'s order, ready to auction');
+    const previous = (await read()).event;
+    check(JSON.stringify(built.event.settings) === JSON.stringify(previous.settings) || built.event.settings.minBid === previous.settings.minBid,
+        'the money rules came from an existing event rather than the defaults', { built: built.event.settings.minBid, previous: previous.settings.minBid });
+
+    // The same request again is the same event, not a second one.
+    const again = await (await make()).json();
+    const count = (await (await context.request.get(base + '/api/admin')).json()).events.filter((e) => e.name === seed.event.name).length;
+    check(again.duplicate === true && again.eventId === made.eventId && count === 1, 'repeating the request creates nothing more', { again, count });
+
+    // A tournament with no flighted field yet still becomes an event — with a
+    // note. It has to be public on the leaderboard first: a Draft is invisible
+    // to everyone, this product included, which is the leaderboard's rule.
+    const drafted = await (await fetch(leaderboard + '/api/board', { method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ action: 'create', name: 'Not flighted yet ' + Date.now() }) })).json();
+    const bareBoard = await (await fetch(leaderboard + '/api/board', { method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ action: 'settings', id: drafted.event.id, version: drafted.version, settings: { status: 'Upcoming' } }) })).json();
+    check(bareBoard.event?.status === 'Upcoming', 'a not-yet-flighted tournament is public on the leaderboard', bareBoard.event?.status ?? bareBoard);
+    const early = await (await context.request.post(base + '/api/admin', { headers: { origin: base },
+        data: { action: 'event_from_leaderboard', payload: { slug: bareBoard.event.slug }, requestId: crypto.randomUUID() } })).json();
+    check(!!early.eventId && early.created?.teams === 0 && /no flighted Calcutta field yet/.test(early.note || ''),
+        'an event whose flights are not drawn yet is created empty, and says why', early);
+
+    // The path through the desk: the button beside New event, the preview, one click.
+    const ui = await browser.newContext({ viewport: { width: 1440, height: 1200 } });
+    const up = await ui.newPage();
+    const rejected = [];
+    up.on('response', async (r) => { if (r.url().endsWith('/api/admin') && r.request().method() === 'POST' && r.status() >= 400) rejected.push(JSON.parse(r.request().postData() || '{}').action + ' ' + r.status()); });
+    await up.goto(base + '/signin-with-chatgpt?return_to=%2Fadmin');
+    // On an event in SETUP: the LIVE console is compact and hides the event toolbar on purpose.
+    await up.goto(base + '/admin?event=' + made.eventId);
+    await up.waitForTimeout(1200);
+    const button = up.getByRole('button', { name: 'Import event from the leaderboard' });
+    check(await button.count() === 1, 'the desk offers it beside New event');
+    await button.click();
+    const dialog = up.getByRole('dialog');
+    await dialog.waitFor();
+    await up.waitForTimeout(800);
+    const picker = dialog.getByLabel('Tournament on the leaderboard');
+    check(await picker.count() === 1, 'the dialog lets you choose which tournament to read');
+    await picker.selectOption(seed.event.slug);
+    await up.waitForTimeout(2500);
+    const preview = await dialog.innerText();
+    check(preview.includes(seed.event.name) && /50, each with its pop/.test(preview) && /Championship \(13\)/.test(preview),
+        'and previews the name, the flights with their sizes and the teams before anything is saved', preview.slice(0, 300));
+    await dialog.getByLabel('Auction date / time (optional)').fill('2026-09-26T18:30');
+    await dialog.getByRole('button', { name: 'Create event from the leaderboard' }).click();
+    await up.waitForTimeout(4000);
+    const current = await (await ui.request.get(base + '/api/admin')).json();
+    const newest = current.events[0];
+    const landed = (await (await ui.request.get(base + '/api/admin?event=' + newest.id)).json()).data;
+    check(newest.name === seed.event.name && landed.teams.length === 50 && landed.flights.length === 4 && landed.event.auctionAt === '2026-09-26T18:30',
+        'one click made the event, and the desk moved to it', { newest: newest.name, teams: landed.teams.length, auctionAt: landed.event.auctionAt });
+    check((await up.locator('.event-picker select, .event-picker [role=combobox]').first().innerText().catch(() => '')).includes(seed.event.name)
+        || (await up.locator('body').innerText()).includes(seed.event.name), 'and it is the one on screen');
+    check(rejected.length === 0, 'and nothing was rejected on the way', rejected);
+    await ui.close();
+}
+
 const passed = checks.filter((c) => c.pass).length;
 console.log('\n' + passed + '/' + checks.length + ' leaderboard import checks passed');
 await browser.close();

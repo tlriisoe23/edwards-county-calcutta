@@ -1,7 +1,7 @@
 import { themeIds } from '@/lib/themes';
 import { z } from "zod";
 import { db, statement, insert, insertMany, update, read, freshEvent, identity, ownerEmails, leaderboardUrl } from "@/lib/store";
-import { defaultSettings, type Row } from "@/lib/model";
+import { defaultSettings, type Row, tournamentDates } from "@/lib/model";
 import { twoDayFlights, twoDayTeams } from "@/lib/demo-two-day";
 export const dynamic = "force-dynamic";
 const text = z.string().trim().min(1).max(150), note = z.string().max(4000).default(""), id = text;
@@ -32,6 +32,56 @@ function settingsSchema() { return z.object({ theme: z.enum(themeIds).optional()
     if (s.deductionType !== "none" && s.deduction <= 0) c.addIssue({ code: "custom", message: "Enter a house deduction greater than 0, or choose None." });
     if (s.buybackDeadline && !Number.isFinite(Date.parse(s.buybackDeadline)))
     c.addIssue({ code: "custom", message: "Enter a valid buyback deadline." }); }); }
+// The leaderboard's anonymous board endpoint, over the private wire (D-CAL-17).
+// Read-only, one direction, and only when an operator asks — never a poll.
+// Everything this product imports is on it, and only while that event's
+// Calcutta board is switched on, which is exactly when a Calcutta is being
+// run. That is the permission check, and it enforces itself.
+async function readLeaderboard(slug?: string): Promise<Row> {
+    const base = leaderboardUrl();
+    requireThat(base, "No leaderboard is configured for this installation. Paste the rows instead.");
+    let r: Response;
+    try {
+        r = await fetch(base + "/api/board" + (slug ? "?event=" + encodeURIComponent(slug) : ""), { signal: AbortSignal.timeout(8000), headers: { accept: "application/json" } });
+    } catch (error) {
+        const why = error instanceof Error && error.name === "TimeoutError" ? "did not answer in time" : "could not be reached";
+        throw Error(`The leaderboard ${why}. Paste the rows instead.`);
+    }
+    requireThat(r.ok, `The leaderboard answered ${r.status}. Paste the rows instead.`);
+    const board = await r.json() as Row;
+    const event = board.event as Row | null;
+    requireThat(event, "That leaderboard event no longer exists.");
+    const field = (event!.calcutta?.field ?? []) as Row[];
+    const competitors = (event!.competitors ?? []) as Row[];
+    const pops = new Map(field.map((a) => [a.id as string, a]));
+    // Only teams the leaderboard actually placed in a flight: anybody it left
+    // out did not qualify, and inventing a flight for them here would be this
+    // product deciding something that is not its to decide.
+    const rows = competitors
+        .filter((c) => pops.has(c.id as string))
+        .map((c) => {
+            const a = pops.get(c.id as string)!;
+            return {
+                name: String(c.name ?? "").trim(),
+                players: String(c.members ?? "").split("·").map((x) => x.trim()).filter(Boolean),
+                flight: String(a.flight ?? "").trim(),
+                pop: Number(a.pop ?? 0),
+            };
+        });
+    return {
+        event: { name: String(event!.name ?? ""), slug: event!.slug, locked: !!event!.calcutta?.locked, course: String(event!.course ?? ""), start: String(event!.start ?? ""), end: String(event!.end ?? ""), status: String(event!.status ?? "") },
+        // In the leaderboard's own order, so flights created from this list
+        // come out in the order the board prints them rather than
+        // alphabetically or in whatever order the field happened to be ranked.
+        flights: ((event!.flights ?? []) as string[]).filter(Boolean),
+        events: ((board.events ?? []) as Row[]).map((e) => ({ slug: e.slug, name: e.name, status: e.status })),
+        rows,
+        // Said plainly rather than left as an empty list: an event whose
+        // Calcutta is switched off looks identical to one with no teams.
+        note: rows.length === 0 ? "That event has no flighted Calcutta field yet. Draw the flights on the leaderboard first." : "",
+    };
+}
+
 export async function GET(request: Request) { try {
     const who = await identity();
     if (!who?.operator)
@@ -44,7 +94,7 @@ export async function GET(request: Request) { try {
     const owners = who.owner ? ownerEmails() : [];
     let localUsers: Row[] = [];
     if (who.owner) { try { localUsers = listLocalUsers(); } catch { /* not the portable deployment target */ } }
-    return Response.json({ data, events, audit, operators, owners, localUsers, user: { email: who.email, owner: who.owner } }, { headers: { "Cache-Control": "private, no-store" } });
+    return Response.json({ data, events, audit, operators, owners, localUsers, leaderboard: !!leaderboardUrl(), user: { email: who.email, owner: who.owner } }, { headers: { "Cache-Control": "private, no-store" } });
 }
 catch (e) {
     console.error(e);
@@ -231,73 +281,75 @@ export async function POST(request: Request) {
             }
             return Response.json({ ok: true, eventId: created.id });
         }
-        // Read the flighted field from the leaderboard (WC-6).
-        //
-        // Read-only, one direction, and only when an operator presses the button
-        // — never a poll. The two products are deliberately separate (AGENTS.md),
-        // and this is the one seam between them: flights and pops are decided
-        // there and spent here. A background sync would be able to move a sold
-        // team's flight mid-auction, which is a money bug rather than a
-        // convenience; asking for it cannot.
-        //
-        // The address is a host on a private, internal-only Docker network, so
-        // the request never leaves this machine. Everything needed is already on
-        // the leaderboard's anonymous board endpoint, and only while that event's
-        // Calcutta board is switched on — which is exactly when a Calcutta is
-        // being run. That is the permission check, and it enforces itself.
+        // Read the flighted field from the leaderboard (WC-6): the rows the
+        // team import previews, for the event the board is showing or the one
+        // named.
         if (action === "leaderboard_field") {
-            const base = leaderboardUrl();
-            requireThat(base, "No leaderboard is configured for this installation. Paste the rows instead.");
             const slug = z.string().max(120).optional().parse(p.slug);
-            let board: Row;
-            try {
-                const r = await fetch(base + "/api/board" + (slug ? "?event=" + encodeURIComponent(slug) : ""), {
-                    signal: AbortSignal.timeout(8000),
-                    headers: { accept: "application/json" },
-                });
-                requireThat(r.ok, `The leaderboard answered ${r.status}. Paste the rows instead.`);
-                board = await r.json() as Row;
-            } catch (error) {
-                const why = error instanceof Error && error.name === "TimeoutError" ? "did not answer in time" : "could not be reached";
-                throw Error(`The leaderboard ${why}. Paste the rows instead.`);
-            }
-            const event = board.event as Row | null;
-            requireThat(event, "That leaderboard event no longer exists.");
-            const field = (event!.calcutta?.field ?? []) as Row[];
-            const competitors = (event!.competitors ?? []) as Row[];
-            const pops = new Map(field.map((a) => [a.id as string, a]));
-            // Only teams the leaderboard actually placed in a flight: anybody it
-            // left out did not qualify, and inventing a flight for them here
-            // would be this product deciding something that is not its to decide.
-            const rows = competitors
-                .filter((c) => pops.has(c.id as string))
-                .map((c) => {
-                    const a = pops.get(c.id as string)!;
-                    return {
-                        name: String(c.name ?? "").trim(),
-                        players: String(c.members ?? "").split("·").map((x) => x.trim()).filter(Boolean),
-                        flight: String(a.flight ?? "").trim(),
-                        pop: Number(a.pop ?? 0),
-                    };
-                });
-            return Response.json({
-                ok: true,
-                event: { name: event!.name, slug: event!.slug, locked: !!event!.calcutta?.locked },
-                // In the leaderboard's own order, so flights created from this
-                // list come out in the order the board prints them rather than
-                // alphabetically or in whatever order the field happened to be
-                // ranked.
-                flights: ((event!.flights ?? []) as string[]).filter(Boolean),
-                events: ((board.events ?? []) as Row[]).map((e) => ({ slug: e.slug, name: e.name, status: e.status })),
-                rows,
-                // Said plainly rather than left as an empty list: an event whose
-                // Calcutta is switched off looks identical to one with no teams.
-                note: rows.length === 0
-                    ? "That event has no flighted Calcutta field yet. Draw the flights on the leaderboard first."
-                    : "",
-            });
+            return Response.json({ ok: true, ...(await readLeaderboard(slug)) });
         }
-
+        // Create an event from a tournament on the leaderboard (WC-10): its
+        // name, course and dates, its flights in its order, and every flighted
+        // team with its pop — one request, nothing exported. The recommended
+        // way to set up, because every field it fills is one an operator would
+        // otherwise retype, and retyping is where the defects have lived.
+        if (action === "event_from_leaderboard") {
+            const input = z.object({ slug: z.string().max(120).optional(), auctionAt: z.string().max(40).optional() }).parse(p);
+            const replay = async () => {
+                const prior = await statement('SELECT eventId,actor,action,"after" FROM audit WHERE id=?', requestId).first<Row>();
+                if (!prior) return null;
+                requireThat(prior.actor === who.email && prior.action === action && prior.after === JSON.stringify(input), "This request ID changed its action, operator or details. Submit a new request.");
+                return prior.eventId as string;
+            };
+            const existing = await replay();
+            if (existing) return Response.json({ ok: true, duplicate: true, eventId: existing });
+            const board = await readLeaderboard(input.slug);
+            const source = board.event as Row, rows = board.rows as Row[];
+            const key = (n: string) => n.trim().toLowerCase();
+            const names = (board.flights as string[]).filter((n, i, all) => all.findIndex((m) => key(m) === key(n)) === i);
+            requireThat(source.name.trim(), "That leaderboard event has no name.");
+            requireThat(names.length <= 30, "An event supports up to 30 flights.");
+            requireThat(rows.length <= 500, "An event supports up to 500 teams.");
+            // The money rules are the club's, not the tournament's: carry them
+            // from the most recent real event so nothing is set twice. A club
+            // with no event yet gets the defaults, as New event does.
+            const last = await db().prepare('SELECT name,settings FROM events WHERE demo=0 ORDER BY updatedAt DESC LIMIT 1').first<Row>();
+            const created = freshEvent(
+                { name: source.name.trim().slice(0, 150), course: source.course.trim().slice(0, 150), dates: tournamentDates(source.start, source.end), auctionAt: input.auctionAt || "" },
+                who.email, false, requestId, { action, after: input });
+            const cmds = created.commands;
+            if (last?.settings) cmds.push(update("events", { settings: last.settings }, "id", created.id));
+            // The same palette and the same three places `flight_import` and
+            // `flight_save` give a flight: a board built this way must not
+            // settle differently because it arrived differently.
+            const palette = ["#b79a59", "#889b75", "#6f8aa6", "#9b7f95", "#8a9b6f", "#a6866f"];
+            const flightIds = new Map(names.map((n) => [key(n), crypto.randomUUID()]));
+            cmds.push(...insertMany("flights", names.map((name, i) => ({ id: flightIds.get(key(name))!, eventId: created.id, name: name.trim().slice(0, 150), order: i, color: palette[i % palette.length], ownPool: 1 }))));
+            cmds.push(...insertMany("payout_rules", names.flatMap((name) => [5000, 3000, 2000].map((percent, place) => ({ id: crypto.randomUUID(), eventId: created.id, poolId: flightIds.get(key(name))!, place: place + 1, percent })))));
+            // Every flighted team, in the leaderboard's order, carrying its pop
+            // where this product keeps a per-team number the room can see. A
+            // competitor listed without players is an individual event's, and
+            // the player is the name.
+            const teams = rows.map((r, i) => {
+                const fid = flightIds.get(key(String(r.flight)));
+                requireThat(fid, `${r.name} is in a flight the leaderboard does not list (${r.flight}).`);
+                const players = ((r.players as string[]).length ? (r.players as string[]) : [String(r.name)]).slice(0, 4).map((x) => x.slice(0, 100));
+                const row = { id: crypto.randomUUID(), eventId: created.id, flightId: fid!, name: String(r.name).slice(0, 150), handicap: Number.isFinite(Number(r.pop)) ? Number(r.pop) : null, seed: null, notes: "", privateNotes: "", order: i, status: "UPCOMING" };
+                return { row, players };
+            });
+            cmds.push(...insertMany("teams", teams.map((t) => t.row)));
+            cmds.push(...insertMany("players", teams.flatMap((t) => t.players.map((name, j) => ({ id: crypto.randomUUID(), teamId: t.row.id, name, order: j })))));
+            try {
+                // Event, flights, teams and the request result commit together. A
+                // racing retry loses the unique audit ID and its whole batch rolls back.
+                await db().batch(cmds);
+            } catch (error) {
+                const committed = await replay();
+                if (committed) return Response.json({ ok: true, duplicate: true, eventId: committed });
+                throw error;
+            }
+            return Response.json({ ok: true, eventId: created.id, created: { flights: names.length, teams: teams.length }, from: { name: source.name, slug: source.slug }, rulesFrom: last?.name ?? "", note: board.note });
+        }
         const eventId = id.parse(body.eventId), revision = z.number().int().nonnegative().parse(body.revision);
         const duplicate = await statement('SELECT id FROM audit WHERE id=? AND eventId=?', requestId, eventId).first();
         if (duplicate)
