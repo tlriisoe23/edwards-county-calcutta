@@ -24,6 +24,15 @@ the branch; not merged, not deployed** — the live container still runs `868318
 | `npm run test:console` | **NOT RUN** — it builds Docker images; excluded from this task by instruction. The console rehearsal's two carve-outs were removed, so its next run is the check that OC-5 and OC-7 stay fixed on a real image |
 | Production | **UNVERIFIED** — nothing here has been merged or deployed; the live container is unchanged |
 
+## One sign-in page for both products — 19 September 2026
+
+WC-1, branch `claude/cal-signin-look`, decision D-CAL-33. Not deployed. **PASS** — `tests/portable-auth.mjs`
+and `tests/portable-local-users.mjs` unchanged and passing (the field names, cookies and rules did not
+move); `npm run test:console` on the candidate, **47** signed-in checks (was 43): the sign-in page at 1440
+and 390 wears the shared shell — masthead, *Continue with Google*, the *Local login* disclosure — and was
+captured at both widths. No axe on those pages: they ship `default-src 'none'`, which refuses the injected
+script, and the shell's accessibility is the leaderboard's.
+
 ## A team's number is called what it is — 19 September 2026
 
 WC-9, branch `claude/cal-pop-label`, decision D-CAL-32. Not deployed.

@@ -152,6 +152,22 @@ const shot = (page, label) => page.screenshot({ path: `${directory}/${label.toLo
 const steps = [/^Event & rules/, /^Teams & flights/, /^Buyers/, /^TV \/ Display Settings/];
 
 try {
+  // The sign-in page, in the shared account shell the leaderboard uses (WC-1):
+  // the same masthead, the same primary action, the same disclosure for the
+  // local login — at desk and phone widths, with axe.
+  for (const width of [1440, 390]) {
+    const c = await browser.newContext({ viewport: { width, height: width === 390 ? 844 : 900 } });
+    const p = await c.newPage();
+    await p.goto(`${base}/signin-with-chatgpt`);
+    const text = await p.locator("body").innerText();
+    check(/The Calcutta/.test(text) && /Continue with Google/.test(text) && /Local login/.test(text), `the sign-in page wears the shared shell at ${width}`);
+    check(await p.getByRole("link", { name: "Continue with Google" }).isVisible() && await p.locator("details > summary").isVisible(), `its two ways in are on screen at ${width}`);
+    // No axe here: the account pages ship `default-src 'none'`, which is the
+    // point of them, and that refuses the injected script. Structure is
+    // checked above; the shell's own accessibility is the leaderboard's.
+    await p.screenshot({ path: `${directory}/sign-in-${width}.png`, fullPage: true });
+    await c.close();
+  }
   for (const width of [1600, 390]) {
     const context = await browser.newContext({ viewport: { width, height: width === 390 ? 844 : 1000 }, reducedMotion: "reduce" });
     await context.addCookies([{ name, value, domain: "127.0.0.1", path: "/" }]);
