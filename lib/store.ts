@@ -11,7 +11,9 @@ export function db(): D1Database { if (!env.DB)
 export function leaderboardUrl(): string { return String((env as Record<string, unknown>).LEADERBOARD_URL || "").replace(/\/+$/, ""); }
 export function ownerEmails(): string[] { return (env.ADMIN_EMAILS || "").split(",").map(s => s.trim().toLowerCase()).filter(Boolean); }
 export async function identity() { const user = await getChatGPTUser(); if (!user)
-    return null; const owners = ownerEmails(); const email = user.email.toLowerCase(); const owner = owners.includes(email); const operator = owner || !!await db().prepare('SELECT email FROM operators WHERE email=?').bind(email).first(); return { ...user, email, owner, operator }; }
+    return null; const owners = ownerEmails(); const email = user.email.toLowerCase(); const owner = owners.includes(email); // A local login made under Tools -> Local Users is operator-level by construction (D-CAL-4): until
+    // 2026-09-19 nothing granted it, so every local sign-in reached a desk that answered 403.
+    const local = (user as Row).local === true && !owner; const operator = owner || local || !!await db().prepare('SELECT email FROM operators WHERE email=?').bind(email).first(); return { ...user, email, owner, operator }; }
 export const tableNames = ["flights", "teams", "players", "buyers", "auction_state", "sales", "ownership", "payout_rules"] as const;
 export function statement(sql: string, ...args: any[]) { return db().prepare(sql).bind(...args.map(x => x === undefined ? null : x)); }
 export function insert(table: string, row: Row) { const keys = Object.keys(row); return statement('INSERT INTO "' + table + '" (' + keys.map(k => '"' + k + '"').join(",") + ') VALUES (' + keys.map(() => "?").join(",") + ')', ...keys.map(k => row[k])); }

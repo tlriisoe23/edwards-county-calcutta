@@ -51,42 +51,62 @@ export function verifyPassword(password, encoded) {
 }
 // Returns the signed-in display name on success (owner recovery or an operator-level local
 // account), or null. Never returns which of the two paths matched — both fail identically.
-export function checkLocal(email, password) {
+export function checkLocal(login, password) {
   const db = getDatabase().connection, now = Date.now();
   const owners = (process.env.ADMIN_EMAILS || '').toLowerCase().split(',').map(s => s.trim());
-  // One persistent bucket prevents bypass by changing submitted email or IP headers.
+  const identifier = String(login || '').trim().toLowerCase();
+  // One persistent bucket prevents bypass by changing submitted login or IP headers.
   const limit = db.prepare("SELECT * FROM portable_login_attempts WHERE identity='local'").get();
   if (limit && limit.until > now && limit.attempts >= 5) return null;
   db.prepare(`INSERT INTO portable_login_attempts VALUES ('local',1,?) ON CONFLICT(identity) DO UPDATE SET
     attempts=CASE WHEN until<=? THEN 1 ELSE attempts+1 END,
     until=CASE WHEN until<=? THEN excluded.until ELSE until END`).run(now + 900000, now, now);
-  if (owners.includes(email)) {
-    const row = db.prepare('SELECT password_hash FROM portable_credentials WHERE email=?').get(email);
+  if (owners.includes(identifier)) {
+    const row = db.prepare('SELECT password_hash FROM portable_credentials WHERE email=?').get(identifier);
     if (!row || !verifyPassword(password, row.password_hash)) return null;
     db.prepare("DELETE FROM portable_login_attempts WHERE identity='local'").run();
-    return { displayName: email };
+    return { displayName: identifier, email: identifier, owner: true };
   }
-  // Operator-level local accounts (Tools -> Local Users, D-CAL-4): never checked against the
-  // owner allowlist, and never able to become one — owner stays exclusively ADMIN_EMAILS-derived.
-  const row = db.prepare('SELECT display_name,password_hash,enabled FROM portable_local_users WHERE email=?').get(email);
+  // Operator-level local accounts (Tools -> Local Users, D-CAL-4): keyed by a username since
+  // WC-2, signed in with it or with the optional email on the account. Never checked against
+  // the owner allowlist, and never able to become one — owner stays exclusively ADMIN_EMAILS-derived.
+  const row = db.prepare("SELECT username,email,display_name,password_hash,enabled FROM portable_local_users WHERE username=? OR (email<>'' AND lower(email)=?)").get(identifier, identifier);
   if (!row || !row.enabled || !verifyPassword(password, row.password_hash)) return null;
   db.prepare("DELETE FROM portable_login_attempts WHERE identity='local'").run();
-  return { displayName: row.display_name };
+  return { displayName: row.display_name, username: row.username, email: row.email, owner: false };
 }
-export function createLocalUser(email, displayName, password, createdBy) {
-  const db = getDatabase().connection;
-  if (db.prepare('SELECT email FROM portable_local_users WHERE email=?').get(email)) throw Error(email + ' already has a local login.');
-  db.prepare('INSERT INTO portable_local_users (email,display_name,password_hash,enabled,created_by,created_at) VALUES (?,?,?,1,?,?)')
-    .run(email, displayName, passwordHash(password), createdBy, new Date().toISOString());
+export function normalizeUsername(value) {
+  const username = String(value || '').trim().toLowerCase();
+  if (!/^[a-z0-9][a-z0-9._-]{1,39}$/.test(username)) throw Error('Use a username of 2–40 letters, digits, dots, dashes or underscores.');
+  return username;
+}
+function normalizeEmail(value) {
+  const email = String(value || '').trim().toLowerCase();
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw Error('That email address does not look right.');
+  if (email.length > 254) throw Error('That email address is too long.');
+  return email;
+}
+export function createLocalUser(username, displayName, password, createdBy, email = '') {
+  const db = getDatabase().connection, name = normalizeUsername(username), address = normalizeEmail(email);
+  if (db.prepare('SELECT username FROM portable_local_users WHERE username=?').get(name)) throw Error(name + ' already has a local login.');
+  if (address && db.prepare("SELECT username FROM portable_local_users WHERE email<>'' AND lower(email)=?").get(address)) throw Error(address + ' is already on another local login.');
+  db.prepare('INSERT INTO portable_local_users (username,email,display_name,password_hash,enabled,created_by,created_at) VALUES (?,?,?,?,1,?,?)')
+    .run(name, address, displayName, passwordHash(password), createdBy, new Date().toISOString());
+  return name;
 }
 export function listLocalUsers() {
-  return getDatabase().connection.prepare('SELECT email,display_name,enabled,created_by,created_at FROM portable_local_users ORDER BY email').all();
+  return getDatabase().connection.prepare('SELECT username,email,display_name,enabled,created_by,created_at FROM portable_local_users ORDER BY username').all();
 }
-export function setLocalUserEnabled(email, enabled) {
-  const changes = getDatabase().connection.prepare('UPDATE portable_local_users SET enabled=? WHERE email=?').run(enabled ? 1 : 0, email).changes;
-  if (!changes) throw Error('No local login for ' + email + '.');
+// Disabling a login also ends its sessions: a person shown the door should
+// not keep the desk open for the rest of the day on a cookie they already hold.
+export function setLocalUserEnabled(username, enabled) {
+  const db = getDatabase().connection, name = normalizeUsername(username);
+  const changes = db.prepare('UPDATE portable_local_users SET enabled=? WHERE username=?').run(enabled ? 1 : 0, name).changes;
+  if (!changes) throw Error('No local login for ' + name + '.');
+  if (!enabled) db.prepare("DELETE FROM portable_sessions WHERE json_extract(body,'$.user.userId')=?").run('local:' + name);
 }
-export function resetLocalUserPassword(email, password) {
-  const changes = getDatabase().connection.prepare('UPDATE portable_local_users SET password_hash=? WHERE email=?').run(passwordHash(password), email).changes;
-  if (!changes) throw Error('No local login for ' + email + '.');
+export function resetLocalUserPassword(username, password) {
+  const name = normalizeUsername(username);
+  const changes = getDatabase().connection.prepare('UPDATE portable_local_users SET password_hash=? WHERE username=?').run(passwordHash(password), name).changes;
+  if (!changes) throw Error('No local login for ' + name + '.');
 }

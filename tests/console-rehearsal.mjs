@@ -215,6 +215,47 @@ try {
   await shot(page, "buyers-after-add");
   await context.close();
 
+  // Local Users, through the dialog: the owner makes a login, and that login
+  // reaches the desk — which until 2026-09-19 it could not, because nothing
+  // granted a local account operator rights (WC-2).
+  {
+    const c = await browser.newContext({ viewport: { width: 1600, height: 1000 }, reducedMotion: "reduce" });
+    await c.addCookies([{ name, value, domain: "127.0.0.1", path: "/" }]);
+    const p = await c.newPage();
+    await p.goto(`${base}/admin?event=${served.id}`);
+    await p.getByRole("tab", { name: "Auction console" }).waitFor();
+    await p.getByRole("button", { name: "Tools" }).click();
+    await p.getByRole("menuitem", { name: /Local Users/ }).click();
+    const dialog = p.getByRole("dialog");
+    await dialog.waitFor();
+    const username = "desk" + randomBytes(2).toString("hex"), password = randomBytes(12).toString("hex");
+    await dialog.getByLabel("Username").fill(username);
+    await dialog.getByLabel("Display name").fill("Rehearsal desk");
+    await dialog.getByLabel("Password", { exact: true }).fill(password.slice(0, 8));
+    check((await dialog.innerText()).includes("to go"), "a short password says how many characters are still needed");
+    await dialog.getByLabel("Password", { exact: true }).fill(password);
+    await dialog.getByLabel("Confirm password").fill(password);
+    const create = dialog.getByRole("button", { name: "Create local login" });
+    check(await create.isEnabled(), "the create button is live");
+    await create.click();
+    await p.waitForTimeout(1500);
+    check((await dialog.innerText()).includes(username), `the new login is listed as ${username}`);
+    await c.close();
+    const again = await fetch(base + "/signin-with-chatgpt");
+    const login = again.headers.get("set-cookie").split(";")[0];
+    const asLocal = await fetch(base + "/api/auth/local", {
+      method: "POST", redirect: "manual",
+      headers: { cookie: login, origin: base, "content-type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({ csrf: login.split("=")[1], login: username, password }),
+    });
+    check(asLocal.status === 303, `that person signs in through the real form (${asLocal.status})`);
+    const session = asLocal.headers.get("set-cookie").split(";")[0];
+    const desk = await fetch(`${base}/api/admin?event=${served.id}`, { headers: { cookie: session } });
+    check(desk.status === 200, `and reaches the desk as an operator (${desk.status})`);
+    const who = desk.status === 200 ? (await desk.json()).user : null;
+    check(who && who.owner === false, "as an operator, never the owner");
+  }
+
   // The public board and the TV, as the room sees them.
   for (const [path, width, height, label] of [["/", 1440, 1000, "public"], ["/", 390, 844, "public-phone"], [`/tv?event=${served.id}`, 1920, 1080, "tv"]]) {
     const c = await browser.newContext({ viewport: { width, height }, reducedMotion: "reduce" });

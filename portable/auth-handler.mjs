@@ -20,7 +20,7 @@ export async function GET(request) {
     const returnTo = safeReturn(url.searchParams.get('return_to') || '/admin');
     if (url.pathname === '/signin-with-chatgpt') {
       const csrf = createSession({ kind: 'login', returnTo }, 600);
-      return html(`<p><a href="/api/auth/google?return_to=${encodeURIComponent(returnTo)}">Continue with Google</a></p><hr><h2>Local recovery login</h2><form method="post" action="/api/auth/local"><input type="hidden" name="csrf" value="${csrf}"><label>Email<input name="email" type="email" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required maxlength="1024"></label><button>Sign in locally</button></form>`, 200, cookie('calcutta_login', csrf, 600));
+      return html(`<p><a href="/api/auth/google?return_to=${encodeURIComponent(returnTo)}">Continue with Google</a></p><hr><h2>Local login</h2><form method="post" action="/api/auth/local"><input type="hidden" name="csrf" value="${csrf}"><label>Username or email<input name="login" type="text" autocomplete="username" required maxlength="254"></label><label>Password<input name="password" type="password" autocomplete="current-password" required maxlength="1024"></label><button>Sign in locally</button></form>`, 200, cookie('calcutta_login', csrf, 600));
     }
     if (url.pathname === '/signout-with-chatgpt') {
       const csrf = createSession({ kind: 'logout', returnTo }, 600);
@@ -59,10 +59,15 @@ export async function POST(request) {
       return redirect(flow.returnTo, cookie('calcutta_session', '', 0));
     }
     if (path !== '/api/auth/local' || flow?.kind !== 'login') return html('<p>Request expired.</p>', 403);
-    const email = (form.get('email') || '').trim().toLowerCase();
-    const local = checkLocal(email, form.get('password') || '');
+    // `login` since WC-2; `email` is what older forms and the sibling's scripts still post.
+    const login = String(form.get('login') || form.get('email') || '').trim().toLowerCase();
+    const local = checkLocal(login, form.get('password') || '');
     if (!local) return html('<p>Sign-in failed or is temporarily limited. <a href="/signin-with-chatgpt">Try again</a>.</p>', 403);
-    const user = { userId: 'local:' + email, email, displayName: local.displayName, fullName: null };
+    // A local operator's identity is its username; the optional email rides along for
+    // display and records. The owner's recovery login is the owner's own address.
+    const user = local.owner
+      ? { userId: 'local:' + local.email, email: local.email, displayName: local.displayName, fullName: null }
+      : { userId: 'local:' + local.username, email: local.email || local.username, username: local.username, displayName: local.displayName, fullName: null, local: true };
     return redirect(flow.returnTo, cookie('calcutta_session', createSession({ kind: 'user', user }), 28800));
   } catch { return html('<p>Sign-in is unavailable.</p>', 503); }
 }
