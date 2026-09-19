@@ -8,7 +8,7 @@ const text = z.string().trim().min(1).max(150), note = z.string().max(4000).defa
 const cents = z.number().int().min(0).max(100000000);
 const percent = z.number().int().min(0).max(10000);
 const player = z.string().trim().min(1).max(100);
-const teamSchema = z.object({ id: id.optional(), name: text, players: z.array(player).min(1).max(4), flightId: id, handicap: z.number().min(-20).max(100).nullable().default(null), seed: z.number().int().min(1).max(1000).nullable().default(null), notes: note, privateNotes: note, order: z.number().int().min(0).max(100000).optional() });
+const teamSchema = z.object({ id: id.optional(), sourceId: z.string().trim().max(80).nullable().optional(), name: text, players: z.array(player).min(1).max(4), flightId: id, handicap: z.number().min(-20).max(100).nullable().default(null), seed: z.number().int().min(1).max(1000).nullable().default(null), notes: note, privateNotes: note, order: z.number().int().min(0).max(100000).optional() });
 const buyerSchema = z.object({ id: id.optional(), name: text, group: z.string().max(150).default(""), contact: z.string().max(500).default(""), privateNotes: note });
 const timestamp = () => new Date().toISOString();
 function requireThat(condition: any, message: string) { if (!condition)
@@ -62,6 +62,9 @@ async function readLeaderboard(slug?: string): Promise<Row> {
         .map((c) => {
             const a = pops.get(c.id as string)!;
             return {
+                // The leaderboard's own id for the team: the identity a re-import
+                // matches on, so a renamed team is the same team (OC-8).
+                id: String(c.id),
                 name: String(c.name ?? "").trim(),
                 players: String(c.members ?? "").split("·").map((x) => x.trim()).filter(Boolean),
                 flight: String(a.flight ?? "").trim(),
@@ -336,7 +339,7 @@ export async function POST(request: Request) {
                 const fid = flightIds.get(key(String(r.flight)));
                 requireThat(fid, `${r.name} is in a flight the leaderboard does not list (${r.flight}).`);
                 const players = ((r.players as string[]).length ? (r.players as string[]) : [String(r.name)]).slice(0, 4).map((x) => x.slice(0, 100));
-                const row = { id: crypto.randomUUID(), eventId: created.id, flightId: fid!, name: String(r.name).slice(0, 150), handicap: Number.isFinite(Number(r.pop)) ? Number(r.pop) : null, seed: null, notes: "", privateNotes: "", order: i, status: "UPCOMING" };
+                const row = { id: crypto.randomUUID(), eventId: created.id, flightId: fid!, name: String(r.name).slice(0, 150), handicap: Number.isFinite(Number(r.pop)) ? Number(r.pop) : null, seed: null, notes: "", privateNotes: "", order: i, status: "UPCOMING", sourceId: String(r.id) };
                 return { row, players };
             });
             cmds.push(...insertMany("teams", teams.map((t) => t.row)));
@@ -544,10 +547,15 @@ export async function POST(request: Request) {
                     // flights are drawn and the list is brought over again. The team
                     // name is what the room calls a team and what the board prints,
                     // so it is the identity to match on.
+                    // A row from the leaderboard carries that board's own id for the
+                    // team, and that is matched first: a team renamed there after
+                    // the import is the same team here, not a second one (OC-8).
+                    // Rows pasted by hand have no such id and match by name as before.
+                    const bySource = new Map<string, Row>(data.teams.filter((t: Row) => t.sourceId).map((t: Row) => [String(t.sourceId), t]));
                     const byName = new Map<string, Row>(data.teams.map((t: Row) => [String(t.name).trim().toLowerCase(), t]));
                     list = list.map(v => {
-                        const existing = v.id ? null : byName.get(v.name.trim().toLowerCase());
-                        return existing ? { ...v, id: existing.id as string } : v;
+                        const existing = v.id ? null : (v.sourceId && bySource.get(v.sourceId)) || byName.get(v.name.trim().toLowerCase());
+                        return existing ? { ...v, id: existing.id as string, sourceId: v.sourceId ?? (existing.sourceId as string | null) ?? null } : v;
                     });
                     // A sold team's flight and pop are part of a financial record:
                     // its price was agreed under them, and its pool is settled by
