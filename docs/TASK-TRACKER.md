@@ -1,5 +1,15 @@
 # Finding tracker and proposed batches
 
+## Handoff — 2026-09-19
+
+A fresh agent taking this over starts at the cross-repository handoff,
+`~/development/ecgc-leaderboard/.agent-handoff/2026-09-19-tournament-handover.md`. It covers both
+products because the tournament does: the four things that matter before 19–20 September, the
+verified state of both, and the constraints — including the ones specific to this application, which
+holds the settlement records. It lives in the sibling repository by the same precedent as
+`scripts/replicate-offhost.sh` (D-CAL-15): cross-project work belongs to the repository that already
+tracks it. This tracker stays canonical for everything that is only about this product.
+
 ## Current state — 2026-09-18
 
 - **UI3 operator desk refinement (Batch L):** owner-requested pass — one flat tab bar replacing the
