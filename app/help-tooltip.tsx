@@ -1,5 +1,5 @@
 "use client";
-import { useId, useRef, useState } from 'react';
+import { cloneElement, useId, useRef, useState } from 'react';
 import type { ReactElement, ReactNode } from 'react';
 import { Info } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
@@ -36,9 +36,15 @@ export function HelpTip({ label, children, iconOnly }: { label: string; children
 // to a separate info icon beside it: "what does this button do, and where does it take me?".
 // Built on the tooltip primitive (not the popover above) because a tooltip never takes focus and
 // never swallows the wrapped control's own click.
-export function ControlTip({ text, children }: { text: string; children: ReactElement }) {
+//
+// When a ControlTip is itself the child of another `asChild` trigger — the compact console's
+// Setup steps button sits inside a CollapsibleTrigger — that trigger's props (onClick,
+// aria-expanded, aria-controls) arrive here, not on the control. They are passed through to the
+// wrapped control; without that the control renders and does nothing (OC-6).
+export function ControlTip({ text, children, ...passthrough }: { text: string; children: ReactElement } & Record<string, unknown>) {
+    const control = Object.keys(passthrough).length ? cloneElement(children as ReactElement<Record<string, unknown>>, passthrough) : children;
     return <Tooltip>
-        <TooltipTrigger asChild>{children}</TooltipTrigger>
+        <TooltipTrigger asChild>{control}</TooltipTrigger>
         <TooltipContent className="control-tip" side="bottom" sideOffset={6}>{text}</TooltipContent>
     </Tooltip>;
 }
