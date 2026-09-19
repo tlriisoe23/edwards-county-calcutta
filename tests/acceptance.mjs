@@ -74,15 +74,18 @@ await send('operator_add',{email:'rehearsal-operator@example.test'});let adminRe
 // exercise the live admin-API actions when running under the portable test harness, which signs
 // in as the real owner via the actual local-login HTTP form (see tests/test-session.mjs).
 if(process.env.CALCUTTA_TEST_PASSWORD){
-  const localEmail='rehearsal-local-user@example.test';
-  await send('local_user_create',{email:localEmail,displayName:'Rehearsal Local User',password:'a genuinely long fixture password',confirmPassword:'a genuinely long fixture password'});
-  adminRead=await read();check(adminRead.localUsers.some(u=>u.email===localEmail&&u.display_name==='Rehearsal Local User'&&u.enabled===1),'Owner creates a local user account');
-  check(!('password_hash' in adminRead.localUsers.find(u=>u.email===localEmail)),'Local user listing never exposes the password hash');
-  await send('local_user_create',{email:localEmail,displayName:'Duplicate',password:'a genuinely long fixture password',confirmPassword:'a genuinely long fixture password'},{expected:400});
-  await send('local_user_create',{email:localEmail+'2',displayName:'Mismatch',password:'a genuinely long fixture password',confirmPassword:'does not match'},{expected:400});
-  await send('local_user_set_enabled',{email:localEmail,enabled:false});adminRead=await read();check(adminRead.localUsers.find(u=>u.email===localEmail).enabled===0,'Owner disables a local user account');
-  await send('local_user_set_enabled',{email:localEmail,enabled:true});
-  await send('local_user_reset_password',{email:localEmail,password:'a different long fixture password',confirmPassword:'a different long fixture password'});
+  // D-CAL-25 made a local login a username with an optional email; this fixture
+  // still sent an email alone and the action refused it as "Required". It only
+  // runs under the portable harness, so a stale standalone build hid it.
+  const localUsername='rehearsal-local-user',localEmail='rehearsal-local-user@example.test';
+  await send('local_user_create',{username:localUsername,email:localEmail,displayName:'Rehearsal Local User',password:'a genuinely long fixture password',confirmPassword:'a genuinely long fixture password'});
+  adminRead=await read();check(adminRead.localUsers.some(u=>u.username===localUsername&&u.email===localEmail&&u.display_name==='Rehearsal Local User'&&u.enabled===1),'Owner creates a local user account');
+  check(!('password_hash' in adminRead.localUsers.find(u=>u.username===localUsername)),'Local user listing never exposes the password hash');
+  await send('local_user_create',{username:localUsername,email:localEmail,displayName:'Duplicate',password:'a genuinely long fixture password',confirmPassword:'a genuinely long fixture password'},{expected:400});
+  await send('local_user_create',{username:localUsername+'-2',email:localEmail+'2',displayName:'Mismatch',password:'a genuinely long fixture password',confirmPassword:'does not match'},{expected:400});
+  await send('local_user_set_enabled',{username:localUsername,enabled:false});adminRead=await read();check(adminRead.localUsers.find(u=>u.username===localUsername).enabled===0,'Owner disables a local user account');
+  await send('local_user_set_enabled',{username:localUsername,enabled:true});
+  await send('local_user_reset_password',{username:localUsername,password:'a different long fixture password',confirmPassword:'a different long fixture password'});
   check(true,'Owner resets a local user password');
 }
 for(let i=0;i<500;i++){const total=1+Math.floor(Math.random()*10000000),a=Math.floor(Math.random()*10001),b=Math.floor(Math.random()*(10001-a)),split=splitCents(total,[a,b,10000-a-b]);assert.equal(split.reduce((x,y)=>x+y,0),total);assert.ok(split.every(Number.isSafeInteger));}check(true,'500 randomized cent-exact payout splits');
