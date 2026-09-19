@@ -24,6 +24,17 @@ the branch; not merged, not deployed** — the live container still runs `868318
 | `npm run test:console` | **NOT RUN** — it builds Docker images; excluded from this task by instruction. The console rehearsal's two carve-outs were removed, so its next run is the check that OC-5 and OC-7 stay fixed on a real image |
 | Production | **UNVERIFIED** — nothing here has been merged or deployed; the live container is unchanged |
 
+## A renamed team is the same team — 19 September 2026
+
+OC-8, branch `claude/cal-import-source-id`, decision D-CAL-30. **Carries a schema migration**
+(`teams.sourceId`). Not deployed.
+
+| Check | Result |
+|---|---|
+| The case from the rehearsal | **PASS** — an event built from the leaderboard remembers every team's leaderboard id; a team renamed on the leaderboard and brought over again is updated, not added: 50 teams before and after, the new name on the same row, no stale row |
+| Suites | **PASS** — `tests/leaderboard-import.mjs` **57** (was 52) on both dev servers; acceptance 66; refinement 72; night-of 12; tsc clean; eslint at the 77 baseline |
+| Candidate image | **PASS** — `npm run test:console` built the candidate with `drizzle/0002`, applied it to a copy of the newest production backup ("Portable schema is current" after the ALTER), and ran **43** signed-in checks carrying nothing |
+
 ## The small-fixes batch, rehearsed on its candidate image — 19 September 2026
 
 Branch `claude/cal-small-fixes` (OC-5, OC-7, WC-4, OC-9 and a repaired acceptance fixture; its own section

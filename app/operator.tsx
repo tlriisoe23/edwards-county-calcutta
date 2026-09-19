@@ -224,9 +224,12 @@ export default function AdminPanel({ data, meta, user, selectedEventId, offline,
     const drift = (() => {
         if (!leaderboardField) return null;
         const here = new Map((data.teams || []).map((t: Row) => [String(t.name).trim().toLowerCase(), t]));
+        // A team the leaderboard sent before is known by that board's id, so a
+        // rename there is a change to report, not a team "not here yet" (OC-8).
+        const bySource = new Map((data.teams || []).filter((t: Row) => t.sourceId).map((t: Row) => [String(t.sourceId), t]));
         let added = 0, changed = 0;
         for (const r of leaderboardField.rows) {
-            const mine = here.get(String(r.name).trim().toLowerCase()) as Row | undefined;
+            const mine = ((r.id ? bySource.get(String(r.id)) : undefined) || here.get(String(r.name).trim().toLowerCase())) as Row | undefined;
             if (!mine) { added++; continue; }
             const flightName = (flights.find((f: Row) => f.id === mine.flightId) || {}).name || '';
             if (String(flightName).toLowerCase() !== String(r.flight).toLowerCase() || Number(mine.handicap ?? 0) !== Number(r.pop ?? 0)) changed++;

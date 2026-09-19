@@ -281,6 +281,34 @@ check(!broken.ok() || brokenBody.note || brokenBody.rows?.length === 0,
     await ui.close();
 }
 
+// ---- A team renamed on the leaderboard is the same team here (OC-8).
+//
+// The dress rehearsal of 2026-09-19 renamed a team on the leaderboard after the
+// import and got it back as a new team, leaving the old one in the queue. Rows
+// from the leaderboard now carry that board's own id, and the import matches
+// on it before the name.
+{
+    const built = (await (await context.request.post(base + '/api/admin', { headers: { origin: base },
+        data: { action: 'event_from_leaderboard', payload: { slug: seed.event.slug }, requestId: crypto.randomUUID() } })).json());
+    const before = (await (await context.request.get(base + '/api/admin?event=' + built.eventId)).json()).data;
+    check(before.teams.length === 50 && before.teams.every((t) => t.sourceId), 'every imported team remembers the leaderboard id it came from');
+    const victim = before.teams[7];
+    const board = await (await fetch(leaderboard + '/api/board?admin=1&event=' + seed.event.slug)).json();
+    const edited = await (await fetch(leaderboard + '/api/board', { method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ action: 'edit', id: board.event.id, version: board.version, row: { id: victim.sourceId, name: victim.name + ' (corrected)' } }) })).json();
+    check(edited.event?.competitors.some((c) => c.name === victim.name + ' (corrected)'), 'the team is renamed on the leaderboard');
+    const savedEvent = eventId, savedRevision = revision;
+    eventId = built.eventId; revision = before.event.revision;
+    const pull = await post('leaderboard_field', { slug: seed.event.slug });
+    const map = new Map(before.flights.map((f) => [f.name.toLowerCase(), f.id]));
+    const again = await post('team_import', { teams: pull.rows.map((r) => ({ sourceId: r.id, name: r.name, players: r.players, flightId: map.get(String(r.flight).toLowerCase()), handicap: r.pop, seed: null, notes: '', privateNotes: '' })) });
+    const after = (await (await context.request.get(base + '/api/admin?event=' + built.eventId)).json()).data;
+    check(again.imported?.created === 0 && after.teams.length === 50, `the renamed team is updated, not added (created=${again.imported?.created}, teams=${after.teams.length})`);
+    check(after.teams.find((t) => t.id === victim.id)?.name === victim.name + ' (corrected)', 'and it carries its new name');
+    check(!after.teams.some((t) => t.name === victim.name), 'with no stale row left behind');
+    eventId = savedEvent; revision = savedRevision;
+}
+
 const passed = checks.filter((c) => c.pass).length;
 console.log('\n' + passed + '/' + checks.length + ' leaderboard import checks passed');
 await browser.close();

@@ -6,6 +6,8 @@
   owner can delete an event — never one holding settlement records unless it is a demo — and OC-9 the desk
   no longer hydrates from a value the server cannot see), plus a repaired local-user acceptance fixture.
   Rehearsed signed in on a candidate image built from the branch; merged. The next release carries them.
+- **A renamed team is the same team** (OC-8): rows from the leaderboard carry its id, teams keep it, the
+  import matches on it first. **Carries a schema migration** (`teams.sourceId`) that the release applies.
 
 ## On production now — 2026-09-19, 14:45 UTC
 
