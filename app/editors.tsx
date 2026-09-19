@@ -17,6 +17,29 @@ export default function Editors({ modal, setModal, data, busy, act, setBuyerId }
     // D-CAL-3: every condition that blocks the atomic import is named on its row.
     const issues = (r: Row): string[] => { const list: string[] = [], players = r.players.map((p: string) => p.trim()).filter(Boolean); if (!r.name.trim()) list.push('name required'); if (!r.flightId) list.push('flight not found' + (r.flightText ? ' (' + r.flightText + ')' : '')); if (!players.length) list.push('player required'); if (players.length > 4) list.push('at most 4 players'); if (Number.isNaN(r.handicap)) list.push('index must be a number'); return list; };
     const attention = preview.filter(r => issues(r).length).length;
+    // Pull the flighted field straight from the leaderboard (WC-6). It fills the
+    // same preview the paste box fills, so everything after this point — the
+    // per-row problems, the edits, the atomic commit — is one path, not two.
+    const [pulling, setPulling] = useState(false);
+    async function importFromLeaderboard() {
+        setPulling(true);
+        try {
+            const result = await act('leaderboard_field', {}, { quiet: true });
+            if (!result) return;
+            if (result.note) { toast.error(result.note); return; }
+            const rows = (result.rows as Row[]).map((r, i) => ({
+                name: r.name, players: r.players, flightText: r.flight,
+                flightId: flights.find((f: Row) => f.name.toLowerCase() === String(r.flight).toLowerCase())?.id || '',
+                handicap: r.pop, seed: null, notes: '', privateNotes: '', source: i + 1,
+            }));
+            setPreview(rows);
+            // Fifty rows each saying "pick a flight" is not a useful way to learn
+            // that the flights have different names here. Say it once, up front.
+            const missing = [...new Set(rows.filter(r => !r.flightId).map(r => r.flightText))].filter(Boolean);
+            if (missing.length) toast.error(`No flight here is called ${missing.join(' or ')}. Add ${missing.length === 1 ? 'it' : 'them'} under Event & rules, then import again.`);
+            else toast.success(`${rows.length} teams from ${result.event.name}${result.event.locked ? '' : ' — these flights are not locked there yet'}.`);
+        } finally { setPulling(false); }
+    }
     function parseImport() { try {
         setPreview(parsePaste(bulk).map((r, i) => ({ name: r[0] || '', players: [r[1], r[2], r[5], r[6]].filter(Boolean), flightId: flights.find((f: Row) => f.name.toLowerCase() === (r[3] || '').toLowerCase())?.id || '', flightText: r[3] || '', handicap: r[4] ? Number(r[4]) : null, seed: null, notes: '', privateNotes: '', source: i + 1 })));
     }
@@ -43,7 +66,16 @@ export default function Editors({ modal, setModal, data, busy, act, setBuyerId }
         }
         setBulk(await file.text());
         setPreview([]);
-    } }}/><Button variant="outline" onClick={parseImport}>Preview rows</Button></div><p className="fine">Columns: team name, player 1, player 2, flight, handicap, optional player 3, optional player 4. Tabs, pipes and quoted CSV are supported.</p>{preview.length > 0 && <><div className="import-preview"><Table><TableHeader><TableRow><TableHead>Team</TableHead><TableHead>Players (one per line)</TableHead><TableHead>Flight</TableHead><TableHead>Index</TableHead><TableHead /></TableRow></TableHeader><TableBody>{preview.map((r, i) => { const problems = issues(r); return <TableRow key={i} className={problems.length ? 'import-row-attention' : ''}><TableCell><Input aria-label={'Import team ' + (i + 1)} aria-invalid={!r.name.trim() || undefined} aria-describedby={problems.length ? 'import-issue-' + i : undefined} value={r.name} onChange={ev => setPreview(rows => rows.map((v, j) => i === j ? { ...v, name: ev.target.value } : v))}/>{problems.length > 0 && <small className="import-issue" id={'import-issue-' + i}>Row {i + 1}: {problems.join(' · ')}</small>}</TableCell><TableCell><Textarea aria-label={'Import players ' + (i + 1)} value={r.players.join('\n')} onChange={ev => setPreview(rows => rows.map((v, j) => i === j ? { ...v, players: ev.target.value.split('\n') } : v))}/></TableCell><TableCell><Choice label={'Import flight ' + (i + 1)} value={r.flightId} items={flightOptions} onChange={(flightId: string) => setPreview(rows => rows.map((v, j) => i === j ? { ...v, flightId } : v))}/></TableCell><TableCell><Input aria-label={'Import index ' + (i + 1)} type="number" step=".1" aria-invalid={Number.isNaN(r.handicap) || undefined} value={Number.isNaN(r.handicap) ? '' : r.handicap ?? ''} onChange={ev => setPreview(rows => rows.map((v, j) => i === j ? { ...v, handicap: ev.target.value === '' ? null : Number(ev.target.value) } : v))}/></TableCell><TableCell><Button variant="ghost" onClick={() => setPreview(rows => rows.filter((_, j) => i !== j))}>Remove</Button></TableCell></TableRow>; })}</TableBody></Table></div><Button disabled={busy || attention > 0} onClick={async () => { if (await act('team_import', { teams: preview.map(v => ({ name: v.name, players: v.players.map((p: string) => p.trim()).filter(Boolean), flightId: v.flightId, handicap: v.handicap, seed: v.seed, notes: v.notes, privateNotes: v.privateNotes })) })) {
+    } }}/><Button variant="outline" onClick={parseImport}>Preview rows</Button><Button disabled={busy || pulling} onClick={importFromLeaderboard}>{pulling ? 'Reading the leaderboard…' : 'Import from the leaderboard'}</Button></div><p className="fine">Columns: team name, player 1, player 2, flight, handicap, optional player 3, optional player 4. Tabs, pipes and quoted CSV are supported.</p>{preview.length > 0 && <><div className="import-preview"><Table><TableHeader><TableRow><TableHead>Team</TableHead><TableHead>Players (one per line)</TableHead><TableHead>Flight</TableHead><TableHead>Index</TableHead><TableHead /></TableRow></TableHeader><TableBody>{preview.map((r, i) => { const problems = issues(r); return <TableRow key={i} className={problems.length ? 'import-row-attention' : ''}><TableCell><Input aria-label={'Import team ' + (i + 1)} aria-invalid={!r.name.trim() || undefined} aria-describedby={problems.length ? 'import-issue-' + i : undefined} value={r.name} onChange={ev => setPreview(rows => rows.map((v, j) => i === j ? { ...v, name: ev.target.value } : v))}/>{problems.length > 0 && <small className="import-issue" id={'import-issue-' + i}>Row {i + 1}: {problems.join(' · ')}</small>}</TableCell><TableCell><Textarea aria-label={'Import players ' + (i + 1)} value={r.players.join('\n')} onChange={ev => setPreview(rows => rows.map((v, j) => i === j ? { ...v, players: ev.target.value.split('\n') } : v))}/></TableCell><TableCell><Choice label={'Import flight ' + (i + 1)} value={r.flightId} items={flightOptions} onChange={(flightId: string) => setPreview(rows => rows.map((v, j) => i === j ? { ...v, flightId } : v))}/></TableCell><TableCell><Input aria-label={'Import index ' + (i + 1)} type="number" step=".1" aria-invalid={Number.isNaN(r.handicap) || undefined} value={Number.isNaN(r.handicap) ? '' : r.handicap ?? ''} onChange={ev => setPreview(rows => rows.map((v, j) => i === j ? { ...v, handicap: ev.target.value === '' ? null : Number(ev.target.value) } : v))}/></TableCell><TableCell><Button variant="ghost" onClick={() => setPreview(rows => rows.filter((_, j) => i !== j))}>Remove</Button></TableCell></TableRow>; })}</TableBody></Table></div><Button disabled={busy || attention > 0} onClick={async () => { const outcome = await act('team_import', { teams: preview.map(v => ({ name: v.name, players: v.players.map((p: string) => p.trim()).filter(Boolean), flightId: v.flightId, handicap: v.handicap, seed: v.seed, notes: v.notes, privateNotes: v.privateNotes })) }); if (outcome) {
+        // Say what it did. An import that matches on name can add, update or
+        // decline to touch a team, and "imported 50 teams" would describe all
+        // three — including the one case that matters, a sold team left alone.
+        const r = outcome.imported;
+        if (r) {
+            const parts = [r.created && `${r.created} added`, r.updated && `${r.updated} updated`].filter(Boolean);
+            if (r.refused?.length) toast.error(`${parts.join(' · ') || 'Nothing changed'}. Left alone because ${r.refused.length === 1 ? 'it is' : 'they are'} sold or on the block: ${r.refused.join(', ')}.`, { duration: 12000 });
+            else toast.success(parts.join(' · ') || 'Nothing changed.');
+        }
         setModal(null);
         setBulk('');
         setPreview([]);

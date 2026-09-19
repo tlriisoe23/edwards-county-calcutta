@@ -5,6 +5,10 @@ import { settlement } from './settlement';
 export function db(): D1Database { if (!env.DB)
     throw Error("Auction storage is unavailable."); return env.DB; }
 // Owners come only from the ADMIN_EMAILS allowlist; the operators table never holds an owner (D-CAL-4).
+// The leaderboard to read a flighted field from, or empty when this
+// installation has none. Read through the worker env like every other setting,
+// not `process.env`: in development those are two different places.
+export function leaderboardUrl(): string { return String((env as Record<string, unknown>).LEADERBOARD_URL || "").replace(/\/+$/, ""); }
 export function ownerEmails(): string[] { return (env.ADMIN_EMAILS || "").split(",").map(s => s.trim().toLowerCase()).filter(Boolean); }
 export async function identity() { const user = await getChatGPTUser(); if (!user)
     return null; const owners = ownerEmails(); const email = user.email.toLowerCase(); const owner = owners.includes(email); const operator = owner || !!await db().prepare('SELECT email FROM operators WHERE email=?').bind(email).first(); return { ...user, email, owner, operator }; }
