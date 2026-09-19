@@ -4,11 +4,18 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
-function Table({ className, ...props }: React.ComponentProps<"table">) {
+// The container scrolls sideways at narrow widths, so it is a focusable named
+// region: without tabIndex a keyboard-only operator cannot reach the columns
+// that are off-screen (axe scrollable-region-focusable, OC-5). Callers pass the
+// label the region is announced by.
+function Table({ className, label, ...props }: React.ComponentProps<"table"> & { label?: string }) {
   return (
     <div
       data-slot="table-container"
       className="relative w-full overflow-x-auto"
+      tabIndex={0}
+      role="region"
+      aria-label={label ?? "Table"}
     >
       <table
         data-slot="table"

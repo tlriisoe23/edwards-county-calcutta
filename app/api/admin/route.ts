@@ -352,6 +352,90 @@ export async function POST(request: Request) {
             }
             return Response.json({ ok: true, eventId: created.id, created: { flights: names.length, teams: teams.length }, from: { name: source.name, slug: source.slug }, rulesFrom: last?.name ?? "", note: board.note });
         }
+        // Delete an event outright (WC-4). Eventless like `create_event`, and for
+        // the same reason: the event-scoped path below reads the event, holds it
+        // at a revision and writes an audit row against it, and none of the three
+        // survives the row being removed.
+        //
+        // The refusal is the guard, not the confirmation: an event holding any
+        // sale, settlement payment or payout disbursement cannot be deleted at
+        // all unless it is a demo. The counts are read fresh here — never from
+        // the caller — and asserted again inside the deleting batch, so a sale
+        // recorded between the count and the delete rolls the whole thing back
+        // rather than disappearing with it.
+        if (action === "event_delete") {
+            requireThat(who.owner, "Only the owner can delete an event.");
+            const target = id.parse(p.eventId ?? body.eventId);
+            const auditAction = "event_delete " + target;
+            const newest = async () => (await db().prepare('SELECT id FROM events ORDER BY createdAt DESC LIMIT 1').first<Row>())?.id;
+            const replay = async () => {
+                const prior = await statement('SELECT actor,action FROM audit WHERE id=?', requestId).first<Row>();
+                if (!prior) return false;
+                requireThat(prior.actor === who.email && prior.action === auditAction, "This request ID changed its action, operator or event. Submit a new request.");
+                return true;
+            };
+            if (await replay()) return Response.json({ ok: true, duplicate: true, eventId: await newest() });
+            const event = await statement('SELECT id,name,demo FROM events WHERE id=?', target).first<Row>();
+            // Deleting what is already gone is not an error. It is how a retried
+            // request settles when the deleted event was the last one and there
+            // was no other event left to anchor an audit entry to.
+            if (!event) return Response.json({ ok: true, duplicate: true, eventId: await newest() });
+            const counts = await db().batch([
+                statement('SELECT COUNT(*) AS n FROM sales WHERE eventId=?', target),
+                statement('SELECT COUNT(*) AS n FROM settlement_payments WHERE eventId=?', target),
+                statement('SELECT COUNT(*) AS n FROM payout_disbursements WHERE eventId=?', target)
+            ]);
+            const [sales, payments, disbursements] = counts.map((r) => Number(((r.results as Row[])[0] || {}).n || 0));
+            const demo = Number(event.demo) === 1;
+            if (!demo) {
+                const held = [
+                    sales && `${sales} recorded sale${sales === 1 ? "" : "s"}`,
+                    payments && `${payments} settlement payment${payments === 1 ? "" : "s"}`,
+                    disbursements && `${disbursements} payout disbursement${disbursements === 1 ? "" : "s"}`
+                ].filter(Boolean);
+                requireThat(!held.length, `This event holds ${held.join(" and ")}; settlement records are never deleted.`);
+            }
+            // The audit table hangs off the event, so this event's trail cannot
+            // outlive it. The record of the deletion therefore lives with the
+            // event that remains — the same anchoring `operator_add` already
+            // uses for a change that is not about any one event — naming the
+            // deleted event's id, name and what it held. When nothing remains
+            // there is nowhere durable to put it, and the deletion still happens:
+            // an installation cannot be left unable to remove its last demo.
+            const survivor = await statement('SELECT id FROM events WHERE id<>? ORDER BY createdAt DESC LIMIT 1', target).first<Row>();
+            const now = timestamp();
+            // Children are deleted explicitly, in reference order, rather than
+            // left to ON DELETE CASCADE. Both runtimes do enforce foreign keys —
+            // `portable/sqlite.mjs` sets `PRAGMA foreign_keys=ON` and the local
+            // D1 connection reports it on — but sales, payments and disbursements
+            // point at teams and buyers with ON DELETE NO ACTION, so the order a
+            // cascade happens to unwind in is doing load-bearing work no schema
+            // states. This order is stated.
+            const cmds = [
+                ...(demo ? [] : [statement('INSERT INTO mutation_guards(id,ok) VALUES (?,(SELECT ((SELECT COUNT(*) FROM sales WHERE eventId=?)+(SELECT COUNT(*) FROM settlement_payments WHERE eventId=?)+(SELECT COUNT(*) FROM payout_disbursements WHERE eventId=?))=0))', requestId, target, target, target)]),
+                statement('DELETE FROM ownership WHERE saleId IN (SELECT id FROM sales WHERE eventId=?)', target),
+                statement('DELETE FROM players WHERE teamId IN (SELECT id FROM teams WHERE eventId=?)', target),
+                statement('DELETE FROM auction_state WHERE eventId=?', target),
+                statement('DELETE FROM settlement_payments WHERE eventId=?', target),
+                statement('DELETE FROM payout_disbursements WHERE eventId=?', target),
+                statement('DELETE FROM sales WHERE eventId=?', target),
+                statement('DELETE FROM payout_rules WHERE eventId=?', target),
+                statement('DELETE FROM teams WHERE eventId=?', target),
+                statement('DELETE FROM buyers WHERE eventId=?', target),
+                statement('DELETE FROM flights WHERE eventId=?', target),
+                statement('DELETE FROM audit WHERE eventId=?', target),
+                statement('DELETE FROM events WHERE id=?', target),
+                statement('DELETE FROM mutation_guards WHERE id=?', requestId)
+            ];
+            if (survivor) cmds.push(insert("audit", { id: requestId, eventId: survivor.id, actor: who.email, action: auditAction, recordId: target, before: JSON.stringify({ name: event.name, demo: event.demo, sales, payments, disbursements }), createdAt: now }));
+            try {
+                await db().batch(cmds);
+            } catch (error) {
+                if (await replay()) return Response.json({ ok: true, duplicate: true, eventId: await newest() });
+                throw error;
+            }
+            return Response.json({ ok: true, deleted: event.name, ...(survivor ? { eventId: survivor.id as string } : {}) });
+        }
         const eventId = id.parse(body.eventId), revision = z.number().int().nonnegative().parse(body.revision);
         const duplicate = await statement('SELECT id FROM audit WHERE id=? AND eventId=?', requestId, eventId).first();
         if (duplicate)

@@ -74,15 +74,18 @@ await send('operator_add',{email:'rehearsal-operator@example.test'});let adminRe
 // exercise the live admin-API actions when running under the portable test harness, which signs
 // in as the real owner via the actual local-login HTTP form (see tests/test-session.mjs).
 if(process.env.CALCUTTA_TEST_PASSWORD){
-  const localEmail='rehearsal-local-user@example.test';
-  await send('local_user_create',{email:localEmail,displayName:'Rehearsal Local User',password:'a genuinely long fixture password',confirmPassword:'a genuinely long fixture password'});
-  adminRead=await read();check(adminRead.localUsers.some(u=>u.email===localEmail&&u.display_name==='Rehearsal Local User'&&u.enabled===1),'Owner creates a local user account');
-  check(!('password_hash' in adminRead.localUsers.find(u=>u.email===localEmail)),'Local user listing never exposes the password hash');
-  await send('local_user_create',{email:localEmail,displayName:'Duplicate',password:'a genuinely long fixture password',confirmPassword:'a genuinely long fixture password'},{expected:400});
-  await send('local_user_create',{email:localEmail+'2',displayName:'Mismatch',password:'a genuinely long fixture password',confirmPassword:'does not match'},{expected:400});
-  await send('local_user_set_enabled',{email:localEmail,enabled:false});adminRead=await read();check(adminRead.localUsers.find(u=>u.email===localEmail).enabled===0,'Owner disables a local user account');
-  await send('local_user_set_enabled',{email:localEmail,enabled:true});
-  await send('local_user_reset_password',{email:localEmail,password:'a different long fixture password',confirmPassword:'a different long fixture password'});
+  // D-CAL-25 made a local login a username with an optional email; this fixture
+  // still sent an email alone and the action refused it as "Required". It only
+  // runs under the portable harness, so a stale standalone build hid it.
+  const localUsername='rehearsal-local-user',localEmail='rehearsal-local-user@example.test';
+  await send('local_user_create',{username:localUsername,email:localEmail,displayName:'Rehearsal Local User',password:'a genuinely long fixture password',confirmPassword:'a genuinely long fixture password'});
+  adminRead=await read();check(adminRead.localUsers.some(u=>u.username===localUsername&&u.email===localEmail&&u.display_name==='Rehearsal Local User'&&u.enabled===1),'Owner creates a local user account');
+  check(!('password_hash' in adminRead.localUsers.find(u=>u.username===localUsername)),'Local user listing never exposes the password hash');
+  await send('local_user_create',{username:localUsername,email:localEmail,displayName:'Duplicate',password:'a genuinely long fixture password',confirmPassword:'a genuinely long fixture password'},{expected:400});
+  await send('local_user_create',{username:localUsername+'-2',email:localEmail+'2',displayName:'Mismatch',password:'a genuinely long fixture password',confirmPassword:'does not match'},{expected:400});
+  await send('local_user_set_enabled',{username:localUsername,enabled:false});adminRead=await read();check(adminRead.localUsers.find(u=>u.username===localUsername).enabled===0,'Owner disables a local user account');
+  await send('local_user_set_enabled',{username:localUsername,enabled:true});
+  await send('local_user_reset_password',{username:localUsername,password:'a different long fixture password',confirmPassword:'a different long fixture password'});
   check(true,'Owner resets a local user password');
 }
 for(let i=0;i<500;i++){const total=1+Math.floor(Math.random()*10000000),a=Math.floor(Math.random()*10001),b=Math.floor(Math.random()*(10001-a)),split=splitCents(total,[a,b,10000-a-b]);assert.equal(split.reduce((x,y)=>x+y,0),total);assert.ok(split.every(Number.isSafeInteger));}check(true,'500 randomized cent-exact payout splits');
@@ -97,4 +100,43 @@ await send('event_update',{...eventPayload(),settings:{...d.event.settings,buyba
 await send('team_import',{teams:Array.from({length:96},(_,i)=>({name:'Scale team '+String(i+1).padStart(3,'0'),players:['Fictional '+i+' A','Fictional '+i+' B'],flightId:i%2?f1:f2}))});check(d.teams.length===100,'100-team event imports and persists');
 const scale=await pub();check(scale.b.teams.length===100&&JSON.stringify(scale.b).length<100000,'100-team public board remains under 100 KB');
 const mainEventId=eventId;await send('load_demo');const demoTestId=eventId;await send('reset_demo',{confirmation:'WRONG'},{expected:400});check(d.teams.length===12,'Demo reset requires exact confirmation');await send('reset_demo',{confirmation:'RESET DEMO DATA'});check(d.teams.length===0&&d.sales.length===0&&d.totals.gross===0,'Demo reset clears auction records');await send('undo');check(d.teams.length===12&&d.sales.length===5,'Undo demo reset restores records');
+// WC-4: deleting an event. Create -> delete -> gone; refused while it holds a
+// sale; a demo deletes even when it does; and repeating the request ID is a
+// no-op rather than a second deletion.
+const eventIds=async()=>(await read()).events.map(x=>x.id);
+const doomedName='WC-4 delete rehearsal '+new Date().toISOString();
+await send('create_event',{name:doomedName,course:'Fictional test course'});
+const doomedId=eventId;
+await send('flight_save',{name:'Only Flight',color:'#b79a59',ownPool:true});
+await send('team_save',{name:'Doomed team',players:['Gone One','Gone Two'],flightId:d.flights[0].id});
+await send('buyer_save',{name:'Doomed buyer'});
+const deleted=await send('event_delete',{eventId:doomedId});
+check(deleted.b.deleted===doomedName&&!(await eventIds()).includes(doomedId),'Event delete removes the event and its teams, flights and buyers');
+check((await (await fetch(base+'/api/public?event='+doomedId)).json()).empty===true,'The public board for a deleted event is an empty board, not an error');
+check((await read()).audit.some(a=>a.action==='event_delete '+doomedId),'The record of the deletion survives on a remaining event');
+await send('create_event',{name:'WC-4 refusal rehearsal '+new Date().toISOString(),course:'Fictional test course'});
+const heldId=eventId;
+await send('event_update',{...d.event,settings:defaultSettings});
+await send('flight_save',{name:'Only Flight',color:'#b79a59',ownPool:true});
+await send('team_save',{name:'Sold team',players:['Held One','Held Two'],flightId:d.flights[0].id});
+await send('buyer_save',{name:'Held buyer'});
+await send('status',{status:'LIVE'});
+await send('bid',{teamId:d.teams[0].id,buyerId:d.buyers[0].id,amount:50000});
+await send('sell',{teamId:d.teams[0].id,amount:50000,buyerId:d.buyers[0].id});
+const refused=await send('event_delete',{eventId:heldId},{expected:400});
+check(refused.b.error==='This event holds 1 recorded sale; settlement records are never deleted.','An event holding a sale is refused by name and number');
+eventId=heldId;await read();
+check(d.sales.length===1&&d.teams.length===1,'The refused event is left exactly as it was');
+await send('load_demo');
+const demoDoomedId=eventId;
+check(d.event.demo===1&&d.sales.length===5,'The demo loads with sales of its own');
+await send('event_delete',{eventId:demoDoomedId});
+check(!(await eventIds()).includes(demoDoomedId),'A demo deletes even though it holds sales');
+await send('create_event',{name:'WC-4 replay rehearsal '+new Date().toISOString(),course:'Fictional test course'});
+const replayId=eventId,replayRequest=crypto.randomUUID();
+await send('event_delete',{eventId:replayId},{requestId:replayRequest});
+const remaining=(await eventIds()).length;
+const again=await send('event_delete',{eventId:replayId},{requestId:replayRequest});
+check(again.b.duplicate===true&&(await eventIds()).length===remaining,'Repeating the delete request ID is a no-op, not a second deletion');
+eventId=mainEventId;await read();
 const report={checks,eventIds:[mainEventId,demoTestId],at:new Date().toISOString(),status:'passed'};writeFileSync('.sites-runtime/acceptance-report.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));

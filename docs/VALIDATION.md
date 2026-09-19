@@ -2,6 +2,28 @@
 
 2026-09-14 UTC · baseline `dfab14906c04b5a6d99ffffbfba4249883750eae`. Reports are local audit evidence, not production sign-off. PASS = observed expected result; FAIL = demonstrated mismatch; BLOCKED = a needed environment/tool is unavailable; UNVERIFIED = not exercised sufficiently. A successful build does not convert any browser or hosted gap into PASS.
 
+## Four small fixes: OC-5, OC-7, WC-4, OC-9 — 19 September 2026
+
+Branch `claude/cal-small-fixes`, four commits. Decisions D-CAL-26..29. **Implemented and validated on
+the branch; not merged, not deployed** — the live container still runs `8683183`.
+
+| Check | Result |
+|---|---|
+| `node node_modules/typescript/bin/tsc --noEmit --incremental false` | **PASS** — clean, no output |
+| `npx eslint app lib` | **PASS** — `77 problems (48 errors, 29 warnings)`, exactly the pre-existing baseline; not one added |
+| `npm run test:portable` | **PASS** — all four: portable storage; portable auth; portable local users; portable integration, whose HTTP acceptance run is **70 checks** and refinement **72**. It needed `npm run build:portable` first, and that rebuild exposed a **pre-existing** failure of its own: the local-user block of `tests/acceptance.mjs` still sent an email with no username after D-CAL-25, and answered 400 *Required*. The same fixture fails the same way on `main`; the earlier PASS above was recorded against a standalone bundle built before D-CAL-25. Repaired here in its own commit (test-only) |
+| `node tests/acceptance.mjs` (dev server on 5173) | **PASS** — **66 checks** (58 before): the eight added are WC-4's — create → delete → gone, the public board for a deleted event is `{ empty: true }`, the record of the deletion survives on a remaining event, an event holding a sale is refused by name and number, the refused event is left exactly as it was, a demo loads with sales, a demo deletes anyway, and repeating the request ID is a no-op rather than a second deletion |
+| `node tests/refinement.mjs` | **PASS** — **72 checks**, unchanged |
+| `tests/night-of.mjs` (with `UI3_PLAYWRIGHT_MODULE`, `UI3_EVIDENCE` in scratch) | **PASS** — **12/12** |
+| `tests/ui3-browser.mjs` (same two variables) | **PASS** — **63/63**; `docs/batch-l-evidence/` untouched, confirmed by `git status` |
+| OC-5, in the browser | **PASS** — axe on *View and Edit Sales* at **390×844**, signed in: **no violations at all** (it was one `scrollable-region-focusable`, serious). The container reports `tabindex=0`, `role=region`, `aria-label="Sales table"`; the roster, audit trail and import preview carry their own labels. The rehearsal's carve-out for that rule is deleted, so a return of the defect fails the run |
+| OC-7, in the browser | **PASS, both ways** — with `LEADERBOARD_URL` **unset** on the dev server, opening *Teams & flights* signed in made **no POST, no 4xx and no console error** (`GET /api/admin` reporting `leaderboard: false`); with it **set** the same click still posts `leaderboard_field` exactly as before, so the configured path is untouched. The rehearsal's carve-out for that 400 is deleted. The local `.env` was restored byte-identically afterwards |
+| WC-4, through the desk | **PASS** — *Delete event* beside the event picker (owner only): the confirmation read *"UI delete rehearsal will be permanently removed, along with its 0 teams, 0 flights, 0 buyers, 0 sales and its audit trail…"*, the deletion succeeded, the picker moved to the remaining event and the toast named the deleted one |
+| Foreign keys at runtime, checked rather than assumed | **Both paths enforce them** — `portable/sqlite.mjs` sets `PRAGMA foreign_keys=ON` and a parent delete was observed to cascade to flights, teams and players on a scratch database; the local D1 connection reports `foreign_keys = 1` and cascaded a parent delete too. The delete is still written explicitly and in reference order (D-CAL-28) |
+| OC-9, reproduced then fixed | **FAIL → PASS** — with `calcutta-compact-console` set to `on` **and** to `off`, loading `/admin` signed in on the dev server threw *"Hydration failed because the server rendered HTML didn't match the client"*. After the fix, both values load with **no console errors**, the toggle still persists across a reload and *Auto* still returns the console to following the auction status |
+| `npm run test:console` | **NOT RUN** — it builds Docker images; excluded from this task by instruction. The console rehearsal's two carve-outs were removed, so its next run is the check that OC-5 and OC-7 stay fixed on a real image |
+| Production | **UNVERIFIED** — nothing here has been merged or deployed; the live container is unchanged |
+
 ## Local logins by username — 19 September 2026
 
 Branch `claude/cal-local-users-username`. Decision D-CAL-25; the owner's items are WC-2 and the report
