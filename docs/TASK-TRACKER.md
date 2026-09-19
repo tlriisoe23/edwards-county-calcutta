@@ -2,13 +2,14 @@
 
 ## Handoff — 2026-09-19
 
-A fresh agent taking this over starts at the cross-repository handoff,
-`~/development/ecgc-leaderboard/.agent-handoff/2026-09-19-tournament-handover.md`. It covers both
-products because the tournament does: the four things that matter before 19–20 September, the
-verified state of both, and the constraints — including the ones specific to this application, which
-holds the settlement records. It lives in the sibling repository by the same precedent as
-`scripts/replicate-offhost.sh` (D-CAL-15): cross-project work belongs to the repository that already
-tracks it. This tracker stays canonical for everything that is only about this product.
+A fresh agent taking this over starts at the cross-repository handoff in the sibling repository:
+`~/development/ecgc-leaderboard/.agent-handoff/2026-09-19-tournament-eve.md`, which supersedes
+`2026-09-19-tournament-handover.md` there. Of that handoff's four items, the dress rehearsal and the
+restore rehearsal are done (this repository's half: OC-2 closed, the restore from the desktop copy
+verified signed in); the real event on the board and the fixture clean-up wait on the owner. The
+rehearsal's findings on this side are **OC-5..OC-8** and **WC-9** below — OC-6 and OC-8 have a
+workaround the operator needs to know on auction night. This tracker stays canonical for everything
+that is only about this product.
 
 ## Current state — 2026-09-18
 
@@ -99,6 +100,7 @@ AGENTS.md sets out.
 | WC-6 | ~~**Import teams from the leaderboard.**~~ **Done 2026-09-18** (D-CAL-17..19): *Import from the leaderboard* in the team import dialog reads the flighted field over a private internal-only network; the roster says when the two disagree without applying anything; imports match on team name so a repeat updates rather than duplicates, and a sold team is refused by name. Pasting still works, and the leaderboard's Flights tab now copies the rows for it. |
 | WC-7 | ~~**A 50-team fixture matching the leaderboard's new demo.**~~ **Done 2026-09-18** (D-CAL-12..14): Tools → *Load 50-team demo* creates the same fifty teams the leaderboard's own two-day demo builds, four flights at 13 · 13 · 12 · 12, each carrying its pop, at SETUP with nothing sold — so the evening can be rehearsed from the first lot. |
 | WC-8 | **An auto-scrolling public/TV board, and the Calcutta equivalent of the leaderboard's.** The owner wants a continuously scrolling option rather than a paging slideshow, and a Calcutta board that matches the leaderboard's exactly with one extra column for the pop. The leaderboard's side is W-8. Note this product's TV is already the best screen in either app per the 2026-09-17 audit — **do not regress it** to gain a scroll mode. |
+| WC-9 | **The public board and the TV call the pop "Index".** The per-team number the leaderboard sends is the pop — strokes off Round 2 — and this product shows it in its handicap column, labelled *Index* on every card and *Team index* on the block. A room that has just been told "Wilson / Evans carry a pop and a half" reads *Index 1.5* on the screen. Seen 2026-09-19 on the dress rehearsal. `showHandicap` exists; the label does not. A per-event label for that column ("Pop", "Index", "Handicap"), defaulting to *Pop* when the field came from the leaderboard, is the owner's call. |
 
 ## Engineering gaps found while shipping — 2026-09-18
 
@@ -108,9 +110,13 @@ needed to be. Each is small, and the first is the one that matters.
 | ID | Gap |
 |---|---|
 | OC-1 | ~~**This repository has no backup script.**~~ **Done 2026-09-18** (D-CAL-15/16): `scripts/backup-scheduled.sh`, scheduled nightly at 02:45 — snapshot through SQLite's backup API, copied off the volume, verified on a scratch copy (integrity plus no orphaned sales or ownership rows), retained. The sibling's `replicate-offhost.sh` then mirrors it to the Windows desktop at 03:15, so it leaves this machine too. |
-| OC-2 | **No signed-in rehearsal of the operator console.** Production sits behind Google, so every operator-side claim in this repository's validation log is local evidence — every batch since S1 has recorded the same gap. The leaderboard closed it with `tests/console-rehearsal.mjs`: build the image from the working tree, run it against a **copy** of the newest backup, sign in with a password generated for that run, drive every tab. That is the model, and it never touches the live container. |
-| OC-3 | **Neither browser suite runs from a clean checkout.** `playwright` is not a dependency here, unlike the leaderboard's. Both suites accept `UI3_PLAYWRIGHT_MODULE` and were run pointed at the sibling's installed copy. |
+| OC-2 | ~~**No signed-in rehearsal of the operator console.**~~ **Done 2026-09-19** (D-CAL-23): `tests/console-rehearsal.mjs` and `npm run test:console` — the leaderboard's model: the image built from the working tree (or `REHEARSAL_IMAGE`), a throwaway container on a copy of the newest backup (or the file named on the command line, which is how a restore is rehearsed), a password generated for the run, every tab and every prepare step at 1600 and 390, a buyer added through the dialog, the public board and the TV, axe on each, anonymous callers refused before and after. First run against the desktop's off-host copy on the deployed `b2f583e`: **37 checks PASS**, carrying two named findings (OC-5, OC-7). It never touches the live container; its screenshots hold real buyers and prices and stay in ignored `outputs/`. |
+| OC-3 | **Neither browser suite runs from a clean checkout.** `playwright` is not a dependency here, unlike the leaderboard's. Both suites accept `UI3_PLAYWRIGHT_MODULE` and were run pointed at the sibling's installed copy. The rehearsal takes the same variable and, when the import fails, names the sibling's copy (`../ecgc-leaderboard/node_modules/playwright/index.mjs`) in its error rather than a bare module-not-found. |
 | OC-4 | **Both browser suites overwrite `docs/batch-l-evidence/` by default**, simply by running — Batch L's recorded evidence was overwritten and restored from Git during the night-of work. A default that destroys another batch's evidence is a trap; give each run its own directory. |
+| OC-5 | **The sales table cannot be scrolled sideways from the keyboard at phone width.** axe `scrollable-region-focusable` (serious) on *View and Edit Sales* at 390: the `.overflow-x-auto` wrapper scrolls but takes no focus. Found by the first run of OC-2's rehearsal, 2026-09-19, and carried there by name so it cannot hide a new finding. Give the wrapper `tabIndex={0}`, `role="region"` and an `aria-label`. |
+| OC-6 | **"Setup steps" does nothing on the compact console — which is the LIVE console.** `app/operator.tsx` wraps the button as `<CollapsibleTrigger asChild><ControlTip …><Button/></ControlTip></CollapsibleTrigger>`, and `ControlTip` (`app/help-tooltip.tsx:39`) forwards nothing but `text` and `children`, so the trigger's `onClick` and `aria-expanded` never reach the button. Observed 2026-09-19 on a LIVE auction at 1600: click, `aria-expanded` stays unset, the prepare steps stay hidden. **Tonight's workaround: the *Compact view* switch in the masthead, off**, and the steps return. That is how the re-import was reached with the auction under way. Fix: have `ControlTip` spread the rest of its props onto its child (`cloneElement`) or put the tooltip inside the trigger. C2's own acceptance ("collapse … while keeping them accessible") is not met until then. |
+| OC-7 | **Teams & flights probes the leaderboard every time it opens.** The drift check (D-CAL-17) posts `leaderboard_field` on open; with no `LEADERBOARD_URL` configured the server answers 400 *No leaderboard is configured*, which is right, and the browser logs it as an error every time, which is noise in an installation that has no leaderboard by design. Skip the probe when none is configured. Harmless on production, where one is. |
+| OC-8 | **A team renamed on the leaderboard is imported as a new team.** The import matches incoming rows to existing teams **by name** (`app/api/admin/route.ts:407` — "name is what the room calls a team … so it is the identity to match on"), so a spelling correction on the leaderboard after the field is in arrives as *1 added* and leaves the old row behind: observed 2026-09-19 on a copy, 50 → 51 teams, *Robinson / Bell* and *Robinson / Bell (corrected)* both upcoming. D-CAL-17's "update, never duplicate" holds for flights and pops and not for names — and a duplicate is a team that can be sold twice. Fix: carry the leaderboard's competitor `id` on each row and keep it on the team (a `sourceId` column), matching on it before the name; the cheap interim is to match on both players' names when the team name is unknown. **Tonight's workaround**: rename the team here first, or delete the stale row in Teams & flights if it is unsold. |
 
 ## Stable register
 

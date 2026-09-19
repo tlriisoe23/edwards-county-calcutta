@@ -2,6 +2,21 @@
 
 2026-09-14 UTC · baseline `dfab14906c04b5a6d99ffffbfba4249883750eae`. Reports are local audit evidence, not production sign-off. PASS = observed expected result; FAIL = demonstrated mismatch; BLOCKED = a needed environment/tool is unavailable; UNVERIFIED = not exercised sufficiently. A successful build does not convert any browser or hosted gap into PASS.
 
+## Tournament eve — 19 September 2026
+
+Nothing deployed, nothing live touched. Branch `claude/cal-console-rehearsal`; the leaderboard's half
+is `claude/lb-restore-rehearsal`, whose `docs/VALIDATION.md` ("Tournament eve") holds the full
+dress-rehearsal record. Decision D-CAL-23.
+
+| Check | Result |
+|---|---|
+| Signed-in desk rehearsal (OC-2) | **PASS** — `tests/console-rehearsal.mjs` on the deployed `ecgc-calcutta:portable` (`b2f583e`) against the **desktop's off-host copy** `calcutta-20260919T001421.sqlite` (sha256-identical to the local file): anonymous `/api/admin` 403 and `/admin` 307; five tabs and four prepare steps at 1600 and 390 with no JavaScript error and no failed request; a buyer added through the dialog and the revision moved; public board at 1440 and 390 and the TV at 1920; **37 checks**. Carried: OC-5 (axe on the sales table at 390) and OC-7 (the Teams tab's leaderboard probe, 400 with none configured) |
+| Restore from the off-host copy (O-14) | **PASS** — the sibling's `scripts/restore-rehearsal.sh calcutta <desktop copy>`: integrity ok, events 2 / teams 0 / sales 0 / ownership 0, restored into a fresh named volume by the image, up in 1 s serving *Edwards County 2 Day 2 Man Calcutta*, closed to anonymous callers, removed |
+| Dress rehearsal, this side | **PASS with two defects** — on a copy of the real *2 Day 2 Man* event over the private wire: *Import from the leaderboard* created the four missing flights in leaderboard order and imported 50 teams with pops as the index; ten lots sold with every price equal to the buttons pressed, one by keyboard; *Skip for now* confirmed and requeued to 50 of 50; *Undo* named its sale and put the team back on the block with the bid standing; totals $3,925 / $392.50 / $3,532.50 agreed across the console, the sales tab, the TV and the public board. The corrected field brought over again with the auction LIVE: eleven sold-or-on-block teams named and left alone, an unsold pop updated — but a **renamed team arrived as a new one** (**OC-8**), and the compact console's **Setup steps button did nothing** (**OC-6**), so the Teams tab was reached through the *Compact view* switch |
+
+**Not covered**: Results, Settlement and Exports were rendered signed in but not driven — no finishing
+positions were entered and no payments recorded on the rehearsal copy.
+
 ## The import's missing half — 2026-09-19
 
 **Merged and deployed `b2f583e` 2026-09-19T04:12 UTC**, healthy in 6 s, no schema change, live data

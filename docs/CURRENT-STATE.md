@@ -1,5 +1,14 @@
 # Current state — 2026-09-18 UTC
 
+## Tournament eve — 2026-09-19
+
+- **The desk is now rehearsed signed in before a deploy** (OC-2 closed, D-CAL-23): `npm run
+  test:console`. Its first run, against the desktop's off-host copy on the deployed image, passed 37
+  checks and found OC-5. The dress rehearsal across both products found **OC-6** (the compact
+  console's *Setup steps* button is dead — use the *Compact view* switch) and **OC-8** (a team renamed
+  on the leaderboard re-imports as a new team) — both have a workaround for auction night, recorded in
+  [TASK-TRACKER.md](TASK-TRACKER.md). Nothing deployed; the live container still runs `b2f583e`.
+
 ## Deployed — 2026-09-19
 
 - **The import can create the flights it needs.** `main` @ `b2f583e`, live since ~04:12 UTC, healthy
