@@ -2,6 +2,23 @@
 
 2026-09-14 UTC · baseline `dfab14906c04b5a6d99ffffbfba4249883750eae`. Reports are local audit evidence, not production sign-off. PASS = observed expected result; FAIL = demonstrated mismatch; BLOCKED = a needed environment/tool is unavailable; UNVERIFIED = not exercised sufficiently. A successful build does not convert any browser or hosted gap into PASS.
 
+## A backup script — 2026-09-18
+
+OC-1, closed. Branch `claude/cal-backup-script`; decisions D-CAL-15/16. The off-host half is
+O-4/P-4 in the sibling leaderboard repository.
+
+| Check | Result |
+|---|---|
+| Runs | **PASS** — `events=2 teams=0 sales=0 ownership=0 audit=129`, 2,621,440 bytes written to `~/backups/ecgc-calcutta/`, mode 600 |
+| Verification | **PASS** — `integrity_check` plus referential checks: no sale pointing at a missing team, no ownership row pointing at a missing sale |
+| Under cron's environment | **PASS** — clean under `env -i PATH=/usr/bin:/bin`, which is where a nightly job usually dies |
+| Leaves no sidecars | **PASS** — verification runs against a scratch copy; `~/backups` holds zero `-wal`/`-shm` files after repeated runs |
+| Off-host | **PASS** — replicated to `//tanner-z390/Backups/ecgc-backups/ecgc-calcutta`, checksummed there and read back |
+| Scheduled | 02:45 nightly, before the 03:15 replication |
+
+**Not covered**: a restore rehearsal. The snapshots are proven to open, on this host and on the
+desktop; nobody has yet rebuilt a running container from one.
+
 ## The fifty-team two-day fixture — 2026-09-18, merged and deployed
 
 Branch `claude/cal-demo-50`, off `main` @ `bd79867`. WC-7, the Calcutta half of the owner's
