@@ -1,5 +1,12 @@
 # Current state — 2026-09-18 UTC
 
+## On `main`, not deployed — 2026-09-19, afternoon
+
+- **Four smaller items landed** (OC-5 keyboard-reachable tables, OC-7 no idle leaderboard probe, WC-4 the
+  owner can delete an event — never one holding settlement records unless it is a demo — and OC-9 the desk
+  no longer hydrates from a value the server cannot see), plus a repaired local-user acceptance fixture.
+  Rehearsed signed in on a candidate image built from the branch; merged. The next release carries them.
+
 ## On production now — 2026-09-19, 14:45 UTC
 
 - **A realistic test event, by the owner's decision.** The real event will not run here this weekend.

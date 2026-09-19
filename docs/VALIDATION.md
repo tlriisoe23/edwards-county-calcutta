@@ -24,6 +24,14 @@ the branch; not merged, not deployed** — the live container still runs `868318
 | `npm run test:console` | **NOT RUN** — it builds Docker images; excluded from this task by instruction. The console rehearsal's two carve-outs were removed, so its next run is the check that OC-5 and OC-7 stay fixed on a real image |
 | Production | **UNVERIFIED** — nothing here has been merged or deployed; the live container is unchanged |
 
+## The small-fixes batch, rehearsed on its candidate image — 19 September 2026
+
+Branch `claude/cal-small-fixes` (OC-5, OC-7, WC-4, OC-9 and a repaired acceptance fixture; its own section
+above holds the suite counts). `npm run test:console` built the candidate from the branch and ran **43**
+signed-in checks against a migrated copy of the newest backup, now carrying **nothing**: the sales table's
+scroll region is focusable and the Teams tab no longer probes a leaderboard that is not there. Merged to
+`main`; not deployed.
+
 ## Local logins by username — 19 September 2026
 
 Branch `claude/cal-local-users-username`. Decision D-CAL-25; the owner's items are WC-2 and the report
@@ -33,7 +41,7 @@ rehearsal below drove — see [VM-DEPLOYMENT.md](VM-DEPLOYMENT.md).
 | Check | Result |
 |---|---|
 | The defect, reproduced first | **FAIL on the deployed `b2f583e`, on a copy** — a local login created on the copy signed in (303) and then got 403 from `GET /api/admin` and from every write: `identity()` never granted a local account operator rights |
-| Portable storage and sign-in | **PASS** — `tests/portable-local-users.mjs`: an email-keyed table from before is rebuilt in place (the address becomes a lower-case username and stays as the email); create by username with or without an email; sign in by username, case-insensitively, or by the account's email; duplicates of either refused; a one-character username, spaces and a malformed email refused; disabling ends an open session; reset; the real form asks for a username or email and still accepts the older `email` field. `tests/portable-auth.mjs` (owner recovery) unchanged and passing; `npm run test:portable` all four |
+| Portable storage and sign-in | **PASS** — `tests/portable-local-users.mjs`: an email-keyed table from before is rebuilt in place (the address becomes a lower-case username and stays as the email); create by username with or without an email; sign in by username, case-insensitively, or by the account's email; duplicates of either refused; a one-character username, spaces and a malformed email refused; disabling ends an open session; reset; the real form asks for a username or email and still accepts the older `email` field. `tests/portable-auth.mjs` (owner recovery) unchanged and passing; `npm run test:portable` all four — **but against a stale portable bundle**: that harness runs the last `build:portable` output, which predated this change, so its acceptance run could not see that this change had broken the local-user fixture in `tests/acceptance.mjs` (it still sent an email and no username). Found and repaired by the small-fixes batch the same day; the candidate-image rehearsal below, which builds from the tree, was the real evidence |
 | The desk, signed in, on the candidate image | **FAIL, then PASS** — the first `npm run test:console` run **failed**: the new login was not listed, because the copy still had the email-keyed table — the container never migrates at start, a deploy runs `portable/migrate.mjs` after the rebuild, and the rehearsal did not. That run's result was **recorded as a pass and merged before it was read**, which this row corrects. The rehearsal now applies `migrate.mjs` to its copy with the same image, as a deploy does; the second run: **43 checks** — through Tools → Local Users the owner typed a short password and was told how many characters were still to go, filled the form, found the create button live, made the login and saw it listed; that login then signed in through the real form and reached the desk as an operator, never the owner |
 | **This change carries a schema migration** | `portable_local_users` is rebuilt in place by `portable/migrate.mjs` (email-keyed → username-keyed, addresses kept as the optional email). The deploy must run `migrate.mjs` in the rebuilt container **before** anyone signs in locally, and record its output, as every deploy record here does. Production holds no local users today, so the rebuild converts an empty table |
 | Suites | tsc clean; eslint at the 77 baseline; `tests/acceptance.mjs` on the dev server |
