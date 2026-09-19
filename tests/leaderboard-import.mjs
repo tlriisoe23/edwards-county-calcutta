@@ -256,6 +256,7 @@ check(!broken.ok() || brokenBody.note || brokenBody.rows?.length === 0,
     await up.goto(base + '/admin?event=' + made.eventId);
     await up.waitForTimeout(1200);
     const button = up.getByRole('button', { name: 'Import event from the leaderboard' });
+    await button.waitFor({ timeout: 20000 }).catch(() => {});
     check(await button.count() === 1, 'the desk offers it beside New event');
     await button.click();
     const dialog = up.getByRole('dialog');
