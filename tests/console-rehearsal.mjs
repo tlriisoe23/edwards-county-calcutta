@@ -219,7 +219,7 @@ try {
   for (const [path, width, height, label] of [["/", 1440, 1000, "public"], ["/", 390, 844, "public-phone"], [`/tv?event=${served.id}`, 1920, 1080, "tv"]]) {
     const c = await browser.newContext({ viewport: { width, height }, reducedMotion: "reduce" });
     const p = await c.newPage();
-    const errors = [], failed = [];
+    const errors = [];
     p.on("pageerror", (e) => errors.push(String(e)));
     await p.goto(base + path);
     await p.waitForTimeout(1500);
