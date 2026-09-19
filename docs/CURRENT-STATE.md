@@ -9,7 +9,9 @@
 - **Local logins are usernames, and they work** (WC-2, D-CAL-25): Tools → Local Users takes a username
   and an optional email, the create button is always live and says what is missing, and a local login
   now reaches the desk as an operator — on the deployed image it never had. Disabling ends sessions.
-  On `main`, validated, **not deployed**.
+  On `main`, validated (43 signed-in checks on the candidate image, after a first run that failed on an
+  un-migrated copy), **not deployed** — and **it carries a schema migration**: `portable/migrate.mjs`
+  must run in the rebuilt container before anyone signs in locally.
 
 ## Tournament eve — 2026-09-19
 
