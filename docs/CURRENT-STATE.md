@@ -2,6 +2,13 @@
 
 ## Deployed — 2026-09-19, 20:30 UTC
 
+- **Production data after the release, in the owner's session** (20:40 UTC): the stale *Edwards County Calcutta
+  Invitational* row (auction time already past, no teams, no sales) was deleted with the new *Delete event*
+  action — the picker now holds the real *2 Day 2 Man* event and the test event; the test event's field was
+  brought over from the leaderboard once more, so its 33 unsold teams now carry their leaderboard ids while
+  the 16 sold and the one on the block were left alone, as the import promises; and its number label was
+  set to *Pop*.
+
 - **`main` @ `953e48a` is live**, run by the owner with `scripts/release.sh afternoon`; the units below are
   all on production now, with `drizzle/0002` applied. Rollback image `ecgc-calcutta:pre-afternoon-20260919`;
   see [VM-DEPLOYMENT.md](VM-DEPLOYMENT.md).
