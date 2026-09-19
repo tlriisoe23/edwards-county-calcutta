@@ -1,17 +1,25 @@
 # Current state — 2026-09-18 UTC
 
+## Deployed — 2026-09-19, 14:14 UTC
+
+- **`main` @ `8683183` is live**, run by the owner with `scripts/release.sh localusers`, healthy in
+  under a second, the leaderboard untouched. It carries the event created from the leaderboard
+  (WC-10), local logins by username that actually reach the desk (WC-2, with the table migration
+  applied — production had no local users), and the working Setup steps button on the compact console
+  (OC-6, so the Compact-view workaround is no longer needed). Rollback image
+  `ecgc-calcutta:pre-localusers-20260919`; see [VM-DEPLOYMENT.md](VM-DEPLOYMENT.md).
+
 ## Requested and built the same night — 2026-09-19
 
 - **The event is created from the leaderboard** (WC-10, D-CAL-24): *Import event from the leaderboard*
   beside *New event* reads the tournament over the private wire — name, course, dates, flights, every
   team with its pop — previews it and creates the event in one click, asking only for the auction time.
-  On `main`, validated (52 import checks, build), **not deployed**.
+  On `main`, validated (52 import checks, build) — **deployed 14:14 UTC**.
 - **Local logins are usernames, and they work** (WC-2, D-CAL-25): Tools → Local Users takes a username
   and an optional email, the create button is always live and says what is missing, and a local login
   now reaches the desk as an operator — on the deployed image it never had. Disabling ends sessions.
   On `main`, validated (43 signed-in checks on the candidate image, after a first run that failed on an
-  un-migrated copy), **not deployed** — and **it carries a schema migration**: `portable/migrate.mjs`
-  must run in the rebuilt container before anyone signs in locally.
+  un-migrated copy) — **deployed 14:14 UTC**, the migration applied in the rebuilt container.
 
 ## Tournament eve — 2026-09-19
 
@@ -20,7 +28,7 @@
   checks and found OC-5. The dress rehearsal across both products found **OC-6** (the compact
   console's *Setup steps* button is dead — use the *Compact view* switch) and **OC-8** (a team renamed
   on the leaderboard re-imports as a new team) — both have a workaround for auction night, recorded in
-  [TASK-TRACKER.md](TASK-TRACKER.md). OC-6 is fixed on `main` (`7bb48c9`), validated on the dev server, **not deployed**; the live container still runs `b2f583e`, so the Compact view switch remains the workaround on the night unless a deploy is authorised.
+  [TASK-TRACKER.md](TASK-TRACKER.md). OC-6 is fixed on `main` (`7bb48c9`) and **deployed 2026-09-19 14:14 UTC** in `8683183`.
 
 ## Deployed — 2026-09-19
 

@@ -31,6 +31,40 @@ not synchronize with the VM.
 - Imported 11 tournaments, 59 snapshots and 1 settings row. All 3 application
   tables were compared row-for-row with the source snapshot.
 
+## Redeploy — 2026-09-19 (local logins by username; the event created from the leaderboard)
+
+Authorized by the owner ("yes", then "ok i ran it"): the owner ran `scripts/release.sh localusers`
+from `main` @ `8683183` at 14:14 UTC, because auto mode refused the agent the production step. Deployed
+`8683183`, which carries WC-10 (D-CAL-24), WC-2 (D-CAL-25), OC-6 and the rehearsal fix. **Schema
+migration**: `portable_local_users` rebuilt in place, email-keyed → username-keyed. Production held no
+local users, so an empty table was converted; the post-migration snapshot reads *keyed by username*.
+
+Snapshots by the repository's own script: `calcutta-20260919T141454.sqlite` before, and
+`calcutta-20260919T141502.sqlite` after the migration (8 KB larger — the rebuilt table), 11 retained.
+Rollback tag `ecgc-calcutta:pre-localusers-20260919` on the previous image (`sha256:8df072de493d…`,
+commit `b2f583e`). The image built by the release is `sha256:ba2c904486143…`, tagged `8683183` and
+`portable` — **the same image ID the signed-in rehearsal drove** (43 checks, VALIDATION.md), because
+nothing in the application tree changed between that candidate and `main`. Recreated, **healthy at
+14:14:56 UTC**; the leaderboard kept its 13-hour uptime.
+
+Production verification (read-only, `scripts/release.sh --verify-only`, 2026-09-19 14:15 UTC):
+
+| Check | Result |
+|---|---|
+| Container | healthy, on `ecgc-calcutta_default` and `ecgc-interconnect` |
+| HTTPS | `/` 200, `/tv` 200, `/api/public` 200, `/admin` 307, anonymous `/api/admin` 403 |
+| Private wire | this container read `http://leaderboard:3000/api/board` in **64 ms**: the demo, 32 flighted rows, 5 flights |
+| Database | post-migration snapshot: `integrity_check` ok; 2 events / 0 flights / 0 teams / 0 sales / 132 audit — unchanged; local users 0, **keyed by username** |
+| Browser | `/` at 1440 and `/tv` at 1920, **zero JavaScript errors** |
+| Not read | the terminal the owner ran the script in was not open to the agent, so `migrate.mjs`'s printed line was not seen; its effect is what the snapshot row above verifies |
+| Blocked | the operator console was **not exercised signed in on production** — behind Google. For the first time that gap is narrowed to the route and Google themselves: the deployed image is the one `npm run test:console` drove signed in, through Tools → Local Users and as the login it made |
+
+Rollback: `docker tag ecgc-calcutta:pre-localusers-20260919 ecgc-calcutta:portable`, then
+`compose up -d --no-deps app`. Take a fresh snapshot first. **Rolling back this release does not undo
+the migration**: the previous image reads `portable_local_users` by `email`, which the rebuilt table
+no longer has as its key; with no local users in production that costs nothing today, but a rollback
+after local logins are created would need the table restored from the pre-migration snapshot as well.
+
 ## Routing and authentication
 
 Both approved public hostnames route through existing Cloudflare tunnel ecgc-preview

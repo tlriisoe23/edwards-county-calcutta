@@ -5,7 +5,8 @@
 ## Local logins by username — 19 September 2026
 
 Branch `claude/cal-local-users-username`. Decision D-CAL-25; the owner's items are WC-2 and the report
-that the create button never activated. Not deployed.
+that the create button never activated. **Deployed 2026-09-19 14:14 UTC** in `8683183`, the same image the
+rehearsal below drove — see [VM-DEPLOYMENT.md](VM-DEPLOYMENT.md).
 
 | Check | Result |
 |---|---|
@@ -17,7 +18,8 @@ that the create button never activated. Not deployed.
 
 ## The event created from the leaderboard — 19 September 2026
 
-Branch `claude/cal-event-from-leaderboard`. Decision D-CAL-24; the owner's request is WC-10. Not deployed.
+Branch `claude/cal-event-from-leaderboard`. Decision D-CAL-24; the owner's request is WC-10. **Deployed
+2026-09-19 14:14 UTC** in `8683183` — see [VM-DEPLOYMENT.md](VM-DEPLOYMENT.md).
 
 | Check | Result |
 |---|---|
