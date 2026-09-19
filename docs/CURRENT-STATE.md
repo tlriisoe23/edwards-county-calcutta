@@ -6,6 +6,10 @@
   beside *New event* reads the tournament over the private wire — name, course, dates, flights, every
   team with its pop — previews it and creates the event in one click, asking only for the auction time.
   On `main`, validated (52 import checks, build), **not deployed**.
+- **Local logins are usernames, and they work** (WC-2, D-CAL-25): Tools → Local Users takes a username
+  and an optional email, the create button is always live and says what is missing, and a local login
+  now reaches the desk as an operator — on the deployed image it never had. Disabling ends sessions.
+  On `main`, validated, **not deployed**.
 
 ## Tournament eve — 2026-09-19
 

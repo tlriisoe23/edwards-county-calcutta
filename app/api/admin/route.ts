@@ -20,10 +20,10 @@ function requireThat(condition: any, message: string) { if (!condition)
 // precedent above. The plain Sites/ChatGPT build keeps these throwing stubs so it still compiles;
 // that deployment target is not production (see AGENTS.md) and local accounts are out of scope for it.
 function portableOnly(): never { throw Error("Local accounts require the portable deployment."); }
-const createLocalUser: (email: string, displayName: string, password: string, createdBy: string) => void = portableOnly;
-const listLocalUsers: () => { email: string; display_name: string; enabled: number; created_by: string; created_at: string }[] = portableOnly;
-const setLocalUserEnabled: (email: string, enabled: boolean) => void = portableOnly;
-const resetLocalUserPassword: (email: string, password: string) => void = portableOnly;
+const createLocalUser: (username: string, displayName: string, password: string, createdBy: string, email?: string) => void = portableOnly;
+const listLocalUsers: () => { username: string; email: string; display_name: string; enabled: number; created_by: string; created_at: string }[] = portableOnly;
+const setLocalUserEnabled: (username: string, enabled: boolean) => void = portableOnly;
+const resetLocalUserPassword: (username: string, password: string) => void = portableOnly;
 // PORTABLE-STUB-END
 function settingsSchema() { return z.object({ theme: z.enum(themeIds).optional(), trackBidder: z.boolean(), quickStarts: z.array(cents.refine(v => v > 0)).min(1).max(8), buybackMode: z.enum(["off", "calculate", "track"]), buybackSuggested: percent, minBid: cents, increment: cents.refine(v => v > 0), quickIncrements: z.array(cents.refine(v => v > 0)).min(1).max(8), poolMode: z.enum(["separate", "combined", "custom"]), deductionType: z.enum(["none", "percent", "fixed"]), deduction: cents, buybackMax: percent, buybackPriceMode: z.enum(["proportional", "fixed"]), buybackFixed: cents, buybackDeadline: z.string().max(40), autoAdvance: z.boolean(), showBidder: z.boolean(), showBid: z.boolean(), showBuyer: z.boolean(), showSalePrice: z.boolean(), showUpcoming: z.boolean(), showHandicap: z.boolean(), showPayouts: z.boolean(), showBuyback: z.boolean(), showTotalPool: z.boolean(), showFlightPools: z.boolean() }).superRefine((s, c) => { if (s.deductionType === "percent" && s.deduction > 10000)
     c.addIssue({ code: "custom", message: "Deduction cannot exceed 100%." });
@@ -157,9 +157,11 @@ export async function POST(request: Request) {
         }
         if (action === "local_user_create" || action === "local_user_set_enabled" || action === "local_user_reset_password") {
             requireThat(who.owner, "Only the owner can manage local user accounts.");
-            const email = z.string().trim().email().max(254).parse(p.email).toLowerCase();
-            requireThat(!ownerEmails().includes(email), "The owner cannot also have a separate local login.");
-            const auditAction = action + " " + email;
+            const username = z.string().trim().min(2).max(40).regex(/^[a-z0-9][a-z0-9._-]{1,39}$/i, "Use a username of 2–40 letters, digits, dots, dashes or underscores.").parse(p.username).toLowerCase();
+            const email = z.string().trim().max(254).default("").parse(p.email ?? "").toLowerCase();
+            requireThat(!email || z.string().email().safeParse(email).success, "That email address does not look right.");
+            requireThat(!ownerEmails().includes(username) && !ownerEmails().includes(email), "The owner cannot also have a separate local login.");
+            const auditAction = action + " " + username;
             const replay = async () => {
                 const prior = await statement('SELECT actor,action FROM audit WHERE id=?', requestId).first<Row>();
                 if (!prior)
@@ -183,25 +185,25 @@ export async function POST(request: Request) {
                 const password = z.string().min(14, "Use a password between 14 and 1024 characters.").max(1024).parse(p.password);
                 requireThat(password === p.confirmPassword, "Passwords do not match.");
                 try {
-                    createLocalUser(email, displayName, password, who.email);
+                    createLocalUser(username, displayName, password, who.email, email);
                 }
                 catch (e) {
                     if (await replay())
                         return Response.json({ ok: true, duplicate: true });
                     throw e;
                 }
-                after = { email, displayName };
+                after = { username, email, displayName };
             }
             else if (action === "local_user_set_enabled") {
                 const enabled = z.boolean().parse(p.enabled);
-                setLocalUserEnabled(email, enabled);
-                after = { email, enabled };
+                setLocalUserEnabled(username, enabled);
+                after = { username, enabled };
             }
             else {
                 const password = z.string().min(14, "Use a password between 14 and 1024 characters.").max(1024).parse(p.password);
                 requireThat(password === p.confirmPassword, "Passwords do not match.");
-                resetLocalUserPassword(email, password);
-                after = { email };
+                resetLocalUserPassword(username, password);
+                after = { username };
             }
             await insert("audit", { id: requestId, eventId: auditEvent!.id, actor: who.email, action: auditAction, after: JSON.stringify(after), createdAt: now }).run();
             return Response.json({ ok: true });

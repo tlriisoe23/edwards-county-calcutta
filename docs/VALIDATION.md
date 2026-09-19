@@ -2,6 +2,18 @@
 
 2026-09-14 UTC · baseline `dfab14906c04b5a6d99ffffbfba4249883750eae`. Reports are local audit evidence, not production sign-off. PASS = observed expected result; FAIL = demonstrated mismatch; BLOCKED = a needed environment/tool is unavailable; UNVERIFIED = not exercised sufficiently. A successful build does not convert any browser or hosted gap into PASS.
 
+## Local logins by username — 19 September 2026
+
+Branch `claude/cal-local-users-username`. Decision D-CAL-25; the owner's items are WC-2 and the report
+that the create button never activated. Not deployed.
+
+| Check | Result |
+|---|---|
+| The defect, reproduced first | **FAIL on the deployed `b2f583e`, on a copy** — a local login created on the copy signed in (303) and then got 403 from `GET /api/admin` and from every write: `identity()` never granted a local account operator rights |
+| Portable storage and sign-in | **PASS** — `tests/portable-local-users.mjs`: an email-keyed table from before is rebuilt in place (the address becomes a lower-case username and stays as the email); create by username with or without an email; sign in by username, case-insensitively, or by the account's email; duplicates of either refused; a one-character username, spaces and a malformed email refused; disabling ends an open session; reset; the real form asks for a username or email and still accepts the older `email` field. `tests/portable-auth.mjs` (owner recovery) unchanged and passing; `npm run test:portable` all four |
+| The desk, signed in, on the candidate image | **PASS** — `npm run test:console` built `ecgc-calcutta:candidate` from this tree and ran **** checks against a copy of the newest backup: through Tools → Local Users the owner typed a short password and was told how many characters were still to go, filled the form, found the create button live, made the login and saw it listed; that login then signed in through the real form and reached the desk as an operator, never the owner |
+| Suites | tsc clean; eslint at the 77 baseline; `tests/acceptance.mjs` on the dev server |
+
 ## The event created from the leaderboard — 19 September 2026
 
 Branch `claude/cal-event-from-leaderboard`. Decision D-CAL-24; the owner's request is WC-10. Not deployed.
