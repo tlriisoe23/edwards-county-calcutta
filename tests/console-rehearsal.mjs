@@ -140,16 +140,13 @@ try { ({ chromium } = await import(process.env.UI3_PLAYWRIGHT_MODULE || "playwri
 catch { throw Error("playwright is not a dependency here (OC-3): set UI3_PLAYWRIGHT_MODULE to an installed copy, e.g. ../ecgc-leaderboard/node_modules/playwright/index.mjs"); }
 const browser = await chromium.launch({ headless: true });
 const violations = [], carried = new Set();
-// The sales table's sideways scroll region is not keyboard-focusable at phone
-// width — found by this rehearsal's first run on 2026-09-19 and recorded as
-// OC-5. It is reported as carried rather than dropped, so it cannot quietly
-// become the thing that hides a new finding, and if it is ever fixed this stops
-// matching.
-const known = (v) => v.id === "scrollable-region-focusable" && v.nodes.every((n) => /overflow-x-auto/.test(n));
+// OC-5 is fixed: the sideways-scrolling table wrappers are focusable named
+// regions, so the carve-out that used to carry scrollable-region-focusable is
+// gone and this rehearsal fails again if it comes back.
 const axe = async (page, label) => {
   await page.addScriptTag({ path: "node_modules/axe-core/axe.min.js" });
   const found = await page.evaluate(async () => (await window.axe.run()).violations.map((v) => ({ id: v.id, impact: v.impact, nodes: v.nodes.map((n) => n.target.join(" ")) })));
-  for (const v of found) { if (known(v)) carried.add(`axe ${v.id} on the sideways-scrolling table (${label}), OC-5`); else violations.push({ label, ...v }); }
+  for (const v of found) violations.push({ label, ...v });
 };
 const shot = (page, label) => page.screenshot({ path: `${directory}/${label.toLowerCase().replace(/\W+/g, "-")}.png`, fullPage: true });
 const steps = [/^Event & rules/, /^Teams & flights/, /^Buyers/, /^TV \/ Display Settings/];
