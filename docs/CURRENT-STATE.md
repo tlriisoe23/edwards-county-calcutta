@@ -1,5 +1,14 @@
 # Current state — 2026-09-18 UTC
 
+## On production now — 2026-09-19, 14:45 UTC
+
+- **A realistic test event, by the owner's decision.** The real event will not run here this weekend.
+  In the owner's signed-in session, *Import event from the leaderboard* made **Edwards County Two Day
+  Two Man (test data)** from the leaderboard's live board in one click — 4 flights, 50 teams with pops,
+  dates 19–20 September, auction 19 Sep 18:00, money rules copied from *Edwards County 2 Day 2 Man
+  Calcutta* — the feature's first use in production. Eight buyers added. **No sales yet**: the harness
+  refused the agent that write; the owner runs the lots. The real *2 Day 2 Man* event row is untouched.
+
 ## Deployed — 2026-09-19, 14:14 UTC
 
 - **`main` @ `8683183` is live**, run by the owner with `scripts/release.sh localusers`, healthy in
