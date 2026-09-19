@@ -283,6 +283,11 @@ export async function POST(request: Request) {
             return Response.json({
                 ok: true,
                 event: { name: event!.name, slug: event!.slug, locked: !!event!.calcutta?.locked },
+                // In the leaderboard's own order, so flights created from this
+                // list come out in the order the board prints them rather than
+                // alphabetically or in whatever order the field happened to be
+                // ranked.
+                flights: ((event!.flights ?? []) as string[]).filter(Boolean),
                 events: ((board.events ?? []) as Row[]).map((e) => ({ slug: e.slug, name: e.name, status: e.status })),
                 rows,
                 // Said plainly rather than left as an empty list: an event whose
@@ -309,6 +314,11 @@ export async function POST(request: Request) {
         // What an import did, reported back so the operator sees it rather than
         // guessing from a row count.
         let importCreated = 0, importUpdated = 0, importRefused: string[] = [];
+        // Flights this request created, handed back so the caller can resolve
+        // rows against them immediately. Waiting for the next data refresh
+        // instead is a race, and the losing side of it silently leaves fifty
+        // rows saying "pick a flight" right after creating their flights.
+        const importedFlights: { id: string; name: string }[] = [];
         let before = JSON.stringify(data);
         const team = (tid: string) => { const t = data.teams.find((t: Row) => t.id === tid); requireThat(t, "Team not found."); return t; };
         const buyer = (bid: string) => { const b = data.buyers.find((b: Row) => b.id === bid); requireThat(b, "Buyer not found."); return b; };
@@ -329,6 +339,36 @@ export async function POST(request: Request) {
                     requireThat(!data.teams.some((t: Row) => t.finish), "Clear finishing positions before changing the pool configuration.");
                 cmds.push(update("events", { ...v, settings: JSON.stringify({ ...v.settings, theme: v.settings.theme ?? s.theme }) }, "id", eventId));
                 if (!v.settings.trackBidder) cmds.push(update("auction_state", { buyerId: null }, "eventId", eventId));
+                break;
+            }
+            // Create the flights an import needs but this event does not have
+            // (WC-6). Without it the remedy for "no flight here is called
+            // Championship" is to retype five names by hand, exactly, in the
+            // right order — which is the sort of transcription this import
+            // exists to remove.
+            //
+            // Only ever additive: a name that already exists is left completely
+            // alone, so this can never rename, recolour or re-pool a flight
+            // teams have been bought in.
+            case "flight_import": {
+                const names = z.array(text).min(1).max(30).parse(p.names);
+                const here = new Set(data.flights.map((f: Row) => String(f.name).trim().toLowerCase()));
+                const missing = names.filter((n, i) => !here.has(n.trim().toLowerCase()) && names.findIndex(m => m.trim().toLowerCase() === n.trim().toLowerCase()) === i);
+                requireThat(missing.length, "Every one of those flights already exists here.");
+                requireThat(data.flights.length + missing.length <= 30, "An event supports up to 30 flights.");
+                // The same palette the demo fixtures use, so a board built this
+                // way looks like one built by hand.
+                const palette = ["#b79a59", "#889b75", "#6f8aa6", "#9b7f95", "#8a9b6f", "#a6866f"];
+                missing.forEach((name, i) => {
+                    const fid = crypto.randomUUID();
+                    recordId = fid;
+                    cmds.push(insert("flights", { id: fid, eventId, name, color: palette[(data.flights.length + i) % palette.length], ownPool: 1, order: data.flights.length + i }));
+                    importedFlights.push({ id: fid, name });
+                    // Same three places `flight_save` gives a flight added by
+                    // hand: this must not produce a flight that settles
+                    // differently just because it arrived differently.
+                    [5000, 3000, 2000].forEach((percent, place) => cmds.push(insert("payout_rules", { id: crypto.randomUUID(), eventId, poolId: fid, place: place + 1, percent })));
+                });
                 break;
             }
             case "flight_save": {
@@ -632,7 +672,7 @@ export async function POST(request: Request) {
         }
         cmds.push(insert("audit", { id: requestId, eventId, actor: who.email, action, recordId, before: action === "undo" ? null : before, after: JSON.stringify(p), createdAt: now }), statement('DELETE FROM mutation_guards WHERE id=?', requestId));
         await db().batch(cmds);
-        return Response.json({ ok: true, recordId, revision: revision + 1, ...(action === "team_import" ? { imported: { created: importCreated, updated: importUpdated, refused: importRefused } } : {}) });
+        return Response.json({ ok: true, recordId, revision: revision + 1, ...(action === "team_import" ? { imported: { created: importCreated, updated: importUpdated, refused: importRefused } } : {}), ...(importedFlights.length ? { flights: importedFlights } : {}) });
     }
     catch (error) {
         console.error("Auction write rejected", error);

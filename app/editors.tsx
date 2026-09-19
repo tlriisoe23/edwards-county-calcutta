@@ -21,12 +21,28 @@ export default function Editors({ modal, setModal, data, busy, act, setBuyerId }
     // same preview the paste box fills, so everything after this point — the
     // per-row problems, the edits, the atomic commit — is one path, not two.
     const [pulling, setPulling] = useState(false);
-    async function importFromLeaderboard() {
+    // Flights the leaderboard uses that this event does not have, in the
+    // leaderboard's own order. Offered rather than complained about: telling an
+    // operator to go and retype five names exactly is the transcription this
+    // import exists to remove.
+    const [missingFlights, setMissingFlights] = useState<string[]>([]);
+    // Which leaderboard event to read. Without this the import silently means
+    // "whatever is on the leaderboard's board right now", which is usually right
+    // and occasionally very wrong — a club running two events, or a Calcutta for
+    // one that is not the one being shown.
+    const [source, setSource] = useState('');
+    const [sources, setSources] = useState<Row[]>([]);
+    async function importFromLeaderboard(slug = source) {
         setPulling(true);
         try {
-            const result = await act('leaderboard_field', {}, { quiet: true });
+            const result = await act('leaderboard_field', slug ? { slug } : {}, { quiet: true });
             if (!result) return;
-            if (result.note) { toast.error(result.note); return; }
+            if (result.events?.length) setSources(result.events as Row[]);
+            if (result.event?.slug) setSource(result.event.slug as string);
+            // A note means it read something with nothing in it. Keep the picker
+            // on screen with the reason attached, rather than closing the door:
+            // the answer is usually another event, one click away.
+            if (result.note) { setPreview([]); setMissingFlights([]); toast.error(result.note); return; }
             const rows = (result.rows as Row[]).map((r, i) => ({
                 name: r.name, players: r.players, flightText: r.flight,
                 flightId: flights.find((f: Row) => f.name.toLowerCase() === String(r.flight).toLowerCase())?.id || '',
@@ -35,9 +51,15 @@ export default function Editors({ modal, setModal, data, busy, act, setBuyerId }
             setPreview(rows);
             // Fifty rows each saying "pick a flight" is not a useful way to learn
             // that the flights have different names here. Say it once, up front.
-            const missing = [...new Set(rows.filter(r => !r.flightId).map(r => r.flightText))].filter(Boolean);
-            if (missing.length) toast.error(`No flight here is called ${missing.join(' or ')}. Add ${missing.length === 1 ? 'it' : 'them'} under Event & rules, then import again.`);
-            else toast.success(`${rows.length} teams from ${result.event.name}${result.event.locked ? '' : ' — these flights are not locked there yet'}.`);
+            // In the leaderboard's order, not the order the field happened to
+            // be ranked in, so created flights come out the way its board reads.
+            const used = new Set(rows.filter(r => !r.flightId).map(r => String(r.flightText).toLowerCase()));
+            const missing = ((result.flights as string[]) || [])
+                .filter(f => used.has(String(f).toLowerCase()))
+                .concat([...new Set(rows.filter(r => !r.flightId).map(r => r.flightText as string))]
+                    .filter(f => f && !((result.flights as string[]) || []).some(x => String(x).toLowerCase() === String(f).toLowerCase())));
+            setMissingFlights(missing);
+            if (!missing.length) toast.success(`${rows.length} teams from ${result.event.name}${result.event.locked ? '' : ' — these flights are not locked there yet'}.`);
         } finally { setPulling(false); }
     }
     function parseImport() { try {
@@ -47,7 +69,7 @@ export default function Editors({ modal, setModal, data, busy, act, setBuyerId }
         toast.error((err as Error).message);
     } }
     return <Dialog open={!!modal} onOpenChange={open => { if (!open && !busy)
-        setModal(null); }}><DialogContent className={modal?.type === 'import' ? 'wide-dialog' : ''}><DialogHeader><DialogTitle>{({ team: modal?.id ? 'Edit team' : 'Add a team', buyer: modal?.id ? 'Edit buyer' : 'Add a buyer', event: 'Create an event', import: 'Bulk team entry', sale: 'Correct sale', buyback: 'Record team buyback', flight: 'Flight details' } as any)[modal?.type || '']}</DialogTitle><DialogDescription>{modal?.type === 'import' ? 'Paste a spreadsheet or choose CSV. Review and correct each row before importing.' : modal?.type === 'buyback' ? 'Buyback consideration is arranged directly with the purchaser and never increases the auction pool.' : 'Changes are saved to the event and recorded in its audit trail.'}</DialogDescription></DialogHeader>
+        setModal(null); }}><DialogContent className={modal?.type === 'import' ? 'wide-dialog' : ''}><DialogHeader><DialogTitle>{({ team: modal?.id ? 'Edit team' : 'Add a team', buyer: modal?.id ? 'Edit buyer' : 'Add a buyer', event: 'Create an event', import: 'Import teams', sale: 'Correct sale', buyback: 'Record team buyback', flight: 'Flight details' } as any)[modal?.type || '']}</DialogTitle><DialogDescription>{modal?.type === 'import' ? 'Read the flighted field straight from the leaderboard, or paste a spreadsheet or CSV. Every row is shown for review before anything is saved.' : modal?.type === 'buyback' ? 'Buyback consideration is arranged directly with the purchaser and never increases the auction pool.' : 'Changes are saved to the event and recorded in its audit trail.'}</DialogDescription></DialogHeader>
  {modal?.type === 'team' && <form className="dialog-form" onSubmit={async (ev) => { ev.preventDefault(); const { type, ...v } = modal; if (await act('team_save', { ...v, players: v.players.map((p: string) => p.trim()).filter(Boolean), handicap: v.handicap === '' || v.handicap == null ? null : Number(v.handicap), seed: v.seed === '' || v.seed == null ? null : Number(v.seed), order: Number(v.order) }))
         setModal(null); }}><Field label="Team name"><Input required value={modal.name} onChange={ev => modalField('name', ev.target.value)}/></Field><div className="form-grid">{[0, 1, 2, 3].map(i => <Field label={'Player ' + (i + 1) + (i > 0 ? ' (optional)' : '')} key={i}><Input required={i === 0} value={modal.players[i] || ''} onChange={ev => { const names = [...modal.players]; names[i] = ev.target.value; modalField('players', names); }}/></Field>)}</div><Field label="Flight"><Choice label="Team flight" value={modal.flightId} items={flightOptions} onChange={(v: string) => modalField('flightId', v)}/></Field><div className="form-grid"><Field label="Handicap / index"><Input type="number" step=".1" value={modal.handicap ?? ''} onChange={ev => modalField('handicap', ev.target.value)}/></Field><Field label="Rank / seed"><Input type="number" min="1" value={modal.seed ?? ''} onChange={ev => modalField('seed', ev.target.value)}/></Field></div><Field label="Auction order (first team is 1)"><Input type="number" min="1" value={Number(modal.order) + 1} onChange={ev => modalField('order', Number(ev.target.value) - 1)}/></Field><Field label="Public notes"><Textarea value={modal.notes} onChange={ev => modalField('notes', ev.target.value)}/></Field><Field label="Private operator notes"><Textarea value={modal.privateNotes} onChange={ev => modalField('privateNotes', ev.target.value)}/></Field><Button disabled={busy || !modal.flightId}>Save team</Button></form>}
  {modal?.type === 'buyer' && <form className="dialog-form" onSubmit={async (ev) => { ev.preventDefault(); const { type, ...v } = modal; const result = await act('buyer_save', v); if (result) {
@@ -66,7 +88,13 @@ export default function Editors({ modal, setModal, data, busy, act, setBuyerId }
         }
         setBulk(await file.text());
         setPreview([]);
-    } }}/><Button variant="outline" onClick={parseImport}>Preview rows</Button><Button disabled={busy || pulling} onClick={importFromLeaderboard}>{pulling ? 'Reading the leaderboard…' : 'Import from the leaderboard'}</Button></div><p className="fine">Columns: team name, player 1, player 2, flight, handicap, optional player 3, optional player 4. Tabs, pipes and quoted CSV are supported.</p>{preview.length > 0 && <><div className="import-preview"><Table><TableHeader><TableRow><TableHead>Team</TableHead><TableHead>Players (one per line)</TableHead><TableHead>Flight</TableHead><TableHead>Index</TableHead><TableHead /></TableRow></TableHeader><TableBody>{preview.map((r, i) => { const problems = issues(r); return <TableRow key={i} className={problems.length ? 'import-row-attention' : ''}><TableCell><Input aria-label={'Import team ' + (i + 1)} aria-invalid={!r.name.trim() || undefined} aria-describedby={problems.length ? 'import-issue-' + i : undefined} value={r.name} onChange={ev => setPreview(rows => rows.map((v, j) => i === j ? { ...v, name: ev.target.value } : v))}/>{problems.length > 0 && <small className="import-issue" id={'import-issue-' + i}>Row {i + 1}: {problems.join(' · ')}</small>}</TableCell><TableCell><Textarea aria-label={'Import players ' + (i + 1)} value={r.players.join('\n')} onChange={ev => setPreview(rows => rows.map((v, j) => i === j ? { ...v, players: ev.target.value.split('\n') } : v))}/></TableCell><TableCell><Choice label={'Import flight ' + (i + 1)} value={r.flightId} items={flightOptions} onChange={(flightId: string) => setPreview(rows => rows.map((v, j) => i === j ? { ...v, flightId } : v))}/></TableCell><TableCell><Input aria-label={'Import index ' + (i + 1)} type="number" step=".1" aria-invalid={Number.isNaN(r.handicap) || undefined} value={Number.isNaN(r.handicap) ? '' : r.handicap ?? ''} onChange={ev => setPreview(rows => rows.map((v, j) => i === j ? { ...v, handicap: ev.target.value === '' ? null : Number(ev.target.value) } : v))}/></TableCell><TableCell><Button variant="ghost" onClick={() => setPreview(rows => rows.filter((_, j) => i !== j))}>Remove</Button></TableCell></TableRow>; })}</TableBody></Table></div><Button disabled={busy || attention > 0} onClick={async () => { const outcome = await act('team_import', { teams: preview.map(v => ({ name: v.name, players: v.players.map((p: string) => p.trim()).filter(Boolean), flightId: v.flightId, handicap: v.handicap, seed: v.seed, notes: v.notes, privateNotes: v.privateNotes })) }); if (outcome) {
+    } }}/><Button variant="outline" onClick={parseImport}>Preview rows</Button><Button disabled={busy || pulling} onClick={() => void importFromLeaderboard()}>{pulling ? 'Reading the leaderboard…' : 'Import from the leaderboard'}</Button></div><p className="fine">Columns: team name, player 1, player 2, flight, handicap, optional player 3, optional player 4. Tabs, pipes and quoted CSV are supported.</p>{sources.length > 1 && <p className="fine">Reading from <select aria-label="Leaderboard event to import from" value={source} onChange={ev => { setSource(ev.target.value); void importFromLeaderboard(ev.target.value); }}>{sources.map((ev: Row) => <option key={ev.slug} value={ev.slug}>{ev.name}{ev.status ? ' · ' + ev.status : ''}</option>)}</select> on the leaderboard.</p>}{missingFlights.length > 0 && <p className="notice">This event has no flight called {missingFlights.join(', ')}. <button type="button" className="notice-link" disabled={busy || pulling} onClick={async () => { const done = await act('flight_import', { names: missingFlights }); if (!done) return;
+        // This dialog commits against the revision it was opened at, so that a
+        // change made elsewhere while it sat open is rejected rather than
+        // silently overwriting. Creating the flights is a change made *by* this
+        // dialog, so it carries its own forward — otherwise the import that
+        // follows is refused as if someone else had moved.
+        modalField('revision', done.revision); const made = new Map((done.flights || []).map((f: Row) => [String(f.name).toLowerCase(), f.id])); setPreview(rows => rows.map(r => r.flightId ? r : { ...r, flightId: made.get(String(r.flightText).toLowerCase()) || '' })); setMissingFlights([]); }}>Create {missingFlights.length === 1 ? 'it' : `all ${missingFlights.length}`} and import</button> — each gets its own pool paying three places, the same as adding one by hand. Existing flights are left alone.</p>}{preview.length > 0 && <><div className="import-preview"><Table><TableHeader><TableRow><TableHead>Team</TableHead><TableHead>Players (one per line)</TableHead><TableHead>Flight</TableHead><TableHead>Index</TableHead><TableHead /></TableRow></TableHeader><TableBody>{preview.map((r, i) => { const problems = issues(r); return <TableRow key={i} className={problems.length ? 'import-row-attention' : ''}><TableCell><Input aria-label={'Import team ' + (i + 1)} aria-invalid={!r.name.trim() || undefined} aria-describedby={problems.length ? 'import-issue-' + i : undefined} value={r.name} onChange={ev => setPreview(rows => rows.map((v, j) => i === j ? { ...v, name: ev.target.value } : v))}/>{problems.length > 0 && <small className="import-issue" id={'import-issue-' + i}>Row {i + 1}: {problems.join(' · ')}</small>}</TableCell><TableCell><Textarea aria-label={'Import players ' + (i + 1)} value={r.players.join('\n')} onChange={ev => setPreview(rows => rows.map((v, j) => i === j ? { ...v, players: ev.target.value.split('\n') } : v))}/></TableCell><TableCell><Choice label={'Import flight ' + (i + 1)} value={r.flightId} items={flightOptions} onChange={(flightId: string) => setPreview(rows => rows.map((v, j) => i === j ? { ...v, flightId } : v))}/></TableCell><TableCell><Input aria-label={'Import index ' + (i + 1)} type="number" step=".1" aria-invalid={Number.isNaN(r.handicap) || undefined} value={Number.isNaN(r.handicap) ? '' : r.handicap ?? ''} onChange={ev => setPreview(rows => rows.map((v, j) => i === j ? { ...v, handicap: ev.target.value === '' ? null : Number(ev.target.value) } : v))}/></TableCell><TableCell><Button variant="ghost" onClick={() => setPreview(rows => rows.filter((_, j) => i !== j))}>Remove</Button></TableCell></TableRow>; })}</TableBody></Table></div><Button disabled={busy || attention > 0} onClick={async () => { const outcome = await act('team_import', { teams: preview.map(v => ({ name: v.name, players: v.players.map((p: string) => p.trim()).filter(Boolean), flightId: v.flightId, handicap: v.handicap, seed: v.seed, notes: v.notes, privateNotes: v.privateNotes })) }); if (outcome) {
         // Say what it did. An import that matches on name can add, update or
         // decline to touch a team, and "imported 50 teams" would describe all
         // three — including the one case that matters, a sold team left alone.
@@ -79,6 +107,7 @@ export default function Editors({ modal, setModal, data, busy, act, setBuyerId }
         setModal(null);
         setBulk('');
         setPreview([]);
+        setMissingFlights([]);
     } }}>Import {preview.length} teams{attention > 0 && ' · ' + attention + (attention === 1 ? ' row needs attention' : ' rows need attention')}</Button></>}</div>}
  {modal?.type === 'sale' && <form className="dialog-form" onSubmit={async (ev) => { ev.preventDefault(); if (await act('sale_edit', { id: modal.id, amount: Math.round(Number(modal.amount) * 100), buyerId: modal.buyerId, notes: modal.notes }))
         setModal(null); }}><Field label="Sale price"><Input type="number" step=".01" min=".01" required value={modal.amount} onChange={ev => modalField('amount', ev.target.value)}/></Field><Field label="Winning buyer"><Choice label="Winning buyer" value={modal.buyerId} items={buyers.map((b: Row) => ({ value: b.id, label: b.name }))} onChange={(v: string) => modalField('buyerId', v)}/></Field><Field label="Correction notes"><Textarea value={modal.notes} onChange={ev => modalField('notes', ev.target.value)}/></Field><p className="notice">Changing the price recalculates the pool and proportional buyback consideration. Ownership percentages are preserved.</p><Button disabled={busy}>Save correction</Button></form>}
