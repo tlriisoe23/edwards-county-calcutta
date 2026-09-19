@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useSyncExternalStore } from 'react';
 import { Gavel, Plus, Undo2, Pause, Play, ArrowUp, ArrowDown, GripVertical, ExternalLink, Search, Download, Users, Monitor, ShieldCheck, Pencil, MoreHorizontal, LogOut, Circle, CheckCircle2, AlertCircle, ChevronDown, ChevronUp, Wrench, KeyRound, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -131,6 +131,22 @@ function StartAuctionDialog({ open, onOpenChange, busy, start }: { open: boolean
         </DialogContent>
     </Dialog>;
 }
+// The compact-console override lives in localStorage, which exists only in the
+// browser. It is exposed as an external store rather than component state so
+// the server and the hydrating client agree on "auto" and the saved value
+// arrives in the render after hydration (OC-9, D-CAL-29).
+const compactKey = 'calcutta-compact-console';
+type CompactChoice = 'auto' | 'on' | 'off';
+const compactListeners = new Set<() => void>();
+const compactServerChoice = (): CompactChoice => 'auto';
+const readCompact = (): CompactChoice => { try {
+    const saved = localStorage.getItem(compactKey);
+    return saved === 'on' || saved === 'off' ? saved : 'auto';
+} catch { return 'auto'; } };
+const subscribeCompact = (changed: () => void) => { compactListeners.add(changed); window.addEventListener('storage', changed); return () => { compactListeners.delete(changed); window.removeEventListener('storage', changed); }; };
+const writeCompact = (choice: CompactChoice) => { try {
+    localStorage.setItem(compactKey, choice);
+} catch { } for (const changed of compactListeners) changed(); };
 // "3 teams" / "1 team": a confirmation that names what it is about to remove
 // should not do it in the plural when there is one of something.
 const plural = (n: number, noun: string) => `${n} ${noun}${n === 1 ? '' : 's'}`;
@@ -293,15 +309,19 @@ export default function AdminPanel({ data, meta, user, selectedEventId, offline,
     // Compact console: automatic while LIVE/PAUSED (where vertical space matters most), with a
     // persistent manual override. Never derived from or fed back into auction status itself.
     const autoCompact = e?.status === 'LIVE' || e?.status === 'PAUSED';
-    const [compactOverride, setCompactOverride] = useState<'auto' | 'on' | 'off'>(() => { try {
-        const saved = typeof window !== 'undefined' && localStorage.getItem('calcutta-compact-console');
-        return saved === 'on' || saved === 'off' ? saved : 'auto';
-    } catch { return 'auto'; } });
+    // The saved override is a browser value the server cannot see, so it is read
+    // through `useSyncExternalStore` with `compactServerChoice` as the server
+    // snapshot (OC-9). Reading it in a `useState` initialiser made the first
+    // client render disagree with the server's on every signed-in load of the
+    // desk — React error #418, minified, in production. Both saved values
+    // differed visibly: "on" changes the console's layout class, and "off",
+    // which looks identical, still adds the Auto button that appears only once
+    // the override is manual. Hydration now matches the server, and the saved
+    // choice is applied in the render immediately after it.
+    const compactOverride = useSyncExternalStore(subscribeCompact, readCompact, compactServerChoice);
+    const setCompactOverride = writeCompact;
     const [navExpanded, setNavExpanded] = useState(false);
     const compact = compactOverride === 'off' ? false : compactOverride === 'on' ? true : autoCompact;
-    useEffect(() => { try {
-        localStorage.setItem('calcutta-compact-console', compactOverride);
-    } catch { } }, [compactOverride]);
     const prepareBlock = <div className="prepare-block"><div className="prepare-block-head"><h2 className="eyebrow">PREPARE</h2>{phase === 'prepare' && <span className="nav-current-tag">Current phase</span>}<p className="fine">The five things to do before the room fills up.</p></div><PrepareSteps steps={[
     { num: 1, label: 'Event & rules', current: tab === 'rules', help: 'Name the event and set the money rules: minimum bid, increments, house deduction and payouts.', onClick: () => { setAdvancedRequest(0); setTab('rules'); } },
     { num: 2, label: 'Teams & flights', current: tab === 'teams', status: <NavStatus state={teamsFlightsStatus}/>, help: 'Add a flight first, then add or import your teams and players.', onClick: () => { setAdvancedRequest(0); setTab('teams'); } },
