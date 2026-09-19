@@ -97,4 +97,43 @@ await send('event_update',{...eventPayload(),settings:{...d.event.settings,buyba
 await send('team_import',{teams:Array.from({length:96},(_,i)=>({name:'Scale team '+String(i+1).padStart(3,'0'),players:['Fictional '+i+' A','Fictional '+i+' B'],flightId:i%2?f1:f2}))});check(d.teams.length===100,'100-team event imports and persists');
 const scale=await pub();check(scale.b.teams.length===100&&JSON.stringify(scale.b).length<100000,'100-team public board remains under 100 KB');
 const mainEventId=eventId;await send('load_demo');const demoTestId=eventId;await send('reset_demo',{confirmation:'WRONG'},{expected:400});check(d.teams.length===12,'Demo reset requires exact confirmation');await send('reset_demo',{confirmation:'RESET DEMO DATA'});check(d.teams.length===0&&d.sales.length===0&&d.totals.gross===0,'Demo reset clears auction records');await send('undo');check(d.teams.length===12&&d.sales.length===5,'Undo demo reset restores records');
+// WC-4: deleting an event. Create -> delete -> gone; refused while it holds a
+// sale; a demo deletes even when it does; and repeating the request ID is a
+// no-op rather than a second deletion.
+const eventIds=async()=>(await read()).events.map(x=>x.id);
+const doomedName='WC-4 delete rehearsal '+new Date().toISOString();
+await send('create_event',{name:doomedName,course:'Fictional test course'});
+const doomedId=eventId;
+await send('flight_save',{name:'Only Flight',color:'#b79a59',ownPool:true});
+await send('team_save',{name:'Doomed team',players:['Gone One','Gone Two'],flightId:d.flights[0].id});
+await send('buyer_save',{name:'Doomed buyer'});
+const deleted=await send('event_delete',{eventId:doomedId});
+check(deleted.b.deleted===doomedName&&!(await eventIds()).includes(doomedId),'Event delete removes the event and its teams, flights and buyers');
+check((await (await fetch(base+'/api/public?event='+doomedId)).json()).empty===true,'The public board for a deleted event is an empty board, not an error');
+check((await read()).audit.some(a=>a.action==='event_delete '+doomedId),'The record of the deletion survives on a remaining event');
+await send('create_event',{name:'WC-4 refusal rehearsal '+new Date().toISOString(),course:'Fictional test course'});
+const heldId=eventId;
+await send('event_update',{...d.event,settings:defaultSettings});
+await send('flight_save',{name:'Only Flight',color:'#b79a59',ownPool:true});
+await send('team_save',{name:'Sold team',players:['Held One','Held Two'],flightId:d.flights[0].id});
+await send('buyer_save',{name:'Held buyer'});
+await send('status',{status:'LIVE'});
+await send('bid',{teamId:d.teams[0].id,buyerId:d.buyers[0].id,amount:50000});
+await send('sell',{teamId:d.teams[0].id,amount:50000,buyerId:d.buyers[0].id});
+const refused=await send('event_delete',{eventId:heldId},{expected:400});
+check(refused.b.error==='This event holds 1 recorded sale; settlement records are never deleted.','An event holding a sale is refused by name and number');
+eventId=heldId;await read();
+check(d.sales.length===1&&d.teams.length===1,'The refused event is left exactly as it was');
+await send('load_demo');
+const demoDoomedId=eventId;
+check(d.event.demo===1&&d.sales.length===5,'The demo loads with sales of its own');
+await send('event_delete',{eventId:demoDoomedId});
+check(!(await eventIds()).includes(demoDoomedId),'A demo deletes even though it holds sales');
+await send('create_event',{name:'WC-4 replay rehearsal '+new Date().toISOString(),course:'Fictional test course'});
+const replayId=eventId,replayRequest=crypto.randomUUID();
+await send('event_delete',{eventId:replayId},{requestId:replayRequest});
+const remaining=(await eventIds()).length;
+const again=await send('event_delete',{eventId:replayId},{requestId:replayRequest});
+check(again.b.duplicate===true&&(await eventIds()).length===remaining,'Repeating the delete request ID is a no-op, not a second deletion');
+eventId=mainEventId;await read();
 const report={checks,eventIds:[mainEventId,demoTestId],at:new Date().toISOString(),status:'passed'};writeFileSync('.sites-runtime/acceptance-report.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));
