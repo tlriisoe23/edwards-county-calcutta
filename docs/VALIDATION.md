@@ -2,6 +2,38 @@
 
 2026-09-14 UTC · baseline `dfab14906c04b5a6d99ffffbfba4249883750eae`. Reports are local audit evidence, not production sign-off. PASS = observed expected result; FAIL = demonstrated mismatch; BLOCKED = a needed environment/tool is unavailable; UNVERIFIED = not exercised sufficiently. A successful build does not convert any browser or hosted gap into PASS.
 
+## The import's missing half — 2026-09-19
+
+Reported from the owner's first real use, against the deployed `9ba8c15`: *"No flight here is called
+Championship or A Flight or B Flight or C Flight or D Flight. Add them under Event & rules, then
+import again."* Both live Calcutta events had **zero flights** while the leaderboard had five with a
+full field — Championship 7, A 4, B 8, C 8, D 5. Decisions D-CAL-20..22.
+
+| Suite | Result |
+|---|---|
+| Types, build | **PASS** |
+| Lint | **unchanged** — 77 problems (48 errors, 29 warnings), the same figure as `main` |
+| Acceptance / refinement | **PASS** — 58 / 72 |
+| Night-of / UI3 / two-day / reorder | **PASS** — 12/12, 63/63, 19/19, 20 |
+| **Leaderboard import** | **PASS** — **30/30** (was 13): the API behaviours, an event with no flights at all, and the whole path through the dialog |
+
+**Three defects, all of them in the dialog rather than the API**, which is why the suite now drives
+the dialog:
+
+1. Rows were resolved against the flight list as it stood **before** the flights were created, so
+   creating them left all fifty rows still saying "pick a flight". `flight_import` returns what it
+   made and the dialog resolves against that, rather than racing a refresh.
+2. The dialog commits against the revision it was opened at. Creating the flights advanced that
+   revision, so the import immediately after was **rejected 409 on the operator's own click**. The
+   dialog now adopts the revision its own write returned (D-CAL-22).
+3. The pull silently meant "whatever event the leaderboard is showing". Now named and changeable.
+
+End to end from an event with no flights: four flights created in the leaderboard's order, fifty
+teams imported **13 · 13 · 12 · 12**, thirty-nine carrying a pop, nothing rejected on the way.
+
+**Not covered**: an event whose flights partly match — some present, some missing. The code path is
+the same filter, and the API check covers "already exists is refused", but no test mixes the two.
+
 ## Importing the flighted field — 2026-09-18
 
 **Merged `9ba8c15` and deployed 2026-09-19T01:15 UTC**, healthy in 7 s, no schema change, live data
