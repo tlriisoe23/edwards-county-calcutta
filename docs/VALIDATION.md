@@ -2,6 +2,44 @@
 
 2026-09-14 UTC · baseline `dfab14906c04b5a6d99ffffbfba4249883750eae`. Reports are local audit evidence, not production sign-off. PASS = observed expected result; FAIL = demonstrated mismatch; BLOCKED = a needed environment/tool is unavailable; UNVERIFIED = not exercised sufficiently. A successful build does not convert any browser or hosted gap into PASS.
 
+## Importing the flighted field — 2026-09-18
+
+WC-6, closed; the leaderboard's half is W-9/P-6 there. Branch `claude/cal-leaderboard-import`;
+decisions D-CAL-17..19.
+
+| Check | Result |
+|---|---|
+| Types | **PASS** |
+| Lint | **unchanged** — 77 problems (48 errors, 29 warnings) on `app lib`, the same figure measured on `main` in the same tree |
+| Build | **PASS** |
+| Acceptance / refinement | **PASS** — 58 / 72 |
+| Two-day fixture / night-of / UI3 / reorder | **PASS** — 19/19, 12/12, 63/63, 20 |
+| **Leaderboard import** | **PASS** — `tests/leaderboard-import.mjs`, **13/13** (new) |
+
+The new suite is written against the second import rather than the first, because that is the real
+case — a score corrected after the flights are drawn, brought over again, possibly mid-auction:
+
+| Behaviour | Result |
+|---|---|
+| Fifty rows arrive with team, both players, flight and pop | **PASS** |
+| A first import over an existing roster **updates fifty, creates none** | **PASS** |
+| Importing the same field twice leaves fifty teams, not a hundred | **PASS** |
+| An import that would move a **sold** team refuses and names it | **PASS** |
+| That team's flight and pop are **exactly** as they were | **PASS** |
+| The rest of the field still imports | **PASS** |
+| An event the leaderboard does not have is reported, never silent | **PASS** |
+
+**A React defect was found and fixed during this work**, not by a test but by the lint baseline: the
+drift check first depended on `data.teams` and `flights`, which are rebuilt on every render, so it
+would have fetched the leaderboard on **every render**. The second attempt fixed that with a ref
+written during render, which is its own rule violation. The shape that is correct is neither: the
+effect fetches, and the comparison happens during render — which also means importing updates the
+line immediately without going back to the leaderboard.
+
+**Not covered**: the drift line itself is not exercised by a rendered test; the pull, the merge and
+the refusal are. And nobody has removed the interconnect from under a running pair — the unreachable
+case is tested by asking for an event that does not exist, not by pulling the wire.
+
 ## A backup script — 2026-09-18
 
 OC-1, closed. Branch `claude/cal-backup-script`; decisions D-CAL-15/16. The off-host half is

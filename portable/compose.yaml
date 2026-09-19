@@ -15,8 +15,20 @@ services:
       ADMIN_EMAILS: ${ADMIN_EMAILS:?Set ADMIN_EMAILS}
       GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
       GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+      # Where to read the flighted field from when importing teams (WC-6). A
+      # host on the private interconnect below, not a public URL: the request
+      # never leaves this machine. Unset it and the import falls back to the
+      # paste box, which is the point of having both.
+      LEADERBOARD_URL: ${LEADERBOARD_URL:-http://leaderboard:3000}
     volumes:
       - data:/data
+    # `default` is listed explicitly because naming any network here replaces the
+    # implicit one — leaving it out would take the published port with it.
+    networks:
+      default: {}
+      interconnect:
+        aliases:
+          - calcutta
     security_opt:
       - no-new-privileges:true
     cap_drop:
@@ -27,5 +39,15 @@ services:
       timeout: 5s
       start_period: 30s
       retries: 3
+networks:
+  # A private, internal-only bridge shared with the leaderboard, so this app can
+  # read its flighted field directly rather than hairpinning out through
+  # Cloudflare and back (D-CAL-17). `internal: true` means the network has no
+  # route off the host; each container keeps its own project network for
+  # anything outbound. Created once, outside compose:
+  #   docker network create --internal --driver bridge ecgc-interconnect
+  interconnect:
+    external: true
+    name: ecgc-interconnect
 volumes:
   data:

@@ -1,6 +1,6 @@
 import { themeIds } from '@/lib/themes';
 import { z } from "zod";
-import { db, statement, insert, insertMany, update, read, freshEvent, identity, ownerEmails } from "@/lib/store";
+import { db, statement, insert, insertMany, update, read, freshEvent, identity, ownerEmails, leaderboardUrl } from "@/lib/store";
 import { defaultSettings, type Row } from "@/lib/model";
 import { twoDayFlights, twoDayTeams } from "@/lib/demo-two-day";
 export const dynamic = "force-dynamic";
@@ -231,6 +231,68 @@ export async function POST(request: Request) {
             }
             return Response.json({ ok: true, eventId: created.id });
         }
+        // Read the flighted field from the leaderboard (WC-6).
+        //
+        // Read-only, one direction, and only when an operator presses the button
+        // — never a poll. The two products are deliberately separate (AGENTS.md),
+        // and this is the one seam between them: flights and pops are decided
+        // there and spent here. A background sync would be able to move a sold
+        // team's flight mid-auction, which is a money bug rather than a
+        // convenience; asking for it cannot.
+        //
+        // The address is a host on a private, internal-only Docker network, so
+        // the request never leaves this machine. Everything needed is already on
+        // the leaderboard's anonymous board endpoint, and only while that event's
+        // Calcutta board is switched on — which is exactly when a Calcutta is
+        // being run. That is the permission check, and it enforces itself.
+        if (action === "leaderboard_field") {
+            const base = leaderboardUrl();
+            requireThat(base, "No leaderboard is configured for this installation. Paste the rows instead.");
+            const slug = z.string().max(120).optional().parse(p.slug);
+            let board: Row;
+            try {
+                const r = await fetch(base + "/api/board" + (slug ? "?event=" + encodeURIComponent(slug) : ""), {
+                    signal: AbortSignal.timeout(8000),
+                    headers: { accept: "application/json" },
+                });
+                requireThat(r.ok, `The leaderboard answered ${r.status}. Paste the rows instead.`);
+                board = await r.json() as Row;
+            } catch (error) {
+                const why = error instanceof Error && error.name === "TimeoutError" ? "did not answer in time" : "could not be reached";
+                throw Error(`The leaderboard ${why}. Paste the rows instead.`);
+            }
+            const event = board.event as Row | null;
+            requireThat(event, "That leaderboard event no longer exists.");
+            const field = (event!.calcutta?.field ?? []) as Row[];
+            const competitors = (event!.competitors ?? []) as Row[];
+            const pops = new Map(field.map((a) => [a.id as string, a]));
+            // Only teams the leaderboard actually placed in a flight: anybody it
+            // left out did not qualify, and inventing a flight for them here
+            // would be this product deciding something that is not its to decide.
+            const rows = competitors
+                .filter((c) => pops.has(c.id as string))
+                .map((c) => {
+                    const a = pops.get(c.id as string)!;
+                    return {
+                        name: String(c.name ?? "").trim(),
+                        players: String(c.members ?? "").split("·").map((x) => x.trim()).filter(Boolean),
+                        flight: String(a.flight ?? "").trim(),
+                        pop: Number(a.pop ?? 0),
+                    };
+                });
+            return Response.json({
+                ok: true,
+                event: { name: event!.name, slug: event!.slug, locked: !!event!.calcutta?.locked },
+                events: ((board.events ?? []) as Row[]).map((e) => ({ slug: e.slug, name: e.name, status: e.status })),
+                rows,
+                // Said plainly rather than left as an empty list: an event whose
+                // Calcutta is switched off looks identical to one with no teams.
+                note: rows.length === 0
+                    ? "That event has no flighted Calcutta field yet. Draw the flights on the leaderboard first."
+                    : "",
+            });
+        }
+
         const eventId = id.parse(body.eventId), revision = z.number().int().nonnegative().parse(body.revision);
         const duplicate = await statement('SELECT id FROM audit WHERE id=? AND eventId=?', requestId, eventId).first();
         if (duplicate)
@@ -244,6 +306,9 @@ export async function POST(request: Request) {
             statement('UPDATE events SET revision=revision+1,boardRevision=boardRevision+?,updatedAt=? WHERE id=?', action === "bid" ? 0 : 1, now, eventId)
         ];
         let recordId: string | null = null;
+        // What an import did, reported back so the operator sees it rather than
+        // guessing from a row count.
+        let importCreated = 0, importUpdated = 0, importRefused: string[] = [];
         let before = JSON.stringify(data);
         const team = (tid: string) => { const t = data.teams.find((t: Row) => t.id === tid); requireThat(t, "Team not found."); return t; };
         const buyer = (bid: string) => { const b = data.buyers.find((b: Row) => b.id === bid); requireThat(b, "Buyer not found."); return b; };
@@ -293,7 +358,32 @@ export async function POST(request: Request) {
             }
             case "team_save":
             case "team_import": {
-                const list = action === "team_import" ? z.array(teamSchema).min(1).max(100).parse(p.teams) : [teamSchema.parse(p)];
+                let list = action === "team_import" ? z.array(teamSchema).min(1).max(100).parse(p.teams) : [teamSchema.parse(p)];
+                if (action === "team_import") {
+                    // An import carries no ids, so without this a second import of
+                    // the same field creates a second copy of every team — which is
+                    // exactly what happens when a score is corrected after the
+                    // flights are drawn and the list is brought over again. The team
+                    // name is what the room calls a team and what the board prints,
+                    // so it is the identity to match on.
+                    const byName = new Map<string, Row>(data.teams.map((t: Row) => [String(t.name).trim().toLowerCase(), t]));
+                    list = list.map(v => {
+                        const existing = v.id ? null : byName.get(v.name.trim().toLowerCase());
+                        return existing ? { ...v, id: existing.id as string } : v;
+                    });
+                    // A sold team's flight and pop are part of a financial record:
+                    // its price was agreed under them, and its pool is settled by
+                    // them. An import arriving mid-auction must leave it alone and
+                    // say so, rather than quietly re-pricing what someone has bought.
+                    const protectedTeams = new Set(data.teams
+                        .filter((t: Row) => t.status === "ON_BLOCK" || data.sales.some((x: Row) => x.teamId === t.id))
+                        .map((t: Row) => t.id as string));
+                    importRefused = list.filter(v => v.id && protectedTeams.has(v.id)).map(v => v.name);
+                    list = list.filter(v => !(v.id && protectedTeams.has(v.id)));
+                    importCreated = list.filter(v => !v.id).length;
+                    importUpdated = list.length - importCreated;
+                    requireThat(list.length > 0 || importRefused.length > 0, "Nothing to import.");
+                }
                 requireThat(data.teams.length + list.filter(t => !t.id).length <= 500, "An event supports up to 500 teams.");
                 list.forEach((v, i) => {
                     flight(v.flightId);
@@ -542,7 +632,7 @@ export async function POST(request: Request) {
         }
         cmds.push(insert("audit", { id: requestId, eventId, actor: who.email, action, recordId, before: action === "undo" ? null : before, after: JSON.stringify(p), createdAt: now }), statement('DELETE FROM mutation_guards WHERE id=?', requestId));
         await db().batch(cmds);
-        return Response.json({ ok: true, recordId, revision: revision + 1 });
+        return Response.json({ ok: true, recordId, revision: revision + 1, ...(action === "team_import" ? { imported: { created: importCreated, updated: importUpdated, refused: importRefused } } : {}) });
     }
     catch (error) {
         console.error("Auction write rejected", error);

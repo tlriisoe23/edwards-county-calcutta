@@ -15,4 +15,8 @@ export function getDatabase() {
 export const env = {
   get DB() { return getDatabase(); },
   get ADMIN_EMAILS() { return process.env.ADMIN_EMAILS || ''; },
+  // Where the leaderboard lives, for importing a flighted field (WC-6). Empty
+  // in an installation that has no leaderboard, which is a supported shape: the
+  // import falls back to the paste box.
+  get LEADERBOARD_URL() { return process.env.LEADERBOARD_URL || ''; },
 };
