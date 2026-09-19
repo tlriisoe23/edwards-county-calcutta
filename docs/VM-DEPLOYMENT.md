@@ -204,6 +204,16 @@ Rollback: `docker tag ecgc-calcutta:pre-flightimport-20260919 ecgc-calcutta:port
 
 ## Operations
 
+**Releasing**: `scripts/release.sh <label>` runs the steps every record below lists, in order, stopping
+at the first failure — snapshot, rollback tag `ecgc-calcutta:pre-<label>-<date>` on the running image,
+build `main` and tag it with its commit, recreate the container, `portable/migrate.mjs` inside it, a
+second snapshot, then the read-only verification (HTTPS codes, the private wire from inside the
+container, the newest snapshot's integrity and counts, the public board and TV in a browser).
+`scripts/release.sh --verify-only` is the last part alone. It is the procedure, not the authorization:
+a release still needs the owner's explicit yes, and the record below is still written from what it
+prints.
+
+
 Run commands from the relevant VM repository, independently for each application:
 
 ```sh
