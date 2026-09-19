@@ -5,7 +5,10 @@ export const defaultSettings = {
     trackBidder: false, quickStarts: [10000, 20000, 30000, 50000], buybackMode: "off", buybackSuggested: 5000,
     minBid: 10000, increment: 2500, quickIncrements: [2500, 5000, 10000, 25000], poolMode: "separate",
     deductionType: "percent", deduction: 1000, buybackMax: 5000, buybackPriceMode: "proportional", buybackFixed: 0, buybackDeadline: "",
-    autoAdvance: true, showBidder: true, showBid: true, showBuyer: true, showSalePrice: true, showUpcoming: true, showHandicap: true, showPayouts: true, showBuyback: false, showTotalPool: true, showFlightPools: true
+    autoAdvance: true, showBidder: true, showBid: true, showBuyer: true, showSalePrice: true, showUpcoming: true, showHandicap: true, showPayouts: true, showBuyback: false, showTotalPool: true, showFlightPools: true,
+    // What a team's number is called where the room can see it (WC-9): "Index" by
+    // default, "Pop" when the field came from the leaderboard with pops.
+    handicapLabel: "Index"
 };
 // Existing events retain their prior bidder/ownership tools; newly created events use the new defaults.
 export function normalizeSettings(value: Row): Row { return { ...defaultSettings, trackBidder: true, buybackMode: "track", ...value, theme: normalizeTheme(value.theme) }; }
