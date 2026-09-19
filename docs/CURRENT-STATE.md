@@ -7,7 +7,7 @@
   checks and found OC-5. The dress rehearsal across both products found **OC-6** (the compact
   console's *Setup steps* button is dead — use the *Compact view* switch) and **OC-8** (a team renamed
   on the leaderboard re-imports as a new team) — both have a workaround for auction night, recorded in
-  [TASK-TRACKER.md](TASK-TRACKER.md). Nothing deployed; the live container still runs `b2f583e`.
+  [TASK-TRACKER.md](TASK-TRACKER.md). OC-6 is fixed on `main` (`7bb48c9`), validated on the dev server, **not deployed**; the live container still runs `b2f583e`, so the Compact view switch remains the workaround on the night unless a deploy is authorised.
 
 ## Deployed — 2026-09-19
 
