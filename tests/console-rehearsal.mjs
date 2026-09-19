@@ -71,6 +71,16 @@ const base = `http://127.0.0.1:${port}`;
 const email = "rehearsal@localhost.test";
 const password = randomBytes(32).toString("hex");
 
+// A deploy runs `portable/migrate.mjs` in the rebuilt container before it
+// serves anything (every entry in VM-DEPLOYMENT.md records the result), so the
+// rehearsal applies the same migration to the copy with the same image. Without
+// this a change that carries a schema change is rehearsed against the schema it
+// replaces — which is how the first run of the local-login work failed here.
+const migrated = spawnSync("docker", ["run", "--rm", "-v", `${data}:/data`, image, "node", "portable/migrate.mjs"], { encoding: "utf8" });
+if (migrated.status !== 0) throw Error("migrate.mjs on the copy: " + (migrated.stderr || migrated.stdout));
+console.log(`  migrate.mjs on the copy: ${migrated.stdout.trim()}`);
+for (const side of ["-wal", "-shm"]) rmSync(join(data, "calcutta.sqlite" + side), { force: true });
+
 const db = new SQLiteDatabase(join(data, "calcutta.sqlite"));
 await db.prepare("DELETE FROM portable_credentials").run();
 await db.prepare("DELETE FROM portable_sessions").run();
