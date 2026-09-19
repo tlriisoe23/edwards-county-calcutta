@@ -6,8 +6,11 @@
   In the owner's signed-in session, *Import event from the leaderboard* made **Edwards County Two Day
   Two Man (test data)** from the leaderboard's live board in one click — 4 flights, 50 teams with pops,
   dates 19–20 September, auction 19 Sep 18:00, money rules copied from *Edwards County 2 Day 2 Man
-  Calcutta* — the feature's first use in production. Eight buyers added. **No sales yet**: the harness
-  refused the agent that write; the owner runs the lots. The real *2 Day 2 Man* event row is untouched.
+  Calcutta* — the feature's first use in production. Eight buyers added, then the auction run LIVE
+  through the desk's own API in the owner's session: **16 lots sold** — every Championship team and
+  three A Flight teams, $300–$900 each, gross $9,375, house $937.50, net $8,437.50 — and **paused** with
+  *Young / Cooper* on the block, so Results, Settlement and Exports have real-shaped records to test
+  against. The real *2 Day 2 Man* event row is untouched.
 
 ## Deployed — 2026-09-19, 14:14 UTC
 
