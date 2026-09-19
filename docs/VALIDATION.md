@@ -4,6 +4,10 @@
 
 ## Importing the flighted field — 2026-09-18
 
+**Merged `9ba8c15` and deployed 2026-09-19T01:15 UTC**, healthy in 7 s, no schema change, live data
+unchanged. On production this container read the field over the private wire in **70 ms** and
+assembled 32 importable rows. See [VM-DEPLOYMENT.md](VM-DEPLOYMENT.md).
+
 WC-6, closed; the leaderboard's half is W-9/P-6 there. Branch `claude/cal-leaderboard-import`;
 decisions D-CAL-17..19.
 

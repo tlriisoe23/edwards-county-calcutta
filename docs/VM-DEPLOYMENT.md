@@ -152,6 +152,35 @@ Rollback: `docker tag ecgc-calcutta:pre-demo50-20260918 ecgc-calcutta:portable`,
 `docker compose --env-file .env.portable -f portable/compose.yaml up -d --no-deps app`. Take a fresh
 snapshot first.
 
+## Redeploy — 2026-09-19 (importing the flighted field)
+
+Authorized by the owner, alongside the leaderboard's `f029a5d`. Deployed `9ba8c15` — WC-6,
+decisions D-CAL-17..19. **No schema change**; `migrate.mjs` reported "Portable schema is current".
+
+The network attachment landed earlier, at 00:2x UTC, because attaching a container to a network
+means recreating it. The image at that moment was still the previous one, which ignores
+`LEADERBOARD_URL`, so nothing was half-wired at any point.
+
+Snapshot taken by the repository's own script this time rather than by hand (OC-1 closed earlier
+today): `scripts/backup-scheduled.sh` → `~/backups/ecgc-calcutta/calcutta-20260919T011528.sqlite`,
+verified, 8 retained. Rollback tag: the running image (`sha256:08cb8a62eecc…`, commit `799cdc7`)
+tagged `ecgc-calcutta:pre-import-20260919`. `compose up -d --no-deps app`: recreated, **healthy
+within 7 s**; the leaderboard kept its uptime.
+
+Production verification (read-only, 2026-09-19 ~01:16 UTC):
+
+| Check | Result |
+|---|---|
+| Container | healthy, on `ecgc-interconnect` and `ecgc-calcutta_default` |
+| Database | `integrity_check` ok; 2 events / 0 teams / 0 sales / 129 audit — **unchanged**: an import is something an operator does, and nothing here does it by itself |
+| HTTPS | `/` 200, `/tv` 200, `/admin` 307, anonymous `/api/admin` 403 |
+| **The import, in production** | **PASS** — this container read `http://leaderboard:3000/api/board` in **70 ms** and assembled **32 importable rows**, the first being `Johnson / King \| Alex Johnson \| Taylor King \| Championship \| 0`. The request never left the machine. |
+| Browser | `/` at 1440 and `/tv` at 1920, **zero JavaScript errors** |
+| Blocked | The operator console was **not exercised signed in on production** — behind Google, and this repository still has no signed-in rehearsal harness (OC-2). The import's own evidence is 13/13 against a local pair. |
+
+Rollback: `docker tag ecgc-calcutta:pre-import-20260919 ecgc-calcutta:portable`, then
+`compose up -d --no-deps app`. Take a fresh snapshot first.
+
 ## Operations
 
 Run commands from the relevant VM repository, independently for each application:

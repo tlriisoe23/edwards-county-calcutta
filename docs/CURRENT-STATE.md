@@ -1,5 +1,16 @@
 # Current state — 2026-09-18 UTC
 
+## Deployed — 2026-09-19
+
+- **Importing the flighted field from the leaderboard is live.** `main` @ `9ba8c15` runs in
+  `ecgc-calcutta-app-1` as of 2026-09-19 ~01:15 UTC, healthy in 7 s, no schema change. The team
+  import dialog offers *Import from the leaderboard*, reading it over `ecgc-interconnect` — an
+  internal-only Docker bridge with no route off the host — in about 70 ms. The roster says when the
+  two disagree without applying anything; imports match on team name so a repeat updates rather than
+  duplicates; a sold or on-the-block team is refused and named (D-CAL-17..19). Pasting still works,
+  and the leaderboard's Flights tab copies the rows for it. Live data unchanged — an import is
+  something an operator does. Rollback image `ecgc-calcutta:pre-import-20260919`.
+
 ## Deployed — 2026-09-18
 
 - **The fifty-team two-day fixture is live.** `main` @ `799cdc7` runs in `ecgc-calcutta-app-1` as of
