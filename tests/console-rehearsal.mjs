@@ -139,7 +139,7 @@ let chromium;
 try { ({ chromium } = await import(process.env.UI3_PLAYWRIGHT_MODULE || "playwright")); }
 catch { throw Error("playwright is not a dependency here (OC-3): set UI3_PLAYWRIGHT_MODULE to an installed copy, e.g. ../ecgc-leaderboard/node_modules/playwright/index.mjs"); }
 const browser = await chromium.launch({ headless: true });
-const violations = [], carried = new Set();
+const violations = [];
 // OC-5 is fixed: the sideways-scrolling table wrappers are focusable named
 // regions, so the carve-out that used to carry scrollable-region-focusable is
 // gone and this rehearsal fails again if it comes back.
@@ -161,14 +161,12 @@ try {
     // A failed request is reported by URL, not as the browser's bare "Failed to
     // load resource": the address says which section asked for what.
     page.on("console", (m) => { if (m.type() === "error" && !/Failed to load resource/.test(m.text())) errors.push(m.text()); });
-    // Opening Teams & flights probes the leaderboard for drift (D-CAL-17). The
-    // rehearsal container has no leaderboard, so that one probe answers 400 by
-    // design; it is reported as carried rather than dropped, so it cannot hide
-    // a different failure behind the same status.
+    // OC-7 is fixed: Teams & flights no longer probes the leaderboard when none
+    // is configured, so the 400 this used to carry should not appear at all and
+    // every failed response is a failure again.
     page.on("response", async (r) => {
       if (r.status() < 400) return;
-      const line = `${r.status()} ${r.request().method()} ${r.url().replace(base, "")} ← ${(await r.text().catch(() => "")).slice(0, 120)}`;
-      if (/No leaderboard is configured/.test(line)) carried.add("Teams & flights probes the leaderboard on open; none is configured here (400)"); else failed.push(line);
+      failed.push(`${r.status()} ${r.request().method()} ${r.url().replace(base, "")} ← ${(await r.text().catch(() => "")).slice(0, 120)}`);
     });
 
     await page.goto(`${base}/admin?event=${served.id}`);
@@ -292,4 +290,3 @@ if (violations.length) {
 check(violations.length === 0, `axe reports no violations across every surface (${violations.length} found)`);
 console.log(`${checks} signed-in desk checks PASS against a copy of ${source}`);
 console.log(`  screenshots in ${directory}/ — real buyers and prices, never commit them`);
-if (carried.size) console.log(`  carried, expected in a rehearsal: ${[...carried].join("; ")}`);

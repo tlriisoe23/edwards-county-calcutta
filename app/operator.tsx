@@ -185,7 +185,11 @@ export default function AdminPanel({ data, meta, user, selectedEventId, offline,
     // itself could move a sold team's flight in the middle of a lot.
     const [leaderboardField, setLeaderboardField] = useState<{ rows: Row[]; from: string } | null>(null);
     useEffect(() => {
-        if (!e?.id || tab !== 'teams') return;
+        // No leaderboard configured means no drift to detect (OC-7). Probing
+        // anyway earns a 400 the server is right to send and an error in the
+        // operator's console every time this tab opens, in an installation that
+        // has no leaderboard by design.
+        if (!e?.id || tab !== 'teams' || !meta.leaderboard) return;
         let live = true;
         (async () => {
             try {
@@ -197,7 +201,7 @@ export default function AdminPanel({ data, meta, user, selectedEventId, offline,
             } catch { /* the leaderboard being unreachable is not this page's problem */ }
         })();
         return () => { live = false; };
-    }, [e?.id, tab]);
+    }, [e?.id, tab, meta.leaderboard]);
     const drift = (() => {
         if (!leaderboardField) return null;
         const here = new Map((data.teams || []).map((t: Row) => [String(t.name).trim().toLowerCase(), t]));
