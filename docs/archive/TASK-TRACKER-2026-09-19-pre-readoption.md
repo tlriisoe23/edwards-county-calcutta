@@ -88,7 +88,7 @@ purpose is money owed, that is the most valuable of the three to fix.
 
 Written as task prompts: each carries enough context to be picked up without the conversation that
 produced it. Nothing here is approved for implementation. The leaderboard's half of the same list is
-in [ecgc-leaderboard/docs/TASK-TRACKER.md](../../../ecgc-leaderboard/docs/TASK-TRACKER.md) under
+in `ecgc-leaderboard`'s `docs/TASK-TRACKER.md` under
 "Owner scope 2026-09-18"; the two are deliberately separate, per the isolation this repository's
 AGENTS.md sets out.
 
