@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "id": "R-20260919-01",
+  "environment": "production",
+  "candidate": "953e48a509c9a566b1fb9500f95bd8f1ea4dfb6e",
+  "observed_at": "2026-09-19T20:30:03Z",
+  "state": "verified",
+  "authorization_ref": "Repository owner: 'yes on all of it', then ran scripts/release.sh afternoon from main @ 953e48a at 20:30 UTC (docs/VM-DEPLOYMENT.md, 'Redeploy \u2014 2026-09-19 (the afternoon's units: a renamed team is the same team, and the rest)').",
+  "deployment_evidence_ref": "Snapshots calcutta-20260919T202959 before and 20260919T203011 after; schema migration drizzle/0002 (teams.sourceId) applied, portable_migrations lists 0000, 0001 and 0002; container recreated and healthy at 20:30:03 UTC (docs/VM-DEPLOYMENT.md, same entry).",
+  "verification_evidence_ref": "scripts/release.sh --verify-only at 20:34 UTC: container healthy on both networks; / 200, /tv 200, /api/public 200, /admin 307, anonymous /api/admin 403; private wire read the leaderboard in 76 ms; post-migration integrity_check ok with teams.sourceId present; / at 1440 and /tv at 1920 with zero JavaScript errors (docs/VM-DEPLOYMENT.md, same entry). The operator console was not exercised signed in on production; each unit was driven signed in by npm run test:console on its candidate image.",
+  "rollback_ref": "docker tag ecgc-calcutta:pre-afternoon-20260919 ecgc-calcutta:portable on the previous image (8683183), then compose up -d --no-deps app; take a fresh snapshot first; rolling back leaves teams.sourceId in place harmlessly (docs/VM-DEPLOYMENT.md).",
+  "release_note": "Deployed OC-5, OC-7, WC-4, OC-9, OC-8, WC-3, WC-9, WC-1 and a repaired acceptance fixture. Run by the owner through scripts/release.sh.",
+  "migration_note": "Recorded at framework adoption (ai-project-framework T-0028); earlier releases remain in docs/VM-DEPLOYMENT.md and the archived current state."
+}

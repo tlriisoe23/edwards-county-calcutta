@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "foundation_version": "1.1.0",
+  "name": "Edwards County Calcutta",
+  "purpose": "Operator-run recordkeeping for a verbal in-person golf Calcutta auction, with a public board, clubhouse TV, results and settlement; live at calcutta.edcogolf.org.",
+  "default_branch": "main",
+  "framework_path": "../ai-project-framework",
+  "stack": "vinext-react-cloudflare-workers-d1; portable node-sqlite container",
+  "setup_complete": true,
+  "active_task": null,
+  "application_paths": [
+    "app/",
+    "lib/",
+    "db/",
+    "components/",
+    "hooks/",
+    "types/",
+    "drizzle/",
+    "portable/",
+    "scripts/",
+    "tests/"
+  ],
+  "agents": {
+    "primary": "claude",
+    "documentation_steward": "claude",
+    "default_mode": "curated",
+    "account_policy": "preserve-current",
+    "automatic_account_switching": false,
+    "model_policy": "preserve-current; choose effort deliberately; no hard-coded model IDs"
+  },
+  "budgets": {
+    "AGENTS.md": 850,
+    "CLAUDE.md": 140,
+    "docs/CURRENT-STATE.md": 650,
+    "docs/TASKS.md": 950,
+    "docs/BACKLOG.md": 1750
+  },
+  "validation": {
+    "application_configured": true,
+    "quick": [
+      {
+        "name": "TypeScript typecheck (tsc --noEmit --incremental false)",
+        "argv": [
+          "node",
+          "node_modules/typescript/bin/tsc",
+          "--noEmit",
+          "--incremental",
+          "false"
+        ],
+        "timeout_seconds": 300,
+        "side_effects": "none"
+      }
+    ],
+    "focused": [
+      {
+        "name": "TypeScript typecheck (tsc --noEmit --incremental false)",
+        "argv": [
+          "node",
+          "node_modules/typescript/bin/tsc",
+          "--noEmit",
+          "--incremental",
+          "false"
+        ],
+        "timeout_seconds": 300,
+        "side_effects": "none"
+      }
+    ],
+    "full": [
+      {
+        "name": "TypeScript typecheck (tsc --noEmit --incremental false)",
+        "argv": [
+          "node",
+          "node_modules/typescript/bin/tsc",
+          "--noEmit",
+          "--incremental",
+          "false"
+        ],
+        "timeout_seconds": 300,
+        "side_effects": "none"
+      }
+    ]
+  },
+  "external_toolkit": null
+}

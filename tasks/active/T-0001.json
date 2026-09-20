@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "T-0001",
+  "title": "Adopt framework governance: records, backlog, release record, archives",
+  "objective": "Restore machine-checked governance to this project, which declared the AI Project Framework in prose but carried no project.json. Preserve the hand-written current state and tracker intact in docs/archive/, add project.json with budgets, move every open tracker item to a task record or the budgeted backlog with its ID kept, record the live production release as a state/releases record, add the startup brief and the single documentation map, configure validation only from commands proven to run here, and record the framework dependency snapshot. Planned as ai-project-framework task T-0028 under docs/procedures/PROJECT-READOPTION.md; nothing is deleted and no application code, container, database or route changes.",
+  "risk": "normal",
+  "mode": "curated",
+  "status": "in_progress",
+  "base_ref": "main",
+  "acceptance": [
+    "docs/archive/ holds the former CURRENT-STATE.md and TASK-TRACKER.md intact with provenance headers; a tombstone keeps the old tracker path landing.",
+    "Every open item in the tracker (WC and OC rows, the UI audit, C2 acceptance, the portability remainder, Batches E and J, CAL-P3-007, the offline idea) has one named destination and still appears in the archived tracker; the gate report in the framework's migration record shows zero loss.",
+    "state/releases/R-20260919-01.json records the production release 953e48a with its authorization, evidence, verification and rollback references; the generated CURRENT-STATE.md shows it.",
+    "project.json validation lists only commands run here first; check and render are clean; bootstrap --strict passes; the framework_dependency snapshot is recorded."
+  ],
+  "non_goals": [
+    "No application code, schema, container, database or Cloudflare route change.",
+    "No deletion of history; archive whole documents.",
+    "No merge, deployment, live-data mutation, or account change unless separately authorized."
+  ],
+  "dependencies": [],
+  "scope": {
+    "read": [
+      "docs/",
+      "app/",
+      "lib/",
+      "tests/",
+      "scripts/",
+      "portable/"
+    ],
+    "write": [
+      "docs/",
+      "tasks/",
+      "state/",
+      "project.json",
+      "PROJECT-STARTUP.md",
+      "AGENTS.md",
+      "CLAUDE.md",
+      ".github/copilot-instructions.md",
+      "tasks/active/T-0001.json",
+      "docs/TASKS.md",
+      "docs/CURRENT-STATE.md"
+    ],
+    "forbidden": [
+      ".env.portable",
+      ".env",
+      ".wrangler/",
+      "outputs/"
+    ]
+  },
+  "spec": null,
+  "batch_exception": "",
+  "approvals": [
+    {
+      "action": "implement",
+      "status": "granted",
+      "by": "human (repository owner)",
+      "source": "Repository owner in chat on 2026-09-19: the leaderboard and Calcutta applications are not needed for a tournament in the near future, so the re-adoption items can be completed.",
+      "at": "2026-09-20T02:18:34Z",
+      "target": "development",
+      "scope_hash": "93755a1eaafa8e51cbc2d8b7440600c8f03b099f7468a134aed90e96199c930f",
+      "candidate": null
+    },
+    {
+      "action": "commit",
+      "status": "granted",
+      "by": "human (repository owner)",
+      "source": "Repository owner in chat on 2026-09-19: the leaderboard and Calcutta applications are not needed for a tournament in the near future, so the re-adoption items can be completed.",
+      "at": "2026-09-20T02:18:34Z",
+      "target": "development",
+      "scope_hash": "93755a1eaafa8e51cbc2d8b7440600c8f03b099f7468a134aed90e96199c930f",
+      "candidate": null
+    }
+  ],
+  "independent_review_ref": null,
+  "handoff": {
+    "next_action": "Prove the validation commands on this VM, configure them, record the snapshot, then archive this record as done after the pull request merges.",
+    "blockers": [],
+    "decisions_needed": []
+  },
+  "metrics": {
+    "context_resets": 0,
+    "repeated_failures": 0,
+    "avoidable_rework": 0,
+    "lesson": ""
+  }
+}

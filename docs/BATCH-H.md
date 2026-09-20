@@ -1,6 +1,6 @@
 # Batch H — AA contrast and honest filter tabs
 
-2026-09-15 UTC. The owner approved Batch H exactly as proposed in [TASK-TRACKER.md](TASK-TRACKER.md): **CAL-P2-007 and CAL-P3-002 are implemented and verified locally** on branch `claude/cal-h-contrast-tabs` (one commit stacked on the Batch G tip `1f2b453`, which is itself stacked on Batch F; the hash is in the branch and the handoff). No deployment, container, route, migration, dependency or production access change occurred; the live container at `calcutta.edcogolf.org` still runs the previous build and Batches F and G are also still unmerged. Lifecycle state: **implemented → validated (local)**, not merged, not deployed.
+2026-09-15 UTC. The owner approved Batch H exactly as proposed in [TASK-TRACKER.md](archive/TASK-TRACKER-2026-09-19-pre-readoption.md): **CAL-P2-007 and CAL-P3-002 are implemented and verified locally** on branch `claude/cal-h-contrast-tabs` (one commit stacked on the Batch G tip `1f2b453`, which is itself stacked on Batch F; the hash is in the branch and the handoff). No deployment, container, route, migration, dependency or production access change occurred; the live container at `calcutta.edcogolf.org` still runs the previous build and Batches F and G are also still unmerged. Lifecycle state: **implemented → validated (local)**, not merged, not deployed.
 
 ## What changed
 
