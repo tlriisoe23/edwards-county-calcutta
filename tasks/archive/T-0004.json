@@ -5,7 +5,7 @@
   "objective": "npm run lint (eslint . --ignore-pattern dist --ignore-pattern .next) lints the ignored .sites-runtime/portable-build/.next output when a portable build exists locally, and reported 12 require()-import errors there at adoption on 2026-09-20. With that directory excluded the source itself still reports two no-explicit-any errors (app/api/admin/route.ts:14 and app/api/public/route.ts:7) and two unused-variable warnings, so lint is not configured in project.json until both halves are fixed: the script should ignore .sites-runtime, and the two any types should be replaced.",
   "risk": "normal",
   "mode": "curated",
-  "status": "planned",
+  "status": "done",
   "base_ref": "main",
   "acceptance": [
     "package.json's lint script ignores .sites-runtime (or an eslint config ignores it) and npm run lint passes with a local portable build present.",
@@ -47,7 +47,7 @@
   "approvals": [],
   "independent_review_ref": null,
   "handoff": {
-    "next_action": "Add .sites-runtime to the lint ignore patterns, then type the two any values in the API routes and rerun npm run lint.",
+    "next_action": "Done on 2026-09-20: eslint.config.mjs ignores .sites-runtime/**; requireThat takes unknown; the public route's head row is typed; the two unused-variable warnings are left as warnings. npm run lint passes with the local build present and is now in every validation tier.",
     "blockers": [],
     "decisions_needed": []
   },
@@ -55,6 +55,6 @@
     "context_resets": 0,
     "repeated_failures": 0,
     "avoidable_rework": 0,
-    "lesson": ""
+    "lesson": "Lint ignores belong in the lint configuration, not in the command that calls it, so every caller means the same thing."
   }
 }

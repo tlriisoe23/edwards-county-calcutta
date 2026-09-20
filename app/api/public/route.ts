@@ -4,7 +4,7 @@ export async function GET(request: Request) {
     try {
         const q = new URL(request.url).searchParams;
         const id = q.get("event") || undefined;
-        const head = await (id ? statement('SELECT id,revision,boardRevision FROM events WHERE id=?', id) : db().prepare('SELECT id,revision,boardRevision FROM events ORDER BY createdAt DESC LIMIT 1')).first<any>();
+        const head = await (id ? statement('SELECT id,revision,boardRevision FROM events WHERE id=?', id) : db().prepare('SELECT id,revision,boardRevision FROM events ORDER BY createdAt DESC LIMIT 1')).first<{ id: string; revision: number; boardRevision: number }>();
         const headers = { "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" };
         if (!head)
             return Response.json({ empty: true }, { headers });
