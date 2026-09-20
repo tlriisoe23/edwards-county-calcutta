@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "id": "T-0004",
+  "title": "Exclude the local build output from the lint script",
+  "objective": "npm run lint (eslint . --ignore-pattern dist --ignore-pattern .next) lints the ignored .sites-runtime/portable-build/.next output when a portable build exists locally, and reported 12 require()-import errors there at adoption on 2026-09-20 while the source was clean. project.json's validation runs eslint with --ignore-pattern .sites-runtime for that reason; the package.json script should carry the same ignore so npm run lint means the same thing everywhere.",
+  "risk": "normal",
+  "mode": "curated",
+  "status": "planned",
+  "base_ref": "main",
+  "acceptance": [
+    "package.json's lint script ignores .sites-runtime (or an eslint config ignores it) and npm run lint passes with a local portable build present.",
+    "project.json's validation entry goes back to npm run lint once it does."
+  ],
+  "non_goals": [
+    "No change to what the suites test.",
+    "No merge, deployment, live-data mutation, or account change unless separately authorized."
+  ],
+  "dependencies": [],
+  "scope": {
+    "read": [
+      "tests/",
+      "portable/",
+      "scripts/",
+      "docs/"
+    ],
+    "write": [
+      "package.json",
+      "eslint.config.mjs",
+      "project.json",
+      "docs/",
+      "tasks/active/T-0004.json",
+      "docs/TASKS.md",
+      "docs/CURRENT-STATE.md"
+    ],
+    "forbidden": [
+      ".env.portable",
+      ".env",
+      ".wrangler/",
+      "outputs/"
+    ]
+  },
+  "spec": null,
+  "batch_exception": "",
+  "approvals": [],
+  "independent_review_ref": null,
+  "handoff": {
+    "next_action": "Add .sites-runtime to the lint script's ignore patterns and rerun npm run lint with the local build present.",
+    "blockers": [],
+    "decisions_needed": []
+  },
+  "metrics": {
+    "context_resets": 0,
+    "repeated_failures": 0,
+    "avoidable_rework": 0,
+    "lesson": ""
+  }
+}

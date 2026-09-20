@@ -1,6 +1,6 @@
 # Batch F — phone header controls and TV intermediate sizes
 
-2026-09-15 UTC. The owner approved Batch F exactly as proposed in [TASK-TRACKER.md](TASK-TRACKER.md): **CAL-P2-004 and CAL-P2-005 are implemented and verified locally** on branch `claude/cal-f-phone-header-tv` (one commit on top of `6116f44`; the hash is in the branch and the handoff). No deployment, container, route, migration, dependency or production access change occurred; the live container at `calcutta.edcogolf.org` still runs the previous build. Lifecycle state: **implemented → validated (local)**, not deployed.
+2026-09-15 UTC. The owner approved Batch F exactly as proposed in [TASK-TRACKER.md](archive/TASK-TRACKER-2026-09-19-pre-readoption.md): **CAL-P2-004 and CAL-P2-005 are implemented and verified locally** on branch `claude/cal-f-phone-header-tv` (one commit on top of `6116f44`; the hash is in the branch and the handoff). No deployment, container, route, migration, dependency or production access change occurred; the live container at `calcutta.edcogolf.org` still runs the previous build. Lifecycle state: **implemented → validated (local)**, not deployed.
 
 Recorded decision for CAL-P2-005 ([DECISIONS.md](DECISIONS.md) D-CAL-1): a one-screen TV layout **is** required below 700 px height. A 1366×768 laptop at 125 % OS scaling (1093×614 CSS px) mirrored to the clubhouse TV must show every statistic without spilling or scrolling.
 

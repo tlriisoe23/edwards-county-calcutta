@@ -11,5 +11,5 @@ database files, or backups.
 
 Run the typecheck, lint, and build commands in `AGENTS.md`, plus
 `node tests/acceptance.mjs` and `node tests/refinement.mjs`, for code changes,
-and record results the way `docs/VALIDATION.md` already does. Use
-`docs/TASK-TRACKER.md` as the canonical finding/approval queue.
+and record results the way `docs/VALIDATION.md` already does. The queue is
+`docs/TASKS.md` and the records under `tasks/active/`; gated work is `docs/BACKLOG.md`.

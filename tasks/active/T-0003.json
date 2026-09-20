@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "id": "T-0003",
+  "title": "Give each browser-suite run its own evidence directory (OC-4)",
+  "objective": "Both browser suites overwrite docs/batch-l-evidence/ by default simply by running; Batch L's recorded evidence was overwritten and restored from Git during the night-of work. A default that destroys another batch's evidence is a trap. Give each run its own directory (an ignored, timestamped location by default; a named docs/ directory only when a batch record asks for it). Source: former tracker row OC-4, preserved in docs/archive/TASK-TRACKER-2026-09-19-pre-readoption.md.",
+  "risk": "normal",
+  "mode": "curated",
+  "status": "planned",
+  "base_ref": "main",
+  "acceptance": [
+    "Running tests/ui3-browser.mjs and tests/s1-browser.mjs with no arguments writes under an ignored per-run directory and leaves docs/batch-*-evidence/ untouched; git status is clean afterwards.",
+    "A documented option writes to a named directory for a batch record; docs/VALIDATION.md says which."
+  ],
+  "non_goals": [
+    "No change to what the suites test.",
+    "No merge, deployment, live-data mutation, or account change unless separately authorized."
+  ],
+  "dependencies": [],
+  "scope": {
+    "read": [
+      "docs/",
+      "app/",
+      "lib/",
+      "tests/",
+      "scripts/",
+      "portable/"
+    ],
+    "write": [
+      "tests/",
+      ".gitignore",
+      "docs/",
+      "tasks/active/T-0003.json",
+      "docs/TASKS.md",
+      "docs/CURRENT-STATE.md"
+    ],
+    "forbidden": [
+      ".env.portable",
+      ".env",
+      ".wrangler/",
+      "outputs/"
+    ]
+  },
+  "spec": null,
+  "batch_exception": "",
+  "approvals": [],
+  "independent_review_ref": null,
+  "handoff": {
+    "next_action": "Find the evidence-directory default in both suites, then move it behind an option with an ignored timestamped default.",
+    "blockers": [],
+    "decisions_needed": []
+  },
+  "metrics": {
+    "context_resets": 0,
+    "repeated_failures": 0,
+    "avoidable_rework": 0,
+    "lesson": ""
+  }
+}

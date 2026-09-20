@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "id": "T-0005",
+  "title": "Make the portable suite pass on this VM so it can join validation",
+  "objective": "npm run test:portable failed here at adoption on 2026-09-20 in 5 seconds: the integration harness started its Next server, then tests/portable-integration.mjs reported a sub-suite exit code of 1. The likely cause is the stale staged build under the ignored .sites-runtime/portable-build directory rather than the source, but that is unproven. Until it passes here it is not configured in project.json; node tests/acceptance.mjs and node tests/refinement.mjs, which need the dev server on localhost:5173, stay in docs/VALIDATION.md's manual ladder likewise.",
+  "risk": "normal",
+  "mode": "curated",
+  "status": "planned",
+  "base_ref": "main",
+  "acceptance": [
+    "npm run test:portable passes from this checkout, with the cause recorded in docs/VALIDATION.md.",
+    "The command is added to project.json's focused and full tiers only after that pass."
+  ],
+  "non_goals": [
+    "No change to what the suites test.",
+    "No merge, deployment, live-data mutation, or account change unless separately authorized."
+  ],
+  "dependencies": [],
+  "scope": {
+    "read": [
+      "tests/",
+      "portable/",
+      "scripts/",
+      "docs/"
+    ],
+    "write": [
+      "tests/",
+      "portable/",
+      "scripts/",
+      "docs/",
+      "project.json",
+      "tasks/active/T-0005.json",
+      "docs/TASKS.md",
+      "docs/CURRENT-STATE.md"
+    ],
+    "forbidden": [
+      ".env.portable",
+      ".env",
+      ".wrangler/",
+      "outputs/"
+    ]
+  },
+  "spec": null,
+  "batch_exception": "",
+  "approvals": [],
+  "independent_review_ref": null,
+  "handoff": {
+    "next_action": "Run npm run test:portable after removing the stale .sites-runtime/portable-build staging, and compare.",
+    "blockers": [],
+    "decisions_needed": []
+  },
+  "metrics": {
+    "context_resets": 0,
+    "repeated_failures": 0,
+    "avoidable_rework": 0,
+    "lesson": ""
+  }
+}

@@ -1,6 +1,6 @@
 # Batch G — Sold dialog Escape
 
-2026-09-15 UTC. The owner approved Batch G exactly as proposed in [TASK-TRACKER.md](TASK-TRACKER.md): **CAL-P2-006 is implemented and verified locally** on branch `claude/cal-g-sold-dialog-escape` (one commit stacked on the Batch F tip `8230c80`; the hash is in the branch and the handoff). No deployment, container, route, migration, dependency or production access change occurred; the live container at `calcutta.edcogolf.org` still runs the previous build and Batch F is also still unmerged. Lifecycle state: **implemented → validated (local)**, not merged, not deployed.
+2026-09-15 UTC. The owner approved Batch G exactly as proposed in [TASK-TRACKER.md](archive/TASK-TRACKER-2026-09-19-pre-readoption.md): **CAL-P2-006 is implemented and verified locally** on branch `claude/cal-g-sold-dialog-escape` (one commit stacked on the Batch F tip `8230c80`; the hash is in the branch and the handoff). No deployment, container, route, migration, dependency or production access change occurred; the live container at `calcutta.edcogolf.org` still runs the previous build and Batch F is also still unmerged. Lifecycle state: **implemented → validated (local)**, not merged, not deployed.
 
 ## What changed
 

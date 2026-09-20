@@ -4,7 +4,7 @@ Original audit 2026-09-14 UTC, `dfab14906c04b5a6d99ffffbfba4249883750eae`; updat
 
 **E2** means the incremental audit of 2026-09-15 at `d992d1c` ([PRODUCT-AUDIT.md § Incremental audit E2](PRODUCT-AUDIT.md#incremental-audit-e2--2026-09-15), evidence in `audit-e2-evidence/`): headless Chromium + axe on a fresh local store, emulated touch/zoom/reduced-motion, and local role emulation by swapping `ADMIN_EMAILS`. E2 rows below say what moved from P/L to H or F; hosted and physical gates are unchanged.
 
-**H** = tested and healthy; **F** = tested with findings; **P** = partially covered; **L** = not testable locally; **N/A** = not applicable. H applies only to the evidence named in the row. Detailed outcomes use PASS/FAIL/BLOCKED/UNVERIFIED in [VALIDATION.md](VALIDATION.md). A/R/X/M/W/B evidence keys are defined in [CURRENT-STATE.md](CURRENT-STATE.md).
+**H** = tested and healthy; **F** = tested with findings; **P** = partially covered; **L** = not testable locally; **N/A** = not applicable. H applies only to the evidence named in the row. Detailed outcomes use PASS/FAIL/BLOCKED/UNVERIFIED in [VALIDATION.md](VALIDATION.md). A/R/X/M/W/B evidence keys are defined in [CURRENT-STATE.md](archive/CURRENT-STATE-2026-09-19-pre-readoption.md).
 
 ## Operator surfaces
 

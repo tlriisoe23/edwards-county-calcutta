@@ -2,7 +2,7 @@
 
 This is an operator-run recordkeeping application for a verbal, in-person golf Calcutta. A club volunteer records bids and final purchasers; spectators follow an anonymous public board or clubhouse TV. After the auction, the club records receipts, tournament results, ownership-adjusted entitlements and payments made outside the application.
 
-This document describes the existing product. [CURRENT-STATE.md](CURRENT-STATE.md) records what was verified; [PRODUCT-AUDIT.md](PRODUCT-AUDIT.md) records demonstrated problems; [TASK-TRACKER.md](TASK-TRACKER.md) is the approval boundary for changes.
+This document describes the existing product. [CURRENT-STATE.md](archive/CURRENT-STATE-2026-09-19-pre-readoption.md) records what was verified; [PRODUCT-AUDIT.md](PRODUCT-AUDIT.md) records demonstrated problems; [TASK-TRACKER.md](archive/TASK-TRACKER-2026-09-19-pre-readoption.md) is the approval boundary for changes.
 
 ## People and workflows
 
@@ -57,4 +57,4 @@ The existing review is local at port 5173. Audit fixtures use an exact source ch
 
 Hosted ownership was configured for `tlriisoe@gmail.com` in the prior authorized pass. The owner can manage additional operator emails in Access. Actual hosted owner/non-owner sessions and revocation remain unverified. The ignored local `.env` uses the starter's mock identity; never use it as hosted owner configuration or publish local credentials/data.
 
-The original audit established the baseline; approved [Batch A](BATCH-A.md) (`4dc2900`) and [Batch B](BATCH-B.md) (`3d00923`) resolved CAL-P1-001/002/003/005 locally without migration or deployment. Approved [Batch C](BATCH-C.md) (`4da7b9b`) also resolves CAL-P1-004 and CAL-P2-003 through CSS-only display fixes. Approved [Batch D](BATCH-D.md) (`a76e57f`) resolves quoted roster imports and creation retries. Only optional Batch E, CAL-P3-001, remains open in [TASK-TRACKER.md](TASK-TRACKER.md).
+The original audit established the baseline; approved [Batch A](BATCH-A.md) (`4dc2900`) and [Batch B](BATCH-B.md) (`3d00923`) resolved CAL-P1-001/002/003/005 locally without migration or deployment. Approved [Batch C](BATCH-C.md) (`4da7b9b`) also resolves CAL-P1-004 and CAL-P2-003 through CSS-only display fixes. Approved [Batch D](BATCH-D.md) (`a76e57f`) resolves quoted roster imports and creation retries. Only optional Batch E, CAL-P3-001, remains open in [TASK-TRACKER.md](archive/TASK-TRACKER-2026-09-19-pre-readoption.md).

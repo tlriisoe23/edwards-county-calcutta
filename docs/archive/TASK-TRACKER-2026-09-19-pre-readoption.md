@@ -1,0 +1,317 @@
+<!-- Archived 2026-09-19 at framework adoption (ai-project-framework task T-0028). This is the former docs/TASK-TRACKER.md, preserved intact as history and as the register of every finding ID. Its open items were migrated, not deleted: 4 owner-scope and engineering-gap rows, the unapproved UI audit, the C2 hardware acceptance, the portability remainder, Batches E and J and CAL-P3-007, and the offline idea moved to ../BACKLOG.md or to task records; 15 rows were already done in place. Do not add work here; the queue is ../TASKS.md and ../BACKLOG.md. The only edits to this copy are mechanical: relative links rebased for the new directory depth and retargeted to the other documents that moved the same day. -->
+
+# Finding tracker and proposed batches
+
+## Handoff — 2026-09-19
+
+A fresh agent taking this over starts at the cross-repository handoff in the sibling repository:
+`~/development/ecgc-leaderboard/.agent-handoff/2026-09-19-tournament-eve.md`, which supersedes
+`2026-09-19-tournament-handover.md` there. Of that handoff's four items, the dress rehearsal and the
+restore rehearsal are done (this repository's half: OC-2 closed, the restore from the desktop copy
+verified signed in); the real event on the board and the fixture clean-up wait on the owner. The
+rehearsal's findings on this side are **OC-5..OC-8** and **WC-9** below — OC-6 and OC-8 have a
+workaround the operator needs to know on auction night. This tracker stays canonical for everything
+that is only about this product.
+
+## Current state — 2026-09-18
+
+- **UI3 operator desk refinement (Batch L):** owner-requested pass — one flat tab bar replacing the
+  RUN AUCTION / AFTER AUCTION groups, prepare step 4 renamed and step 5 "Start Auction" with a TV
+  placement dialog, compact toggle / theme picker / Undo pinned to the masthead, Load demo and Reset
+  demo data moved into Tools, hover help on controls in place of the below-nav note blocks, an undo
+  confirmation that names the action it will undo, and two reported defects reproduced and fixed
+  (Next Up arrows renumbering instead of reordering; the page scrolling itself back to the top).
+  IMPLEMENTED → VALIDATED → **MERGED (`b6fb0f0`) → DEPLOYED 2026-09-18**; the live container runs
+  `main` @ `1fd3718`, which carries this batch and the night-of set. Production verification is
+  public-path only — the operator console this batch rebuilds was **not exercised signed in on
+  production**. See [BATCH-L.md](../BATCH-L.md) and [VM-DEPLOYMENT.md](../VM-DEPLOYMENT.md).
+- **UI audit 2026-09-17 (`UI-CA-*`) — PROPOSED, not approved, nothing implemented.** A cleanliness /
+  usability / readability pass over this product and the ECGC Leaderboard together. It was read on
+  `claude/ui3-flat-tabs-operator` @ `775f1cf` (Batch L / UI3, **unmerged** — this branch and the live
+  container both predate it — UI3 has since merged at `b6fb0f0` and deployed, so the `main + UI3`
+  findings now describe what is live), because UI3 is the direction the console is heading. **Every finding records
+  whether it is `main + UI3`, a UI3 regression, or UI3-only**, so a UI3-only finding lapses if UI3 is
+  abandoned and the `main + UI3` ones apply to what is deployed today. 34 findings in
+  [UI-AUDIT-2026-09-17.md](../UI-AUDIT-2026-09-17.md) §4 (0 P1, 15 P2, 19 P3) plus 10 cross-product `UI-X-*`
+  items in §5; evidence in [ui-audit-2026-09-17-evidence/](../ui-audit-2026-09-17-evidence/).
+  **IDs are a separate series and do not collide with the `CAL-*` / `D-CAL-*` register below.** Each finding
+  has an acceptance test and can be approved individually; the suggested first batch is §5.1.
+  The `UI-LB-*` half lives in `ecgc-leaderboard/docs/UI-AUDIT-2026-09-17.md`.
+  *Audit only — no source, schema, container or route was changed to produce it.*
+
+## Current planned work — 2026-09-16
+
+- **C1 Operator Navigation:** complete and merged; accepted foundation at `f4a7e77`.
+- **S1 Purposeful Themes + Advanced Settings:** accepted by the human and **released** — committed as `494929b`, `task/s1-themes-advanced` fast-forwarded to the same commit, `ecgc-calcutta-app-1` rebuilt and healthy; see the dated entry in [CURRENT-STATE.md](CURRENT-STATE-2026-09-19-pre-readoption.md) for the read-only production verification performed in this session and its limits. [Scope and measured evidence](../S1.md). Existing lint debt remains; physical hardware is unverified.
+- **C2 Auction Night / dual-screen operation:** requirements below were recorded during S1 recovery. **Reworked, implemented and merged to `main`** (`d4b3709`, from `claude/c2v2-dual-screen-compact-console`) — a TV popup window instead of a same-window tab, and a state-driven compact console with a persistent override replacing the rejected sticky-panel approach to `CAL-P3-007`, rebuilt against the merged UI2 nav (Tools dropdown, Prepare step cards) after UI2 removed the four-`NavGroup`/`NavShortcut`/`NavHelp` layout the first C2 pass depended on — see [BATCH-K.md](../BATCH-K.md). The original `claude/c2-tv-popup-compact-console` pass (worktree `edwards-county-calcutta-c2`) is superseded, kept only as a reference; it was never merged. tsc/lint/build/58-58/72-72 all passed pre-merge and tsc/build were re-verified clean immediately after merging. **Deployed** — `ecgc-calcutta-app-1` rebuilt 2026-09-17T14:01 UTC (same rebuild as UI2 above, same commit `ba0f0b3`); public routes read-only verified 200. Browser-rendered verification of the compact layout, and the TV popup window's real multi-window behavior, remain outstanding — not exercised against production or any live browser in this session.
+
+
+### C2 requirements recorded during S1 recovery — not implemented
+
+- Primary display is the operator desk; secondary display is the TV/fullscreen board. The operator must retain normal mouse/focus use on the primary monitor while TV remains on the secondary display.
+- Investigate the reported fullscreen mouse/focus “capture” on actual dual-display hardware. Source inspection during S1 found no `requestPointerLock` or pointer-lock listener in app/components/lib; this is not a runtime or physical-hardware conclusion. Pointer lock must not be required.
+- Improve **Launch TV Display** using the best supported multi-monitor/window-placement behavior, with a clear manual fallback when placement APIs/permissions are unavailable. Test focus changes and fullscreen retention on relevant browsers/OS combinations.
+- Provide a compact **Auction Night** operating layout for LIVE/PAUSED: core controls fit a typical 1366×768 working viewport without routine vertical scrolling. Current lot/team, bid controls, buyer/bidder, increment, Sold/advance and Pause/correction dominate.
+- Collapse or de-emphasize PREPARE / AFTER AUCTION / TOOLS during active operation while keeping them accessible. Preserve C1’s accepted information architecture; adapt density rather than replacing navigation.
+- Acceptance must include actual two-display operator/TV use and the reported focus issue. S1’s browser viewport checks cannot close C2.
+
+
+Separate approved portability work now has a [hosting implementation](../PORTABLE-HOSTING.md)
+and [validation record](../PORTABLE-VALIDATION.md). Remaining: configure real Google
+credentials and owner recovery password; verify owner-data import/cutover; configure
+HTTPS/DNS and off-host backup retention. This does not approve optional Batch E.
+
+2026-09-15 UTC · A/B/C/D approved and verified locally (`4dc2900`, `3d00923`, `4da7b9b`, `a76e57f`) · **F, G, H and I approved, merged to `main`, and redeployed to the live `ecgc-calcutta-app-1` container** (CAL-P3-007 deferred) · optional E awaits approval · production deployment has been performed for the merged branch.
+
+The canonical description, reproduction, confidence and acceptance for every ID is in [PRODUCT-AUDIT.md](../PRODUCT-AUDIT.md). Do not renumber an ID when its status changes; append validation evidence and a commit reference after an approved fix. A source change is not verified until its acceptance passes, and a local pass is not hosted verification.
+
+## Night-of correctness — deployed 2026-09-18
+
+UI-CA-07, 08, 09 and 16 from the 2026-09-17 audit — the set §5.1 put first — implemented on
+`claude/cal-night-of`, recorded in [BATCH-NIGHT-OF.md](../BATCH-NIGHT-OF.md) with D-CAL-8..11, merged
+at `1fd3718` and **deployed the same day**. Mark these four CLOSED against what is live, with the
+standing caveat that the evidence is local: the production check after the deploy was public-path
+only.
+**UI-CA-08 was the one that mattered**: the bid field appended rather than replaced, so the
+documented keyboard path could record $12,501,300 as a real bid. 12 rendered checks, each written
+against the audit's own acceptance test. The rest of the `UI-CA-*` set is untouched, including
+UI-CA-15 proper.
+
+Two gaps found while doing it, both worth their own fix: **playwright is not a dependency here**, so
+neither browser suite runs from a clean checkout, and **both suites overwrite Batch L's evidence
+directory by default** simply by running. A third surfaced at deploy time: **this repository has no
+backup script**, unlike the sibling leaderboard's `scripts/backup-scheduled.sh`, so the pre-deploy
+snapshot of a database holding settlement records was taken by hand. For a product whose whole
+purpose is money owed, that is the most valuable of the three to fix.
+
+## Owner scope 2026-09-18 — requested, not started
+
+Written as task prompts: each carries enough context to be picked up without the conversation that
+produced it. Nothing here is approved for implementation. The leaderboard's half of the same list is
+in [ecgc-leaderboard/docs/TASK-TRACKER.md](../../../ecgc-leaderboard/docs/TASK-TRACKER.md) under
+"Owner scope 2026-09-18"; the two are deliberately separate, per the isolation this repository's
+AGENTS.md sets out.
+
+| ID | Task |
+|---|---|
+| WC-1 | ~~**Make the admin sign-in page look like the leaderboard's.**~~ **Done 2026-09-19** (D-CAL-33) on `claude/cal-signin-look`: the sign-in and sign-out pages render through the leaderboard's account shell, ported as `portable/theme.mjs` with this product's name; field names, cookies and rules unchanged. `tests/portable-auth.mjs` and `tests/portable-local-users.mjs` pass; the console rehearsal now captures the sign-in page at 1440 and 390 and passed **47** checks on the candidate image. **Deployed 20:30 UTC** in `953e48a`. |
+| WC-2 | ~~**Local login without an email address.**~~ **Done 2026-09-19** (D-CAL-25), **deployed 14:14 UTC** in `8683183`, the table migration applied. Tools → Local Users now takes a **username** (an email is optional, and a second way in), the create button is always live and the form says what is still missing as it is typed — the report *"the local user creation never activates the button"* was the 14-character password rule enforced silently. Found and fixed with it: **a local login had never reached the desk** — `identity()` granted operator rights to owners and the operators table only, so every local sign-in on the deployed image answered 403 (probed on a copy 2026-09-19). Disabling a login now ends its sessions; an older email-keyed table is rebuilt in place. `tests/portable-local-users.mjs` rewritten; `tests/console-rehearsal.mjs` makes a login through the dialog and signs in as it (43 checks on the candidate image — after a first run that failed on an un-migrated copy and was wrongly recorded as a pass before it was read; the rehearsal now migrates its copy as a deploy does). **Carries a schema migration**: run `portable/migrate.mjs` after the rebuild. The leaderboard's half of the original item (W-1 there) is still open. |
+| WC-3 | ~~**Remove the leftover inline help words.**~~ **Done 2026-09-19** (D-CAL-31), **deployed 20:30 UTC** in `953e48a`: the words named here had already gone with UI3; the one remaining text-only disclosure (Event & rules → Advanced settings) now looks like a control, matching the leaderboard's W-6 look — seen closed and open on the dev server. |
+| WC-4 | ~~**There is no way to delete an event.**~~ **Done 2026-09-19** (D-CAL-28) — implemented and validated on `claude/cal-small-fixes`, not merged, not deployed. Owner-only `event_delete` in `app/api/admin/route.ts`, eventless and idempotent by request ID like `create_event`, with **Delete event** beside the event picker on the desk and a confirmation that names the event and counts the teams, flights, buyers and sales going with it. An event holding any sale, settlement payment or payout disbursement is **refused** — *"This event holds 1 recorded sale; settlement records are never deleted."* — unless `demo = 1`, which may always be deleted; the counts are read fresh on the server and asserted again inside the deleting batch. Child rows are deleted explicitly in reference order rather than left to `ON DELETE CASCADE` (both runtimes do enforce foreign keys; the NO ACTION references from sales and payments to teams and buyers mean unwind order should not be implicit). The record of the deletion is written to the audit trail of a **remaining** event, because the deleted event's own trail cannot outlive it. Deleting the served event leaves the public board at `{ empty: true }`. `tests/acceptance.mjs` 66 (was 58).
+| WC-5 | **Step 5 and the auction controls** (from the owner's list, recorded as written: *"Make step 5 and move auction"*). The intent is not clear from the note alone and needs a sentence from the owner before it is worked on. It is very likely the same ground as **UI-CA-16**, which found the Prepare step 5 card renders identically while LIVE, PAUSED and COMPLETED, and that restarting a completed auction takes one unconfirmed click. |
+| WC-6 | ~~**Import teams from the leaderboard.**~~ **Done 2026-09-18** (D-CAL-17..19): *Import from the leaderboard* in the team import dialog reads the flighted field over a private internal-only network; the roster says when the two disagree without applying anything; imports match on team name so a repeat updates rather than duplicates, and a sold team is refused by name. Pasting still works, and the leaderboard's Flights tab now copies the rows for it. |
+| WC-7 | ~~**A 50-team fixture matching the leaderboard's new demo.**~~ **Done 2026-09-18** (D-CAL-12..14): Tools → *Load 50-team demo* creates the same fifty teams the leaderboard's own two-day demo builds, four flights at 13 · 13 · 12 · 12, each carrying its pop, at SETUP with nothing sold — so the evening can be rehearsed from the first lot. |
+| WC-8 | **An auto-scrolling public/TV board, and the Calcutta equivalent of the leaderboard's.** The owner wants a continuously scrolling option rather than a paging slideshow, and a Calcutta board that matches the leaderboard's exactly with one extra column for the pop. The leaderboard's side is W-8. Note this product's TV is already the best screen in either app per the 2026-09-17 audit — **do not regress it** to gain a scroll mode. |
+| WC-9 | ~~**The public board and the TV call the pop "Index".**~~ **Done 2026-09-19** (D-CAL-32) on `claude/cal-pop-label`: `handicapLabel` is an event setting — *Index*, *Pop* or *Handicap* — used on the block, the cards, the roster and the import preview; an event created from the leaderboard says *Pop*. Acceptance 68 (round-trip through event settings), refinement 72; tsc; eslint 76 (one fewer than the baseline); `npm run test:console` on the candidate, 43 checks. `tests/leaderboard-import.mjs`: 57 of 58 on a machine loaded by a CI runner, the *Pop* check passing and the one miss a fixed 1.2-second wait in an older desk-path check, now made to wait properly; the run after that fix was outrun by the same load on a pre-existing 30-second wait. **Deployed 20:30 UTC** in `953e48a`; the import suite gets a clean run on a quiet machine before the next release. |
+| WC-10 | ~~**Create the event from the leaderboard, with nothing exported.**~~ Requested 2026-09-19 (*"import event from leaderboard button on the operator's desk next to new event … it just sets it up based on the tournament leaderboard"*). **Done 2026-09-19** (D-CAL-24), **deployed 14:14 UTC** in `8683183`: *Import event from the leaderboard* beside *New event* reads the tournament over the private wire and creates the event — name, course, dates, flights in leaderboard order with their pools, every flighted team with its pop — after a preview; the auction time is asked for, the money rules are copied from the most recent real event. `tests/leaderboard-import.mjs` 52 (was 30). |
+
+## Engineering gaps found while shipping — 2026-09-18
+
+Not owner requests and not audit findings: four things that made this work harder or riskier than it
+needed to be. Each is small, and the first is the one that matters.
+
+| ID | Gap |
+|---|---|
+| OC-1 | ~~**This repository has no backup script.**~~ **Done 2026-09-18** (D-CAL-15/16): `scripts/backup-scheduled.sh`, scheduled nightly at 02:45 — snapshot through SQLite's backup API, copied off the volume, verified on a scratch copy (integrity plus no orphaned sales or ownership rows), retained. The sibling's `replicate-offhost.sh` then mirrors it to the Windows desktop at 03:15, so it leaves this machine too. |
+| OC-2 | ~~**No signed-in rehearsal of the operator console.**~~ **Done 2026-09-19** (D-CAL-23): `tests/console-rehearsal.mjs` and `npm run test:console` — the leaderboard's model: the image built from the working tree (or `REHEARSAL_IMAGE`), a throwaway container on a copy of the newest backup (or the file named on the command line, which is how a restore is rehearsed), a password generated for the run, every tab and every prepare step at 1600 and 390, a buyer added through the dialog, the public board and the TV, axe on each, anonymous callers refused before and after. First run against the desktop's off-host copy on the deployed `b2f583e`: **37 checks PASS**, carrying two named findings (OC-5, OC-7). It never touches the live container; its screenshots hold real buyers and prices and stay in ignored `outputs/`. |
+| OC-3 | **Neither browser suite runs from a clean checkout.** `playwright` is not a dependency here, unlike the leaderboard's. Both suites accept `UI3_PLAYWRIGHT_MODULE` and were run pointed at the sibling's installed copy. The rehearsal takes the same variable and, when the import fails, names the sibling's copy (`../ecgc-leaderboard/node_modules/playwright/index.mjs`) in its error rather than a bare module-not-found. |
+| OC-4 | **Both browser suites overwrite `docs/batch-l-evidence/` by default**, simply by running — Batch L's recorded evidence was overwritten and restored from Git during the night-of work. A default that destroys another batch's evidence is a trap; give each run its own directory. |
+| OC-5 | ~~**The sales table cannot be scrolled sideways from the keyboard at phone width.**~~ **Done 2026-09-19** (D-CAL-26) — implemented and validated on `claude/cal-small-fixes`, not merged, not deployed. The `.overflow-x-auto` wrapper lives in the shared `components/ui/table.tsx`, so the fix is there and covers all four tables at once: the container is `tabIndex={0}` with `role="region"` and an `aria-label` each caller passes (*Sales table*, *Team roster table*, *Audit trail table*, *Import preview table*). The rehearsal's carve-out for `scrollable-region-focusable` is gone, so it fails again if this comes back. |
+| OC-6 | ~~**"Setup steps" does nothing on the compact console — which is the LIVE console.**~~ **Fixed 2026-09-19**, merged to `main` at `7bb48c9`, **deployed 14:14 UTC** in `8683183`. `ControlTip` (`app/help-tooltip.tsx`) forwarded nothing but its text and its child, so the `CollapsibleTrigger asChild` wrapped around it put `onClick` and `aria-expanded` on the wrapper and the button rendered dead. It now passes any other props through to the control; no other ControlTip has any. Checked on a LIVE demo on the dev server: `aria-expanded` false → true → false, the prepare steps appear, the Teams tab opens from them; night-of 12/12, tsc clean, eslint at the 77 baseline. Found 2026-09-19 on the dress rehearsal with the auction LIVE. |
+| OC-7 | ~~**Teams & flights probes the leaderboard every time it opens.**~~ **Done 2026-09-19** (D-CAL-27) — implemented and validated on `claude/cal-small-fixes`, not merged, not deployed. The drift effect now returns early unless `meta.leaderboard` — the flag `GET /api/admin` already sends — is true, so an installation with no `LEADERBOARD_URL` makes no request and logs no error. Where one *is* configured the probe, the notice and the import are byte-for-byte what they were. The rehearsal's carve-out for that 400 is gone, so a probe that fires anyway now fails the run. |
+| OC-8 | ~~**A team renamed on the leaderboard is imported as a new team.**~~ **Fixed 2026-09-19** (D-CAL-30), **deployed 20:30 UTC** in `953e48a` — **carried a schema migration** (`teams.sourceId`, `drizzle/0002`, applied by the release's `migrate.mjs`). Rows from the leaderboard carry that board's id; the import and the drift check match on it before the name; pasted rows match by name as before. `tests/leaderboard-import.mjs` 57 (was 52) with the rename case from the rehearsal; acceptance 66, refinement 72, night-of 12, tsc, eslint at baseline; `npm run test:console` on the candidate, migration applied to a copy of production, 43 checks. |
+| OC-9 | ~~**A React hydration error on the desk, in production.**~~ **Done 2026-09-19** (D-CAL-29) — implemented and validated on `claude/cal-small-fixes`, not merged, not deployed. Reproduced on the dev server with the unminified message (*"Hydration failed because the server rendered HTML didn't match the client"*) and confirmed to be the compact-console override read in a `useState` initialiser in `app/operator.tsx`, exactly as suspected — **and it fired for the saved value `off` as well as `on`**, because `off` still renders the *Auto* button that only appears once the override is manual. The theme picker was not involved; it has no `localStorage` read. The override is now a `useSyncExternalStore` with an `"auto"` server snapshot, so hydration matches the server and the saved value arrives in the next render. With `on` and with `off`: **no console errors**, the toggle still persists across a reload and *Auto* still returns it to following the auction status. |
+
+## Stable register
+
+| ID | Severity/category | Title | Status | Batch |
+|---|---|---|---|---|
+| CAL-P1-001 | P1 RELIABILITY | Event context lost on refresh/navigation | RESOLVED LOCAL — `4dc2900`, [evidence](../BATCH-A.md) | A |
+| CAL-P1-002 | P1 SECURITY/PRIVACY | Rejected access change can still apply | RESOLVED LOCAL — `4dc2900`, [evidence](../BATCH-A.md); hosted roles pending | A |
+| CAL-P1-003 | P1 DEFECT | Signed financial CSV becomes text | RESOLVED LOCAL — `3d00923`, [evidence](../BATCH-B.md) | B |
+| CAL-P1-004 | P1 USABILITY DEFECT | Public/TV content clips and overlaps | RESOLVED LOCAL — `4da7b9b`, [evidence](../BATCH-C.md); hardware pending | C |
+| CAL-P1-005 | P1 BUSINESS RULE | Collection summary offsets other buyers' debts | RESOLVED LOCAL — `3d00923`, [evidence](../BATCH-B.md), includes reproduced payout equivalent | B |
+| CAL-P2-001 | P2 DEFECT | Quoted pipe/tab breaks CSV delimiter detection | RESOLVED LOCAL — `a76e57f`, [evidence](../BATCH-D.md) | D |
+| CAL-P2-002 | P2 RELIABILITY | Repeated creation request creates two events | RESOLVED LOCAL — `a76e57f`, [evidence](../BATCH-D.md), includes demo | D |
+| CAL-P2-003 | P2 ACCESSIBILITY | Recent-sales caption contrast 3.77:1 | RESOLVED LOCAL — `4da7b9b`, [evidence](../BATCH-C.md); now 6.02/6.21:1 | C |
+| CAL-P3-001 | P3 TECHNICAL DEBT | Distributed export contracts | OPEN — optional, awaiting approval | E |
+| CAL-P2-004 | P2 USABILITY / ACCESSIBILITY | Icon-less header links (operator Sign out, public Auction board) vanish at ≤ 700 px but stay focusable | IMPLEMENTED — merged to `main` and deployed on `ecgc-calcutta-app-1` after the 2026-09-15 rebuild; [evidence](../BATCH-F.md): all header controls 24 × 24 px, named and focus-visible at 320–700 px | F |
+| CAL-P2-005 | P2 USABILITY DEFECT | TV stats overlap and page scrolls at 951–1099 px wide or < 700 px tall (1024×768, 1093×614) | IMPLEMENTED — merged to `main` and deployed on `ecgc-calcutta-app-1` after the 2026-09-15 rebuild; [evidence](../BATCH-F.md): one screen and contained statistics at 960×540 … 1920×1080, live/paused/completed; hardware pending | F |
+| CAL-P2-006 | P2 USABILITY | Escape with buyer suggestions open discards the whole Sold dialog | IMPLEMENTED — merged to `main` and deployed on `ecgc-calcutta-app-1` after the 2026-09-15 rebuild; [BATCH-G.md](../BATCH-G.md), [evidence](../batch-g-evidence/batch-g.json) | G |
+| CAL-P2-007 | P2 ACCESSIBILITY | Lot numbers 3.27:1, sale buyer line 4.01:1, payout % 4.01:1, inactive operator tabs 3.70:1, eyebrow 4.27:1 | IMPLEMENTED — merged to `main` and deployed on `ecgc-calcutta-app-1` after the 2026-09-15 rebuild; [BATCH-H.md](../BATCH-H.md), [evidence](../batch-h-evidence/batch-h.json): now 5.34 / 4.88 / 5.70 / 5.27 / 5.27, axe 0 contrast nodes on public, TV, console, Settlement, Exports | H |
+| CAL-P3-002 | P3 ACCESSIBILITY | Flight and settlement filter tabs reference non-existent panels | IMPLEMENTED — merged to `main` and deployed on `ecgc-calcutta-app-1` after the 2026-09-15 rebuild; [BATCH-H.md](../BATCH-H.md): real `TabsContent` panels, arrow keys and Tab order unchanged, axe `aria-valid-attr-value` clean | H |
+| CAL-P3-003 | P3 USABILITY | Cleared minimum bid / deduction saves 0 with “Saved” | IMPLEMENTED — merged to `main` and deployed on `ecgc-calcutta-app-1` after the 2026-09-15 rebuild; [BATCH-I.md](../BATCH-I.md), [evidence](../batch-i-evidence/batch-i.json): blank or < $1.00 minimum blocked client- and server-side with “Enter a minimum starting bid of at least $1.00”; Percent/Fixed deduction must be > 0, *None* is the only no-cut | I |
+| CAL-P3-004 | P3 USABILITY | Import preview blocks import without marking invalid rows | IMPLEMENTED — merged to `main` and deployed on `ecgc-calcutta-app-1` after the 2026-09-15 rebuild; [BATCH-I.md](../BATCH-I.md), [evidence](../batch-i-evidence/import-preview-marked-1280.png): per-row “flight not found / name required / index must be a number”, button “Import N teams · M rows need attention”, import still atomic | I |
+| CAL-P3-005 | P3 USABILITY | Access tab accepts owner email; duplicate grants report “Saved” | IMPLEMENTED — merged to `main` and deployed on `ecgc-calcutta-app-1` after the 2026-09-15 rebuild; [BATCH-I.md](../BATCH-I.md), [evidence](../batch-i-evidence/checks.json): owner email → “already an owner”, duplicate → “already has access”, neither writes a row or audit entry; owners listed read-only above operators | I |
+| CAL-P3-006 | P3 BUSINESS RULE | Unsold team can take a finishing place; empty states then contradict | OPEN — policy recorded 2026-09-15 (house receives unclaimed share; house returns to pot or keeps) | J (proposed) |
+| CAL-P3-007 | P3 USABILITY | Hammer / bid entry below the fold on first paint at 1280×720 / 1024×768 | DEFERRED (Batch I, D-CAL-5) — a sticky bid panel cannot keep team and current bid visible: even with a compacted panel and block it still covers 76 / 65 px of the bid at 1280×720 / 1024×768 ([sticky-experiment.json](../batch-i-evidence/sticky-experiment.json)); meeting the proviso needs ~260 px out of the operator header stack, not a small layout change. Remains an optional observation | I (deferred) |
+
+After audit E2 (2026-09-15, `d992d1c`) and Batches F, G, H and I: **no open P2 and three open P3 (one optional debt, one policy-gated, one deferred optional observation); no open P1; P0: none demonstrated.** CAL-P2-004/005 (Batch F), CAL-P2-006 (Batch G, stacked on F), CAL-P2-007 / CAL-P3-002 (Batch H, stacked on G) and CAL-P3-003/004/005 (Batch I, stacked on H; CAL-P3-007 deferred) are implemented and validated locally on their branches and remain unmerged and undeployed. Canonical descriptions for the new IDs are in [PRODUCT-AUDIT.md § Incremental audit E2](../PRODUCT-AUDIT.md#incremental-audit-e2--2026-09-15). Local resolution does not waive the blocked hosted gates in [VALIDATION.md](../VALIDATION.md).
+
+## Proposed implementation roadmap
+
+### Batch A — Event context and access guarantees
+
+- **Status:** APPROVED → IMPLEMENTED → VERIFIED LOCAL, commit `4dc2900`. [Batch A report](../BATCH-A.md): 27 focused API/role checks, 130 existing regression checks, 1,000 seeded allocation cases and 10 browser observation groups passed. Two pre-existing CSV probes remain failing outside this scope. No migration or deployment.
+- **Exact IDs:** `CAL-P1-001`, `CAL-P1-002`.
+- **Objective:** Keep actions/viewers tied to the event the user selected and make an access-change response accurately reflect durable access state.
+- **Why together:** Both prevent the operator/owner acting with a false understanding of current context or saved state. They are bounded reliability protections, not new features.
+- **Expected areas:** `app/auction.tsx`, related navigation in operator/sharing; `app/api/admin/route.ts`, access/audit transaction boundaries and focused tests.
+- **Risk:** Medium-high: browser history, polling event changes and authorization transactions require careful regression. A migration is not presumed authorized; propose one only if demonstrably needed and separately reviewable.
+- **Acceptance:** A/B selector + reload/back/forward + public↔TV links retain ID; dirty drafts remain event-isolated; stale responses never replace current event. Access invalid-event/audit failure changes nothing; success commits audit/access together; repeated requests remain consistent; owner-only guard stays enforced.
+- **Regression surface:** Event creation/selection, live refresh, admin/public/TV links, sharing QR, access grant/revoke, concurrent stale actions, audit visibility. Hosted distinct-user revocation remains a later gate.
+- **Order:** 1 — completed locally.
+
+### Batch B — Financial summaries and exported signed values
+
+- **Status:** APPROVED → IMPLEMENTED → VERIFIED LOCAL, commit `3d00923`. [Batch B report](../BATCH-B.md): 33 focused checks, 21 independent file checks, 141 existing regression/workflow checks, 1,000 seeded cases and six browser groups passed. One quoted-delimiter probe remains failing outside scope. No migration or deployment.
+- **Exact IDs:** `CAL-P1-003`, `CAL-P1-005`.
+- **Objective:** Make collector summaries and downloaded financial columns independently reconcilable without changing party history or payout formulas.
+- **Why together:** Both affect a treasurer's interpretation of already-correct signed ledger records.
+- **Expected areas:** `lib/settlement.ts`, `lib/exports.ts`, `lib/model.ts`, settlement/print/export UI labels, actual-file tests.
+- **Risk:** High regression sensitivity around money; scope must preserve integer cents, party ownership, receipts/payables separation and formula-safe untrusted text. No automatic refund/transfer/netting feature.
+- **Acceptance:** Positive debts and credits reported separately; signed party balances unchanged. Receipt/payout reversals and negative balances export as numeric amounts and reconcile through an independent CSV reader; text injection fixtures remain escaped. Re-run 1,000 seeded oracle cases and settlement/correction/undo suites.
+- **Regression surface:** Every export/download variant, payment history, Mark paid, correction/reversal/undo, receipt/payable totals, print summary. Review analogous payable aggregation with an explicit test before broadening a correction.
+- **Order:** 2 — completed locally.
+
+### Batch C — Public/TV containment and readable captions
+
+- **Status:** APPROVED → IMPLEMENTED → VERIFIED LOCAL, commit `4da7b9b`. [Batch C report](../BATCH-C.md): final TV state/long-name matrix, phone/tablet/notification containment, filters and caption contrast passed; 130 existing scripted checks, TypeScript and production build passed. CSS-only; no migration or deployment.
+
+- **Exact IDs:** `CAL-P1-004`, `CAL-P2-003`.
+- **Objective:** Keep the whole bid and essential summary content readable on normal/scaled TVs and phones while retaining the existing visual design.
+- **Why together:** Both are bounded spectator display corrections with overlapping CSS and visual regression needs.
+- **Expected areas:** `app/globals.css`, relevant responsive/refinement rules, shared Block/Stats/recent layouts in `app/auction.tsx`.
+- **Risk:** Medium: typography/grid changes can affect public, TV and operator shared components.
+- **Acceptance:** 1920×1080 and 1366×768 TV, live/paused/completed, four flights, short/long names and max per-bid value show no clipping/overlap or normal TV scrolling; public 320/390/430 preserves full price and usable filters; caption contrast ≥4.5:1. Use screenshots and within-container bounds, not only page size.
+- **Regression surface:** Operator shared block/tablet, public filters/pools, recent sale toast, display flags, completed metrics, reduced-motion styles. Actual fullscreen/projector remains a later hardware gate.
+- **Order:** 3 — completed locally; physical clubhouse display rehearsal remains a later gate.
+
+### Batch D — Reliable setup import and creation retries
+
+- **Status:** APPROVED → IMPLEMENTED → VERIFIED LOCAL, commit `a76e57f`. [Batch D report](../BATCH-D.md): 42 focused checks, 20 Batch A assertions, 130 existing checks, 1,000 allocation cases and all three CSV probes passed; four browser groups, TypeScript and final build passed. No migration or deployment.
+
+- **Exact IDs:** `CAL-P2-001`, `CAL-P2-002`.
+- **Objective:** Accept valid roster text and avoid duplicate events when creation requests repeat.
+- **Why together:** Both reduce pre-auction setup rework and ambiguous duplicate records; neither changes auction rules.
+- **Expected areas:** `lib/model.ts` delimiter parsing, import preview/validation, creation branch in `app/api/admin/route.ts` and request-result persistence.
+- **Risk:** Medium: import formats and intentional event creation semantics must remain compatible.
+- **Acceptance:** Quoted pipe/tab/comma/quote/newline/Unicode fixtures preview correctly; 100-team atomic import works; malformed rows do not partially save. Same create UUID sequential/concurrent returns one event; distinct IDs create separate events; include load_demo replay tests. Batch A event context tests stay green.
+- **Regression surface:** Quick/team import, roster export round-trip, flights/players mapping, new event/demo/defaults, audit and newest-event fallback.
+- **Order:** 4 — completed locally, preserving Batch A event-context behavior.
+
+### Batch E — Explicit export contracts (optional)
+
+- **Exact IDs:** `CAL-P3-001` only.
+- **Objective:** Reduce future divergence between in-tab downloads and central exports while preserving their intentional formats.
+- **Why together:** Single small debt project; no broad application refactor included.
+- **Expected areas:** In-tab CSV functions in `app/operator.tsx`, `lib/exports.ts`, serializer contracts and focused format tests/documentation.
+- **Risk:** Low-medium if schema differences are made explicit; higher if formats are silently unified, which is not approved scope.
+- **Acceptance:** Existing download buttons keep their promised columns, roster reimport compatibility and privacy policy; financial files reconcile; shared contracts do not contain duplicate row mappings. No new dependency unless justified.
+- **Regression surface:** All existing CSV variants and importer. Perform after B/D so cleanup preserves corrected behavior.
+- **Order:** 5, optional after user-visible defects; do not treat it as a release blocker by itself.
+
+### Batch F — Phone header controls and TV intermediate widths (implemented locally)
+
+- **Status:** APPROVED 2026-09-15 · IMPLEMENTED (local) and validated on `claude/cal-f-phone-header-tv`, see [BATCH-F.md](../BATCH-F.md). **Since merged to `main` and deployed on `ecgc-calcutta-app-1`** (see the Stable register above, CAL-P2-004/005). Decision recorded: one-screen TV **is** required below 700 px height (1366×768 at 125 % scaling = 1093×614); implemented down to 951 × 500 px.
+- **Exact IDs:** `CAL-P2-004`, `CAL-P2-005`.
+- **Objective:** Every header control remains usable at phone width (operator can sign out); the TV view stays readable at 960–1099 px wide and under 700 px tall.
+- **Why together:** Both are bounded responsive CSS corrections to shared header/TV rules introduced or left by earlier layout work; neither touches data or rules.
+- **Expected areas:** `app/globals.css` (phone `.mast nav`, TV grid thresholds and `.tv .stats strong` sizing); an icon or visible text on the Sign out and `#board` anchors in `app/operator.tsx` / `app/auction.tsx`.
+- **Risk:** Low–medium; shared header and TV CSS need the existing Batch C matrix rerun.
+- **Acceptance:** Header controls non-zero, named and focus-visible at 320/390/430/700/701 px on `/` and `/admin`; TV live/paused/completed contain all statistics at 960×540, 1024×768, 1093×614, 1099×618, 1100×619, 1280×720 plus the existing 1366×768 / 1920×1080 checks. Decision needed: whether one-screen TV is required below 700 px height.
+- **Order:** 6 — recommended first of the E2 batches (spectator display and phone operator).
+
+### Batch G — Sold dialog Escape (implemented locally)
+
+- **Status:** APPROVED 2026-09-15 · IMPLEMENTED (local) and validated on `claude/cal-g-sold-dialog-escape` (stacked on the Batch F branch), see [BATCH-G.md](../BATCH-G.md). **Since merged to `main` and deployed on `ecgc-calcutta-app-1`** (see the Stable register above, CAL-P2-006). Implemented as an `onEscapeKeyDown` guard on the Sold `DialogContent`; shared dialog/combobox primitives unchanged.
+- **Exact IDs:** `CAL-P2-006`.
+- **Objective:** Escape dismisses buyer suggestions before it dismisses the sale.
+- **Expected areas:** `app/auction-controls.tsx` `SoldDialog`; `components/ui/combobox.tsx` or `components/ui/dialog.tsx` escape handling.
+- **Risk:** Low; verify stale-dialog, inline buyer creation and keyboard shortcut suppression still pass.
+- **Acceptance:** Keyboard-only: type → Escape keeps dialog and focus → Escape closes; Cancel/Confirm unchanged; one-click “Add buyer here” with the list open still works.
+- **Order:** 7.
+
+### Batch H — Contrast and filter semantics (implemented locally)
+
+- **Status:** APPROVED 2026-09-15 · IMPLEMENTED (local) and validated on `claude/cal-h-contrast-tabs` (stacked on the Batch G branch), see [BATCH-H.md](../BATCH-H.md). **Since merged to `main` and deployed on `ecgc-calcutta-app-1`** (see the Stable register above, CAL-P2-007/CAL-P3-002). Token-level fix (`--muted-foreground` → `#5c6a5f`, new `--lot-foreground` `#636e60`, tab trigger `text-muted-foreground`); the filter tabs gained real `TabsContent` panels rather than switching to toggle buttons, keeping arrow-key behaviour unchanged.
+- **Exact IDs:** `CAL-P2-007`, `CAL-P3-002`.
+- **Objective:** The five listed supporting texts meet 4.5:1; filter tabs reference real panels or use non-tab semantics.
+- **Expected areas:** `app/globals.css` colour tokens, `components/ui/tabs.tsx` trigger colour, `app/auction.tsx` board tools, `app/settlement.tsx` settlement tools.
+- **Risk:** Low; visual regression only.
+- **Acceptance:** Computed ratios ≥ 4.5:1 on public, TV and operator; axe reports no serious `color-contrast` and no `aria-valid-attr-value` on `/`, `/tv`, operator console, Settlement, Exports.
+- **Order:** 8.
+
+### Batch I — Operator data-entry feedback (implemented locally)
+
+- **Status:** APPROVED 2026-09-15 (D-CAL-2…5) · `CAL-P3-003/004/005` IMPLEMENTED (local) and validated on `claude/cal-i-data-entry` (stacked on the Batch H branch), see [BATCH-I.md](../BATCH-I.md); `CAL-P3-007` DEFERRED under D-CAL-5 with measurements (a sticky panel would cover the current bid at both laptop sizes) — since addressed architecturally by Batch K/C2, see the Stable register above. **`CAL-P3-003/004/005` since merged to `main` and deployed on `ecgc-calcutta-app-1`.** Harness 17/17 on the implemented IDs, focused suite 43/43 (server rules, Access, Batch A access and Batch D import reruns), acceptance 58/58, refinement 72/72.
+- **Exact IDs:** `CAL-P3-003`, `CAL-P3-004`, `CAL-P3-005`; `CAL-P3-007` optional.
+- **Objective:** No silent zero settings, identified invalid import rows, honest Access messages; optionally keep the Hammer above the fold on laptops.
+- **Expected areas:** `app/rules.tsx`, `app/editors.tsx`, `app/operator.tsx` Access form, `app/api/admin/route.ts` messages (no schema).
+- **Risk:** Low–medium; decision needed on whether $0 minimum / 0 % deduction remain legal.
+- **Acceptance:** Per finding in PRODUCT-AUDIT; rerun import fixtures from Batch D and the Access checks from Batch A.
+- **Order:** 9.
+
+### Batch J — Unclaimed purse to the house (proposed)
+
+- **Status:** PROPOSED, awaiting approval. Policy recorded 2026-09-15 by the owner: an unclaimed purse share (place held by an unsold team) goes to the house; the house then chooses, per event, to add it back to the winners' pot or keep it.
+- **Exact IDs:** `CAL-P3-006`.
+- **Objective:** Placing an unsold team is legal; Results and Settlement show the unclaimed amount and the house's choice explicitly instead of empty-state copy that says results are missing.
+- **Expected areas:** `lib/model.ts` `compute()` (house-retained vs redistributed unclaimed share), a per-event house choice and Results-panel messaging in `app/rules.tsx`, settlement messaging in `app/settlement.tsx`, seeded oracle cases in `tests/audit-math.mjs`.
+- **Risk:** Medium — changes money arithmetic; the independent BigInt oracle must be extended with the new rule before `compute()` changes, and redistribution must remain cent-exact under largest-remainder.
+- **Acceptance:** Both house choices produce cent-exact totals that reconcile against the oracle; existing 1,000 seeded cases unchanged when no place is unclaimed; explicit messages in Results and Settlement.
+- **Order:** after F–I; route through `approved-findings-implementation`.
+
+## User scope 2026-09-17 — UI2 purposeful UI refinement
+
+Not an audit finding: an owner-requested UI/UX refinement pass (Tools menu, contextual help,
+top-level theme selector, Prepare 1–4 redesign, TV auction-board polish, statistics hierarchy and
+semantic team-count color, local user accounts). Recorded here in the same non-audit pattern used
+for Leaderboard's L2/L3/R1 scope; does not approve anything else listed in this tracker.
+
+| ID | Scope | Status | Record |
+|---|---|---|---|
+| UI2-A…F | Tools dropdown, Prepare 1–4 redesign, theme quick-select, contextual `HelpTip`, TV bid-pulse/sold-settle animation, statistics hierarchy + semantic team-count color | IMPLEMENTED → VALIDATED (local) on `claude/ui2-refinement`, off clean `main` @ `cf3c0ca`. Merged to `main` as `9c4319c` on 2026-09-17. **Deployed** — `ecgc-calcutta-app-1` rebuilt 2026-09-17T14:01 UTC; public routes read-only verified 200; operator-side (Tools dropdown, theme picker, Local Users) not exercised against production. | [BATCH-CAL-UI2.md](../BATCH-CAL-UI2.md) |
+| UI2-G | Local user accounts (Tools → Local Users), operator-level only, scrypt-hashed, portable-runtime-only | IMPLEMENTED → VALIDATED (local): `npm run test:portable` end-to-end incl. a real HTTP sign-in as a created local operator; owner-gated admin actions exercised against a live portable server; plain-build stub fails loudly, verified in-browser | [BATCH-CAL-UI2.md](../BATCH-CAL-UI2.md) |
+| UI2-H | Responsive/TV `clamp()` audit at 1366×768/1920×1080/2560×1440/3840×2160 + narrow width | VALIDATED (local) — no source change needed; existing S1 proportional-typography system scales correctly through everything UI2 added; keyboard/focus and reduced-motion verified programmatically | [BATCH-CAL-UI2.md](../BATCH-CAL-UI2.md) |
+
+## User scope 2026-09-17 — UI3 operator desk refinement (Batch L)
+
+Not an audit finding: a second owner-requested UI/UX pass over the operator desk, recorded in the
+same non-audit pattern as UI2. Items 6 and 7 are reported defects, reproduced in a browser before
+being fixed. Does not approve anything else listed in this tracker.
+
+| ID | Scope | Status | Record |
+|---|---|---|---|
+| UI3-1 | One flat, unlabelled tab bar (Auction console · View and Edit Sales · Results · Settlement · Exports); `NavGroup`, its captions and *Return to console* removed; active tab drawn as the front edge of the panel below it | IMPLEMENTED → VALIDATED (local, rendered) | [BATCH-L.md](../BATCH-L.md) |
+| UI3-2 | Prepare step 4 → *TV / Display Settings*; new step 5 *Start Auction* with the TV-placement dialog; both entry points start the auction and scroll the tab bar to the top | IMPLEMENTED → VALIDATED (local, rendered). Decision recorded: step 5 and the in-console Start/Resume both remain | [BATCH-L.md](../BATCH-L.md) |
+| UI3-3 | Compact toggle, theme picker and Undo pinned to the masthead; Load demo + Reset demo data into Tools; *Auto* kept and explained, not deleted | IMPLEMENTED → VALIDATED (local, rendered). Trade-off recorded: the masthead sticks on every tab **except** the console, where a sticky bar breaks the D-CAL-5 / CAL-P3-007 one-screen bar | [BATCH-L.md](../BATCH-L.md) |
+| UI3-4 | `.nav-notes` blocks removed; new `ControlTip` hover help on 19 rendered controls (15 sites); Tools items describe themselves inline | IMPLEMENTED → VALIDATED (local, rendered). Deviation recorded: inline descriptions for dropdown items instead of hover | [BATCH-L.md](../BATCH-L.md) |
+| UI3-5 | Undo confirmation names the actual action, record, time and operator, from existing `meta.audit` — no new plumbing | IMPLEMENTED → VALIDATED (local, rendered + 10 unit checks) | [BATCH-L.md](../BATCH-L.md) |
+| UI3-6 | **Bug:** Next Up / roster arrows renumbered the lot without moving the team. Cause: `move()` swapped neighbours in the full `teams` array while the visible list is filtered. Fixed by `reorderVisible()` | REPRODUCED → FIXED → VALIDATED (local, rendered + 10 reorder unit checks in `tests/ui3-reorder.mjs`) | [BATCH-L.md](../BATCH-L.md) |
+| UI3-7 | **Bug:** the operator page scrolled itself back to the top. Cause: Radix Popover's `onCloseAutoFocus` refocusing a nav `HelpTip` trigger without `preventScroll`; same source also stole focus from the bid field on hover | REPRODUCED (instrumented stack trace) → FIXED → VALIDATED (local, rendered) | [BATCH-L.md](../BATCH-L.md) |
+| UI3-8 | Public board `#board` anchor kept but self-hiding via `IntersectionObserver` while the board is in view | IMPLEMENTED → VALIDATED (local, rendered). Decision recorded: kept rather than removed — the board is below the fold at 390 px and at 1080p | [BATCH-L.md](../BATCH-L.md) |
+
+## Future ideas, not authorized
+
+Recorded only so the idea is not lost. **Nothing here is approved, scoped or started, and none of it
+may be built without an explicit, separate go-ahead.**
+
+- **Offline operation for venues without internet access.** The owner raised wanting to explore a
+  version of the app that can run an auction at a venue with no connectivity. Nothing has been
+  designed or estimated. It would touch areas this project currently treats as settled — the
+  operator/board/TV split all assume a reachable server, and the portable container still expects a
+  network for its Cloudflare tunnel and Google sign-in — so it needs its own requirements pass,
+  decision record and approval before any code. Not part of Batch L.
+
+## Completed original audit work
+
+- Reconciled all requested current capabilities against code and test evidence.
+- Created project/architecture/current-state/validation/coverage/audit/tracker foundation and durable synthetic evidence.
+- Performed original suites, independent seeded oracle, expanded API/export/queue/correction tests, keyboard and four-tab journeys, responsive/contrast review, isolated outage/restart and scale checks.
+- Kept product code and schema unchanged; preserved user review and isolated all mutation fixtures.
+- Recorded interrupted harness attempts and unavailable hosted/hardware checks without passing them.
+
+## Compact handoff
+
+**Remaining optional scope: Batch E, exact ID `CAL-P3-001`.** A/B/C/D are complete locally. All eight original findings are resolved locally; E is not a release blocker by itself. **Audit E2 (2026-09-15) adds proposed Batches F–I (CAL-P2-004…007, CAL-P3-002…005/007) and one policy-gated item (CAL-P3-006). Batch F (CAL-P2-004/005), Batch G (CAL-P2-006), Batch H (CAL-P2-007, CAL-P3-002) and Batch I (CAL-P3-003/004/005; CAL-P3-007 deferred per D-CAL-5) were each approved and are implemented and validated locally on stacked branches `claude/cal-f-phone-header-tv` → `claude/cal-g-sold-dialog-escape` → `claude/cal-h-contrast-tabs` → `claude/cal-i-data-entry` — unmerged, undeployed ([BATCH-F.md](../BATCH-F.md), [BATCH-G.md](../BATCH-G.md), [BATCH-H.md](../BATCH-H.md), [BATCH-I.md](../BATCH-I.md)). J has its owner decision recorded in [DECISIONS.md](../DECISIONS.md) (D-CAL-6) but was not part of those approvals.** Do not implement E or J merely because they are listed here; each needs its own explicit go-ahead. After the user approves the next bounded set, preserve KEEP / PROTECT, run its focused reproductions and relevant regression suites, and update this tracker with evidence. Deployment needs separate authorization; the live container was not changed by the audit.

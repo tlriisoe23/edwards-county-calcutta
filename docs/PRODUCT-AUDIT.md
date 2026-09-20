@@ -8,9 +8,9 @@ The operator-first product is substantially implemented. A volunteer can configu
 
 **The original audit identified nine findings. A/B/C/D resolve eight locally; one optional P3 remains open: 0 demonstrated P0, 0 open P1/P2.** Context, access atomicity, signed CSV, settlement aggregates, public/TV containment, caption contrast, quoted imports and creation retries are fixed locally. The original audit did not demonstrate stored financial corruption, unauthorized-user access bypass or lost routine updates. These are bounded local results, not a hosted security or financial certification.
 
-The original 58-check and 72-check suites passed. Eleven extra correction/queue checks passed. All 1,000 seeded allocation cases passed. Additional audit probes deliberately retain failing assertions for actual findings. Detailed counts, commands and gaps are in [VALIDATION.md](VALIDATION.md); the full capability reconciliation is in [CURRENT-STATE.md](CURRENT-STATE.md), and the surface/state/device/input matrix is in [COVERAGE.md](COVERAGE.md).
+The original 58-check and 72-check suites passed. Eleven extra correction/queue checks passed. All 1,000 seeded allocation cases passed. Additional audit probes deliberately retain failing assertions for actual findings. Detailed counts, commands and gaps are in [VALIDATION.md](VALIDATION.md); the full capability reconciliation is in [CURRENT-STATE.md](archive/CURRENT-STATE-2026-09-19-pre-readoption.md), and the surface/state/device/input matrix is in [COVERAGE.md](COVERAGE.md).
 
-The original audit changed no product source or schema. The user subsequently approved [Batch A](BATCH-A.md), [Batch B](BATCH-B.md), [Batch C](BATCH-C.md) and [Batch D](BATCH-D.md); their reports contain exact source changes and evidence. No schema change or deployment occurred. Optional E in [TASK-TRACKER.md](TASK-TRACKER.md) awaits approval. Original reproductions/evidence remain historical; current resolution status supersedes old behavior for fixed IDs.
+The original audit changed no product source or schema. The user subsequently approved [Batch A](BATCH-A.md), [Batch B](BATCH-B.md), [Batch C](BATCH-C.md) and [Batch D](BATCH-D.md); their reports contain exact source changes and evidence. No schema change or deployment occurred. Optional E in [TASK-TRACKER.md](archive/TASK-TRACKER-2026-09-19-pre-readoption.md) awaits approval. Original reproductions/evidence remain historical; current resolution status supersedes old behavior for fixed IDs.
 
 ## KEEP / PROTECT
 
@@ -241,7 +241,7 @@ Participant/mobile bidding, accounts, pre-bidding, silent/timed auctions, actual
 
 ## Handoff and release boundary
 
-Read [TASK-TRACKER.md](TASK-TRACKER.md) for acceptance and status. **A/B/C/D are complete locally. Only optional Batch E (`CAL-P3-001`) remains**, for export-contract maintenance.
+Read [TASK-TRACKER.md](archive/TASK-TRACKER-2026-09-19-pre-readoption.md) for acceptance and status. **A/B/C/D are complete locally. Only optional Batch E (`CAL-P3-001`) remains**, for export-contract maintenance.
 
 The user must approve optional E before implementation. A/B/C/D approval does not authorize migration, production access changes or deployment. Hosted acceptance remains a later gate.
 

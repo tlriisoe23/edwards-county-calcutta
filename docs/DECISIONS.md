@@ -1,7 +1,7 @@
 # Product decisions
 
 Recorded by the owner (via Claude Code) on 2026-09-15 to unblock the audit E2 batches in
-[TASK-TRACKER.md](TASK-TRACKER.md). Each entry is the rule an implementer must follow;
+[TASK-TRACKER.md](archive/TASK-TRACKER-2026-09-19-pre-readoption.md). Each entry is the rule an implementer must follow;
 change the rule here first if the club changes its mind. Rationale cites common Calcutta
 practice (club rule sheets, Golf Genius Calcutta module, auction software conventions).
 

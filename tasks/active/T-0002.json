@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "id": "T-0002",
+  "title": "Make playwright a dependency so the browser suites run from a clean checkout (OC-3)",
+  "objective": "Neither browser suite runs from a clean checkout because playwright is not a dependency here, unlike the leaderboard's; both suites and the console rehearsal accept UI3_PLAYWRIGHT_MODULE and were run pointed at the sibling's installed copy. Add playwright (and its browsers) as a proper dev dependency with the same pin the leaderboard uses, so a fresh clone can run tests/ui3-browser.mjs, tests/s1-browser.mjs and tests/console-rehearsal.mjs without the sibling. Source: former tracker row OC-3, preserved in docs/archive/TASK-TRACKER-2026-09-19-pre-readoption.md.",
+  "risk": "normal",
+  "mode": "curated",
+  "status": "planned",
+  "base_ref": "main",
+  "acceptance": [
+    "npm ci on a clean checkout followed by the two browser suites and the console rehearsal succeeds without UI3_PLAYWRIGHT_MODULE set.",
+    "The pin matches the leaderboard's so both products test on the same browser build; docs/VALIDATION.md records the run."
+  ],
+  "non_goals": [
+    "No change to what the suites test.",
+    "No merge, deployment, live-data mutation, or account change unless separately authorized."
+  ],
+  "dependencies": [],
+  "scope": {
+    "read": [
+      "docs/",
+      "app/",
+      "lib/",
+      "tests/",
+      "scripts/",
+      "portable/"
+    ],
+    "write": [
+      "package.json",
+      "package-lock.json",
+      "tests/",
+      "docs/",
+      "tasks/active/T-0002.json",
+      "docs/TASKS.md",
+      "docs/CURRENT-STATE.md"
+    ],
+    "forbidden": [
+      ".env.portable",
+      ".env",
+      ".wrangler/",
+      "outputs/"
+    ]
+  },
+  "spec": null,
+  "batch_exception": "",
+  "approvals": [],
+  "independent_review_ref": null,
+  "handoff": {
+    "next_action": "Read how tests/ui3-browser.mjs resolves UI3_PLAYWRIGHT_MODULE, then add the dependency and run both suites from a fresh clone.",
+    "blockers": [],
+    "decisions_needed": []
+  },
+  "metrics": {
+    "context_resets": 0,
+    "repeated_failures": 0,
+    "avoidable_rework": 0,
+    "lesson": ""
+  }
+}
