@@ -63,6 +63,26 @@
         ],
         "timeout_seconds": 300,
         "side_effects": "none"
+      },
+      {
+        "name": "Portable container build (npm run build:portable); the portable suite runs the staged build",
+        "argv": [
+          "npm",
+          "run",
+          "build:portable"
+        ],
+        "timeout_seconds": 900,
+        "side_effects": "isolated-local"
+      },
+      {
+        "name": "Portable suite against the fresh staged build (npm run test:portable)",
+        "argv": [
+          "npm",
+          "run",
+          "test:portable"
+        ],
+        "timeout_seconds": 900,
+        "side_effects": "isolated-local"
       }
     ],
     "full": [
@@ -77,6 +97,26 @@
         ],
         "timeout_seconds": 300,
         "side_effects": "none"
+      },
+      {
+        "name": "Portable container build (npm run build:portable); the portable suite runs the staged build",
+        "argv": [
+          "npm",
+          "run",
+          "build:portable"
+        ],
+        "timeout_seconds": 900,
+        "side_effects": "isolated-local"
+      },
+      {
+        "name": "Portable suite against the fresh staged build (npm run test:portable)",
+        "argv": [
+          "npm",
+          "run",
+          "test:portable"
+        ],
+        "timeout_seconds": 900,
+        "side_effects": "isolated-local"
       }
     ]
   },
