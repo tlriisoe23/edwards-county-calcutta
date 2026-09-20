@@ -49,16 +49,6 @@
         ],
         "timeout_seconds": 300,
         "side_effects": "none"
-      },
-      {
-        "name": "ESLint (npm run lint); .sites-runtime is ignored by the lint config",
-        "argv": [
-          "npm",
-          "run",
-          "lint"
-        ],
-        "timeout_seconds": 600,
-        "side_effects": "none"
       }
     ],
     "focused": [
@@ -72,16 +62,6 @@
           "false"
         ],
         "timeout_seconds": 300,
-        "side_effects": "none"
-      },
-      {
-        "name": "ESLint (npm run lint); .sites-runtime is ignored by the lint config",
-        "argv": [
-          "npm",
-          "run",
-          "lint"
-        ],
-        "timeout_seconds": 600,
         "side_effects": "none"
       },
       {
@@ -116,16 +96,6 @@
           "false"
         ],
         "timeout_seconds": 300,
-        "side_effects": "none"
-      },
-      {
-        "name": "ESLint (npm run lint); .sites-runtime is ignored by the lint config",
-        "argv": [
-          "npm",
-          "run",
-          "lint"
-        ],
-        "timeout_seconds": 600,
         "side_effects": "none"
       },
       {

@@ -8,5 +8,6 @@ Statuses are queue positions, not proof of tests, merge, or deployment. Open onl
 |---|---|---|---|
 | [T-0002](../tasks/active/T-0002.json) | Make playwright a dependency so the browser suites run from a clean checkout (OC-3) | planned | normal / curated |
 | [T-0003](../tasks/active/T-0003.json) | Give each browser-suite run its own evidence directory (OC-4) | planned | normal / curated |
+| [T-0006](../tasks/active/T-0006.json) | Make npm run lint pass on the source | planned | normal / curated |
 
 Archived records: 3. See [archive routing](../tasks/archive/README.md).
