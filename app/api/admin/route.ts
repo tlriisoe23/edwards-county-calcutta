@@ -11,7 +11,7 @@ const player = z.string().trim().min(1).max(100);
 const teamSchema = z.object({ id: id.optional(), sourceId: z.string().trim().max(80).nullable().optional(), name: text, players: z.array(player).min(1).max(4), flightId: id, handicap: z.number().min(-20).max(100).nullable().default(null), seed: z.number().int().min(1).max(1000).nullable().default(null), notes: note, privateNotes: note, order: z.number().int().min(0).max(100000).optional() });
 const buyerSchema = z.object({ id: id.optional(), name: text, group: z.string().max(150).default(""), contact: z.string().max(500).default(""), privateNotes: note });
 const timestamp = () => new Date().toISOString();
-function requireThat(condition: any, message: string) { if (!condition)
+function requireThat(condition: unknown, message: string) { if (!condition)
     throw Error(message); }
 // PORTABLE-STUB-START
 // Local user accounts (Tools -> Local Users) exist only in the self-hosted portable deployment
