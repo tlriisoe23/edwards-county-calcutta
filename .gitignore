@@ -47,3 +47,6 @@ next-env.d.ts
 
 !.env.example
 *.tsbuildinfo
+
+# Framework-private evidence, handoffs and approvals (never committed)
+.local/

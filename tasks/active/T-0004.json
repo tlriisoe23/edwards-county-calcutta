@@ -2,14 +2,15 @@
   "schema_version": 1,
   "id": "T-0004",
   "title": "Exclude the local build output from the lint script",
-  "objective": "npm run lint (eslint . --ignore-pattern dist --ignore-pattern .next) lints the ignored .sites-runtime/portable-build/.next output when a portable build exists locally, and reported 12 require()-import errors there at adoption on 2026-09-20 while the source was clean. project.json's validation runs eslint with --ignore-pattern .sites-runtime for that reason; the package.json script should carry the same ignore so npm run lint means the same thing everywhere.",
+  "objective": "npm run lint (eslint . --ignore-pattern dist --ignore-pattern .next) lints the ignored .sites-runtime/portable-build/.next output when a portable build exists locally, and reported 12 require()-import errors there at adoption on 2026-09-20. With that directory excluded the source itself still reports two no-explicit-any errors (app/api/admin/route.ts:14 and app/api/public/route.ts:7) and two unused-variable warnings, so lint is not configured in project.json until both halves are fixed: the script should ignore .sites-runtime, and the two any types should be replaced.",
   "risk": "normal",
   "mode": "curated",
   "status": "planned",
   "base_ref": "main",
   "acceptance": [
     "package.json's lint script ignores .sites-runtime (or an eslint config ignores it) and npm run lint passes with a local portable build present.",
-    "project.json's validation entry goes back to npm run lint once it does."
+    "The two no-explicit-any errors in app/api/admin/route.ts and app/api/public/route.ts are resolved without changing behaviour; the unused-variable warnings are cleaned or justified.",
+    "project.json's validation gains npm run lint once it passes here."
   ],
   "non_goals": [
     "No change to what the suites test.",
@@ -26,6 +27,8 @@
     "write": [
       "package.json",
       "eslint.config.mjs",
+      "app/api/admin/route.ts",
+      "app/api/public/route.ts",
       "project.json",
       "docs/",
       "tasks/active/T-0004.json",
@@ -44,7 +47,7 @@
   "approvals": [],
   "independent_review_ref": null,
   "handoff": {
-    "next_action": "Add .sites-runtime to the lint script's ignore patterns and rerun npm run lint with the local build present.",
+    "next_action": "Add .sites-runtime to the lint ignore patterns, then type the two any values in the API routes and rerun npm run lint.",
     "blockers": [],
     "decisions_needed": []
   },

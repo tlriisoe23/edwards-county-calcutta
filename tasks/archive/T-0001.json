@@ -5,7 +5,7 @@
   "objective": "Restore machine-checked governance to this project, which declared the AI Project Framework in prose but carried no project.json. Preserve the hand-written current state and tracker intact in docs/archive/, add project.json with budgets, move every open tracker item to a task record or the budgeted backlog with its ID kept, record the live production release as a state/releases record, add the startup brief and the single documentation map, configure validation only from commands proven to run here, and record the framework dependency snapshot. Planned as ai-project-framework task T-0028 under docs/procedures/PROJECT-READOPTION.md; nothing is deleted and no application code, container, database or route changes.",
   "risk": "normal",
   "mode": "curated",
-  "status": "in_progress",
+  "status": "done",
   "base_ref": "main",
   "acceptance": [
     "docs/archive/ holds the former CURRENT-STATE.md and TASK-TRACKER.md intact with provenance headers; a tombstone keeps the old tracker path landing.",
