@@ -22,7 +22,7 @@ All agents (Codex, Claude, Copilot, Cursor) working in this repository must stri
 
 ## Runtime and ownership
 
-- Built on the Sites Vinext/React starter with Cloudflare Workers and D1 (SQLite). It is operator-first: the operator records amounts during verbal bidding and manual settlement; the app never collects or transfers money itself. Keep it isolated from [ecgc-leaderboard](../ecgc-leaderboard/) — no shared database or deployment identity.
+- Built on the Sites Vinext/React starter with Cloudflare Workers and D1 (SQLite). It is operator-first: the operator records amounts during verbal bidding and manual settlement; the app never collects or transfers money itself. Keep it isolated from `ecgc-leaderboard` — no shared database or deployment identity.
 - **This app is live in production**: `https://calcutta.edcogolf.org` (operator: `/admin`), served from `tanner-ai-vm` via `portable/compose.yaml` — container `ecgc-calcutta-app-1`, image `ecgc-calcutta:portable`, persistent volume `ecgc-calcutta_data`, database `/data/calcutta.sqlite` inside the container. Public routing goes through the existing Cloudflare tunnel `ecgc-preview`; do not add router port forwarding or new tunnel routes without authorization.
 - Local development uses a separate D1 store under `.wrangler/state` — never the container's `/data/calcutta.sqlite`. See `portable/migrate.mjs`, `portable/backup.mjs`, and `portable/runtime.mjs` for the actual portable-runtime operations.
 - Owner is `tlriisoe@gmail.com`; the Access tab manages additional Google-authenticated operators independently of Google client configuration.
