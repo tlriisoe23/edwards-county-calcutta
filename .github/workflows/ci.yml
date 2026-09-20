@@ -1,0 +1,101 @@
+name: Project CI
+# Linked-project gate, self-hosted variant, for a project with NO tools/project.py
+# forwarder: the framework's own CLI is driven with `--root project` instead.
+#
+# The framework is a PRIVATE repository and a fine-grained read token can only be
+# minted from the web UI, so rather than the FRAMEWORK_REPOSITORY + token checkout
+# the framework's projects/_template workflow uses, this clones the framework from
+# the runner host's own checkout at the revision recorded in
+# project.json.framework_dependency -- still a pinned full SHA, never a moving
+# branch. That makes this workflow specific to the self-hosted runner on
+# tanner-ai-vm.
+#
+# The runner is repository-scoped and this repository is private; never make it
+# public while a self-hosted runner is attached. Nothing here deploys, merges,
+# or claims application acceptance.
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: foundation-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  project-gate:
+    name: Project gate
+    runs-on: [self-hosted, linux, x64, calcutta-ci]
+    timeout-minutes: 45
+    steps:
+      - name: Checkout the candidate without persistent credentials
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2; verified upstream release pin
+        with:
+          path: project
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Resolve the linked framework declared by project.json
+        id: framework
+        working-directory: project
+        run: |
+          python3 - <<'EOF'
+          import json, os, pathlib, re, sys
+          config = json.load(open("project.json", encoding="utf-8"))
+          declared = config.get("framework_path")
+          if not declared:
+              sys.exit("project.json declares no framework_path; this workflow is for linked projects.")
+          workspace = pathlib.Path(os.environ["GITHUB_WORKSPACE"]).resolve()
+          target = (pathlib.Path.cwd() / declared).resolve()
+          if target == workspace or not target.is_relative_to(workspace):
+              sys.exit(f"framework_path {declared!r} does not resolve inside the runner workspace; keep the framework a sibling of the project.")
+          recorded = (config.get("framework_dependency") or {}).get("revision")
+          if not recorded:
+              sys.exit("project.json records no framework_dependency snapshot; this workflow refuses to fall back to a mutable branch. Record one with `dependencies --record` from a clean framework checkout and commit project.json.")
+          if not re.fullmatch(r"[0-9a-f]{40}", str(recorded)):
+              sys.exit(f"framework_dependency.revision must be a full commit SHA, not a branch or tag: {recorded!r}. Re-record it with `dependencies --record`.")
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
+              out.write(f"path={target.relative_to(workspace).as_posix()}\n")
+              out.write(f"ref={recorded}\n")
+          print(f"Framework checkout: {target.relative_to(workspace).as_posix()} at {recorded}")
+          EOF
+      - name: Clone the linked framework from the host checkout at the recorded revision
+        env:
+          FRAMEWORK_SOURCE: ${{ vars.FRAMEWORK_LOCAL_PATH || '/home/tanner/development/ai-project-framework' }}
+          FRAMEWORK_PATH: ${{ steps.framework.outputs.path }}
+          FRAMEWORK_REF: ${{ steps.framework.outputs.ref }}
+        run: |
+          set -euo pipefail
+          test -d "$FRAMEWORK_SOURCE/.git" || {
+            echo "No framework checkout at $FRAMEWORK_SOURCE on this runner." >&2
+            echo "Set the FRAMEWORK_LOCAL_PATH repository variable, or restore that checkout." >&2
+            exit 1
+          }
+          # file:// rather than a plain path: a local-path clone hardlinks objects
+          # into the source repository, so a later gc there could corrupt this one.
+          rm -rf "$FRAMEWORK_PATH"
+          git clone --quiet --no-tags "file://$FRAMEWORK_SOURCE" "$FRAMEWORK_PATH"
+          git -C "$FRAMEWORK_PATH" cat-file -e "$FRAMEWORK_REF^{commit}" 2>/dev/null || {
+            echo "The recorded revision $FRAMEWORK_REF is not present in $FRAMEWORK_SOURCE." >&2
+            echo "Fetch it there, or re-record the snapshot against a revision that exists." >&2
+            exit 1
+          }
+          git -C "$FRAMEWORK_PATH" checkout --quiet --detach "$FRAMEWORK_REF"
+          echo "Framework at $(git -C "$FRAMEWORK_PATH" rev-parse HEAD)"
+      # node_modules is gitignored, so a fresh checkout has none and the
+      # configured tier fails on missing imports rather than on anything real.
+      # `ci` (not `install`) so the lockfile decides, exactly.
+      - name: Install locked dependencies
+        working-directory: project
+        run: npm ci
+      - name: Observe the framework dependency
+        run: python3 "${{ steps.framework.outputs.path }}/tools/project.py" --root project dependencies
+      - name: Foundation and configured application gate
+        env:
+          FOUNDATION_BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: python3 "${{ steps.framework.outputs.path }}/tools/project.py" --root project ci
+      - name: State acceptance limits
+        if: always()
+        run: |
+          echo 'This gate runs the framework foundation checks and this project-configured full validation tier. With no task in flight it states that no implementation grant or scope enforcement applied (ADR-0007); no provider, restore, staging, or production acceptance is inferred.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'The linked framework was cloned from the runner host at the recorded full-SHA revision; a project with no recorded snapshot fails before that clone instead of using a moving branch. This job has no deployment secrets and never merges or deploys.' >> "$GITHUB_STEP_SUMMARY"
