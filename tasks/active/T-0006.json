@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "id": "T-0006",
+  "title": "Make npm run lint pass on the source",
+  "objective": "Correction of T-0004, which was archived on 2026-09-20 on a misread lint summary: the line reporting one auto-fixable error was taken for the total. With the local build output correctly ignored (eslint.config.mjs now ignores .sites-runtime/**), npm run lint still reports 46 errors in the source: 39 @typescript-eslint/no-explicit-any, 6 renders, 1 prefer-const; plus 38 warnings. Typing these is application work that can change behaviour if done carelessly, so lint is not configured as validation until the source passes; the two safe changes from T-0004 (requireThat takes unknown; the public route types its head row) stand.",
+  "risk": "normal",
+  "mode": "curated",
+  "status": "planned",
+  "base_ref": "main",
+  "acceptance": [
+    "npm run lint exits 0 on a clean checkout and with a local portable build present, with each any replaced by the type the code actually handles and no behaviour change; typecheck, the portable suite and the browser suites still pass.",
+    "npm run lint is then added to every validation tier in project.json, with evidence recorded through the framework's validate."
+  ],
+  "non_goals": [
+    "No rule disabling to make the count zero; the config's vendored-component exceptions stay as they are.",
+    "No merge, deployment, live-data mutation, or account change unless separately authorized."
+  ],
+  "dependencies": [],
+  "scope": {
+    "read": [
+      "app/",
+      "lib/",
+      "db/",
+      "tests/",
+      "eslint.config.mjs",
+      "docs/"
+    ],
+    "write": [
+      "app/",
+      "lib/",
+      "db/",
+      "eslint.config.mjs",
+      "project.json",
+      "docs/",
+      "tasks/active/T-0006.json",
+      "docs/TASKS.md",
+      "docs/CURRENT-STATE.md"
+    ],
+    "forbidden": [
+      ".env.portable",
+      ".env",
+      ".wrangler/",
+      "outputs/"
+    ]
+  },
+  "spec": null,
+  "batch_exception": "",
+  "approvals": [],
+  "independent_review_ref": null,
+  "handoff": {
+    "next_action": "Work file by file from the lint output, starting with app/api/admin/route.ts, replacing any with the handled type and re-running typecheck and the portable suite after each file.",
+    "blockers": [],
+    "decisions_needed": []
+  },
+  "metrics": {
+    "context_resets": 0,
+    "repeated_failures": 0,
+    "avoidable_rework": 0,
+    "lesson": ""
+  }
+}
